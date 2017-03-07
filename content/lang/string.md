@@ -120,3 +120,35 @@ String hello = new String("你好hee");
 1. 循环对比短串的码点
 2. 全部转换成大写对比
 3. 全部转换成小写对比
+
+## concat(String str)
+将指定字符串连接到此字符串的结尾。
+```java
+"hello".concat("hee");
+```
+```java
+    public String concat(String str) {
+        int otherLen = str.length();
+        // 如果str为空串，则直接返回自己，也就是不连接
+        if (otherLen == 0) {
+            return this;
+        }
+        int len = value.length;
+        // 把旧值扩容到一个新数组中去，没有值的下标索引处用 0 补充
+        char buf[] = Arrays.copyOf(value, len + otherLen);
+        // 把要链接的字符串填充到新的数组中。
+        str.getChars(buf, len);
+        // 返回一个新串
+        return new String(buf, true);
+    }
+    
+    /**
+    @param dst 新数组容器
+    @param dstBegin 开始索引
+    */
+    void getChars(char dst[], int dstBegin) {
+        //  从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
+        // 要注意这里的 value，已经不是连接前的字符串了（hello），这个方法而是“hee”对象里面的了
+        System.arraycopy(value, 0, dst, dstBegin, value.length);
+    }
+```
