@@ -270,6 +270,6 @@ String hello = new String("你好hee");
 ![](/assets/lang/indexOf算法示意图.png)
 
 1. 先找第一个字符，如果找到了再找后面的字符。
-2. 也就是 j 和 k 只要匹配就都+1，往后
+2. 也就是 j 和 k 只要匹配就都+1，往后匹配下一对。
 
 
