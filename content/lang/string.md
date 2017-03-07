@@ -152,3 +152,67 @@ String hello = new String("你好hee");
         System.arraycopy(value, 0, dst, dstBegin, value.length);
     }
 ```
+
+## boolean contains(CharSequence s) 
+当且仅当此字符串包含指定的 char 值序列时，返回 true。 
+
+```java
+    public boolean contains(CharSequence s) {
+        return indexOf(s.toString()) > -1;
+    }
+    //  返回指定字符在此字符串中第一次出现处的索引。
+    public int indexOf(String str) {
+        return indexOf(str, 0);
+    }
+    //  返回指定字符在此字符串中第一次出现处的索引。在指定位置开始搜索
+    public int indexOf(String str, int fromIndex) {
+        return indexOf(value, 0, value.length,
+                str.value, 0, str.value.length, fromIndex);
+    }
+    //  shared by String and StringBuffer 该方法是一个共享方法
+    // 在源数组中搜索目标数组
+    static int indexOf(char[] source, int sourceOffset, int sourceCount,
+            char[] target, int targetOffset, int targetCount,
+            int fromIndex) {
+        // 由于是共享方法，应该是避免某种bug的判断吧
+        if (fromIndex >= sourceCount) {
+            return (targetCount == 0 ? sourceCount : -1);
+        }
+        // 这里还要做健壮性判断，难道是明白该方法只能在某处为使用吗？
+        if (fromIndex < 0) {
+            fromIndex = 0;
+        }
+        if (targetCount == 0) {
+            return fromIndex;
+        }
+        
+        // 获取第一个要搜索的字符
+        char first = target[targetOffset];
+        int max = sourceOffset + (sourceCount - targetCount);
+
+        for (int i = sourceOffset + fromIndex; i <= max; i++) {
+            /* Look for first character. */
+            if (source[i] != first) {
+                while (++i <= max && source[i] != first);
+            }
+
+            /* Found first character, now look at the rest of v2 */
+            if (i <= max) {
+                int j = i + 1;
+                int end = j + targetCount - 1;
+                for (int k = targetOffset + 1; j < end && source[j]
+                        == target[k]; j++, k++);
+
+                if (j == end) {
+                    /* Found whole string. */
+                    return i - sourceOffset;
+                }
+            }
+        }
+        return -1;
+    }
+```
+
+
+
+
