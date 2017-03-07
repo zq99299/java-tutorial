@@ -188,18 +188,24 @@ String hello = new String("你好hee");
         
         // 获取第一个要搜索的字符
         char first = target[targetOffset];
+        // max = 0 + (源长度 - 目标长度)
         int max = sourceOffset + (sourceCount - targetCount);
 
         for (int i = sourceOffset + fromIndex; i <= max; i++) {
             /* Look for first character. */
+            // 如果从索引开始处（对于string来说，都是从0开始）
+            // 不等于第一个字符，那么就死循环对比
             if (source[i] != first) {
                 while (++i <= max && source[i] != first);
             }
 
+
             /* Found first character, now look at the rest of v2 */
+            // 如果 i <= max 说明 第一个字符找到了。接下来寻找后面的所有字符
             if (i <= max) {
-                int j = i + 1;
-                int end = j + targetCount - 1;
+                int j = i + 1; // 从第一个字符后面一个开始找起
+                int end = j + targetCount - 1; // 因为已经找到了一个字符，所以还需要寻找targetCount - 1 次
+                //
                 for (int k = targetOffset + 1; j < end && source[j]
                         == target[k]; j++, k++);
 
@@ -212,7 +218,58 @@ String hello = new String("你好hee");
         return -1;
     }
 ```
+上面的代码`在源数组中搜索目标数组`是具体的实现，因为是和`StringBuffer` 公用，看起来很费劲，下面把它简化抽取出来：
+```java
+@Test
+    public void test1() throws UnsupportedEncodingException {
+        System.out.println(indexOf("我是中国人", "中国"));
 
+    }
 
+    private int indexOf(String sourceStr, String targetStr) {
+        char[] source = sourceStr.toCharArray();
+        char[] target = targetStr.toCharArray();
+        int sourceCount = source.length;
+        int targetCount = target.length;
+
+        // 第一个字符
+        char first = target[0];
+        int max = 0 + (sourceCount - targetCount);
+
+        for (int i = 0; i <= max; i++) {
+            // 先找第一个字符
+            if (source[i] != first) {
+                while (++i <= max && source[i] != first) ;
+            }
+            if (i <= max) {
+                int j = i + 1; // 从找到的后一个字符开始
+                // 最难的就是在这个地方，什么时候结束
+                int end = j + targetCount - 1;
+                for (int k = 1; j < end; k++) {
+                   // 这里才明白为什么  end = j + targetCount - 1; 有可能大于 targetCount
+                    // 是因为 要取源索引的next值
+                    // 这里不会造成下标越界，就是条件 j < end
+                    // 真的太巧妙了。我反正是没有真正明白
+                    if (source[j] == target[k]) {
+                        j++;
+                    }
+                }
+                // 如果 两个相等，就表示上面的循环中取到的每一个值 都是相等的
+                // 否则就标识后面的字符有不相等的
+                if (j == end) {
+                    /* Found whole string. */
+                    // 返回第一个字符所在的索引位置
+                    return i - 0;
+                }
+            }
+        }
+        return -1;
+    }
+```
+来看下搜索的原理图：
+![](/assets/lang/indexOf算法示意图.png)
+
+1. 先找第一个字符，如果找到了再找后面的字符。
+2. 也就是 j 和 k 只要匹配就都+1，往后
 
 
