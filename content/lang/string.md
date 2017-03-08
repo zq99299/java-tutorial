@@ -325,3 +325,13 @@ String hello = new String("你好hee");
 2. 再比较字符串长度
 3. 再挨个比较内容（码点）
 
+## xx
+测试如下
+```java
+        String xxx = new String("xxx");
+        String xx2 = new String("xxx");
+        System.out.println(xx2 == xxx);  // fasle
+        System.out.println(xx2.intern() == xxx.intern()); // true
+```
+
+来看看这是怎么实现的
