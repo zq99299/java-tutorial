@@ -220,9 +220,10 @@ String hello = new String("你好hee");
 ```
 上面的代码`在源数组中搜索目标数组`是具体的实现，因为是和`StringBuffer` 公用，看起来很费劲，下面把它简化抽取出来：
 ```java
-@Test
+public class Demo {
+    @Test
     public void test1() throws UnsupportedEncodingException {
-        System.out.println(indexOf("我是中国人", "中国"));
+        System.out.println(indexOf("我是中国人", "中国c"));
 
     }
 
@@ -242,17 +243,19 @@ String hello = new String("你好hee");
                 while (++i <= max && source[i] != first) ;
             }
             if (i <= max) {
-                int j = i + 1; // 从找到的后一个字符开始
-                // 最难的就是在这个地方，什么时候结束
-                int end = j + targetCount - 1;
-                for (int k = 1; j < end; k++) {
-                   // 这里才明白为什么  end = j + targetCount - 1; 有可能大于 targetCount
-                    // 是因为 要取源索引的next值
-                    // 这里不会造成下标越界，就是条件 j < end
-                    // 真的太巧妙了。我反正是没有真正明白
-                    if (source[j] == target[k]) {
-                        j++;
-                    }
+                int j = i + 1; // 源数组索引开始处(从找到的后一个字符开始)
+                int k = 1; // 目标数组索引开始处（因为已经找到一个字符）
+                int end = j + targetCount - 1; // 循环跳出条件
+                // s:我是中国人
+                // t:   中国
+                // 那么 j = 3；s数组整个长度是５；　end = 3+2-1 = 4
+                // 也就是说：3 < 4; 也就是只能循环一次，能把剩下的 国 遍历完成。
+
+                // 原理是：两个数组都要同时匹配下一个索引所在处的值
+                // 所以需要两个变量来递增索引
+                while (j < end && source[j] == target[k]) {
+                    j++;
+                    k++;
                 }
                 // 如果 两个相等，就表示上面的循环中取到的每一个值 都是相等的
                 // 否则就标识后面的字符有不相等的
@@ -265,6 +268,7 @@ String hello = new String("你好hee");
         }
         return -1;
     }
+}
 ```
 来看下搜索的原理图：
 ![](/assets/lang/indexOf算法示意图.png)
