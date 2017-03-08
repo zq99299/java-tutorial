@@ -273,3 +273,21 @@ String hello = new String("你好hee");
 2. 也就是 j 和 k 只要匹配就都+1，往后匹配下一对。
 3. 最难的就是 end，循环多少次了。要保证匹配的字符循环完成，又要取到对应的源字符值。
 
+
+## int hashCode()
+原来hashCode 是根据这个公式来计算的。
+```java
+    public int hashCode() {
+        int h = hash;
+        if (h == 0 && value.length > 0) {
+            char val[] = value;
+
+            for (int i = 0; i < value.length; i++) {
+                h = 31 * h + val[i]; // 累加码点
+            }
+            hash = h;
+        }
+        return h;
+    }
+```
+
