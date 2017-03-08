@@ -325,13 +325,44 @@ String hello = new String("你好hee");
 2. 再比较字符串长度
 3. 再挨个比较内容（码点）
 
-## xx
-测试如下
-```java
-        String xxx = new String("xxx");
-        String xx2 = new String("xxx");
-        System.out.println(xx2 == xxx);  // fasle
-        System.out.println(xx2.intern() == xxx.intern()); // true
-```
+## intern
+> 返回字符串对象的规范化表示形式。 
+一个初始为空的字符串池，它由类 String 私有地维护。 
 
-来看看这是怎么实现的
+> 当调用 intern 方法时，如果池已经包含一个等于此 String 对象的字符串（用 equals(Object) 方法确定），则返回池中的字符串。否则，将此 String 对象添加到池中，并返回此 String 对象的引用。 
+
+> 它遵循以下规则：对于任意两个字符串 s 和 t，当且仅当 s.equals(t) 为 true 时，s.intern() == t.intern() 才为 true。 
+
+> 所有字面值字符串和字符串赋值常量表达式都使用 intern 方法进行操作。字符串字面值在 Java Language Specification 的 §3.10.5 定义。 
+
+
+> 返回：
+> 一个字符串，内容与此字符串相同，但一定取自具有唯一字符串的池。
+
+
+```java
+class TestDemo {
+    public static void main(String[] args) {
+        String hello = "Hello", lo = "lo";
+        System.out.print((hello == "Hello") + " ");
+        System.out.print((Other.hello == hello) + " ");
+//        System.out.print((other.Other.hello == hello) + " ");
+        System.out.print((hello == ("Hel"+"lo")) + " ");
+        System.out.print((hello == ("Hel"+lo)) + " ");
+        System.out.println(hello == ("Hel"+lo).intern());
+    }
+}
+class Other { static String hello = "Hello"; }
+
+true true true false false
+```
+> http://docs.oracle.com/javase/specs/jls/se7/html/jls-3.html#d5e1287
+
+文档里面的说明部分英文没看懂是啥意思：但是有以下几点：
+1. 字面量 相加是在编译事情合并的。因此相等
+2. 字面量 + 变量 是在运行事情创建的，因此是不等的。
+
+
+
+
+
