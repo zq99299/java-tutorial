@@ -291,3 +291,37 @@ String hello = new String("你好hee");
     }
 ```
 
+## boolean equals(Object anObject) 
+
+```java 
+    public boolean equals(Object anObject) {
+        if (this == anObject) {  // 先对比内存地址，这里和 Object中的对比一致
+            return true;
+        }
+        // 然后指对比String类型
+        if (anObject instanceof String) {
+            String anotherString = (String) anObject;
+            int n = value.length;
+            // 如果两个值的长度相等，那么就有可能内容一致
+            if (n == anotherString.value.length) {
+                char v1[] = value;
+                char v2[] = anotherString.value;
+                int i = 0;
+                // 循环判定码点是否相同
+                while (n-- != 0) {
+                    if (v1[i] != v2[i])
+                            return false;
+                    i++;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+```
+
+总结如下：
+1. 先比较内存地址
+2. 再比较字符串长度
+3. 再挨个比较内容（码点）
+
