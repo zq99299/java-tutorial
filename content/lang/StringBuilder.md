@@ -183,7 +183,64 @@ String、Integer、Long 都有 getChars 这个方法，把自己转换成char再
 1. 把要插入处+插入字符的长度后的所有值都往后挪动
 2. 再把插入字符copy到 插入处。
 
+## StringBuilder reverse()
+反转函数，在实际中用到的几率还是很少的，但是呢这个源码思路真的挺不错的；
 
+```java
+------------ AbstractStringBuilder -----------------
+ public AbstractStringBuilder reverse() {
+        boolean hasSurrogates = false;
+        int n = count - 1;
+        for (int j = (n-1) >> 1; j >= 0; j--) {
+            int k = n - j;
+            char cj = value[j];
+            char ck = value[k];
+            value[j] = ck;
+            value[k] = cj;
+            // 这个是判断是否不代理码点
+            if (Character.isSurrogate(cj) ||
+                Character.isSurrogate(ck)) {
+                hasSurrogates = true;
+            }
+        }
+        if (hasSurrogates) {
+            // 是代理码点的话用另外一种方式反转
+            reverseAllValidSurrogatePairs();
+        }
+        return this;
+    }
+```
+上面的代码用的值交换的原理，在冒泡排序里面会用到类似的交换技巧。
+我们把上面的简化一下
+```java
+    @Test
+    public void t1() {
+        StringBuilder sb = new StringBuilder("1234567");
+        System.out.println(sb);
+        System.out.println(reverse(sb.toString()));
+        sb.reverse();
+        System.out.println(sb);
+
+    }
+
+    // 反转此字符串
+    public String reverse(String str) {
+        char[] chars = str.toCharArray();
+        int length = str.length();
+        // 从中间值开始往两边扩散 对换位置
+        int n = length - 1; //数组从0开始，防止越界
+
+        for (int left = (n - 1) / 2; left >= 0; left--) {
+            int right = n - left;
+            System.out.println(String.format("left=%d,right=%d", left, right));
+            char leftChar = chars[left]; //左边
+            char rightChar = chars[right]; //右边
+            chars[left] = rightChar;
+            chars[right] = leftChar;
+        }
+        return new String(chars);
+    }
+```
 
 
 
