@@ -47,3 +47,39 @@
 
 可以看出来，这里和String底层都是使用char数组来存储的。
 
+## StringBuilder append(char c)
+```java
+    @Override
+    public StringBuilder append(char c) {
+        super.append(c);
+        return this;
+    }
+```
+```java
+------------ AbstractStringBuilder -----------------
+    @Override
+    public AbstractStringBuilder append(char c) {
+        ensureCapacityInternal(count + 1);
+        value[count++] = c;
+        return this;
+    }
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length > 0)
+            expandCapacity(minimumCapacity);
+    }
+    void expandCapacity(int minimumCapacity) {
+        int newCapacity = value.length * 2 + 2;
+        if (newCapacity - minimumCapacity < 0)
+            newCapacity = minimumCapacity;
+        if (newCapacity < 0) {
+            if (minimumCapacity < 0) // overflow
+                throw new OutOfMemoryError();
+            newCapacity = Integer.MAX_VALUE;
+        }
+        value = Arrays.copyOf(value, newCapacity);
+    }
+```
+
+
+
