@@ -1,4 +1,6 @@
 # StringBuilder
+> 一个可变的字符序列。此类提供一个与 StringBuffer 兼容的 API，但不保证同步。
+在 StringBuilder 上的主要操作是 append 和 insert 方法，可重载这些方法，以接受任意类型的数据。每个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符追加或插入到字符串生成器中。append 方法始终将这些字符添加到生成器的末端；而 insert 方法则在指定的点添加字符。 
 
 ![](/assets/lang/StringBuild接口和继承接口.png)
 
@@ -10,18 +12,15 @@
 
 先看官网文档这几个类的意思和区别：部分类常见的也就不说明了。
 
+
 # 接口和继承类简要说明
 ## Appendable
-能够被添加 char 序列和值的对象。要添加的字符应该是有效的 Unicode 字符
-Appendable append(char c) 
-          向此 Appendable 添加指定字符。 
-Appendable append(CharSequence csq) 
-          向此 Appendable 添加指定的字符序列。 
-Appendable append(CharSequence csq, int start, int end) 
-          向此 Appendable 添加指定字符序列的子序列。 
+> 能够被添加 char 序列和值的对象。要添加的字符应该是有效的 Unicode 字符
 
 ## AbstractStringBuilder
+> 实现了一个可修改的字符串。在任何时候，它包含一些特定的字符序列，但序列的长度和内容可以通过某些方法调用改变。
 
+思路是：先把顶层接口的方法解析了，因为是最少的。也最能代表这个类至少有哪些功能。
 
 
 
