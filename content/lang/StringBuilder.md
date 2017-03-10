@@ -20,7 +20,30 @@
 ## AbstractStringBuilder
 > 实现了一个可修改的字符串。在任何时候，它包含一些特定的字符序列，但序列的长度和内容可以通过某些方法调用改变。
 
-思路是：先把顶层接口的方法解析了，因为是最少的。也最能代表这个类至少有哪些功能。
+思路是：
+从最简单的构造入手，
+再把顶层接口的方法解析了，因为是最少的。也最能代表这个类至少有哪些功能。
 
+```java
+  char[] value;
+```
 
+# 分析
+## new StringBuilder()
+```java
+    public StringBuilder() {
+        // 默认初始化16个char长度
+        super(16);
+    }
+```
+使用类父类的构造，来看看父类构造;
+```java
+------------ AbstractStringBuilder -----------------
+  char[] value;
+    AbstractStringBuilder(int capacity) {
+        value = new char[capacity];
+    }
+```
+
+可以看出来，这里和String底层都是使用char数组来存储的。
 
