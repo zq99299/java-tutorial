@@ -1,0 +1,29 @@
+{
+  "title": "jdk-source-code-note",
+  "description": "JDK源码阅读笔记",
+  "language": "zh-hans",
+   "plugins": [
+       "splitter",
+       "-github",
+       "prism",
+       "-highlight",
+       "expandable-chapters",
+       "page-footer-ex",
+       "anchor-navigation-ex",
+       "advanced-emoji",
+       "bootstrap-callout"
+    ],
+  "pluginsConfig": {
+    "prism": {
+       "css": [
+         "prismjs/themes/prism-okaidia.css"
+       ]
+    },
+    "anchor-navigation-ex":{
+
+    },
+    "theme-default": {
+       "showLevel": true
+    }
+  }
+} 
