@@ -370,7 +370,11 @@ true true true false false
 4. intern 函数将把词字符串放入常量池并返回常量池的引用，但是不是改变当前变量的引用
 5. hashCode 是根据`h = 31 * h + val[i]; `循环该字符串的长度次数累加码点得到的
 6. compareTo 按字典顺序比较，两两比较char的Unicode码点大小实现的。
-7. compareToIgnoreCase 忽略大小写是内部定义了一个比较器，比较器实现内部实现为
+7. compareToIgnoreCase 忽略大小写是内部定义了一个比较器，比较器实现内部实现为:把马点转换为全大写，全小写对比
+8. api操作数据后基本上都是new string返回。
+
+
+
 # 结束语
 
 这一章节看下来，发下里面很多方法都是偏底层的。复杂度很高。基本上我就放弃了。看了几个常用的方法。
