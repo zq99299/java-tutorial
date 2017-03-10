@@ -285,6 +285,22 @@ substring 也是经常用到的，来看看
     
 ```
 
+# 总结
+1. StringBuilder 线程是不安全的
+2. 底层也是使用 char数组来作为容器，因为是可变的，所以也有扩容（和集合体系中的扩容类似）
+3. 可变字符序列
+4. indexOf 函数委托String自身的公用indexOf函数
+5. 适当分配初始容量有助于提高性能
+
+
+reverse的原理实现值得学习：对半分，然后首尾交换。
+
+# StringBuilder 和 StringBuffer 的区别
+通过原来源码来看的话：
+
+1. StringBuffer 线程安全
+    StringBuffer 绝大部分的API都是直接加`synchronized`修饰，保证多线程中的安全性
+2. 他们绝大部分API都是委托AbstractStringBuilder来操作。StringBuffer只是重写后加了锁
 
 
 
