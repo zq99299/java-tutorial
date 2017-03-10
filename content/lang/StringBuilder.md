@@ -15,9 +15,9 @@
 能够被添加 char 序列和值的对象。要添加的字符应该是有效的 Unicode 字符
 Appendable append(char c) 
           向此 Appendable 添加指定字符。 
- Appendable append(CharSequence csq) 
+Appendable append(CharSequence csq) 
           向此 Appendable 添加指定的字符序列。 
- Appendable append(CharSequence csq, int start, int end) 
+Appendable append(CharSequence csq, int start, int end) 
           向此 Appendable 添加指定字符序列的子序列。 
 
 ## AbstractStringBuilder
