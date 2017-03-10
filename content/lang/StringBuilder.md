@@ -229,7 +229,7 @@ String、Integer、Long 都有 getChars 这个方法，把自己转换成char再
         int length = str.length();
         // 从中间值开始往两边扩散 对换位置
         int n = length - 1; //数组从0开始，防止越界
-
+        // 注意这里的 left的值
         for (int left = (n - 1) / 2; left >= 0; left--) {
             int right = n - left;
             System.out.println(String.format("left=%d,right=%d", left, right));
@@ -241,6 +241,29 @@ String、Integer、Long 都有 getChars 这个方法，把自己转换成char再
         return new String(chars);
     }
 ```
+来看看测试结果：
+```java
+当要转换的字符串是奇数的时候（索引是偶数）
+left = (n - 1) / 2    |  left = (n) / 2
+1234567               |  1234567
+left=2,right=4        |  left=3,right=3
+left=1,right=5        |  left=2,right=4
+left=0,right=6        |  left=1,right=5
+7654321               |  left=0,right=6
+                      |  7654321 
+                      
+                      
+当要转换的字符串是偶数的时候（索引是奇数）
+left = (n - 1) / 2    |  left = (n) / 2
+123456                |  123456
+left=2,right=3        |  left=2,right=3
+left=1,right=4        |  left=1,right=4
+left=0,right=5        |  left=0,right=5
+654321                |  7654321 
+                      
+```
+
+从测试结果看来，n-1 的主要结果就是为了在奇数字符串（索引为偶数）的时候，对半分的话，会造成right和left得到同一个值，同一个值不应该再交换的。
 
 
 
