@@ -1,5 +1,5 @@
 # StringBuilder
-> 一个可变的字符序列。此类提供一个与 StringBuffer 兼容的 API，但不保证同步。
+> 一个可变的字符序列。此类提供一个与 StringBuffer 兼容的 API，但不保证同步。该类被设计用作 StringBuffer 的一个简易替换，用在字符串缓冲区被单个线程使用的时候（这种情况很普遍）。
 在 StringBuilder 上的主要操作是 append 和 insert 方法，可重载这些方法，以接受任意类型的数据。每个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符追加或插入到字符串生成器中。append 方法始终将这些字符添加到生成器的末端；而 insert 方法则在指定的点添加字符。 
 
 ![](/assets/lang/StringBuild接口和继承接口.png)
