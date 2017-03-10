@@ -39,7 +39,8 @@
 使用类父类的构造，来看看父类构造;
 ```java
 ------------ AbstractStringBuilder -----------------
-  char[] value;
+  char[] value; //存储容器
+  int count; //正真的使用量
     AbstractStringBuilder(int capacity) {
         value = new char[capacity];
     }
