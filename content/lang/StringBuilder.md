@@ -302,6 +302,11 @@ reverse的原理实现值得学习：对半分，然后首尾交换。
     StringBuffer 绝大部分的API都是直接加`synchronized`修饰，保证多线程中的安全性
 2. 他们绝大部分API都是委托AbstractStringBuilder来操作。StringBuffer只是重写后加了锁
 
+# StringBuffer为什么是可变的？
+在看`String`的时候明白了`String`的不可变是通过手段故意为之。
+
+而在`StringBuffer`里面，存储容器和`String`都是`char[]`.但是StringBuffer却没有故意去避开操作引用地址。
+
 
 
 
