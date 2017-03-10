@@ -29,6 +29,13 @@
 ```
 
 # 分析
+Test
+```java
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('A');
+        stringBuilder.append("中国");
+        stringBuilder.append(true);
+```
 ## new StringBuilder()
 ```java
     public StringBuilder() {
@@ -114,5 +121,73 @@
         return this;
     }
 ```
+
+## AbstractStringBuilder append(boolean b) 
+这个就很有意思了：原来是手动写死的。手动转换成char插入
+```java
+------------ AbstractStringBuilder -----------------
+
+    public AbstractStringBuilder append(boolean b) {
+        if (b) {
+            ensureCapacityInternal(count + 4);
+            value[count++] = 't';
+            value[count++] = 'r';
+            value[count++] = 'u';
+            value[count++] = 'e';
+        } else {
+            ensureCapacityInternal(count + 5);
+            value[count++] = 'f';
+            value[count++] = 'a';
+            value[count++] = 'l';
+            value[count++] = 's';
+            value[count++] = 'e';
+        }
+        return this;
+    }
+```
+
+## append 小结
+所有的append内部实现都是把对应的数据类型转换成 char ，在插入的，而不是像我们自己实现那样把所有的都转换成String，
+
+String、Integer、Long 都有 getChars 这个方法，把自己转换成char再copy到目标数组中去。
+
+
+## indexOf
+该方法到最后也是直接调用的是 String自身的公用查找函数。
+
+然后来看看APi中说道最主要的下一个函数
+
+## StringBuilder insert(int offset, String str)  
+```java
+------------ AbstractStringBuilder -----------------
+
+    public AbstractStringBuilder insert(int offset, String str) {
+        if ((offset < 0) || (offset > length()))
+            throw new StringIndexOutOfBoundsException(offset);
+        if (str == null)
+            str = "null";
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        // 上个函数用得很频繁哇。把offset + 插入的字符串长度后的字符往后挪（copy过去）
+        // 这是个原生方法，性能应该会很好
+        System.arraycopy(value, offset, value, offset + len, count - offset);
+        // 挪完之后再从offset处把插入的字符串copy过去，这样就完成了乾坤大挪移
+        str.getChars(value, offset);
+        
+        count += len;
+        return this;
+    }
+```
+### 小结
+都是增加字符，所以和 append一样都调用了 确保内部容量的函数。两步重要的实现插入：
+1. 把要插入处+插入字符的长度后的所有值都往后挪动
+2. 再把插入字符copy到 插入处。
+
+
+
+
+
+
+
 
 
