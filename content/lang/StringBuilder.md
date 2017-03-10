@@ -64,12 +64,16 @@
         value[count++] = c;
         return this;
     }
+    // 确保内部容量
     private void ensureCapacityInternal(int minimumCapacity) {
         // overflow-conscious code
+        // 如果当前所需要的容量大于了 容器的容量就扩容
         if (minimumCapacity - value.length > 0)
             expandCapacity(minimumCapacity);
     }
+    // 扩大容量
     void expandCapacity(int minimumCapacity) {
+        // 源容量的2倍 + 2
         int newCapacity = value.length * 2 + 2;
         if (newCapacity - minimumCapacity < 0)
             newCapacity = minimumCapacity;
@@ -78,9 +82,37 @@
                 throw new OutOfMemoryError();
             newCapacity = Integer.MAX_VALUE;
         }
+        // 上面校验了新容量和旧所需容量的 正确性
+        // copy值到新的数组中
         value = Arrays.copyOf(value, newCapacity);
     }
 ```
 
+### 小结
+在使用appen的时候，如果能确定大概需要多少容量，最好提前初始化合适的容量，减少扩容操作。
+
+## StringBuilder append(String str) 
+```java
+    @Override
+    public StringBuilder append(String str) {
+        super.append(str);
+        return this;
+    }
+```
+```java
+------------ AbstractStringBuilder -----------------
+    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        // 把字符串 还是使用了String内部的数组复制操作。
+        ensureCapacityInternal(count + len);
+        //将字符从此字符串复制到目标字符数组。
+        // 参数依次是：从哪一个范围内的字符复制到 value数组中，从value数组中的 count 位置开始赋值
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }
+```
 
 
