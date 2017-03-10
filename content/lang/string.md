@@ -363,6 +363,22 @@ true true true false false
 2. 字面量 + 变量 是在运行事情创建的，因此是不等的。
 
 
+# String 不可变说明
+看了源码还是对于常听见的回答有些疑惑，一般人的回答就是String是被Final修饰的所以不可变。
+
+于是知乎上的回答： https://www.zhihu.com/question/20618891 知乎上的回答。	
+
+解决了我的疑惑，根据源码情况总结如下：
+
+1. String 被 final 修饰
+2. private final char value[]; 存储的数据容器被final修饰。
+3. 操作字符串的api都是返回new String（除了不改变字符的api）
+4. 字面量被底层管理支持
+
+类被final修饰，断了String有子类的后路、存储容器被final，断了容器变量被修改的后路、内部api和底层不触碰数组内引用地址的值，断了被修改的后路
+	
+	 
+
 # 总结
 1. 底层使用Char数组存储
 2. 字面量字符串相+，在编译时期合并，放入常量池中
@@ -372,7 +388,6 @@ true true true false false
 6. compareTo 按字典顺序比较，两两比较char的Unicode码点大小实现的。
 7. compareToIgnoreCase 忽略大小写是内部定义了一个比较器，比较器实现内部实现为:把马点转换为全大写，全小写对比
 8. api操作数据后基本上都是new string返回。
-
 
 
 # 结束语
