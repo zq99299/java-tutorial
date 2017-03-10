@@ -265,6 +265,25 @@ left=0,right=5        |  left=0,right=5
 
 从测试结果看来，n-1 的主要结果就是为了在奇数字符串（索引为偶数）的时候，对半分的话，会造成right和left得到同一个值，同一个值不应该再交换的。
 
+## String substring(int start, int end)
+substring 也是经常用到的，来看看
+```java
+------------ AbstractStringBuilder -----------------
+
+    public String substring(int start, int end) {
+        if (start < 0)
+            throw new StringIndexOutOfBoundsException(start);
+        if (end > count)
+            throw new StringIndexOutOfBoundsException(end);
+        if (start > end)
+            throw new StringIndexOutOfBoundsException(end - start);
+        // 利用了 我们经常在IO中读取流的时候的一个方式    
+        return new String(value, start, end - start);
+    }
+    而 String构成函数里面的实现是这样的：从value中offset开始赋值到offset+count结束(不包括)
+    Arrays.copyOfRange(value, offset, offset+count);
+    
+```
 
 
 
