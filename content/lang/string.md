@@ -369,6 +369,32 @@ true true true false false
 1. 字面量 相加是在编译事情合并的。因此相等
 2. 字面量 + 变量 是在运行事情创建的，因此是不等的。
 
+```java
+---------------- java -----------------
+    public void t1() {
+        String hello = "Hello", lo = "lo";
+        System.out.print((hello == "Hello") + " ");
+        System.out.print((Other.hello == hello) + " ");
+        System.out.print((hello == ("Hel"+"lo")) + " ");
+        System.out.print((hello == ("Hel"+lo)) + " ");
+        System.out.println(hello == ("Hel"+lo).intern());
+    }
+
+---------------- class-----------------
+    @Test
+    public void t1() {
+        String hello = "Hello";
+        String lo = "lo";
+        System.out.print((hello == "Hello") + " ");
+        System.out.print((Other.hello == hello) + " ");
+        System.out.print((hello == "Hello") + " ");
+        System.out.print((hello == "Hel" + lo) + " ");
+        System.out.println(hello == ("Hel" + lo).intern());
+    }
+
+```
+看下第三句代码，编译后，字面量相加就已经合并了。
+
 
 # String 不可变说明
 看了源码还是对于常听见的回答有些疑惑，一般人的回答就是String是被Final修饰的所以不可变。
