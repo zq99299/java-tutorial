@@ -15,13 +15,6 @@
 
 从构造说起
 #  Integer(int value) 
-测试
-```java
-        Integer integer = new Integer(123);
-        Integer a = 123;
-        System.out.println(integer.longValue());
-```
-源码
 ```java
     // 使用基本类型 int 来存储值
     private final int value;
