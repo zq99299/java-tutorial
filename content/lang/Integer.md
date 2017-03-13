@@ -13,15 +13,15 @@
 
 提供的数值转换方法实现很简单：都是直接强转的。（目标类型）value,
 
-从构造说起
-#  Integer(int value) 
+
 测试
 ```java
     Integer integer = new Integer(123);
     Integer a = 123;
     System.out.println(integer.longValue());
 ```
-源码
+
+#  Integer(int value) 
 ```java
     // 使用基本类型 int 来存储值
     private final int value;
