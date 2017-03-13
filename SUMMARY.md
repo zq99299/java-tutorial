@@ -4,3 +4,4 @@
 * [java.lang ](/content/README.md)
   * [String](/content/lang/string.md)
   * [StringBuilder](/content/lang/StringBuilder.md)
+  * [Integer](/content/lang/Integer.md)
