@@ -36,13 +36,7 @@
 > 接口 Comparable<Integer> 中的 compareTo
 
 ```java
---------- Test ------------
-        Integer a = 123;
-        int b = 123;
-        System.out.println(a.compareTo(b));
-```
 
-```java
     public int compareTo(Integer anotherInteger) {
         return compare(this.value, anotherInteger.value);
     }
@@ -53,3 +47,18 @@
 使用了最简单的方式来对比数字的大小。
 
 但是这种设计值得学习，公用静态compare方法，数字比较通用。 自己的compareTo方法，更面向对象。
+
+# boolean equals(Object obj)
+```java
+    //重写了方法，不对比地址。直接比较 数值。
+    public boolean equals(Object obj) {
+        if (obj instanceof Integer) {
+            return value == ((Integer)obj).intValue();
+        }
+        return false;
+    }
+    public int hashCode() {
+        // 直接返回的数值
+        return value;
+    }
+```
