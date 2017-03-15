@@ -23,15 +23,7 @@
 
 ## 集合框架  
 * [集合框架概述Collections](/content/collections/README.md)
-
-
-
-
-
-
-
-
-
+* [集合简介](/content/collections/intro.md)
 
 
 * [Map ](/content/util/map/README.md)
