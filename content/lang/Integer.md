@@ -22,6 +22,7 @@
 ```
 
 #  Integer(int value) 
+由这里可以看出来。Integer也是不可变的。
 ```java
     // 使用基本类型 int 来存储值
     private final int value;
@@ -29,3 +30,19 @@
         this.value = value;
     }
 ```
+
+# compareTo(Integer anotherInteger)
+> 在数字上比较两个 Integer 对象。 
+> 接口 Comparable<Integer> 中的 compareTo
+
+```java
+    public int compareTo(Integer anotherInteger) {
+        return compare(this.value, anotherInteger.value);
+    }
+    public static int compare(int x, int y) {
+        return (x < y) ? -1 : ((x == y) ? 0 : 1);
+    }
+```
+使用了最简单的方式来对比数字的大小。
+
+但是这种设计值得学习，公用静态compare方法，数字比较通用。 自己的compareTo方法，更面向对象。
