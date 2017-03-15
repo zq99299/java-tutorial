@@ -80,4 +80,32 @@
 | Deque	|- 	|ArrayDeque|-	 	  |LinkedList|-	 
 | Map	|HashMap|-	   |TreeMap       |-        |	LinkedHashMap
 
+## 并发集合
+多个线程使用的集合，称为并发编程。
+
+接口：
+BlockingQueue
+TransferQueue
+BlockingDeque
+ConcurrentMap
+ConcurrentNavigableMap
+
+实现类：
+LinkedBlockingQueue
+ArrayBlockingQueue
+PriorityBlockingQueue
+DelayQueue
+SynchronousQueue
+LinkedBlockingDeque
+LinkedTransferQueue
+CopyOnWriteArrayList
+CopyOnWriteArraySet
+ConcurrentSkipListSet
+ConcurrentHashMap
+ConcurrentSkipListMap
+
+
+
+
+
 
