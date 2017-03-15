@@ -7,6 +7,6 @@
   * [Integer](/content/lang/Integer.md)
 
 ## java.util  
-* [Collection ](/content/README.md)
-* [Map ](/content/README.md)
+* [Collection ](/content/util/collection/README.md)
+* [Map ](/content/util/map/README.md)
 
