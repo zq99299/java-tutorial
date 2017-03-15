@@ -20,6 +20,9 @@
   * [EnumSet](/content/util/collection/EnumSet.md)
   * [Queue](/content/util/collection/Queue.md)
   * [ArrayDeque](/content/util/collection/Queue.md)
+集合框架
+  
+* [集合框架概述Collections](/content/collections/README.md)
 
 
 
