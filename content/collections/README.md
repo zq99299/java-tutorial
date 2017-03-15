@@ -105,7 +105,8 @@ ConcurrentHashMap
 ConcurrentSkipListMap
 
 
-
+> 笔记来自
+> http://docs.oracle.com/javase/7/docs/technotes/guides/collections/overview.html
 
 
 
