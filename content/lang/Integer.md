@@ -62,3 +62,13 @@
         return value;
     }
 ```
+
+# int signum(int i)
+> 返回指定 int 值的符号函数。（如果指定值为负，则返回 －1；如果指定值为零，则返回 0；如果指定的值为正，则返回 1。） 
+```java
+    public static int signum(int i) {
+        // HD, Section 2-7
+        return (i >> 31) | (-i >>> 31);
+    }
+```
+这个函数还挺有用的。就是不知道为什么是 31 ？
