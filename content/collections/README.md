@@ -63,3 +63,21 @@
 - 不可变集合
 - 集合的大小不可变
 - 支持随机访问列表，不支持的称为顺序访问列表，通过RandomAccess接口标记，使得通用算法可以改变其行为
+
+还有一些限制可以存储什么元素，如map 的 key 和value 可能要求：
+- 是一种特殊的类型
+- 不是 null
+
+试图添加违反实现的限制的元素会导致运行时异常，通常是 ClassCastException，IllegalArgumentException或NullPointerException。尝试删除或测试是否存在违反实现的限制的元素可能会导致异常。一些受限制的集合允许这种使用。
+
+## 集合实现
+实现集合接口的类通常具有< Implementation-style > < Interface > 形式的名称。下表总结了通用实现：
+
+| 接口  |哈希表	|可变数组|	平衡二叉树|	链表|哈希表+链表
+|------|-------|--------|---------------|---------|------------
+| Set	|HashSet|- 	 |TreeSet        |-	     |LinkedHashSet
+| List	|- 	|ArrayList|-	 	  |LinkedList|-	 
+| Deque	|- 	|ArrayDeque|-	 	  |LinkedList|-	 
+| Map	|HashMap|-	   |TreeMap       |-        |	LinkedHashMap
+
+
