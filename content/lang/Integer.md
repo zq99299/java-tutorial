@@ -36,6 +36,13 @@
 > 接口 Comparable<Integer> 中的 compareTo
 
 ```java
+--------- Test ------------
+        Integer a = 123;
+        int b = 123;
+        System.out.println(a.compareTo(b));
+```
+
+```java
     public int compareTo(Integer anotherInteger) {
         return compare(this.value, anotherInteger.value);
     }
