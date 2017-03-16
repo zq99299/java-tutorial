@@ -59,3 +59,15 @@ public interface Iterator <E> {
 当你需要以下操作时，应该选使用Iterator而不是for-each：
 - 迭代中删除元素，forEach 也是使用的Iterator，但是语法糖上隐藏了Iterator的相关操作
 - 遍历多个并行集合（！没有明白是什么意思）
+
+以下方法使用Iterator来过滤任意Collection，删除特定元素：
+···java
+    static void filter(Collection<?> c) {
+        for (Iterator<?> it = c.iterator(); it.hasNext(); )
+            // 唯一不同的就是这里 条件的判断
+            if (!cond(it.next())) {
+                it.remove();
+            }
+    }
+```
+这段代码是多态的，意味着使用与任何 Collection 实现。此示例演示使用Java集合框架编写多态性算法是多么容易。
