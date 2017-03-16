@@ -39,3 +39,23 @@ Collection 表示一组对象，它有方法告诉你集合（size，isEmpty）�
 1. stream ( 1.8 +)
 2. forEach
 3. Iterators
+
+stream是1.8的，不在1.7范围了，就不说了。forEach也不说了。
+
+### 迭代器
+Iterator是一个对象，使您能够遍历集合，并根据需要从集合中有选择性地删除元素。Iterator通过调用它的iterator方法获得一个集合。以下是Iterator接口。
+
+
+```java
+public interface Iterator <E> { 
+    boolean hasNext（）; 
+    E next（）; 
+    void remove（）; // optional 
+}
+```
+
+**注意**，这Iterator.remove是在迭代期间修改集合的唯一安全方法;在迭代期间使用其他修改方式应该都会报错？
+
+当你需要以下操作时，应该选使用Iterator而不是for-each：
+- 迭代中删除元素，forEach 也是使用的Iterator，但是语法糖上隐藏了Iterator的相关操作
+- 遍历多个并行集合（！没有明白是什么意思）
