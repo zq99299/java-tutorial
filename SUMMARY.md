@@ -25,6 +25,15 @@
 * [集合框架概述Collections](/content/collections/README.md)
 * [集合简介](/content/collections/intro.md)
 * [接口](/content/collections/interfaces.md)
-  * [集合接口](/content/collections/CollectionInterfaces.md)
+  * [Collection接口](/content/collections/CollectionInterfaces.md)
+  * [Set接口](/content/collections/SetInterfaces.md)
+  * [List接口](/content/collections/ListInterfaces.md)
+  * [Queue接口](/content/collections/QueueInterfaces.md)
+  * [Deque接口](/content/collections/DequeInterfaces.md)
+  * [Map接口](/content/collections/MapInterfaces.md)
+  * [对象排序](/content/collections/ObjectOrdering.md)
+  * [SortedSet接口](/content/collections/SortedSetInterfaces.md)
+  * [SortedMap接口](/content/collections/SortedMapInterfaces.md)
+
 * [Map ](/content/util/map/README.md)
 
