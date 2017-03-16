@@ -50,3 +50,5 @@ public interface Collection<E>...
 - SortedMap
      按升序密钥维护其映射。这是Map模拟的SortedSet。SortedMap
 用于自然排序的键/值对集合，例如字典和电话目录。
+
+要了解排序接口如何维护元素的顺序，强参阅【[对象排序部分](http://docs.oracle.com/javase/tutorial/collections/interfaces/order.html)】
