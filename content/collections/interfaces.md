@@ -18,7 +18,7 @@ public interface Collection<E>...
 
 - Collection
     
-    所有集合的根，一些类型的集合允许重复元素，而其他类型不允许。一些是有序的，而另一些是无序的。Java平台不提供此接口的任何直接实现，但提供更具体的子接口的实现，例如Set和List。另请参阅 集合接口部分。
+    Collection 层次结构 中的根接口。Collection 表示一组对象，这些对象也称为 collection 的元素。一些 collection 允许有重复的元素，而另一些则不允许。一些 collection 是有序的，而另一些则是无序的。JDK 不提供此接口的任何直接 实现：它提供更具体的子接口（如 Set 和 List）实现。此接口通常用来传递 collection，并在需要最大普遍性的地方操作这些 collection。 
 
 - Set : 不能包含重复的元素     
 - List
