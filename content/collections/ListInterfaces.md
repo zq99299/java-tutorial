@@ -84,3 +84,25 @@ addAll操作 ，添加指定 collection 中的所有元素到此列表的结尾�
         System.out.println(list);
 ```
 !说实话的话，我一直不明白 `asList`返回的`ArrayList`为什么不能进行更改。现在才知道。
+
+## 迭代器
+Iterator由List的iterator操作返回正确的顺序列表元素的迭代器。List还提供了个更丰富的迭代器，ListIterator，它允许您在任一方向上遍历列表，在迭代期间修改列表，并获取迭代器的当前位置。
+
+ListIterator从Iterator（hasNext，next和remove）继承的三个方法在两个接口中执行完全相同的事情。hasPrevious和previous操作的确切类似物hasNext和next。前面的操作引用（隐式）游标之前的元素，而后者引用游标之后的元素。该previous操作光标向后移动，而next向前移动了。
+
+这里是一个标准的迭代语句
+```java
+        for( ListIterator<String> it = list.listIterator(list.size());it.hasPrevious();){
+            String previous = it.previous();
+            System.out.println(previous);
+        }
+```
+
+注意参数，无参数的 listIterator 返回的Iterator是以列表起始位置开始的迭代器。而有参的是返回以指定位置开始的迭代器。
+有一个4个元素的列表，光标位置有5个可能的位置：
+```java
+        element(0) | element(1) | element(2) | element(3)   
+index    0         |     1      |      2     |     3        |   4
+```
+
+换句话说：由于有参的能自定义位置，所以，底层previous()的时候是 先将 光标位置-1，而无参的游标位置始终都是0，所以先取元素再 + 1。 所以就存在了图上的4个元素存在5种可能的游标位置
