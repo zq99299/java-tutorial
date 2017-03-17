@@ -220,3 +220,50 @@ for (int i = fromIndex; i < toIndex; i++) {
         return hand;
     }
 ```
+
+**注意**，该算法从牌组的末端去除手牌。对于许多常见的List实现，例如ArrayList，从列表的末尾移除元素的性能明显好于从开始移除元素的性能。
+
+使用这个算法来实现52张牌的发牌
+```
+public class Deal {
+    public static void main(String[] args) {
+        int numHands = 4; // 人数
+        int cardsPerHand = 5; // 发牌数量
+
+        // 生成52张牌
+        String[] suit = new String[]{
+                "黑桃", "红心",
+                "方块", "梅花"
+        };
+        String[] rank = new String[]{
+                "A", "2", "3", "4",
+                "5", "6", "7", "8", "9", "10",
+                "J", "Q", "K"
+        };
+
+        List<String> deck = new ArrayList<String>();
+        for (int i = 0; i < suit.length; i++)
+            for (int j = 0; j < rank.length; j++)
+                deck.add(suit[i] + rank[j]);
+
+        // Shuffle the deck.
+        Collections.shuffle(deck);
+
+        if (numHands * cardsPerHand > deck.size()) {
+            System.out.println("Not enough cards.");
+            return;
+        }
+
+        for (int i = 0; i < numHands; i++)
+            System.out.println(dealHand(deck, cardsPerHand));
+    }
+
+    public static <E> List<E> dealHand(List<E> deck, int n) {
+        int deckSize = deck.size();
+        List<E> handView = deck.subList(deckSize - n, deckSize);
+        List<E> hand = new ArrayList<E>(handView);
+        handView.clear();
+        return hand;
+    }
+}
+```
