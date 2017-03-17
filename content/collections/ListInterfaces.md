@@ -130,3 +130,42 @@ nextIndex 返回的数字总是 大于 previousIndex ，也就会产生两个边
     }
 ```
 
+Iterator,remove() 从列表中移除由 next 或 previous 返回的最后一个元素（可选操作）。ListIterator附加两个操作：add 和 set
+- set(E e) 用指定元素替换 next 或 previous 返回的最后一个元素（可选操作）。
+```java
+    public void test() {
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = new ArrayList<>(Arrays.asList(arrs));
+        replace(list,"3","6"); 
+        System.out.println(list); //[1, 2, 6, 4, 5]
+    }
+    public static <E> void replace(List<E> list, E val, E newVal) {
+        for (ListIterator<E> it = list.listIterator(); it.hasNext(); )
+            if (val == null ? it.next() == null : val.equals(it.next()))
+                it.set(newVal);
+    }
+```
+
+- add(E e) 将指定的元素插入列表（可选操作）。
+下面的多态性算法说明了此方法，将指定值替换成指定列表中的值
+```java
+    @Test
+    public void test() {
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        String[] arrs2 = {"6", "7",};
+        List<String> list = new ArrayList<>(Arrays.asList(arrs));
+        replace(list, "3", new ArrayList<>(Arrays.asList(arrs2)));
+        System.out.println(list); // [1, 2, 6, 7, 4, 5]
+    }
+
+    public static <E>
+    void replace(List<E> list, E val, List<? extends E> newVals) {
+        for (ListIterator<E> it = list.listIterator(); it.hasNext(); ) {
+            if (val == null ? it.next() == null : val.equals(it.next())) {
+                it.remove();
+                for (E e : newVals)
+                    it.add(e); // 是添加到当游标位置，操作指定位置的值
+            }
+        }
+    }
+```
