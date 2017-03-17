@@ -96,7 +96,7 @@ for (Map.Entry<KeyType, ValType> e : m.entrySet())
 }
  ```   
 
-检验必须的和允许的key属性示例：  
+### 检验必须的和允许的key属性示例：  
 ```java
     @Test
     public void test() {
@@ -140,4 +140,33 @@ for (Map.Entry<KeyType, ValType> e : m.entrySet())
 ```java
 Missing attributes: [7]
 Illegal attributes: [3, 2, 1, 5]
+```
+
+## 假设你想知道两个Map的交集
+```java
+Set<KeyType>commonKeys = new HashSet<KeyType>(m1.keySet());
+commonKeys.retainAll(m2.keySet());
+```
+
+上面几个示例都是非破坏性的，也就是操作后不会反应到源map中
+这里有几个破坏性的：
+
+## 假设你要删除Map与另一个map共同的键值对
+```java
+m1.entrySet().removeAll(m2.entrySet());
+
+m1.keySet().removeAll(m2.keySet());
+```
+
+## 假设想要移除一个员工
+```java
+Employee simon = ... ;
+managers.values().removeAll(Collections.singleton(simon));
+```
+注意，使用Collections.singleton一个静态工厂方法，返回一个不可变Set的单个指定的元素。
+
+```java
+Map<Employee, Employee> m = new HashMap<Employee, Employee>(managers);
+m.values().removeAll(managers.keySet());
+Set<Employee> slackers = m.keySet();
 ```
