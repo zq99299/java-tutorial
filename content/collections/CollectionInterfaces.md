@@ -94,6 +94,7 @@ public interface Iterator <E> {
         e.add("l");
         c.removeAll(Collections.singletonList("h"));
         System.out.println(c); //[null]
+        // 删除集合中所有为null的值
         c.removeAll(Collections.singleton(null));
         System.out.println(c); //[]
         
