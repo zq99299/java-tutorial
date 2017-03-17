@@ -12,3 +12,12 @@
 | 移除    | removeFirst() ，pollFirst() | removeLast() ，pollLast() 
 | 检查    | getFirst() ，peekFirst()    | getLast() ，peekLast() 
 都有两个方法，只是前者抛出异常，后者返回特殊值
+
+
+除了这些插入，删除和检查Deque实例的基本方法外，Deque接口还有一些更预定义的方法。
+- removeFirstOccurrence
+
+    从此双端队列移除第一次出现的指定元素。如果此双端队列不包含该元素，则不作更改。更确切地讲，移除第一个满足 (o==null ? e==null : o.equals(e)) 的元素 e（如果存在这样的元素）。如果此双端队列包含指定的元素（或者此双端队列由于调用而发生了更改），则返回 true。 
+- removeLastOccurrence 
+    
+    从此双端队列移除最后一次出现的指定元素。如果此双端队列不包含该元素，则不作更改。更确切地讲，移除最后一个满足 (o==null ? e==null : o.equals(e)) 的元素 e（如果存在这样的元素）。如果此双端队列包含指定的元素（或者此双端队列由于调用而发生了更改），则返回 true。 
