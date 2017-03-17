@@ -16,6 +16,7 @@ public interface Queue<E> extends Collection<E> {
 2. 其他的返回一个特殊值（null或者false，取决于操作）。
 
 接口的常规结构 如下表所示。
+
 | 操作类型 | 抛出异常 | 返回特殊值
 |---------|----------|------------
 | 插入    | add(e)    | offer(e)
