@@ -23,3 +23,9 @@ public interface Queue<E> extends Collection<E> {
 | 移除    | remove()  | poll()
 | 检查    | element() | peek()
 
+队列通常（但不一定）以FIFO（先入先出）方式排序元素。例外是优先级队列，根据它们的值来排序元素 - 有关详细信息，请参阅 对象排序部分）。无论使用什么排序，队列的头都是通过调用remove或去除的元素poll。在FIFO队列中，所有新元素都插入到队列的尾部。其他类型的队列可以使用不同的布局规则。每个Queue实现必须指定其排序属性。
+
+Queue的实现可以限制所持有元素的数量；这样的队列称为有界，有些Queue实现java.util.concurrent是有界的，但实现java.util不是。
+
+* add : 继承自Collection，插入一个元素，除非它会违反队列的容量限制，在这种情况下抛出IllegalStateException
+* offer：方法仅用于有界队列，不能插入时，返回 fasle
