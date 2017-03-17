@@ -87,3 +87,41 @@ c.stream()
         System.out.println(removeAllS1); // [2]
     }
 ```
+
+假设你需要找出哪些元素是唯一的，哪些元素是重复的，可以通过创建两个set来做：
+```java
+    private List<String> getData() {
+        List<String> s1 = new ArrayList<>();
+        s1.add("2");
+        s1.add("3");
+        s1.add("1");
+        s1.add("1");
+        s1.add("6");
+        return s1;
+    }
+
+    @Test
+    public void test() {
+        // 唯一的
+        Set<String> uniques = new HashSet<String>();
+        // 重复的
+        Set<String> dups = new HashSet<String>();
+
+        List<String> data = getData();
+        for (String ele : data) {
+            if (!uniques.add(ele)) { // 没有添加成功 标识有重复的
+                dups.add(ele);
+            }
+        }
+        // 删除重复的元素
+        uniques.removeAll(dups);
+        System.out.println("Unique words:" + uniques);
+        System.out.println("Duplicate words：" + dups);
+    }
+    
+```
+输出结果
+```java
+Unique words:[3, 2, 6]
+Duplicate words：[1]
+```
