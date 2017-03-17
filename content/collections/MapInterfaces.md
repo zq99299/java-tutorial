@@ -177,3 +177,5 @@ Set<Employee> slackers = m.keySet();
 这些示例是不符合实际的，只是演示使用方法。
 
 ## multimap
+
+就是一个键对应多个值，很容易实现，例如： Map<String, List<String>> m = new HashMap<String, List<String>>();
