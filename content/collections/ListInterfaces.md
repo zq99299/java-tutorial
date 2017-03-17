@@ -200,3 +200,23 @@ for (int i = fromIndex; i < toIndex; i++) {
         System.out.println(i + "," + j); //0,0
 ```
 要注意的是，返回的索引 是 subList 视图中的索引，而不是源列表中的
+
+
+这里是一个多态的算法，从列表指定处移除n个元素，返回被移除的元素
+```java
+    @Test
+    public void test() {
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = new ArrayList<>(Arrays.asList(arrs));
+        System.out.println(dealHand(list,3)); //[3, 4, 5]
+        System.out.println(list); //[1, 2]
+
+    }
+    public static <E> List<E> dealHand(List<E> deck, int n) {
+        int deckSize = deck.size();
+        List<E> handView = deck.subList(deckSize - n, deckSize);
+        List<E> hand = new ArrayList<E>(handView);
+        handView.clear();
+        return hand;
+    }
+```
