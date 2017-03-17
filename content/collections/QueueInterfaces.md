@@ -29,3 +29,11 @@ Queue的实现可以限制所持有元素的数量；这样的队列称为有界
 
 * add ：继承自Collection，插入一个元素，除非它会违反队列的容量限制，在这种情况下抛出IllegalStateException
 * offer ：方法仅用于有界队列，不能插入时，返回 fasle
+
+在remove与poll方法均除去并返回队列的头。删除哪个元素是队列的排序策略的函数。remove和poll仅当队列为空在他们的行为的方法不同。
+* remove : removethrows NoSuchElementException
+* poll : 返回null
+
+element与peek方法返回，但不移除，队列的头。它们彼此不同的方式remove与poll以下方式完全相同：如果队列为空:
+* element : 抛出NoSuchElementException
+* peek : 返回null。
