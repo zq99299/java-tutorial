@@ -32,3 +32,55 @@ list1.addAll（list2）;
 基本positional access操作是get，set，add和remove。（set和remove操作返回被覆盖或删除的旧值。）其他操作（indexOf和lastIndexOf）返回列表中指定元素的第一个或最后一个索引。
 
 addAll操作 ，添加指定 collection 中的所有元素到此列表的结尾，顺序是指定 collection 的迭代器返回这些元素的顺序（可选操作）。
+
+这里有一个小方法来交换两个索引的值
+```java
+    @Test
+    public void test() {
+        List<String> s1 = new ArrayList<>();
+        s1.add("2");
+        s1.add("3");
+        s1.add("1");
+        System.out.println(s1); //[2, 3, 1]
+        swap(s1, 0, 1);
+        System.out.println(s1); //[3, 2, 1]
+    }
+
+    public static <E> void swap(List<E> a, int i, int j) {
+        E tmp = a.get(i);
+        a.set(i, a.get(j));
+        a.set(j, tmp);
+    }
+```
+
+有一个很大的区别，这是一个多态性算法；它交换任何List中的两个元素，而不管其实现类型。这是另一种使用前面swap方法的多态性算法
+```java
+    public static void shuffle(List<?> list, Random rnd) {
+        for (int i = list.size(); i > 1; i--)
+            swap(list, i - 1, rnd.nextInt(i));
+    }
+```
+
+此算法包含在Java平台的 Collections类中，使用指定的随机源随机置换指定的列表。它有点微妙：它从底部向上运行列表，反复交换随机选择的元素到当前位置。与大多数天真洗牌的尝试,它是公平的(所有的排列与平等的可能性发生,假设随机性的无偏来源)和快速(要求完全互换)。
+
+下面使用随机算法在参数列表中打印单词：
+```java
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = new ArrayList<>();
+        for (String arr : arrs) {
+            list.add(arr);
+        }
+        Collections.shuffle(list, new Random());
+        System.out.println(list);
+```
+
+实际上，这个程序还可以做得更端。
+```java
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        //  java.util.List<T> 该方法返回的是一个List，而内部实现确实一个 同名的内部类 ArrayList
+        // 这种方法返回的list 不支持 add 和 remove 操作，且数组列表固定不可变。
+        List<String> list = Arrays.asList(arrs);
+        Collections.shuffle(list); // 使用默认随机源
+        System.out.println(list);
+```
+!说实话的话，我一直不明白 `asList`返回的`ArrayList`为什么不能进行更改。现在才知道。
