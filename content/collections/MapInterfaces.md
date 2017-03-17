@@ -158,15 +158,22 @@ m1.entrySet().removeAll(m2.entrySet());
 m1.keySet().removeAll(m2.keySet());
 ```
 
-## 假设想要移除一个员工
+## 假设想要移除一个经理
 ```java
 Employee simon = ... ;
 managers.values().removeAll(Collections.singleton(simon));
 ```
 注意，使用Collections.singleton一个静态工厂方法，返回一个不可变Set的单个指定的元素。
 
+## 或则从这样移除
 ```java
 Map<Employee, Employee> m = new HashMap<Employee, Employee>(managers);
 m.values().removeAll(managers.keySet());
 Set<Employee> slackers = m.keySet();
 ```
+这个有什么用？创建一个临时副本，再操作临时副本不会反应到源map上去吧？
+
+
+这些示例是不符合实际的，只是演示使用方法。
+
+## multimap
