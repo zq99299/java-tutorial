@@ -24,3 +24,20 @@ Java平台包含三个通用Set实现：HashSet，TreeSet，和LinkedHashSet。
 c.stream()
 .collect(Collectors.toSet()); //没有重复
 ```
+
+## set接口基本操作
+- size : 返回 set 中的元素数（其容量）。
+- add :  如果 set 中尚未存在指定的元素，则添加此元素（可选操作）。
+- remove : 如果 set 中存在指定的元素，则将其移除（可选操作）。
+- iterator : 返回在此 set 中的元素上进行迭代的迭代器。
+```java
+        ArrayList<String> e = new ArrayList<>();
+        e.add("h");
+        e.add("h");
+        e.add("2");
+        e.add("1");
+        HashSet<String> gashSets = new HashSet<>(e);
+        System.out.println(gashSets); //[2, 1, h]
+        TreeSet<String> treeSets = new TreeSet<>(e);
+        System.out.println(treeSets); //[1, 2, h]
+```
