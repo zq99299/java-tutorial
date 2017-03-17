@@ -30,14 +30,18 @@ c.stream()
 - add :  如果 set 中尚未存在指定的元素，则添加此元素（可选操作）。
 - remove : 如果 set 中存在指定的元素，则将其移除（可选操作）。
 - iterator : 返回在此 set 中的元素上进行迭代的迭代器。
+
 ```java
         ArrayList<String> e = new ArrayList<>();
         e.add("h");
         e.add("h");
         e.add("2");
         e.add("1");
-        HashSet<String> gashSets = new HashSet<>(e);
-        System.out.println(gashSets); //[2, 1, h]
-        TreeSet<String> treeSets = new TreeSet<>(e);
-        System.out.println(treeSets); //[1, 2, h]
+        // 去重，不排序
+        Set<String> sets = new HashSet<>(e);
+        System.out.println(sets); //[2, 1, h]
+        sets = new TreeSet<>(e);
+        // 去重，并排序
+        System.out.println(sets); //[1, 2, h]
 ```
+通过接口来接实例，而不是直接使用实现类型实例，这样能方便直接切换实现类来达到改变程序。
