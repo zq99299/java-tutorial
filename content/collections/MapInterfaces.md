@@ -24,3 +24,6 @@ Map的基本操作（put，get，containsKey，containsValue，size，和isEmpty
         System.out.println(freqs); // {3=1, 2=1, 1=2, 5=2, 4=1}
     }
 ```
+HashMap 能被替换成 TreeMap，将会看到按单词自然顺序排序的输出。
+
+也可以替换成 LinkedHashMap，按单词出现的顺序 输出。
