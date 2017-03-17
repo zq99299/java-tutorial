@@ -100,3 +100,19 @@ public interface Iterator <E> {
         
 ```
 `Collections.singletonList`要注意使用，他是返回只有一个元素的集合，所以不要这样使用`Collections.singletonList(e)`.(除非你匹配的list中元素也是一个 e 类型的list)
+
+
+## 集合接口数组操作
+
+`toArray`此方法充当基于数组的 API 与基于 collection 的 API 之间的桥梁。
+```java
+        ArrayList<String> e = new ArrayList<>();
+        e.add("h");
+        e.add("l");
+        // 该方法因为不确定是什么类型，就返回Obejct
+        Object[] objects = e.toArray();
+        System.out.println(objects);
+        // 如果你明确的知道 e 是一个String泛型集合，那么可以把这些数据拷贝到这个新的数组中。
+        String[] array = e.toArray(new String[e.size()]);
+        System.out.println(array);
+```
