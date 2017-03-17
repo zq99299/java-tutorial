@@ -27,3 +27,5 @@ Map的基本操作（put，get，containsKey，containsValue，size，和isEmpty
 HashMap 能被替换成 TreeMap，将会看到按单词自然顺序排序的输出。
 
 也可以替换成 LinkedHashMap，按单词出现的顺序 输出。
+
+这种灵活性提供了基于接口的框架有力的说明。
