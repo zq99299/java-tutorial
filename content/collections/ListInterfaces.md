@@ -190,3 +190,13 @@ for (int i = fromIndex; i < toIndex; i++) {
         System.out.println(list1); //[]
         System.out.println(list); // [3, 4, 5]
 ```
+
+还可以用来做范围搜索
+```java
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = new ArrayList<>(Arrays.asList(arrs));
+        int i = list.subList(1, 4).indexOf("2");
+        int j = list.subList(1, 4).lastIndexOf("2");
+        System.out.println(i + "," + j); //0,0
+```
+要注意的是，返回的索引 是 subList 视图中的索引，而不是源列表中的
