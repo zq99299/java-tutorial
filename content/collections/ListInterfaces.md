@@ -169,3 +169,24 @@ Iterator,remove() 从列表中移除由 next 或 previous 返回的最后一个�
         }
     }
 ```
+
+
+## 范围视图操作
+在 range-view 操作中，subList(int fromIndex, int toIndex) 返回List中指定的 fromIndex（包括 ）和 toIndex（不包括）之间的部分视图。
+```java
+for (int i = fromIndex; i < toIndex; i++) {
+    ...
+}
+```
+
+返回的是一个 `SubList`对象，没有新建一个List，而是使用源list中的容器，自己只不过维护了 这部分视图的指针偏移量，和个数，所以在`sublist`中操作其实也是在操作源list；
+
+如清空这部分视图，源list跟着改变
+```java
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = new ArrayList<>(Arrays.asList(arrs));
+        List<String> list1 = list.subList(0, 2);
+        list1.clear();
+        System.out.println(list1); //[]
+        System.out.println(list); // [3, 4, 5]
+```
