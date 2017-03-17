@@ -106,3 +106,27 @@ index    0         |     1      |      2     |     3        |   4
 ```
 
 换句话说：由于有参的能自定义位置，所以，底层previous()的时候是 先将 游标位置-1，而无参的游标位置始终都是0，所以先取元素再 + 1。 所以就存在了图上的4个元素存在5种可能的游标位置
+
+previous 和 next 可以混合使用，但是需要小心别让自己获取到同一个元素。nextIndex 和 previousIndex 返回下一个，上一个游标的位置，和 next 与previous的计算方式类似。
+
+nextIndex 返回的数字总是 大于 previousIndex ，也就会产生两个边界，-1 和 list.size. 下面是List.indexOf的实现原理：
+```java
+    @Test
+    public void test() {
+        String[] arrs = {"1", "2", "3", "4", "5"};
+        List<String> list = Arrays.asList(arrs);
+        String target = "3";
+        System.out.println(indexOf(list,target)); // 3
+    }
+
+    public int indexOf(List<String> list, String target) {
+        for (ListIterator<String> it = list.listIterator(); it.hasNext(); ) {
+            // next()之后，nextIndex 就已经是下一个元素的值了
+            // 所以这里使用上一个元素的位置，正好得到匹配元素的位置
+            if (target == null ? it.next() == null : target.equals(it.next()))
+                return it.previousIndex();
+        }
+        return -1;
+    }
+```
+
