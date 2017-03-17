@@ -71,3 +71,31 @@ public interface Iterator <E> {
     }
 ```
 这段代码是多态的，意味着使用与任何 Collection 实现。此示例演示使用Java集合框架编写多态性算法是多么容易。
+
+
+## 集合接口批量操作
+批量操作对整个集合进行操作。你可以使用的基本操作实现这些简化操作,尽管在大多数情况下这样的实现将是低效率的。
+
+- containsAll - 如果此 collection 包含指定 collection 中的所有元素，则返回 true。
+- addAll -  将指定 collection 中的所有元素都添加到此 collection 中（可选操作）。
+- removeAll -  移除此 collection 中那些也包含在指定 collection 中的所有元素（可选操作）。
+- retainAll- 从目标中删除Collection所有不包含在指定中的元素Collection。也就是说，它只保留目标Collection中那些也包含在指定的元素Collection。
+- clear - 移除此 collection 中的所有元素（可选操作）。
+
+如果目标Collection被修改，addAll，removeAll以及retainAll方法都返回true，
+
+简单示例
+```java
+        ArrayList<String> c = new ArrayList<>();
+        c.add("h");
+        c.add(null);
+        ArrayList<String> e = new ArrayList<>();
+        e.add("h");
+        e.add("l");
+        c.removeAll(Collections.singletonList("h"));
+        System.out.println(c); //[null]
+        c.removeAll(Collections.singleton(null));
+        System.out.println(c); //[]
+        
+```
+`Collections.singletonList`要注意使用，他是返回只有一个元素的集合，所以不要这样使用`Collections.singletonList(e)`.(除非你匹配的list中元素也是一个 e 类型的list)
