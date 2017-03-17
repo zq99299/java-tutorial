@@ -12,16 +12,15 @@ Map的基本操作（put，get，containsKey，containsValue，size，和isEmpty
 
 下来来一个示例：统计单词出现的频率次数：
 ```java
-    @Test
     public void test()  {
-        String[] arrs = {"1", "2", "3", "4", "5", "1"};
-        HashMap<String, Integer> freqs = new HashMap<>();
+        String[] arrs = {"1", "2", "3", "4", "5", "1","5"};
+        Map<String, Integer> freqs = new HashMap<>();
         for (String a : arrs) {
             Integer freq = freqs.get(a);
             freqs.put(a, freq == null ? 1 : freq + 1);
         }
 
         System.out.println("不同的单词有：" + freqs.size()); //不同的单词有：5
-        System.out.println(freqs); // {3=1, 2=1, 1=2, 5=1, 4=1}
+        System.out.println(freqs); // {3=1, 2=1, 1=2, 5=2, 4=1}
     }
 ```
