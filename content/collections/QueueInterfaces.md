@@ -27,5 +27,5 @@ public interface Queue<E> extends Collection<E> {
 
 Queue的实现可以限制所持有元素的数量；这样的队列称为有界，有些Queue实现java.util.concurrent是有界的，但实现java.util不是。
 
-* add：继承自Collection，插入一个元素，除非它会违反队列的容量限制，在这种情况下抛出IllegalStateException
-* offer：方法仅用于有界队列，不能插入时，返回 fasle
+* add ：继承自Collection，插入一个元素，除非它会违反队列的容量限制，在这种情况下抛出IllegalStateException
+* offer ：方法仅用于有界队列，不能插入时，返回 fasle
