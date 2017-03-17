@@ -45,3 +45,45 @@ c.stream()
         System.out.println(sets); //[1, 2, h]
 ```
 通过接口来接实例，而不是直接使用实现类型实例，这样能方便直接切换实现类来达到改变程序。
+
+
+## set接口批量操作
+大部分操作适合 Set，代数运算，假设 s1 和 s2 是sets，以下是批量操作
+```java
+    private Set getS1() {
+        Set<String> s1 = new HashSet<>();
+        s1.add("2");
+        s1.add("3");
+        s1.add("1");
+        return s1;
+    }
+
+    private Set getS2() {
+        Set<String> s2 = new HashSet<>();
+        s2.add("1");
+        s2.add("4");
+        s2.add("5");
+        s2.add("3");
+        return s2;
+    }
+
+    @Test
+    public void fun1() {
+        // s2 是否是 s1 的子集（也就是说：s1 是否包含 s2的所有元素 ）
+        System.out.println(getS1().containsAll(getS2())); //fasle
+        // s1 和 s2 的并集
+        Set s1 = getS1();
+        System.out.println(s1.addAll(getS2())); // true
+        System.out.println(s1); //[3, 2, 1, 5, 4]
+
+        // s1 和 s2 的交集
+        Set retainAllS1 = getS1();
+        System.out.println(retainAllS1.retainAll(getS2()));
+        System.out.println(retainAllS1); // [3, 1]
+
+        // s1 和 s2 的差集 （也就是：在s1 不包含 s2有的元素）
+        Set removeAllS1 = getS1();
+        System.out.println(removeAllS1.removeAll(getS2()));
+        System.out.println(removeAllS1); // [2]
+    }
+```
