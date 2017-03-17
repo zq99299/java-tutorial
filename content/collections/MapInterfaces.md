@@ -39,3 +39,105 @@ HashMap 能被替换成 TreeMap，将会看到按单词自然顺序排序的输�
 ```java
 Map<K, V> copy = new HashMap<K, V>(m);
 ```
+
+## map 接口的批量操作
+clear，移除此集合的所有映射。putAll从指定映射中将所有映射关系复制到此映射中（可选操作）。
+
+以下是演示处理默认值的技巧：
+```java
+static <K, V> Map<K, V> newAttributeMap(Map<K, V>defaults, Map<K, V> overrides) {
+    Map<K, V> result = new HashMap<K, V>(defaults);
+    result.putAll(overrides);
+    return result;
+}
+```
+
+## 集合视图（Collection Views）
+
+运行Map被视为一个 `collection` 视图的三种方法：
+- keySet : set 视图，返回map中所有的 key
+- values ： Collection视图，返回map中所有的value，因为多个key可以隐身到相同的值
+- entrySet ： set 视图，元素为Map.Entry类型
+
+集合视图提供map遍历的唯一手段
+```java
+for (KeyType key : m.keySet())
+    System.out.println(key);
+```
+iterator:
+```java
+// Filter a map based on some 
+// property of its keys.
+for (Iterator<Type> it = m.keySet().iterator(); it.hasNext(); )
+    if (it.next().isBogus())
+        it.remove();
+```        
+
+```java
+for (Map.Entry<KeyType, ValType> e : m.entrySet())
+    System.out.println(e.getKey() + ": " + e.getValue());
+```
+
+很多人担心这些语法可能很慢，因为每次调用视图操作Map都必须创建一个新Collection示例。但是没有理由，Map每当请求Collection的时候都返回相同的对象。
+
+！这些返回的视图同样是会反应到源map上的。
+
+## 喜欢集合的观点：map 代数？
+批量操作（containsAll，removeAll，和retainAll）会很方便。
+
+- boolean containsAll(Collection<?> c) 
+
+  如果此 set 包含指定 collection 的所有元素，则返回 true。
+
+ 按照类似的方式，假设你想知道两个Map对象是否包含所有相同的键映射
+ ```java
+ if (m1.keySet().equals(m2.keySet())) {
+    ...
+}
+ ```   
+
+检验必须的和允许的key属性示例：  
+```java
+    @Test
+    public void test() {
+        String[] arrs = {"1", "2", "3", "4", "5", "1"};
+        Map<String, String> attrMap = new HashMap<>();
+        for (String a : arrs) {
+            attrMap.put(a, a);
+        }
+        // 必须的属性
+        Set<String> requiredAttrs = new HashSet<>();
+        requiredAttrs.add("7");
+
+        // 允许的属性
+        Set<String> permittedAttrs = new HashSet<>();
+        permittedAttrs.add("4");
+        validate(attrMap, requiredAttrs, permittedAttrs);
+    }
+
+    static <K, V> boolean validate(Map<K, V> attrMap, Set<K> requiredAttrs, Set<K> permittedAttrs) {
+        boolean valid = true;
+        Set<K> attrs = attrMap.keySet();
+
+        // 所有的值 是否包含 必须的值
+        if (!attrs.containsAll(requiredAttrs)) {
+            Set<K> missing = new HashSet<K>(requiredAttrs);
+            missing.removeAll(attrs);
+            System.out.println("Missing attributes: " + missing);
+            valid = false;
+        }
+        // 允许的值 是否 包含 要校验的值
+        if (!permittedAttrs.containsAll(attrs)) {
+            Set<K> illegal = new HashSet<K>(attrs);
+            illegal.removeAll(permittedAttrs);
+            System.out.println("Illegal attributes: " + illegal);
+            valid = false;
+        }
+        return valid;
+    }
+``` 
+输出
+```java
+Missing attributes: [7]
+Illegal attributes: [3, 2, 1, 5]
+```
