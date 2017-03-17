@@ -274,3 +274,21 @@ public class Deal {
 [红心10, 梅花K, 黑桃5, 红心A, 红心4]
 [黑桃9, 黑桃10, 黑桃Q, 红心5, 方块Q]
 ```
+
+虽然subList操作非常强大，但是使用必须小心，因为是共享，但是返回的对象不是同一个，维护困难，建议只是用来临时操作。
+
+
+## 列表算法
+Collections类中的大多数多态性算法特别适用于List。拥有所有这些算法在您的处置使它很容易操纵列表。这里是这些算法的总结，这些算法在“ [算法](http://docs.oracle.com/javase/tutorial/collections/algorithms/index.html)”部分中有更详细的描述 。
+
+* sort - List使用归并排序算法,它提供了一种快速、稳定的排序。
+* shuffle- 随机排列List中元素的顺序。
+* reverse- 反转指定列表中元素的顺序。
+* rotate- 根据指定的距离轮换指定列表中的元素。
+* swap- 在指定列表的指定位置处交换元素。 。
+* replaceAll - 使用另一个值替换列表中出现的所有某一指定值。
+* fill- 使用指定元素替换指定列表中的所有元素。
+* copy- 将源List复制到目标List。
+* binarySearch- 使用二分搜索法搜索指定列表，以获得指定对象
+* indexOfSubList- 返回指定源列表中第一次出现指定目标列表的起始位置。
+* lastIndexOfSubList- 返回指定源列表中最后一次出现指定目标列表的起始位置。
