@@ -15,3 +15,5 @@ LinkedList 比 ArrayDeque消耗更多的内存。
 都可以使用 foreach 和 迭代器方式进行迭代。
 
 ## 并发Deque实现
+
+该 LinkedBlockingDeque班是的并发执行Deque接口。如果双端队列为空，则等方法takeFirst和takeLast等待，直到元素变得可用，然后检索并删除相同的元素。
