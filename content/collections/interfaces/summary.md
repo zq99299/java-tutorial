@@ -10,5 +10,4 @@ Java集合框架层次结构包含两个不同的接口树：
 * Queue 接口实现了额外的插入，抽取和检查操作。Queue中的元素通常基于FIFO排序
 * Deque 接口可以在两端插入，删除，和检查操作。可以在LIFO 和 FIFO 的场景使用
 
-** 第二个 ： **Map,键值对映射，类似于Hashtable
-其子接口SortedMap按升序或按指定的Comparator顺序维护其键值对。
+** 第二个 ： **Map,键值对映射，类似于Hashtable。其子接口SortedMap按升序或按指定的Comparator顺序维护其键值对。
