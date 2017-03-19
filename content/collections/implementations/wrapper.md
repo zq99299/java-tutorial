@@ -31,3 +31,15 @@ synchronized(c) {
         foo(e);
 }
 ```
+
+```java
+Map<KeyType, ValType> m = Collections.synchronizedMap(new HashMap<KeyType, ValType>());
+    ...
+Set<KeyType> s = m.keySet();
+    ...
+// 在m上同步，而不是s
+synchronized(m) {
+    while (KeyType k : s)
+        foo(k);
+}
+```
