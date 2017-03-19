@@ -68,3 +68,4 @@ public static <K,V> SortedMap<K, V> unmodifiableSortedMap(SortedMap<K, ? extends
 
 Collections.checked 接口包装器用于通用集合。
 返回指定集合的一个动态类型安全视图。试图插入一个错误类型的元素将导致立即抛出 ClassCastException。泛型机制提供编译时的类型检查，但是可以打败这种机制。动态类型安全视图完全消除了这种可能性。
+
