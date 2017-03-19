@@ -40,3 +40,7 @@
  job.values().removeAll(Collections.singleton(LAWYER));
  ```
  
+ ## Empty Set, List, and Map Constants
+ ```java
+ Collections.emptySet()
+ ```
