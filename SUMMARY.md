@@ -25,7 +25,7 @@
 * [集合框架概述Collections](/content/collections/README.md)
 * [集合简介](/content/collections/intro.md)
 * [接口](/content/collections/interfaces.md)
-  * [Collection接口](/content/collections/CollectionInterfaces.md)
+  * [Collection接口](/content/collections/interfaces/collection.md)
   * [Set接口](/content/collections/SetInterfaces.md)
   * [List接口](/content/collections/ListInterfaces.md)
   * [Queue接口](/content/collections/QueueInterfaces.md)
