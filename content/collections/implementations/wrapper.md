@@ -45,3 +45,21 @@ synchronized(m) {
 ```
 
 使用包装实现的一个小缺点是，您不能执行包装实现的任何非接口操作。如：ArrayList的 ensureCapacity操作。
+
+## 不可修改封装
+
+与同步包装器不同，它向包装的集合添加功能，不可修改的包装器取消了功能。试图修改则抛出异常UnsupportedOperationException。
+有两个主要的用途：
+
+1. 集合一旦构建完就不可变。在这种情况下，最好不要维护集合的引用，保证绝对不变性
+2. 允许某些客户端对数据结构的只读访问。你保留对集合的引用，但是交给客户端包装器的引用，他们能查看，但是不能修改。
+
+ 与同步包装器一样，6个核心Collection接口中的每一个都有一个静态工厂方法：
+ ```java
+ public static <T> Collection<T> unmodifiableCollection(Collection<? extends T> c);
+public static <T> Set<T> unmodifiableSet(Set<? extends T> s);
+public static <T> List<T> unmodifiableList(List<? extends T> list);
+public static <K,V> Map<K, V> unmodifiableMap(Map<? extends K, ? extends V> m);
+public static <T> SortedSet<T> unmodifiableSortedSet(SortedSet<? extends T> s);
+public static <K,V> SortedMap<K, V> unmodifiableSortedMap(SortedMap<K, ? extends V> m);
+ ```
