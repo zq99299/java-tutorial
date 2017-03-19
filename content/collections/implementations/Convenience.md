@@ -9,3 +9,21 @@
  返回一个受指定数组支持的固定大小的列表。（对返回列表的更改会“直接写”到数组。）此方法同 Collection.toArray() 一起，充当了基于数组的 API 与基于 collection 的 API 之间的桥梁。返回的列表是可序列化的，并且实现了 RandomAccess。
  
  所以注意不要保留数组的引用。
+ 
+ ## 不可变列表
+ 
+ 返回由指定对象的 n 个副本组成的不可变列表。新分配的数据对象非常小（它只包含一个对该数据对象的引用）。在通过与 List.addAll 方法组合来增大列表时，此方法很有用。返回的列表是可序列化的。 
+ 
+ 这种实现有两个主要用途。
+ 第一个是初始化一个新创建的Lis，假设你希望最初由1000个null元素组成。
+ ```java
+ List<Type> list = new ArrayList<Type>(Collections.nCopies(1000, (Type)null);
+ ```
+ 
+ 当然，每个元素的初始值不需要null。
+ 
+ 第二个主要用途是增长现有的List。假设您要将字符串的69个副本添加"fruit bat"到List<String>末尾。
+ ```java
+ lovablePets.addAll(Collections.nCopies(69, "fruit bat"));
+ ``
+ 还可以通过 addAll(int index, Collection<? extends E> c) 来添加到列表的中间。
