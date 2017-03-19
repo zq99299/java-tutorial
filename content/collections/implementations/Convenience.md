@@ -10,7 +10,7 @@
  
  所以注意不要保留数组的引用。
  
- ## 不可变列表
+ ## 不可变重复列表
  
  返回由指定对象的 n 个副本组成的不可变列表。新分配的数据对象非常小（它只包含一个对该数据对象的引用）。在通过与 List.addAll 方法组合来增大列表时，此方法很有用。返回的列表是可序列化的。 
  
@@ -27,3 +27,16 @@
  lovablePets.addAll(Collections.nCopies(69, "fruit bat"));
  ``
  还可以通过 addAll(int index, Collection<? extends E> c) 来添加到列表的中间。
+ 
+ ## 不可变单元素set
+ 有时你需要一个不可变 Set的单例，它由一个单独的指定元素组成。该 Collections.singleton方法返回这样的Set。
+ 此实现的一个用途是从某个Collection中删除一个 等于 该单例set的元素。
+ ```java
+ c.removeAll(Collections.singleton(e));
+ ```
+ 
+ 在map中删除
+ ```java
+ job.values().removeAll(Collections.singleton(LAWYER));
+ ```
+ 
