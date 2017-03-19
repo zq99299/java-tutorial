@@ -44,8 +44,7 @@
   * [wrapper实现](/content/collections/implementations/wrapper.md)
   * [convenience实现](/content/collections/implementations/Convenience.md)
   * [摘要](/content/collections/implementations/summary.md)
-
-
+* [算法](/content/collections/algorithms/README.md)
 
 * [Map ](/content/util/map/README.md)
 
