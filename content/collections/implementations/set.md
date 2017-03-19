@@ -16,3 +16,26 @@ LinkedHashSet 某种意义上是HashSet和TreeSet的合并。通过哈希表+链
 还有一个参数，加载因子。与空间消耗有关，如果你不了解这些，那么就使用默认值是最好的。
 
 LinkedHashSet 和 HashSet有相同的调正参数，TreeSet没有调整参数。
+
+## 专用实现
+
+有两个特殊用途的实现 `EnumSet`和`CopyOnWriteArraySet`
+
+EnumSet 是 set 枚举类型的高性能实现。在内部由一个变量表示，通常是Long。枚举类型支持范围迭代，比如迭代星期
+```java
+for (Day d : EnumSet.range(Day.MONDAY, Day.FRIDAY))
+        System.out.println(d);
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
