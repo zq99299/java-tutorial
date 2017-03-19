@@ -4,10 +4,10 @@
 Java集合框架提供了几个通用的核心接口实现：
 
 * 对于Set接口，HashSet是最常用的实现。
-*对于List接口，ArrayList是最常用的实现。
-*对于Map接口，HashMap是最常用的实现。
-*对于Queue接口，LinkedList是最常用的实现。
-*对于Deque接口，ArrayDeque是最常用的实现。
+* 对于List接口，ArrayList是最常用的实现。
+* 对于Map接口，HashMap是最常用的实现。
+* 对于Queue接口，LinkedList是最常用的实现。
+* 对于Deque接口，ArrayDeque是最常用的实现。
 
 每个通用实现提供其接口中包含的所有可选操作。
 
