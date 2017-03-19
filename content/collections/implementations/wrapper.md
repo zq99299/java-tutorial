@@ -43,3 +43,5 @@ synchronized(m) {
         foo(k);
 }
 ```
+
+使用包装实现的一个小缺点是，您不能执行包装实现的任何非接口操作。如：ArrayList的 ensureCapacity操作。
