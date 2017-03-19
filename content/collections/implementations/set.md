@@ -27,8 +27,10 @@ for (Day d : EnumSet.range(Day.MONDAY, Day.FRIDAY))
         System.out.println(d);
 
 ```
-
-
+提供了静态方法，可以快速创建
+```java
+    EnumSet.of(Style.BOLD, Style.ITALIC)
+```
 
 
 
