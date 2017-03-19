@@ -32,6 +32,8 @@ for (Day d : EnumSet.range(Day.MONDAY, Day.FRIDAY))
     EnumSet.of(Style.BOLD, Style.ITALIC)
 ```
 
+CopyOnWriteArraySet ： 不明所以。没有接触过
+
 
 
 
