@@ -34,6 +34,7 @@
   * [对象排序](/content/collections/ObjectOrdering.md)
   * [SortedSet接口](/content/collections/SortedSetInterfaces.md)
   * [SortedMap接口](/content/collections/SortedMapInterfaces.md)
+  * [接口摘要](/content/collections/interfaces/summary.md)
 
 * [Map ](/content/util/map/README.md)
 
