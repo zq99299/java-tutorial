@@ -23,5 +23,6 @@ newMethod(Arrays.asList(result));
         requiredAttrs.add("8");
         // 要注意这个，给定的数组如果长度小于源，那么将会新建一个与源容量相等的数据返回
         String[] array = requiredAttrs.toArray(new String[requiredAttrs.size()]);
+        // 从这里也能够看出来。数组的toString不符合现代集合框架的约定。需要使用工具类来打印
         System.out.println(Arrays.toString(array));
 ```
