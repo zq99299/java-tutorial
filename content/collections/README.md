@@ -9,7 +9,7 @@
 
 * [实现](/content/collections/implementations/README.md) 描述JDK的通用集合的实现 ，并告诉您何时使用哪种实现。您还可以了解包装的实现，这在通用实现添加功能。
 
-* [算法](/content/collections/algorithms.md) 描述的多态算法由JDK提供的集合操作。有了运气，你永远不会再写自己的排序程序了！
+* [算法](/content/collections/algorithms.md) 描述的多态算法由JDK提供的集合操作。运气好的话，你永远不会再写自己的排序程序了！
 
 * [自定义实现](/content/collections/custom-implementations.md) 告诉你为什么，你可能要编写自己的集合实现（而不是使用由JDK提供的通用实现之一），以及你如何去了解它。这很容易与JDK的抽象集合的实现！
 
