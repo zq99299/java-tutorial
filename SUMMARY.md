@@ -23,7 +23,7 @@
   * [ArrayDeque](/content/util/collection/Queue.md)
   
 ## 官方教程 - 基本类
-* [概述](/content/essential/README.md)
+* [基本类概述](/content/essential/README.md)
 * [异常](/content/essential/exceptions/README.md)
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
