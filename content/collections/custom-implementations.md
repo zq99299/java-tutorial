@@ -28,4 +28,43 @@
            
 ## 如何编写自定义实现
 
+```java
+public class MyList<T> extends AbstractList<T> {
+    private final T[] a;
+
+    public MyList(T[] a) {
+        this.a = a;
+    }
+
+    @Override
+    public T get(int index) {
+        return a[index];
+    }
+
+    @Override
+    public int size() {
+        return a.length;
+    }
+    //模仿java.util.Arrays 中的功能
+    public static <T> List<T> asList(T[] a) {
+        return new MyList<>(a);
+    }
+
+    public static void main(String[] args) {
+        List<String> list = MyList.asList(new String[]{"1","2","3"});
+        System.out.println(list);
+    }
+}
+```
+
+继承`AbstractList`,并实现`get`,`size`方法，就得到了ListIterator，批量操作，搜索操作，哈希代码计算，比较和字符串表示的toString
+
+以下列表中间了抽象实现：
+
+* AbstractCollection-一个Collection既不是Set也不是List。至少，你必须提供iterator和size方法。
+* AbstractSet-一个Set; 利用相同AbstractCollection。
+* AbstractList-一个List由一个随机存取数据存储备份，如数组。至少必须提供positional access的方法（get和任选set，remove和add）和size方法。抽象类需要照顾listIterator（和iterator）。
+* AbstractSequentialList-一个List通过顺序存取数据存储备份，诸如链表。至少，你必须提供listIterator与size方法。抽象类负责位置访问方法。（这是相反的AbstractList。）
+* AbstractQueue-至少，你必须提供的offer，peek，poll，和size方法以及iterator支持remove。
+* AbstractMap-一个Map。至少，你必须提供entrySet视图。这通常是与实现AbstractSet类。如果Map是修改的，你还必须提供put方法。
                       
