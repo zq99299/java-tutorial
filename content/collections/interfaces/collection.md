@@ -61,7 +61,7 @@ public interface Iterator <E> {
 - 遍历多个并行集合（！没有明白是什么意思）
 
 以下方法使用Iterator来过滤任意Collection，删除特定元素：
-···java
+```java
     static void filter(Collection<?> c) {
         for (Iterator<?> it = c.iterator(); it.hasNext(); )
             // 唯一不同的就是这里 条件的判断
