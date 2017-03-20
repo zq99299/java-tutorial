@@ -43,5 +43,11 @@
 binarySearch ： 使用二分搜索法搜索指定列表，以获得指定对象。在进行此调用之前，必须根据列表元素的自然顺序对列表进行升序排序（通过 sort(List) 方法）。如果没有对列表进行排序，则结果是不确定的。
 被找到时，返回大于0的插入位置。
 
-Composition
-Finding Extreme Values
+## Composition
+不相交和频率算法测试某些？
+
+* 频率（frequency）： 返回指定元素在集合中出现的个数
+* 不相交（disjoint） ：如果两个指定 collection 中没有相同的元素，则返回 true。
+
+## 找到极值（）Finding Extreme Values）
+min 和 max 算法返回集合中的最小值 和 最大值。
