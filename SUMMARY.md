@@ -6,7 +6,8 @@
   * [StringBuilder](/content/lang/StringBuilder.md)
   * [Integer](/content/lang/Integer.md)
 
-## java.util  
+## java.util
+
 * [Collection ](/content/util/collection/README.md)
   * [List](/content/util/collection/list.md)
   * [ArrayList](/content/util/collection/ArrayList.md)
@@ -21,7 +22,8 @@
   * [Queue](/content/util/collection/Queue.md)
   * [ArrayDeque](/content/util/collection/Queue.md)
 
-## 集合框架  
+## 集合框架
+
 * [集合框架概述Collections](/content/collections/README.md)
 * [集合简介](/content/collections/intro.md)
 * [接口](/content/collections/interfaces/README.md)
@@ -45,6 +47,5 @@
   * [convenience实现](/content/collections/implementations/Convenience.md)
   * [摘要](/content/collections/implementations/summary.md)
 * [算法](/content/collections/algorithms.md)
-* [自定义集合](/content/collections/custom-implementations.md)
-
+* [自定义实现](/content/collections/custom-implementations.md)
 
