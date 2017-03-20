@@ -24,7 +24,7 @@
 
 ## 集合框架
 
-* [集合框架概述Collections](/content/collections/README.md)
+* [集合框架概述](/content/collections/README.md)
 * [集合简介](/content/collections/intro.md)
 * [接口](/content/collections/interfaces/README.md)
   * [Collection接口](/content/collections/interfaces/collection.md)
@@ -49,6 +49,4 @@
 * [算法](/content/collections/algorithms.md)
 * [自定义实现](/content/collections/custom-implementations.md)
 * [互操作性](/content/collections/interoperability.md)
-
-
 
