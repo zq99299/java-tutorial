@@ -20,12 +20,26 @@
 
 
 有两种方法使用
-*  Collections.sort(list);  //使用默认的
-*  Collections.sort(List<T> list, Comparator<? super T> c)  // 提供比较器
+*  `Collections.sort(list)`;  //使用默认的
+*  `Collections.sort(List<T> list, Comparator<? super T> c)`  // 提供比较器
 
 ## 洗牌(Shuffling)
+随机排序，重新排列了List。以随机源为准，保证随机的公平性。
 
-Routine Data Manipulation
-Searching
+这个操作有两种操作形式：
+* `Collections.shuffle(List<?> list)` 使用默认的随机源
+* `Collections.shuffle(List<?> list, Random rnd) ` 指定随机源
+
+## 常规数据操作
+提供了五个常规数据的算法：
+
+* 反转(reverse) ： 反转指定列表中元素的顺序。
+* 填满 (fill)： 使用指定元素替换指定列表中的所有元素。这个操作一般用在初始化列表
+* 复制（copy） ： 将所有元素从一个列表复制到另一个列表。
+* 交换（swap） ： 在指定列表的指定位置处交换元素。
+* addAll      ： 将所有指定元素添加到指定 collection 中。
+
+## 搜索（Searching）
+
 Composition
 Finding Extreme Values
