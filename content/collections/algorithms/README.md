@@ -40,6 +40,8 @@
 * addAll      ： 将所有指定元素添加到指定 collection 中。
 
 ## 搜索（Searching）
+binarySearch ： 使用二分搜索法搜索指定列表，以获得指定对象。在进行此调用之前，必须根据列表元素的自然顺序对列表进行升序排序（通过 sort(List) 方法）。如果没有对列表进行排序，则结果是不确定的。
+被找到时，返回大于0的插入位置。
 
 Composition
 Finding Extreme Values
