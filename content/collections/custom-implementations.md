@@ -67,4 +67,11 @@ public class MyList<T> extends AbstractList<T> {
 * AbstractSequentialList-一个List通过顺序存取数据存储备份，诸如链表。至少，你必须提供listIterator与size方法。抽象类负责位置访问方法。（这是相反的AbstractList。）
 * AbstractQueue-至少，你必须提供的offer，peek，poll，和size方法以及iterator支持remove。
 * AbstractMap-一个Map。至少，你必须提供entrySet视图。这通常是与实现AbstractSet类。如果Map是修改的，你还必须提供put方法。
+
+## 编写自定义实现的过程如下
+
+1. 从上面的列表中选择适当的抽象实现类
+2. 为类的抽象方法提供实现。如果你的自定义集合是可修改的，你不得不重写一个或多个具体的方法。抽象实现类的API文档会告诉你需要覆盖哪些方法。
+3. 测试，调试实现。
+4. 如果你关注性能。请阅读你继承抽象实现类的API文档，然后重写实现，请务必衡量重写前后的性能比较。一般此步骤最好省略
                       
