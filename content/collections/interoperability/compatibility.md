@@ -26,3 +26,5 @@ newMethod(Arrays.asList(result));
         // 从这里也能够看出来。数组的toString不符合现代集合框架的约定。需要使用工具类来打印
         System.out.println(Arrays.toString(array));
 ```
+
+`Collections.enumeration（c）` 将一个集合转化为Enumeration集合
