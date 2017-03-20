@@ -8,3 +8,11 @@
 * 搜索
 * 组成
 * 寻找极限值
+
+## 排序（Sorting）
+Sorting
+Shuffling
+Routine Data Manipulation
+Searching
+Composition
+Finding Extreme Values
