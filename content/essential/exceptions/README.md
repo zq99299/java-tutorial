@@ -20,5 +20,7 @@ Java编程语言使用异常处理错误和其他异常事件。这节课描述�
 
 * [异常的优点](/content/essential/advantages.md)
 
-    使用异常来管理错误比传统的错误管理技术有一些优势。                                       
+    使用异常来管理错误比传统的错误管理技术有一些优势。    
     
+                                                                          
+[摘要](/content/essential/summary.md)
