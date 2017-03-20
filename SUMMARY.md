@@ -49,4 +49,11 @@
 * [算法](/content/collections/algorithms.md)
 * [自定义实现](/content/collections/custom-implementations.md)
 * [互操作性](/content/collections/interoperability.md)
+  * [兼容性](/content/collections/interoperability/compatibility.md)
+  * [API设计](/content/collections/interoperability/api-design.md)
+
+
+
+
+
 
