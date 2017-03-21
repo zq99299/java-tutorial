@@ -35,6 +35,8 @@
     * [try-with-resources](/content/essential/exceptions/handling/tryResourceClose.md)
     * [组合示例](/content/essential/exceptions/handling/putItTogether.md)
   * [指定方法抛出异常](/content/essential/exceptions/declaring.md)
+  * [如何抛出异常](/content/essential/exceptions/throwing.md)
+
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
