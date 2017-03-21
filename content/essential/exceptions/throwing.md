@@ -12,3 +12,22 @@
 ```java
 throw Throwable对象
 ```
+
+让我们来看看throw上下文中的语句。以下pop方法来自实现公共堆栈对象的类。该方法从堆栈中删除顶层元素并返回对象。
+
+```java
+public Object pop() {
+    Object obj;
+
+    if (size == 0) {
+        throw new EmptyStackException();
+    }
+
+    obj = objectAt(size - 1);
+    setObjectAt(size - 1, null);
+    size--;
+    return obj;
+}
+```
+
+该pop方法查看堆栈上是否有元素，没有则抛出一个异常对象，你需要记住的是：只可以抛出java.lang.Throwable的实例
