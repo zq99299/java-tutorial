@@ -86,7 +86,9 @@ public static void viewTable(Connection con) throws SQLException {
 ## 屏蔽异常
 可通过Throwable[] getSuppressed()获得。添加的话用addSuppressed(Throwable exception)，这个函数一般是在try-with-resources语句中由自动调用的。
 
-下面是上面的示例 被编译成的class文件。可以看到try-with-resources也就是一个语法糖被编译后还是使用try,catch,finally来处理的。
+下面是上面的示例 被编译成的class文件。可以看到try-with-resources也就是一个语法糖被编译后还是使用try,catch,finally来处理的。最后抛出一个异常。
+
+仔细看只有finally中关闭资源的异常被 屏蔽了。“var5.addSuppressed(var32);”,而且也能获得屏蔽的异常列表。这样的话，就能解决又不丢失异常信息，又能捕获且传递被屏蔽的异常了。
 ```java
     public static void writeToFileZipFileContents(String zipFileName, String outputFileName) {
         Charset charset = StandardCharsets.US_ASCII;
