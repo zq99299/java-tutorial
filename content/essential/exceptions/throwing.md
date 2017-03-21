@@ -38,3 +38,16 @@ public Object pop() {
 下图说明了类的类层次结构Throwable及其最重要的子类。正如你可以看到的，Throwable有两个直接的后代： Error和 Exception。
 
 ![](/assets/essential/exceptions/exceptions-throwable.png)
+
+## Error 类
+
+当Java虚拟机中发生动态链接失败或其他硬故障时，虚拟机抛出Error。简单的程序通常不捕获或抛出Error。
+
+
+## Exception类
+
+大多数程序抛出和捕获从Exception类派生的对象。一个Exception表示出现一个问题，但它不是一个严重的系统的问题。你写的大多数程序会抛出和捕捉Exceptions而不是Errors。
+
+Java平台定义了Exception类的许多后代。这些后代表示可能发生的各种类型的异常。例如，
+- IllegalAccessException 当应用程序试图反射性地创建一个实例（而不是数组）、设置或获取一个字段，或者调用一个方法，但当前正在执行的方法无法访问指定类、字段、方法或构造方法的定义时
+- NegativeArraySizeException 如果应用程序试图创建大小为负的数组，则抛出该异常。 
