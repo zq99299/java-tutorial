@@ -85,3 +85,66 @@ public static void viewTable(Connection con) throws SQLException {
 
 ## 屏蔽异常
 可通过Throwable[] getSuppressed()获得。添加的话用addSuppressed(Throwable exception)，这个函数一般是在try-with-resources语句中由自动调用的。
+
+下面是上面的示例 被编译成的class文件。可以看到try-with-resources也就是一个语法糖被编译后还是使用try,catch,finally来处理的。
+```java
+    public static void writeToFileZipFileContents(String zipFileName, String outputFileName) {
+        Charset charset = StandardCharsets.US_ASCII;
+        Path outputFilePath = Paths.get(outputFileName, new String[0]);
+
+        try {
+            ZipFile e = new ZipFile(zipFileName);
+            Throwable var5 = null;
+
+            try {
+                BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset, new OpenOption[0]);
+                Throwable var7 = null;
+
+                try {
+                    Enumeration entries = e.entries();
+
+                    while (entries.hasMoreElements()) {
+                        String newLine = System.getProperty("line.separator");
+                        String zipEntryName = ((ZipEntry) entries.nextElement()).getName() + newLine;
+                        writer.write(zipEntryName, 0, zipEntryName.length());
+                    }
+                } catch (Throwable var34) {
+                    var7 = var34;
+                    throw var34;
+                } finally {
+                    if (writer != null) {
+                        if (var7 != null) {
+                            try {
+                                writer.close();
+                            } catch (Throwable var33) {
+                                var7.addSuppressed(var33);
+                            }
+                        } else {
+                            writer.close();
+                        }
+                    }
+
+                }
+            } catch (Throwable var36) {
+                var5 = var36;
+                throw var36;
+            } finally {
+                if (e != null) {
+                    if (var5 != null) {
+                        try {
+                            e.close();
+                        } catch (Throwable var32) {
+                            var5.addSuppressed(var32);
+                        }
+                    } else {
+                        e.close();
+                    }
+                }
+
+            }
+        } catch (IOException var38) {
+            (new Throwable(var38)).addSuppressed(var38);
+        }
+
+    }
+```
