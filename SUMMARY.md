@@ -33,7 +33,7 @@
     - [finally](/content/essential/exceptions/handling/finally.md)
     - [try-with-resources](/content/essential/exceptions/handling/tryResourceClose.md)
     - [组合示例](/content/essential/exceptions/handling/putItTogether.md)
-
+  - [方法签名抛出异常](/content/essential/exceptions/declaring.md)
 
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
