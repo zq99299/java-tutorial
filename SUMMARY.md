@@ -38,6 +38,8 @@
   * [如何抛出异常](/content/essential/exceptions/throwing.md)
     * [异常链](/content/essential/exceptions/chained.md)
     * [创建异常类](/content/essential/exceptions/creating.md)
+* [非检查异常 - 争议](/content/essential/exceptions/runtime.md)
+    
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
