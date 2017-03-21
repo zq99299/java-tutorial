@@ -33,3 +33,8 @@ public Object pop() {
 该pop方法查看堆栈上是否有元素，没有则抛出一个异常对象，你需要记住的是：只可以抛出java.lang.Throwable的实例
 
 请注意：pop方法的声明不包含`throws`子句。`EmptyStackException`是非检查异常。因此pop方法可以不声明它
+
+## Throwable类及其子类
+下图说明了类的类层次结构Throwable及其最重要的子类。正如你可以看到的，Throwable有两个直接的后代： Error和 Exception。
+
+![](/assets/essential/exceptions/exceptions-throwable.gif)
