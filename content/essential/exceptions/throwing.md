@@ -37,4 +37,4 @@ public Object pop() {
 ## Throwable类及其子类
 下图说明了类的类层次结构Throwable及其最重要的子类。正如你可以看到的，Throwable有两个直接的后代： Error和 Exception。
 
-![](/assets/essential/exceptions/exceptions-throwable.gif)
+![](/assets/essential/exceptions/exceptions-throwable.png)
