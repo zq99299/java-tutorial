@@ -5,3 +5,31 @@
 本节最后通过一个示例来分析发生在各种场景下的情况。
 
 以下示例：在构造函数中初始化10个数字，并拥有一个`writeList`方法，用于将数字列表写入“OutFile.txt”文件中
+```java
+public class ListOfNumbers {
+    private List<Integer> list;
+    private static final int SIZE = 10;
+
+    public ListOfNumbers() {
+        list = new ArrayList<Integer>(SIZE);
+        for (int i = 0; i < SIZE; i++) {
+            list.add(new Integer(i));
+        }
+    }
+
+    public void writeList() {
+        // The FileWriter constructor throws IOException, which must be caught.
+        PrintWriter out = new PrintWriter(new FileWriter("OutFile.txt"));
+
+        for (int i = 0; i < SIZE; i++) {
+            // The get(int) method throws IndexOutOfBoundsException, which must be caught.
+            out.println("Value at: " + i + " = " + list.get(i));
+        }
+        out.close();
+    }
+}
+```
+
+！现在没有人会用记事本写代码了把。直接用ide打开
+可以看到PrintWriter提示需要捕获异常，是因为这抛出的是一个检查异常。
+而`list.get(i)`并没有提示，是因为它抛出的是一个 非检查异常
