@@ -7,3 +7,5 @@
 无法执行Catch或Specify Requirement的代码将无法编译
 
 并非所有的异常都受Catch或Specify Requirement的约束。为了理解为什么，我们需要看看三个基本类别的异常。其中只有一个符合要求。
+
+
