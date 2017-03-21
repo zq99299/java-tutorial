@@ -21,27 +21,24 @@
   * [EnumSet](/content/util/collection/EnumSet.md)
   * [Queue](/content/util/collection/Queue.md)
   * [ArrayDeque](/content/util/collection/Queue.md)
-  
+
 ## 官方教程 - 基本类
+
 * [基本类概述](/content/essential/README.md)
 * [异常](/content/essential/exceptions/README.md)
-  - [什么是异常？](/content/essential/exceptions/definition.md) 
-  - [捕获或指定需求](/content/essential/exceptions/catchOrDeclare.md)
-  - [捕获和处理异常](/content/essential/exceptions/handling/README.md)
-    - [try](/content/essential/exceptions/handling/try.md)
-    - [catch](/content/essential/exceptions/handling/catch.md)
-    - [finally](/content/essential/exceptions/handling/finally.md)
-    - [try-with-resources](/content/essential/exceptions/handling/tryResourceClose.md)
-    - [组合示例](/content/essential/exceptions/handling/putItTogether.md)
-  - [方法签名抛出异常](/content/essential/exceptions/declaring.md)
-
+  * [什么是异常？](/content/essential/exceptions/definition.md)
+  * [捕获或指定需求](/content/essential/exceptions/catchOrDeclare.md)
+  * [捕获和处理异常](/content/essential/exceptions/handling/README.md)
+    * [try](/content/essential/exceptions/handling/try.md)
+    * [catch](/content/essential/exceptions/handling/catch.md)
+    * [finally](/content/essential/exceptions/handling/finally.md)
+    * [try-with-resources](/content/essential/exceptions/handling/tryResourceClose.md)
+    * [组合示例](/content/essential/exceptions/handling/putItTogether.md)
+  * [指定方法抛出异常](/content/essential/exceptions/declaring.md)
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
-
-
-
 
 ## 官方教程 - 集合框架
 
@@ -72,9 +69,4 @@
 * [互操作性](/content/collections/interoperability.md)
   * [兼容性](/content/collections/interoperability/compatibility.md)
   * [API设计](/content/collections/interoperability/api-design.md)
-
-
-
-
-
 
