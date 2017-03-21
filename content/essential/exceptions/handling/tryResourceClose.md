@@ -15,8 +15,8 @@ static String readFirstLineFromFile(String path) throws IOException {
 
 在jdk7之前，可以使用finally块来确保资源是否关闭。
 
-在finally块来确保资源是否关闭的话。try块中出现异常会被抛出，并需要你捕获。而使用`try-with-resource`语句，则异常会被抑制，可以不捕获异常，但是必须要抛出。
-在JDK7+版本中，可以检索抑制异常。请参阅“禁止异常”一节。
+在finally块来确保资源是否关闭的话。try块中出现异常会被抛出，并需要你捕获。而使用`try-with-resource`语句，则异常会被屏蔽，可以不捕获异常，但是必须要抛出。
+在JDK7+版本中，可以检索屏蔽异常。请参阅“屏蔽异常”一节。
 
 以下是声明多个资源,使用try同样需要你捕获
 ```java
@@ -54,3 +54,34 @@ static String readFirstLineFromFile(String path) throws IOException {
         }
     }
 ```
+
+多个声明使用 分号隔开，代码块终止时，无论是正常还是异常，将按照此顺序自动调用对象的`close`方法。注意，资源的`close`方法与他们创建相反的顺序调用。
+
+
+try-with-resources和捕获异常示例
+```java
+public static void viewTable(Connection con) throws SQLException {
+
+    String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
+
+    try (Statement stmt = con.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
+            String coffeeName = rs.getString("COF_NAME");
+            int supplierID = rs.getInt("SUP_ID");
+            float price = rs.getFloat("PRICE");
+            int sales = rs.getInt("SALES");
+            int total = rs.getInt("TOTAL");
+
+            System.out.println(coffeeName + ", " + supplierID + ", " + 
+                               price + ", " + sales + ", " + total);
+        }
+    } catch (SQLException e) {
+        JDBCTutorialUtilities.printSQLException(e);
+    }
+}
+```
+
+## 屏蔽异常
+可通过Throwable[] getSuppressed()获得。添加的话用addSuppressed(Throwable exception)，这个函数一般是在try-with-resources语句中由自动调用的。
