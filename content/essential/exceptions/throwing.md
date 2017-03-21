@@ -51,3 +51,9 @@ public Object pop() {
 Java平台定义了Exception类的许多后代。这些后代表示可能发生的各种类型的异常。例如，
 - IllegalAccessException 当应用程序试图反射性地创建一个实例（而不是数组）、设置或获取一个字段，或者调用一个方法，但当前正在执行的方法无法访问指定类、字段、方法或构造方法的定义时
 - NegativeArraySizeException 如果应用程序试图创建大小为负的数组，则抛出该异常。 
+
+一个Exception子类：
+- RuntimeException 是那些可能在 Java 虚拟机正常运行期间抛出的异常的超类。
+
+运行时异常的一个示例是：
+- NullPointerException 当方法尝试通过引用访问对象的成员时发生null。
