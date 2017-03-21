@@ -31,3 +31,5 @@ public Object pop() {
 ```
 
 该pop方法查看堆栈上是否有元素，没有则抛出一个异常对象，你需要记住的是：只可以抛出java.lang.Throwable的实例
+
+请注意：pop方法的声明不包含`throws`子句。`EmptyStackException`是非检查异常。因此pop方法可以不声明它
