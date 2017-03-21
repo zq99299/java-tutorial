@@ -57,3 +57,6 @@ Java平台定义了Exception类的许多后代。这些后代表示可能发生�
 
 运行时异常的一个示例是：
 - NullPointerException 当方法尝试通过引用访问对象的成员时发生null。
+
+
+`Unchecked异常 - 争议`章节将讨论为什么大多数程序不应该抛出运行时异常。
