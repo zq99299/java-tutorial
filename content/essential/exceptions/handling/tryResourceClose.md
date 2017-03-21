@@ -152,6 +152,15 @@ public static void viewTable(Connection con) throws SQLException {
 ```
 
 ## 实现可自动关闭或可变比接口的类
-有关实现这些接口的类的列表，请参阅AutoCloseable和 Closeable接口的Javadoc 。`public interface Closeable extends AutoCloseable`
+有关实现这些接口的类的列表，请参阅AutoCloseable和 Closeable接口的Javadoc 。
+```java
+public interface AutoCloseable {
+     void close() throws Exception;
+}
+public interface Closeable extends AutoCloseable {
+    public void close() throws IOException;
+}
+```
+Closeable 扩展 AutoCloseable 接口，并且复写了close方法。抛出了一个具体的IO异常。
 
 
