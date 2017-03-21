@@ -4,7 +4,7 @@ Java编程语言使用异常处理错误和其他异常事件。这节课描述�
 * [什么是异常？](/content/essential/exceptions/definition.md)
     
     异常在程序执行期间发生的中断正常指令流的事件
-* [捕获活声明](/content/essential/exceptions/catchOrDeclare.md)
+* [捕获或指定需求](/content/essential/exceptions/catchOrDeclare.md)
     
     介绍如何捕获和处理异常。包括try、catch 和  finally ，已经异常链和日志记录
 * [如何抛出异常](/content/essential/exceptions/throwing.md)
