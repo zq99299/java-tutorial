@@ -19,3 +19,5 @@ catch (IOException|SQLException ex) {
     throw ex;
 }
 ```
+
+**注意：**如果catch块处理多个异常类型，则该catch参数是隐式的final。在此示例中，catch参数ex是final，因此您不能在catch块中为其分配任何值。
