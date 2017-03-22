@@ -10,7 +10,7 @@ Java编程语言使用异常处理错误和其他异常事件。这节课描述�
 * [如何抛出异常](/content/essential/exceptions/throwing.md)
     
     介绍throw语句和Throwable类极其子类 
-* [资源声明](/content/essential/exceptions/tryResourceClose.md)
+* [资源声明](/content/essential/exceptions/handling/tryResourceClose.md)
     
     本节介绍`try-with-resource`语句，这是一个try，声明一个或多个资源，资源作为一个对象，在程序完成后必须关闭。`try-with-resource`语句确保每个资源在语句结束时关闭。  
 
