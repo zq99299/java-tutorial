@@ -40,7 +40,7 @@
     * [创建异常类](/content/essential/exceptions/creating.md)
   * [非检查异常 - 争议](/content/essential/exceptions/runtime.md)
   * [异常的优点](/content/essential/exceptions/advantages.md)
-    
+  * [摘要](/content/essential/exceptions/summary.md)
 * [基本I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
