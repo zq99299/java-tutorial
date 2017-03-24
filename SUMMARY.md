@@ -49,10 +49,11 @@
     * [缓冲流](/content/essential/io/buffers.md)
     * [扫描和格式化](/content/essential/io/scanfor.md)
       * [扫描](/content/essential/io/scanning.md)
+      * [格式化](/content/essential/io/formatting.md)
     * [命令行IO](/content/essential/io/cl.md)
     * [数据流](/content/essential/io/datastreams.md)
     * [对象流](/content/essential/io/objectstreams.md)
-  
+    
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
