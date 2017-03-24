@@ -7,10 +7,10 @@
 ## [I/O 流](/content/essential/io/streams.md)
 
 * [字节流（Byte Streams）](/content/essential/io/bytestreams.md)：处理原始二进制数据的`I/O`
-* 字符流（Character Streams）：处理字符数据的`I/O`，自动处理和转换本地字符集
-* 缓冲流（Buffered Streams）： 优化输入和输出通过减少本机API调用的数量。
-* 扫描和格式化 ：运行程序读取和写入格式化的文本
-* 命令行I/O（I/O from the Command Line ） ：描述标准流和控制台对象
+* [字符流（Character Streams）](/content/essential/io/charstreams.md)：处理字符数据的`I/O`，自动处理和转换本地字符集
+* [缓冲流（Buffered Streams）](/content/essential/io/buffers.md)： 优化输入和输出通过减少本机API调用的数量。
+* [扫描和格式化 ](/content/essential/io/scanfor.md)：运行程序读取和写入格式化的文本
+* [命令行I/O（I/O from the Command Line ）](/content/essential/io/cli.md) ：描述标准流和控制台对象
 * 数据流（Data Streams）：处理原始数据类型和字符串的二进制I / O。
 * 对象流（Object Streams）：处理对象的的二进制I / O。
 
