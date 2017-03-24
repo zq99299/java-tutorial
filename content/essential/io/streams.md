@@ -13,3 +13,12 @@
 在本课中，我们将看到可以处理从原始值到高级对象的各种数据的流。
 
 上图所示的数据源和数据目标可以是保存，生成或者消耗数据的任何东西。显然这包括磁盘文件，但源或目的地也可以是另一个程序，外围设备，网络套接字或阵列。
+在下一节中，我们将使用最基本的流字节流来演示Stream I / O的常见操作。对于样本输入，我们将使用示例文件 xanadu.txt，其中包含以下内容：
+```java
+In Xanadu did Kubla Khan
+A stately pleasure-dome decree:
+Where Alph, the sacred river, ran
+Through caverns measureless to man
+Down to a sunless sea.
+中文
+```
