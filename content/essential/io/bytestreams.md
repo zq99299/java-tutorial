@@ -37,3 +37,9 @@ CopyBytes将大部分时间用在读取输入流和写入输出流的简单循�
 ![](/assets/essential/io/byteStream.png)
 
 Integer Variable ：一个字节是一个int数值	0 - 255。二进制一个Byte表示也是最大255
+
+## 始终关闭流
+
+在不再需要时关闭流非常重要。CopyBytes使用finally块来保证即使发生错误也将关闭流，这一点非常重要。这种做法有助于避免严重的资源泄漏。
+
+一个可能的错误是CopyBytes无法打开一个或两个文件。当这种情况发生时,流变量可能为null，所以要先保证流变量不为null，才能调用关闭方法关闭流。
