@@ -42,8 +42,7 @@
   * [异常的优点](/content/essential/exceptions/advantages.md)
   * [总结](/content/essential/exceptions/summary.md)
   * [练习](/content/essential/exceptions/questions.md)
-
-* [基本I/O](/content/essential/io/README.md)
+* [基础I/O](/content/essential/io/README.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
