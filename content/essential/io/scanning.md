@@ -23,6 +23,8 @@ public class ScanXan {
     }
 }
 ```
+请注意：`s.close()`,它是Scanner的方法。即使Scanner不是流，但是你也需要关闭它，以表示已完成其底层流。
+
 输出
 ```java
 ------------- xanadu.txt ------------------
