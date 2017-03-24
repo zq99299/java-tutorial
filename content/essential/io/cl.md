@@ -36,19 +36,21 @@ InputStreamReader cin = new InputStreamReader(System.in);
 public class Password {
     public static void main(String args[]) throws IOException {
 
+        // 1. 尝试检索控制台，是否可用
         Console c = System.console();
         if (c == null) {
             System.err.println("No console.");
             System.exit(1);
         }
-        // 明文能回显到控制台的
+        // 2. 明文提示用户输入登录名
         String login = c.readLine("Enter your login: ");
-        // 没有回显，看不见自己输入的是什么
+        // 3. 提示用户输入现在密码
         char[] oldPassword = c.readPassword("Enter your old password: ");
-
+        // 4. 确认是否匹配
         if (verify(login, oldPassword)) {
             boolean noMatch;
             do {
+                 // 5. 重复以下步骤，直到两次输入相同的新密码为止
                 char[] newPassword1 = c.readPassword("Enter your new password: ");
                 char[] newPassword2 = c.readPassword("Enter new password again: ");
                 noMatch = !Arrays.equals(newPassword1, newPassword2);
@@ -58,12 +60,13 @@ public class Password {
                     change(login, newPassword1);
                     c.format("Password for %s changed.%n", login);
                 }
+                
                 Arrays.fill(newPassword1, ' ');
                 Arrays.fill(newPassword2, ' ');
             }
             while (noMatch);
         }
-
+        // 使用空白字符 覆盖旧密码
         Arrays.fill(oldPassword, ' ');
     }
 
@@ -92,3 +95,4 @@ java Password
 
 就能看到效果了。唯一的一点就是，没有包名。有包名的话，还真不知道怎么运行。一般也不用命令行哇。
 ```
+
