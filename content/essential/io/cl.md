@@ -83,3 +83,12 @@ public class Password {
     }
 }
 ```
+
+怎么运行它？
+只能在命令行启动，在idea中直接运行main方法则提示没有console对象
+```bash
+javac Password.java
+java Password
+
+就能看到效果了。唯一的一点就是，没有包名。有包名的话，还真不知道怎么运行。一般也不用命令行哇。
+```
