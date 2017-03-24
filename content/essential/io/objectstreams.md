@@ -75,3 +75,26 @@ public class ObjectStreams {
     }
 }
 ```
+
+## 复杂对象的输出和输入
+writeObject与readObject方法使用简单，但它们包含一些非常复杂的对象管理逻辑。对于像日历这样的封装原始值的类来说，这并不重要。但是许多对象包含对其他对象的引用。如果readObject要从流中重构对象，则必须能够重构所引用的原始对象的所有对象。这些附加对象可能有自己的引用，依此类推。在这种情况下，writeObject遍历对象中所有的引用，并将这些引用写入流。因此，单个调用writeObject可能导致大量对象被写入流。
+
+如下图所示：
+![](/assets/essential/io/io-trav.png)
+
+您可能会想，如果同一流中的两个对象都包含对单个对象的引用，会发生什么。他们回读时是否会指向单个对象？
+
+答案是“是”。
+
+因此，如果您将一个对象显式写入一个流两次，那么您真的只写两次引用。例如，如果以下代码将一个对象ob两次写入流中：
+```java
+Object ob = new Object();
+out.writeObject(ob);
+out.writeObject(ob);
+
+Object ob1 = in.readObject();
+Object ob2 = in.readObject();
+```
+那么读取出来的引用地址是一样的。
+
+然而，如果单个对象被写入两个不同的流，则它被有效地重复 - 读取两个流的单个程序将看到两个不同的对象。
