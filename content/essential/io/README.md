@@ -4,7 +4,7 @@
 
 本`I/O Streams`大多数都是讲解针对`java.io`包。本`File I/O`大多数讲解都是针对`java.nio.file`包。
 
-## I/O 流
+## [I/O 流](/content/essential/io/streams.md)
 
 * 字节流（Byte Streams）：处理原始二进制数据的`I/O`
 * 字符流（Character Streams）：处理字符数据的`I/O`，自动处理和转换本地字符集
