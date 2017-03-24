@@ -47,7 +47,6 @@
     * [字节流](/content/essential/io/bytestreams.md)
     * [字符流](/content/essential/io/charstreams.md)
     * [缓冲流](/content/essential/io/buffers.md)
-    * [字符流](/content/essential/io/charstreams.md)
     * [扫描和格式化](/content/essential/io/scanfor.md)
     * [命令行IO](/content/essential/io/cl.md)
     * [数据流](/content/essential/io/datastreams.md)
