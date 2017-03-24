@@ -6,7 +6,7 @@
 
 ## [I/O 流](/content/essential/io/streams.md)
 
-* 字节流（Byte Streams）：处理原始二进制数据的`I/O`
+* [字节流（Byte Streams）](/content/essential/io/bytestreams.md)：处理原始二进制数据的`I/O`
 * 字符流（Character Streams）：处理字符数据的`I/O`，自动处理和转换本地字符集
 * 缓冲流（Buffered Streams）： 优化输入和输出通过减少本机API调用的数量。
 * 扫描和格式化 ：运行程序读取和写入格式化的文本
