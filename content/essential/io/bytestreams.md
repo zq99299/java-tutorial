@@ -34,3 +34,6 @@ public class CopyBytes {
 ```
 
 CopyBytes将大部分时间用在读取输入流和写入输出流的简单循环中，每次一个字节，如下 图所示。
+![](/assets/essential/io/byteStream.png)
+
+Integer Variable ：一个字节是一个int数值	0 - 255。二进制一个Byte表示也是最大255
