@@ -45,3 +45,33 @@ Kubla
 Khan
 ...
 ```
+
+要使用不同的令牌分隔符，请调用`Scanner useDelimiter(String pattern)  `指定正则表达式。例如：假设您希望令牌分隔符为逗号，可选的后面跟一个或多个空白字符（[ \t\n\x0B\f\r]），你会调用
+```java
+s.useDelimiter(",\\s*");
+```
+
+```java
+------------- xanadu.txt ------------------
+I,
+n, Xanadu did Kubla Khan
+A,stately pleasure-dome decree:
+Where Alph, the sacred river, ran
+Through caverns measureless to man
+Down to a sunless sea.
+中文
+
+------------- 输出 ------------------
+
+I
+n
+Xanadu did Kubla Khan
+A
+stately pleasure-dome decree:
+Where Alph
+the sacred river
+ran
+Through caverns measureless to man
+Down to a sunless sea.
+中文
+```
