@@ -43,6 +43,8 @@
   * [总结](/content/essential/exceptions/summary.md)
   * [练习](/content/essential/exceptions/questions.md)
 * [基础I/O](/content/essential/io/README.md)
+  * [I/O流](/content/essential/io/streams.md)
+    * [字节流](/content/essential/io/bytestreams.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
