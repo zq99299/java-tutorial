@@ -15,3 +15,9 @@ outputStream = new BufferedWriter(new FileWriter("characteroutput.txt"));
 * BufferedOutputStream 创建缓冲字节流，
 * BufferedReader 与 
 * BufferedWriter 创建缓冲字符流。
+
+## 冲洗缓冲流(Flushing Buffered Streams)
+
+在关键点写出缓冲区通常是有意义的，而不用等待填充。这被称为**冲洗缓冲区**。
+
+一些缓冲输出类支持自动刷新，由可选的构造函数参数指定。当`autoflush `开启时，某些关键事件会导致缓冲区被刷新。自动冲洗PrintWriter对象在每次调用println或者format 时，将自动冲洗缓冲区。更多信息请查阅“扫描和格式化”章节
