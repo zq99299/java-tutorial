@@ -77,4 +77,34 @@ Down to a sunless sea.
 ```
 
 ## 翻译个别令牌
-该ScanXan示例将所有输入令牌视为简单String值。Scanner还支持所有Java语言的基本类型（除了令牌char），以及BigInteger和BigDecimal。因此数值可以使用千位分隔符，在US环境中Scanner正确读取字符串“32,767”表示整数值。
+该ScanXan示例将所有输入令牌视为简单String值。Scanner还支持所有Java语言的基本类型（除了令牌char），以及BigInteger和BigDecimal。因此能够以标准格式以及扫描器语言环境的格式扫描数字，如千位分隔符，在US环境中Scanner正确读取字符串“32,767”表示整数值。
+
+我们必须提及的区域设置，因为千分位隔符和小数符号是特定于区域设置。因此，如果我们没有指定扫描程序应使用US语言环境，以下示例将无法在所有语言环境中正常工作。这不是你通常不必担心的，因为您的输入数据通常来自使用相同语言环境的来源。但是这个例子是Java Tutorial的一部分，并且遍布世界各地。
+
+```java
+public class ScanSum {
+    public static void main(String[] args) throws IOException {
+
+        Scanner s = null;
+        double sum = 0;
+        String usnumbers = ScanSum.class.getResource("/usnumbers.txt").getFile();
+        try {
+            s = new Scanner(new BufferedReader(new FileReader(usnumbers)));
+            s.useLocale(Locale.US);  // 设置区域
+
+            while (s.hasNext()) {
+                // 如果下一个为 double类型，则累加
+                if (s.hasNextDouble()) {
+                    sum += s.nextDouble();
+                } else {
+                    s.next();
+                }
+            }
+        } finally {
+            s.close();
+        }
+
+        System.out.println(sum);
+    }
+}
+```
