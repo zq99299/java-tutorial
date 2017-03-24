@@ -53,6 +53,7 @@
     * [命令行IO](/content/essential/io/cl.md)
     * [数据流](/content/essential/io/datastreams.md)
     * [对象流](/content/essential/io/objectstreams.md)
+  * [文件I/O（NIO.2）](/content/essential/io/fileio.md)  
     
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
