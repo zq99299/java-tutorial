@@ -5,7 +5,7 @@
 * [异常](/content/essential/exceptions/README.md)
     
     说明异常机制以及它是如何用来处理错误和其他异常情况。本节描述了什么是异常，如何抛出和捕获异常，在异常被捕获后如何处理异常以及如何使用异常类层次结构。
-* [基本I/O](/content/essential/io/README.md)
+* [基础I/O](/content/essential/io/README.md)
 
     包括用于基本输入和输出的Java平台类。它主要侧重于 I / O流，一个强大的概念，大大简化了I / O操作。该课程还介绍了Serialization，它允许程序将整个对象写入流并再次读取它们。然后课程查看一些文件系统操作，包括随机访问文件。最后，简要介绍新的I / O API的高级功能
 * [并发](/content/essential/concurrency/README.md)
