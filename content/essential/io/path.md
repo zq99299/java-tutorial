@@ -20,3 +20,5 @@
 ```java
 C:\home\sally\statusReport
 ```
+
+用于分隔目录名称（也称为分隔符）的字符特定于文件系统：Solaris OS使用正斜杠（/），Microsoft Windows使用反斜杠斜杠（\）。
