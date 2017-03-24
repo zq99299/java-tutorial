@@ -48,7 +48,7 @@
     * [字符流](/content/essential/io/charstreams.md)
     * [缓冲流](/content/essential/io/buffers.md)
     * [扫描和格式化](/content/essential/io/scanfor.md)
-      *[扫描](/content/essential/io/scanning.md)
+      * [扫描](/content/essential/io/scanning.md)
     * [命令行IO](/content/essential/io/cl.md)
     * [数据流](/content/essential/io/datastreams.md)
     * [对象流](/content/essential/io/objectstreams.md)
