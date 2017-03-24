@@ -82,3 +82,7 @@ public class CopyCharacters {
     }
 }
 ```
+
+调用readLine返回一行文本。CopyLines输出每行使用println，其附加用于当前操作系统的行终止符。这可能与输入文件中使用的行终止符不同。
+
+有很多方法来实现文字输入输出一行的功能。有关信息，请参阅 扫描和格式化。
