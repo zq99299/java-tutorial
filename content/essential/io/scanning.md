@@ -75,3 +75,6 @@ Through caverns measureless to man
 Down to a sunless sea.
 中文
 ```
+
+## 翻译个别令牌
+该ScanXan示例将所有输入令牌视为简单String值。Scanner还支持所有Java语言的基本类型（除了令牌char），以及BigInteger和BigDecimal。因此数值可以使用千位分隔符，在US环境中Scanner正确读取字符串“32,767”表示整数值。
