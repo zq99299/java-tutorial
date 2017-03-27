@@ -62,3 +62,35 @@ Path 将这些名称元素存储为一个序列，目录结构中的最高元素
 ```
 
 如：上图路径：“/home/user1/foo”:那么它的path.getNameCount = 3.由三个“/” 分割的名称。
+
+以下是Windows和Solaris操作系统的输出：
+
+| 调用方法	| 在Solaris操作系统中返回 | 在Microsoft Windows中返回|	说明
+|-------------------------------------------------------------------------
+| toString	| /home/joe/foo	| C:\home\joe\foo	| 返回的字符串表示形式Path。如果使用Filesystems.getDefault().getPath(String)或Paths.get（后者是一种方便的方法getPath）创建路径，则该方法将执行较小的语法清理。例如，在UNIX操作系统中，它会将输入字符串“//home/joe/foo”更正为“/home/joe/foo”。
+| getFileName	| foo	| foo	| 返回名称元素序列的文件名或最后一个元素。
+| getName(0)	| home	| home	| 返回与指定索引对应的路径元素。第0个元素是最靠近根的路径元素。
+| getNameCount	| 3	| 3	| 返回路径中的元素数。
+| subpath(0,2)	| home/joe	| home\joe	| 返回Path由开始和结束索引指定的（不包括根元素）的子序列。
+| getParent	| /home/joe	| \home\joe	| 返回父目录的路径。
+| getRoot	| /	| C:\	| 返回路径的根。
+
+上一个示例 是用绝对路径。在以下示例中，使用相对路径
+```java
+// Solaris syntax
+Path path = Paths.get("sally/bar");
+or
+// Microsoft Windows syntax
+Path path = Paths.get("sally\\bar");
+```
+以下是Windows和Solaris操作系统的输出：
+
+| 调用方法	| 在Solaris操作系统中返回	| 在Microsoft Windows中返回
+|------------------------------------------------------------------------
+| toString	| sally/bar	| sally\bar
+| getFileName	| bar	| bar
+| getName(0)	| sally	| sally
+| getNameCount	| 2	| 2
+| subpath(0,1)	| sally	| sally
+| getParent	| sally	| sally
+| getRoot	| null	| null
