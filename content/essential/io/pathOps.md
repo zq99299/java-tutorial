@@ -119,3 +119,72 @@ System.out.format("%s%n", p1.toUri());
 Path path2 = Paths.get("C:\\Users\\Administrator\\Desktop\\局域网屏幕分享");
         System.out.format("%s%n", path2.toUri()); // Result is file:///C:/Users/Administrator/Desktop/局域网屏幕分享/
 ```
+
+该`toAbsolutePath`方法将路径转换为绝对路径。如果传入路径已经是绝对路径，则返回相同的`Path`对象。该`toAbsolutePath`方法在处理用户输入的文件名时非常有用。例如：
+```java
+ public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("usage: FileTest file");
+            System.exit(-1);
+        }
+
+        // Converts the input string to a Path object.
+        Path inputPath = Paths.get(args[0]);
+
+        // Converts the input Path
+        // to an absolute path.
+        // Generally, this means prepending
+        // the current working
+        // directory.  If this example
+        // were called like this:
+        //     java FileTest foo
+        // the getRoot and getParent methods
+        // would return null
+        // on the original "inputPath"
+        // instance.  Invoking getRoot and
+        // getParent on the "fullPath"
+        // instance returns expected values.
+        Path fullPath = inputPath.toAbsolutePath();
+    }
+```
+
+该`toAbsolutePath`方法转换用户输入并返回一个`Path`在查询时返回有用值。**该文件不需要存在**，以使此方法正常工作。
+
+该 `toRealPath`方法返回现有文件的真实路径。该方法在一个方面执行多个操作：
+
+* 如果true传递给此方法，并且文件系统支持符号链接，则此方法可以解析路径中的任何符号链接。
+* 如果Path是相对的，它返回绝对路径。
+* 如果Path包含任何冗余元素，它将返回一个已删除元素的路径。
+
+如果文件不存在或无法访问，此方法将抛出异常。当您想处理这些情况时，您可以捕获异常。例如：
+```java
+try {
+    Path fp = path.toRealPath();
+} catch (NoSuchFileException x) {
+    System.err.format("%s: no such" + " file or directory%n", path);
+    // Logic for case when file doesn't exist.
+} catch (IOException x) {
+    System.err.format("%s%n", x);
+    // Logic for other sort of file error.
+}
+```
+## 连接两条路径
+
+您可以使用该`resolve`方法组合路径。您传递部分路径，该路径是不包含根元素的路径，并且该部分路径附加到原始路径。
+```java
+        // Solaris
+        Path p1 = Paths.get("/home/joe/foo");
+        // Result is /home/joe/foo/bar
+        System.out.format("%s%n", p1.resolve("bar"));
+
+        // Microsoft Windows
+        Path p1 = Paths.get("C:\\home\\joe\\foo");
+        // Result is C:\home\joe\foo\bar
+        System.out.format("%s%n", p1.resolve("bar"));
+```
+
+如果传入绝对路径，那么该方法直接返回绝对路径：
+```java
+// Result is /home/joe
+Paths.get("foo").resolve("/home/joe");
+```
