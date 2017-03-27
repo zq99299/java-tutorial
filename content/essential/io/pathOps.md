@@ -94,3 +94,28 @@ Path path = Paths.get("sally\\bar");
 | subpath(0,1)	| sally	| sally
 | getParent	| sally	| sally
 | getRoot	| null	| null
+
+## 从路径中删除冗余
+
+许多文件系统使用 “.” 表示当前目录的符号，“..”表示父目录。您可能有一种情况，其中`Path`包含冗余的目录信息。也许服务器配置为其日志文件保存在“/dir/logs/.”,目录中的"/."要从路径中删除：
+
+以下示例都包括冗余
+```java
+/home/./joe/foo
+/home/sally/../joe/foo
+```
+该`normalize`方法删除任何冗余元素，其中包括任何“.”或“directory/..”出现。上述两个例子都归一化/home/joe/foo。
+
+重要的是要注意，`normalize`当它清理路径时，不检查文件系统。这是一个纯粹的句法操作。在第二个示例中，如果`sally`是符号链接，则删除`sally/..`可能会导致`Path`不再找到预期文件。
+
+## 转换路径
+您可以使用三种方法来转换Path。如果您需要将路径转换为可以从浏览器打开的字符串，则可以使用[toUri](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html#toUri--).
+
+```java
+Path p1 = Paths.get("/home/logfile");
+// Result is file:///home/logfile
+System.out.format("%s%n", p1.toUri());
+
+Path path2 = Paths.get("C:\\Users\\Administrator\\Desktop\\局域网屏幕分享");
+        System.out.format("%s%n", path2.toUri()); // Result is file:///C:/Users/Administrator/Desktop/局域网屏幕分享/
+```
