@@ -55,6 +55,7 @@
     * [对象流](/content/essential/io/objectstreams.md)
   * [文件I/O (nio.2)](/content/essential/io/fileio.md) 
     * [什么是路径？](/content/essential/io/path.md) 
+    * [Path类？](/content/essential/io/pathClass.md) 
   
     
 * [并发](/content/essential/concurrency/README.md)
