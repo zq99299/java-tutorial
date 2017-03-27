@@ -77,3 +77,56 @@ Files.move(source,
            ATOMIC_MOVE);
 ```
 有关varargs语法的更多信息，请参阅 [可变参数](http://docs.oracle.com/javase/tutorial/java/javaOO/arguments.html#varargs)。
+
+## 原子操作
+
+几种Files方法，例如move，可以在某些文件系统中以原子方式执行某些操作。
+
+一个**原子文件操作**是不能被中断或“部分”执行的操作。执行整个操作或操作失败。当您有多个进程在文件系统的相同区域上运行时，这很重要，您需要确保每个进程访问完整的文件。
+
+## 方法链
+许多文件I / O方法支持`方法链接`的概念(链式编程)。
+
+您首先调用返回对象的方法。然后立即调用该对象的方法，该方法返回另一个对象，依此类推。许多I / O示例使用以下技术：
+```java
+String value = Charset.defaultCharset().decode(buf).toString();
+UserPrincipal group =
+    file.getFileSystem().getUserPrincipalLookupService().
+         lookupPrincipalByName("me");
+```
+# 什么是 glob ？
+Files类中的两个方法接受一个glob参数，但是什么是glob？
+
+您可以使用glob语法来指定模式匹配行为。
+
+glob模式被指定为字符串，并与其他字符串匹配，例如目录或文件名。Glob语法遵循几个简单的规则：
+
+* 一个星号“*”匹配任意数量的字符（包括无）。
+* 两个星号“**”，类似“*”但跨越目录边界。这种语法通常用于匹配完整的路径。
+* 一个问号“?”,恰好匹配一个字符
+* 大括号指定子模式的集合。例如：
+    * {sun,moon,stars} 匹配“sun”，“moon”或“stars”。
+    * {temp*,tmp*} 匹配以“temp”或“tmp”开头的所有字符串。
+* 方括号传送一组单个字符，或者使用连字符（-）时，会显示一系列字符。例如：   
+    * [aeiou] 匹配任何小写元音。
+    * [0-9] 匹配任何数字。
+    * [A-Z] 匹配任何大写字母。
+    * [a-z,A-Z] 匹配任何大写或小写字母。
+    
+* 匹配,*,?,可以使用 \ 来转义。
+
+以下是glob语法的一些示例：
+
+*.html – 匹配以 .html 结尾的所有字符串
+??? – 匹配三个字母或数字的所有字符串
+*[0-9]* – 匹配包含数值的所有字符串
+*.{htm,html,pdf} – 匹配以 .htm, .html or .pdf 结尾的字符串
+a?*.java – 匹配任何以a开头的字符串，后至少跟一字母或数字，以.java结尾
+{foo*,*[0-9]*} – 匹配以 foo 开头的任何字符串或包含数值的任何字符串
+
+glob语法功能强大且易于使用。但是，如果您的需求不足，您还可以使用正则表达式。有关更多信息，请参阅 [正则表达式课程](http://docs.oracle.com/javase/tutorial/essential/regex/index.html)。
+
+有关glob sytnax的更多信息，请参阅API规范FileSystem类中的[getPathMatcher](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getPathMatcher-java.lang.String-)方法 。
+
+## 链接感知
+该Files课程是“链接感知”。每个Files方法或者检测到遇到符号链接时该怎么做，或者提供一个选项，使您能够在遇到符号链接时配置该行为。
