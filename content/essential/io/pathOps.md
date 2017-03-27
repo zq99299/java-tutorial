@@ -41,7 +41,7 @@ Path p5 = Paths.get(System.getProperty("user.home"),"logs", "foo.log");
 
 ## 检索路径信息
 Path 将这些名称元素存储为一个序列，目录结构中的最高元素将位于索引 0.目录结构中的最低元素将位于索引处[n-1]，其中n是Path中的名称元素的数量（就是路径中目录或则文件的名称。而不是这个目录下的文件）
-
+![](/assets/essential/io/io-dirStructure.png)
 ```java
     public static void main(String[] args) {
         // 以下操作都不需要有真实的文件与之对应
@@ -60,3 +60,5 @@ Path 将这些名称元素存储为一个序列，目录结构中的最高元素
         System.out.format("getRoot: %s%n", path.getRoot());
     }
 ```
+
+如：上图路径：“/home/user1/foo”:那么它的path.getNameCount = 3.由三个“/” 分割的名称。
