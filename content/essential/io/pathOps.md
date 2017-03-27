@@ -279,3 +279,9 @@ Program Files
 apache-maven-3.2.3
 
 ```
+
+本Path类还实现了 Comparable接口。您可以Path通过使用compareTo哪些对象来比较对象进行排序。
+
+您也可以将Path对象放入Collection。
+
+当您要验证两个Path对象找到相同的文件时，可以使用该Files.isSameFile(p1, p2)方法，如 [检查两个路径是否找到相同的文件中所述](http://docs.oracle.com/javase/tutorial/essential/io/check.html#same)。
