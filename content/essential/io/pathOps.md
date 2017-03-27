@@ -27,3 +27,36 @@ Path可能只包含一个目录或文件名。
         Path p5 = Paths.get(URI.create("file:/C:/Users/Administrator/Desktop/局域网屏幕分享/使用说明.txt"));
     }
 ```
+
+这个Path.get是以下代码的简写（get的源码就是这句类似的代码）
+```java
+Path p4 = FileSystems.getDefault().getPath("/users/sally");
+```
+
+以下示例创建一个/u/joe/logs/foo.log 文件，那么在不同的系统上。落地的根目录也不同。假设在Linux上是"/u/joe/logs",在windows中是“c:/u/joe/logs”
+
+```java
+Path p5 = Paths.get(System.getProperty("user.home"),"logs", "foo.log");
+```
+
+## 检索路径信息
+Path 将这些名称元素存储为一个序列，目录结构中的最高元素将位于索引 0.目录结构中的最低元素将位于索引处[n-1]，其中n是Path中的名称元素的数量（就是路径中目录或则文件的名称。而不是这个目录下的文件）
+
+```java
+    public static void main(String[] args) {
+        // 以下操作都不需要有真实的文件与之对应
+        // Microsoft Windows syntax
+        Path path = Paths.get("C:\\home\\joe\\foo");
+
+        // Solaris syntax
+        // Path path = Paths.get("/home/joe/foo");
+
+        System.out.format("toString: %s%n", path.toString());
+        System.out.format("getFileName: %s%n", path.getFileName());
+        System.out.format("getName(0): %s%n", path.getName(0));
+        System.out.format("getNameCount: %d%n", path.getNameCount());
+        System.out.format("subpath(0,2): %s%n", path.subpath(0, 2));
+        System.out.format("getParent: %s%n", path.getParent());
+        System.out.format("getRoot: %s%n", path.getRoot());
+    }
+```
