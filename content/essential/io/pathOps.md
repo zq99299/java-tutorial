@@ -168,7 +168,7 @@ try {
     // Logic for other sort of file error.
 }
 ```
-## 连接两条路径
+## 连接两个路径
 
 您可以使用该`resolve`方法组合路径。您传递部分路径，该路径是不包含根元素的路径，并且该部分路径附加到原始路径。
 ```java
@@ -188,3 +188,61 @@ try {
 // Result is /home/joe
 Paths.get("foo").resolve("/home/joe");
 ```
+
+## 在两个路径直接创建路径
+在这个路径和一个给定路径之间构造一个相对路径。编写文件I / O代码时的常见要求是构建从文件系统中的一个位置到另一个位置的路径的功能。您可以使用该relativize方法来满足此要求。该方法构造一个源自原始路径并以传入路径指定的位置结束的路径。新的路径是相对于原始路径。 
+
+例如，考虑两个相对路径定义为joe和sally：
+```java
+Path p1 = Paths.get("joe");
+Path p2 = Paths.get("sally");
+```
+在没有任何其他信息的情况下，假设joe并且sally是兄弟姐妹，意思是在树结构中位于同一级别的节点。要从导航joe到sally，您将期望首先将一个级别上传到父级节点，然后转到sally：
+```java
+    public static void main(String[] args) {
+        Path p1 = Paths.get("joe");
+        Path p2 = Paths.get("sally");
+        System.out.println(p1.toAbsolutePath());
+        System.out.println(p2.toAbsolutePath());
+        // Result is ../sally
+        Path p1_to_p2 = p1.relativize(p2);
+        System.out.println(p1_to_p2);
+        // Result is ../joe
+        Path p2_to_p1 = p2.relativize(p1);
+        System.out.println(p2_to_p1);
+    }
+-------------------- 输出 --------------------
+E:\work\demo\study\joe
+E:\work\demo\study\sally
+..\sally
+..\joe    
+```
+看输出结果`p1.relativize(p2)`,返回的路径是对于p1来说的。
+
+来看看复杂的例子：
+```java
+    public static void main(String[] args) {
+        Path p1 = Paths.get("home");
+        Path p3 = Paths.get("home/sally/bar");
+        System.out.println(p1.toAbsolutePath());
+        System.out.println(p3.toAbsolutePath());
+        // Result is sally/bar
+        Path p1_to_p3 = p1.relativize(p3);
+        // Result is ../..
+        Path p3_to_p1 = p3.relativize(p1);
+        System.out.println(p1_to_p3);
+        System.out.println(p1.resolve(p1_to_p3).toAbsolutePath());
+        System.out.println(p3_to_p1);
+        System.out.println(p3.resolve(p3_to_p1).toAbsolutePath().normalize());
+    }
+-------------------- 输出 --------------------
+E:\work\demo\study\home
+E:\work\demo\study\home\sally\bar
+sally\bar
+E:\work\demo\study\home\sally\bar
+..\..
+E:\work\demo\study\home    
+```
+* p1 和 p2 共享一个home目录。
+* p1.relativize(p3) = sally\bar. 表示，p3在p1的相对路径是什么
+* p1.resolve(p1_to_p3).toAbsolutePath() = E:\work\demo\study\home\sally\bar ； 可以看出来，p1 再加上相对路径,再获取绝对路径。就还原了p3真实路径。`..\..` 如果是返回的这种冗余路径的，还可以调用`.normalize()`方法去掉
