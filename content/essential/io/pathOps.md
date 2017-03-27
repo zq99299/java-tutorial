@@ -245,4 +245,37 @@ E:\work\demo\study\home
 ```
 * p1 和 p2 共享一个home目录。
 * p1.relativize(p3) = sally\bar. 表示，p3在p1的相对路径是什么
-* p1.resolve(p1_to_p3).toAbsolutePath() = E:\work\demo\study\home\sally\bar ； 可以看出来，p1 再加上相对路径,再获取绝对路径。就还原了p3真实路径。`..\..` 如果是返回的这种冗余路径的，还可以调用`.normalize()`方法去掉
+* p1.resolve(p1_to_p3).toAbsolutePath() = E:\work\demo\study\home\sally\bar ； 可以看出来，p1 再加上相对路径,再获取绝对路径。就还原了p3真实路径。`..\..` 如果是返回的这种冗余路径的，还可以调用`.normalize()`方法去掉；
+
+如果只有一个路径包含根元素，则不能构造相对路径。如果两个路径都包含根元素，则构建相对路径的能力取决于系统。
+
+## 比较两路径
+
+该`Path` 支持 `equals`，使您能够测试相等的两条路径。该 `startsWith`和 `endsWith`方法使您能够测试路径是否开始或与特定的字符串结尾。这些方法很容易使用。例如：
+```java
+Path path = ...;
+Path otherPath = ...;
+Path beginning = Paths.get("/home");
+Path ending = Paths.get("foo");
+
+if (path.equals(otherPath)) {
+    // equality logic here
+} else if (path.startsWith(beginning)) {
+    // path begins with "/home"
+} else if (path.endsWith(ending)) {
+    // path ends with "foo"
+}
+```
+
+本Path类实现了 Iterable接口。该 iterator方法返回一个对象，使您可以遍历路径中的名称元素。返回的第一个元素是最接近目录树中的根。以下代码片段遍历路径，打印每个名称元素：
+```java
+        Path p1 = Paths.get("D:\\Program Files\\apache-maven-3.2.3");
+        for (Path path : p1) {
+            System.out.println(path);
+        }
+
+-------------------- 输出 --------------------
+Program Files
+apache-maven-3.2.3
+
+```
