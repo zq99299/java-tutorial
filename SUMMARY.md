@@ -56,6 +56,8 @@
   * [文件I/O (nio.2)](/content/essential/io/fileio.md) 
     * [什么是路径？](/content/essential/io/path.md) 
     * [Path类？](/content/essential/io/pathClass.md) 
+    * [Path操作](/content/essential/io/pathOps.md) 
+
   
     
 * [并发](/content/essential/concurrency/README.md)
