@@ -79,3 +79,38 @@ System.out.println("size: " + attr.size());
 
 除了本示例演示的访问器外，有一个`fileKey`方法返回一个表示此文件的唯一标识，如果没有则返回null.在一部分系统上有这个`filekey`.
 
+## 设定时间戳
+下面的代码片段设置最后修改时间以毫秒为单位:
+```java
+Path file = ...;
+BasicFileAttributes attr =
+    Files.readAttributes(file, BasicFileAttributes.class);
+long currentTime = System.currentTimeMillis();
+FileTime ft = FileTime.fromMillis(currentTime);
+Files.setLastModifiedTime(file, ft);
+
+```
+
+## DOS文件系统
+DOS文件属性也支持DOS以外的文件系统,如Samba。以下代码片段使用`DosFileAttributes`类的方法。
+```java
+Path file = ...;
+try {
+    DosFileAttributes attr =
+        Files.readAttributes(file, DosFileAttributes.class);
+    System.out.println("isReadOnly is " + attr.isReadOnly());
+    System.out.println("isHidden is " + attr.isHidden());
+    System.out.println("isArchive is " + attr.isArchive());
+    System.out.println("isSystem is " + attr.isSystem());
+} catch (UnsupportedOperationException x) {
+    System.err.println("DOS file" +
+        " attributes not supported:" + x);
+}
+```
+
+但是，您可以使用该`setAttribute(Path, String, Object, LinkOption...)`方法设置DOS属性 ，如下所示：
+```java
+Path file = ...;
+Files.setAttribute(file, "dos:hidden", true);
+```
+
