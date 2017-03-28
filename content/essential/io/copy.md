@@ -255,3 +255,7 @@ public class Copy{
     }
 }
 ```
+
+上面那么一大段代码，来总结下思路：
+1. 处理自定义的参数命令
+2. 使用 Files.walkFileTree(source[i], opts, Integer.MAX_VALUE, FileVisitor); 定义怎么在递归的过程中处理文件或则目录
