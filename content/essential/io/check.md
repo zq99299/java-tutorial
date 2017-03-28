@@ -22,3 +22,14 @@ boolean isRegularExecutableFile = Files.isRegularFile(file) &
 ```
 
 **注意：**一旦这些访问完成，就不能保证文件能访问，因为这些方法的结果是立即过时的。许多应用程序中常见的安全漏洞是执行检查，然后访问该文件。有关更多信息，请使用您最喜爱的搜索引擎查找TOCTTOU（发音为TOCK，TOCTOU是time-of-check-to-time-of-use的缩写）。
+
+## 检查两个路径是否找到相同的文件
+当您有一个使用符号链接的文件系统时，可能有两个不同的路径来找到相同的文件。该 [isSameFile(Path, Path)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#isSameFile-java.nio.file.Path-java.nio.file.Path-)方法比较两个路径以确定它们是否在文件系统上找到相同的文件。例如：
+```java
+Path p1 = ...;
+Path p2 = ...;
+
+if (Files.isSameFile(p1, p2)) {
+    // Logic when the paths locate the same file
+}
+```
