@@ -114,3 +114,54 @@ Path file = ...;
 Files.setAttribute(file, "dos:hidden", true);
 ```
 
+
+## POSIX文件权限
+! 以下示例没有经过验证，因为在windows下
+
+
+`POSIX`是`UNIX`的便携式操作系统接口的缩写，是一组`IEEE`和`ISO标准`，旨在确保不同口味的`UNIX`之间的互操作性。如果程序符合这些POSIX标准，则应该轻松地将其移植到其他与`POSIX`兼容的操作系统上。
+
+除文件所有者和组所有者外，POSIX支持文件所有者，同一组成员以及“其他所有人”的九个文件权限：读取，写入和执行权限。
+
+以下代码片段读取给定文件的POSIX文件属性，并将其打印到标准输出。代码使用`PosixFileAttributes`类中的 方法。
+
+```java
+Path file = ...;
+PosixFileAttributes attr =
+    Files.readAttributes(file, PosixFileAttributes.class);
+System.out.format("%s %s %s%n",
+    attr.owner().getName(),
+    attr.group().getName(),
+    PosixFilePermissions.toString(attr.permissions()));
+```
+
+该 `PosixFilePermissions`助手类提供了一些有用的方法，具体如下：
+
+* **toString**    在上一个代码片段中使用的方法将文件权限转换为字符串（例如，rw-r--r--）。
+* **fromString** 方法接受表示文件权限的字符串，并构造一个Set文件权限。
+* **asFileAttribute** 方法接受一个Set文件权限并构造一个可以传递给`Path.createFile`或者`Path.createDirectory`方法的文件属性。
+
+以下代码段从一个文件中读取属性，并创建一个新文件，将属性从原始文件分配给新文件：
+```java
+Path sourceFile = ...;
+Path newFile = ...;
+PosixFileAttributes attrs =
+    Files.readAttributes(sourceFile, PosixFileAttributes.class);
+FileAttribute<Set<PosixFilePermission>> attr =
+    PosixFilePermissions.asFileAttribute(attrs.permissions());
+Files.createFile(file, attr);
+```
+
+该`asFileAttribute`方法将权限包装为`FileAttribute`。然后，代码尝试使用这些权限创建一个新文件。请注意，这umask也适用，所以新文件可能比请求的权限更安全。
+
+要将文件的权限设置为以硬编码字符串表示的值，可以使用以下代码：
+```java
+Path file = ...;
+Set<PosixFilePermission> perms =
+    PosixFilePermissions.fromString("rw-------");
+FileAttribute<Set<PosixFilePermission>> attr =
+    PosixFilePermissions.asFileAttribute(perms);
+Files.setPosixFilePermissions(file, perms);
+```
+
+这里有一个
