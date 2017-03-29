@@ -164,4 +164,360 @@ FileAttribute<Set<PosixFilePermission>> attr =
 Files.setPosixFilePermissions(file, perms);
 ```
 
-这里有一个
+这里有一个官网示例：同样我没有测试过.功能是：似于chmod实用程序的方式递归地更改文件的权限。
+```java
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import static java.nio.file.attribute.PosixFilePermission.*;
+import static java.nio.file.FileVisitResult.*;
+import java.io.IOException;
+import java.util.*;
+
+/**
+ * Sample code that changes the permissions of files in a similar manner to the
+ * chmod(1) program.
+ */
+
+public class Chmod {
+
+    /**
+     * Compiles a list of one or more <em>symbolic mode expressions</em> that
+     * may be used to change a set of file permissions. This method is
+     * intended for use where file permissions are required to be changed in
+     * a manner similar to the UNIX <i>chmod</i> program.
+     *
+     * <p> The {@code exprs} parameter is a comma separated list of expressions
+     * where each takes the form:
+     * <blockquote>
+     * <i>who operator</i> [<i>permissions</i>]
+     * </blockquote>
+     * where <i>who</i> is one or more of the characters {@code 'u'}, {@code 'g'},
+     * {@code 'o'}, or {@code 'a'} meaning the owner (user), group, others, or
+     * all (owner, group, and others) respectively.
+     *
+     * <p> <i>operator</i> is the character {@code '+'}, {@code '-'}, or {@code
+     * '='} signifying how permissions are to be changed. {@code '+'} means the
+     * permissions are added, {@code '-'} means the permissions are removed, and
+     * {@code '='} means the permissions are assigned absolutely.
+     *
+     * <p> <i>permissions</i> is a sequence of zero or more of the following:
+     * {@code 'r'} for read permission, {@code 'w'} for write permission, and
+     * {@code 'x'} for execute permission. If <i>permissions</i> is omitted
+     * when assigned absolutely, then the permissions are cleared for
+     * the owner, group, or others as identified by <i>who</i>. When omitted
+     * when adding or removing then the expression is ignored.
+     *
+     * <p> The following examples demonstrate possible values for the {@code
+     * exprs} parameter:
+     *
+     * <table border="0">
+     * <tr>
+     *   <td> {@code u=rw} </td>
+     *   <td> Sets the owner permissions to be read and write. </td>
+     * </tr>
+     * <tr>
+     *   <td> {@code ug+w} </td>
+     *   <td> Sets the owner write and group write permissions. </td>
+     * </tr>
+     * <tr>
+     *   <td> {@code u+w,o-rwx} </td>
+     *   <td> Sets the owner write, and removes the others read, others write
+     *     and others execute permissions. </td>
+     * </tr>
+     * <tr>
+     *   <td> {@code o=} </td>
+     *   <td> Sets the others permission to none (others read, others write and
+     *     others execute permissions are removed if set) </td>
+     * </tr>
+     * </table>
+     *
+     * @param   exprs
+     *          List of one or more <em>symbolic mode expressions</em>
+     *
+     * @return  A {@code Changer} that may be used to changer a set of
+     *          file permissions
+     *
+     * @throws  IllegalArgumentException
+     *          If the value of the {@code exprs} parameter is invalid
+     */
+    public static Changer compile(String exprs) {
+        // minimum is who and operator (u= for example)
+        if (exprs.length() < 2)
+            throw new IllegalArgumentException("Invalid mode");
+
+        // permissions that the changer will add or remove
+        final Set<PosixFilePermission> toAdd = new HashSet<PosixFilePermission>();
+        final Set<PosixFilePermission> toRemove = new HashSet<PosixFilePermission>();
+
+        // iterate over each of expression modes
+        for (String expr: exprs.split(",")) {
+            // minimum of who and operator
+            if (expr.length() < 2)
+                throw new IllegalArgumentException("Invalid mode");
+
+            int pos = 0;
+
+            // who
+            boolean u = false;
+            boolean g = false;
+            boolean o = false;
+            boolean done = false;
+            for (;;) {
+                switch (expr.charAt(pos)) {
+                    case 'u' : u = true; break;
+                    case 'g' : g = true; break;
+                    case 'o' : o = true; break;
+                    case 'a' : u = true; g = true; o = true; break;
+                    default : done = true;
+                }
+                if (done)
+                    break;
+                pos++;
+            }
+            if (!u && !g && !o)
+                throw new IllegalArgumentException("Invalid mode");
+
+            // get operator and permissions
+            char op = expr.charAt(pos++);
+            String mask = (expr.length() == pos) ? "" : expr.substring(pos);
+
+            // operator
+            boolean add = (op == '+');
+            boolean remove = (op == '-');
+            boolean assign = (op == '=');
+            if (!add && !remove && !assign)
+                throw new IllegalArgumentException("Invalid mode");
+
+            // who= means remove all
+            if (assign && mask.length() == 0) {
+                assign = false;
+                remove = true;
+                mask = "rwx";
+            }
+
+            // permissions
+            boolean r = false;
+            boolean w = false;
+            boolean x = false;
+            for (int i=0; i<mask.length(); i++) {
+                switch (mask.charAt(i)) {
+                    case 'r' : r = true; break;
+                    case 'w' : w = true; break;
+                    case 'x' : x = true; break;
+                    default:
+                        throw new IllegalArgumentException("Invalid mode");
+                }
+            }
+
+            // update permissions set
+            if (add) {
+                if (u) {
+                    if (r) toAdd.add(OWNER_READ);
+                    if (w) toAdd.add(OWNER_WRITE);
+                    if (x) toAdd.add(OWNER_EXECUTE);
+                }
+                if (g) {
+                    if (r) toAdd.add(GROUP_READ);
+                    if (w) toAdd.add(GROUP_WRITE);
+                    if (x) toAdd.add(GROUP_EXECUTE);
+                }
+                if (o) {
+                    if (r) toAdd.add(OTHERS_READ);
+                    if (w) toAdd.add(OTHERS_WRITE);
+                    if (x) toAdd.add(OTHERS_EXECUTE);
+                }
+            }
+            if (remove) {
+                if (u) {
+                    if (r) toRemove.add(OWNER_READ);
+                    if (w) toRemove.add(OWNER_WRITE);
+                    if (x) toRemove.add(OWNER_EXECUTE);
+                }
+                if (g) {
+                    if (r) toRemove.add(GROUP_READ);
+                    if (w) toRemove.add(GROUP_WRITE);
+                    if (x) toRemove.add(GROUP_EXECUTE);
+                }
+                if (o) {
+                    if (r) toRemove.add(OTHERS_READ);
+                    if (w) toRemove.add(OTHERS_WRITE);
+                    if (x) toRemove.add(OTHERS_EXECUTE);
+                }
+            }
+            if (assign) {
+                if (u) {
+                    if (r) toAdd.add(OWNER_READ);
+                      else toRemove.add(OWNER_READ);
+                    if (w) toAdd.add(OWNER_WRITE);
+                      else toRemove.add(OWNER_WRITE);
+                    if (x) toAdd.add(OWNER_EXECUTE);
+                      else toRemove.add(OWNER_EXECUTE);
+                }
+                if (g) {
+                    if (r) toAdd.add(GROUP_READ);
+                      else toRemove.add(GROUP_READ);
+                    if (w) toAdd.add(GROUP_WRITE);
+                      else toRemove.add(GROUP_WRITE);
+                    if (x) toAdd.add(GROUP_EXECUTE);
+                      else toRemove.add(GROUP_EXECUTE);
+                }
+                if (o) {
+                    if (r) toAdd.add(OTHERS_READ);
+                      else toRemove.add(OTHERS_READ);
+                    if (w) toAdd.add(OTHERS_WRITE);
+                      else toRemove.add(OTHERS_WRITE);
+                    if (x) toAdd.add(OTHERS_EXECUTE);
+                      else toRemove.add(OTHERS_EXECUTE);
+                }
+            }
+        }
+
+        // return changer
+        return new Changer() {
+            @Override
+            public Set<PosixFilePermission> change(Set<PosixFilePermission> perms) {
+                perms.addAll(toAdd);
+                perms.removeAll(toRemove);
+                return perms;
+            }
+        };
+    }
+
+    /**
+     * A task that <i>changes</i> a set of {@link PosixFilePermission} elements.
+     */
+    public interface Changer {
+        /**
+         * Applies the changes to the given set of permissions.
+         *
+         * @param   perms
+         *          The set of permissions to change
+         *
+         * @return  The {@code perms} parameter
+         */
+        Set<PosixFilePermission> change(Set<PosixFilePermission> perms);
+    }
+
+    /**
+     * Changes the permissions of the file using the given Changer.
+     */
+    static void chmod(Path file, Changer changer) {
+        try {
+            Set<PosixFilePermission> perms = Files.getPosixFilePermissions(file);
+            Files.setPosixFilePermissions(file, changer.change(perms));
+        } catch (IOException x) {
+            System.err.println(x);
+        }
+    }
+
+    /**
+     * Changes the permission of each file and directory visited
+     */
+    static class TreeVisitor implements FileVisitor<Path> {
+        private final Changer changer;
+
+        TreeVisitor(Changer changer) {
+            this.changer = changer;
+        }
+
+        @Override
+        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+            chmod(dir, changer);
+            return CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+            chmod(file, changer);
+            return CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
+            if (exc != null)
+                System.err.println("WARNING: " + exc);
+            return CONTINUE;
+        }
+
+        @Override
+        public FileVisitResult visitFileFailed(Path file, IOException exc) {
+            System.err.println("WARNING: " + exc);
+            return CONTINUE;
+        }
+    }
+
+    static void usage() {
+        System.err.println("java Chmod [-R] symbolic-mode-list file...");
+        System.exit(-1);
+    }
+
+    public static void main(String[] args) throws IOException {
+        if (args.length < 2)
+            usage();
+        int argi = 0;
+        int maxDepth = 0;
+        if (args[argi].equals("-R")) {
+            if (args.length < 3)
+                usage();
+            argi++;
+            maxDepth = Integer.MAX_VALUE;
+        }
+
+        // compile the symbolic mode expressions
+        Changer changer = compile(args[argi++]);
+        TreeVisitor visitor = new TreeVisitor(changer);
+
+        Set<FileVisitOption> opts = Collections.emptySet();
+        while (argi < args.length) {
+            Path file = Paths.get(args[argi]);
+            Files.walkFileTree(file, opts, maxDepth, visitor);
+            argi++;
+        }
+    }
+}
+```
+
+## 用户定义的文件属性
+! 没有兴趣测试：原文链接 http://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html
+
+如果您的文件系统实现支持的文件属性不足以满足您的需要，您可以使用它`UserDefinedAttributeView`来创建和跟踪您自己的文件属性
+
+一些实现将此概念映射到文件系统（如ext3和ZFS）上的NTFS替代数据流和扩展属性等功能。大多数实现对值的大小施加了限制，例如，ext3将大小限制为4千字节。
+```java
+Path file = ...;
+UserDefinedFileAttributeView view = Files
+    .getFileAttributeView(file, UserDefinedFileAttributeView.class);
+view.write("user.mimetype",
+           Charset.defaultCharset().encode("text/html");
+```
+文件的MIME类型可以通过使用此代码片段存储为用户定义的属性：
+```java
+Path file = ...;
+UserDefinedFileAttributeView view = Files
+.getFileAttributeView(file,UserDefinedFileAttributeView.class);
+String name = "user.mimetype";
+ByteBuffer buf = ByteBuffer.allocate(view.size(name));
+view.read(name, buf);
+buf.flip();
+String value = Charset.defaultCharset().decode(buf).toString();
+```
+
+## 文件存储属性
+
+您可以使用 [FileStore](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileStore.html)该类来了解有关文件存储的信息，例如可用空间多少。该 getFileStore(Path)方法将获取指定文件的文件存储。
+
+以下代码片段将打印特定文件所在的文件存储区的空间使用情况：
+```java
+        Path file = Paths.get("D:/");
+//        Path file = Paths.get("D:/server.xml");  // 就算给定一个文件，也只会使用根目录驱动器来作为基准
+        FileStore store = Files.getFileStore(file);
+
+        long total = store.getTotalSpace() / 1024 / 1024 / 1024;
+        long used = (store.getTotalSpace() - store.getUnallocatedSpace()) / 1024 / 1024 / 1024;
+        long avail = store.getUsableSpace() / 1024 / 1024 / 1024;
+        System.out.println("总容量:" + total + "G");
+        System.out.println("已使用:" + used);
+        System.out.println("可用:" + avail);
+```
+
+该 `DiskUsage`示例使用此API为默认文件系统中的所有商店打印磁盘空间信息。此示例使用 该类`getFileStores`中的`FileSystem`方法来获取文件系统的所有文件存储。
