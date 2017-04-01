@@ -9,18 +9,18 @@
 * readAllLines
 * write方法
 
-其次是 用于迭代流或文本行，如：
+其次是 用于迭代流或文本行，如方法：
 
-* BufferedReader
-* BufferedWriter
+* newBufferedReader
+* newBufferedWriter
 
-再其次是无缓冲流，与与java.io包兼容
+再其次是无缓冲流，与与java.io包兼容，如方法
 
-* InputStream
-* OutputStream
+* newInputStream
+* newOutputStream
 
 在其次是：
-* ByteChannels
+* newByteChannels - 方法
 * SeekableByteChannels
 * ByteBuffers
 * ByteChannel
@@ -54,3 +54,52 @@
 * **SPARSE **– 提示新创建的文件将是稀疏的。这种高级选项在某些文件系统（如NTFS）上得到了遵守，其中具有数据“间隙”的大型文件可以以更有效的方式存储，这些空白间隔不会占用磁盘空间。
 * **SYNC** – 保留与底层存储设备同步的文件（内容和元数据）。
 * **DSYNC** – 保持与底层存储设备同步的文件内容。
+
+## 常用的小文件方法
+**从文件中读取所有字节或行。**
+
+如果你有一个小的文件。你想在一个方法读取全部的内容，你可以使用
+[readAllBytes(Path)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#readAllBytes-java.nio.file.Path-)或 [readAllLines(Path, Charset)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#readAllLines-java.nio.file.Path-java.nio.charset.Charset-)方法
+
+这些方法可以处理大部分的工作，比如打开和关闭流，但不能处理大文件。以下代码显示如何使用该readAllBytes方法：
+```java
+Path file = ...;
+byte[] fileArray;
+fileArray = Files.readAllBytes(file);
+```
+
+**将所有字节或行写入文件**
+
+您可以使用一种写入方式将字节或行写入文件。
+
+* [write(Path, byte[], OpenOption...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#write-java.nio.file.Path-byte:A-java.nio.file.OpenOption...-)
+* [write(Path, Iterable< extends CharSequence>, Charset, OpenOption...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#write-java.nio.file.Path-java.lang.Iterable-java.nio.charset.Charset-java.nio.file.OpenOption...-)
+
+以下代码片段显示了如何使用write方法。
+```java
+Path file = ...;
+byte[] buf = ...;
+Files.write(file, buf);
+```
+
+## 用于文本文件的缓冲I/O方法
+java.nio.file软件包支持通道I / O，它在缓冲区中移动数据，绕过一些可能的IO瓶颈。
+
+**使用缓冲流I / O读取文件**
+[ newBufferedReader(Path, Charset)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#newBufferedReader-java.nio.file.Path-java.nio.charset.Charset-)方法打开一个文件，返回一个BufferedReader可以有效地从文件中读取文本。
+
+以下代码片段显示了如何使用该`newBufferedReader`方法从文件中读取。文件以“US-ASCII”编码。
+
+```java
+Charset charset = Charset.forName("US-ASCII");
+try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (IOException x) {
+    System.err.format("IOException: %s%n", x);
+}
+```
+
+**使用缓冲流I / O编写文件**
