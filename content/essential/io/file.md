@@ -56,7 +56,7 @@
 * **DSYNC** – 保持与底层存储设备同步的文件内容。
 
 ## 常用的小文件方法
-**从文件中读取所有字节或行。**
+### 从文件中读取所有字节或行
 
 如果你有一个小的文件。你想在一个方法读取全部的内容，你可以使用
 [readAllBytes(Path)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#readAllBytes-java.nio.file.Path-)或 [readAllLines(Path, Charset)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#readAllLines-java.nio.file.Path-java.nio.charset.Charset-)方法
@@ -68,7 +68,7 @@ byte[] fileArray;
 fileArray = Files.readAllBytes(file);
 ```
 
-**将所有字节或行写入文件**
+### 将所有字节或行写入文件
 
 您可以使用一种写入方式将字节或行写入文件。
 
@@ -85,7 +85,7 @@ Files.write(file, buf);
 ## 用于文本文件的缓冲I/O方法
 java.nio.file软件包支持通道I / O，它在缓冲区中移动数据，绕过一些可能的IO瓶颈。
 
-**使用缓冲流I / O读取文件**
+### 使用缓冲流I / O读取文件
 [ newBufferedReader(Path, Charset)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#newBufferedReader-java.nio.file.Path-java.nio.charset.Charset-)方法打开一个文件，返回一个BufferedReader可以有效地从文件中读取文本。
 
 以下代码片段显示了如何使用该`newBufferedReader`方法从文件中读取。文件以“US-ASCII”编码。
@@ -102,4 +102,63 @@ try (BufferedReader reader = Files.newBufferedReader(file, charset)) {
 }
 ```
 
-**使用缓冲流I / O编写文件**
+### 使用缓冲流I / O编写文件
+您可以使用 `newBufferedWriter(Path, Charset, OpenOption...)`方法创建一个BufferedWriter。
+```java
+Charset charset = Charset.forName（“US-ASCII”）;
+String s = ...;
+try（BufferedWriter writer = Files.newBufferedWriter（file，charset））{
+    writer.write（s，0，s.length（））;
+} catch（IOException x）{
+    System.err.format（“IOException：％s％n”，x）;
+}
+```
+
+## 无缓冲流的方法并与java.ioAPI 互操作
+
+### 使用I / O流读取文件
+要打开一个文件进行阅读，可以使用该 newInputStream(Path, OpenOption...)方法。此方法返回一个无缓冲的输入流，用于从文件读取字节。
+```java
+Path file = ...;
+try (InputStream in = Files.newInputStream(file);
+    BufferedReader reader =
+      new BufferedReader(new InputStreamReader(in))) {
+    String line = null;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (IOException x) {
+    System.err.println(x);
+}
+```
+
+## 使用I / O流创建和写入文件
+您可以使用该`newOutputStream(Path, OpenOption...)`方法创建文件，附加到文件或写入文件 。此方法打开或创建用于写入字节的文件，并返回无缓冲的输出流。
+
+该方法采用可选`OpenOption`参数。如果没有指定打开的选项，并且该文件不存在，**将创建一个新的文件**。如果文件存在，则会被截断。此选项相当于使用`CREATE`和`TRUNCATE_EXISTING` options 来调用该方法。
+
+以下示例打开日志文件。如果文件不存在，则创建它。如果文件存在，它将被打开以进行追加。
+```java
+import static java.nio.file.StandardOpenOption.*;
+import java.nio.file.*;
+import java.io.*;
+
+public class LogFileTest {
+
+  public static void main(String[] args) {
+
+    // Convert the string to a
+    // byte array.
+    String s = "Hello World! ";
+    byte data[] = s.getBytes();
+    Path p = Paths.get("./logfile.txt");
+
+    try (OutputStream out = new BufferedOutputStream(
+      Files.newOutputStream(p, CREATE, APPEND))) {
+      out.write(data, 0, data.length);
+    } catch (IOException x) {
+      System.err.println(x);
+    }
+  }
+}
+```
