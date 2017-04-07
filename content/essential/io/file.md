@@ -162,3 +162,38 @@ public class LogFileTest {
   }
 }
 ```
+
+## Channels 和 ByteBuffers 的方法
+### 使用 Channel I/O 读写文件
+当流I / O一次读取一个字符时，通道I / O一次读取一个缓冲区。 `ByteChannel`提供基本read和write功能。 `SeekableByteChannel`是`ByteChannel`的子类（接口），有能力维持通道位置的和改变位置。  `SeekableByteChannel`还支持截断与通道关联的文件，并查询文件的大小。
+
+移动到文件中的不同点的能力，然后读取或写入该位置使文件的随机访问成为可能。更多信息参见随机访问文件。
+
+通道I / O的读取和写入有两种方法。
+* [newByteChannel(Path, OpenOption...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#newByteChannel-java.nio.file.Path-java.nio.file.OpenOption...-)
+* [newByteChannel(Path, Set<? extends OpenOption>, FileAttribute<?>...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#newByteChannel-java.nio.file.Path-java.util.Set-java.nio.file.attribute.FileAttribute...-)
+
+**注意：  **这些`newByteChannel`方法返回一个实例`SeekableByteChannel`。使用默认文件系统，您可以将此可搜索字节通道转换为 `FileChannel`提供更高级功能的访问，如将文件区域直接映射到内存中，以便更快速地访问，锁定文件的某个区域，以便其他进程无法访问该文件或读取并从绝对位置写入字节，而不影响通道的当前位置。
+
+这两种`newByteChannel`方法都可以指定一个`OpenOption`选项列表。和 `newOutputStream`方法一样支持使用的相同的OpenOption （本章节的小结 - OpenOptions参数 中有讲到），除了还有一个选项：`READ`是必需的，因为`SeekableByteChannel`支持阅读和写入。
+
+指定`READ`打开通道进行阅读。指定`WRITE`或`APPEND`打开通道进行写入。如果没有指定这些选项，则打开通道进行读取。
+
+以下代码片段读取文件并将其打印到标准输出：
+
+```java
+// 默认为READ
+try (SeekableByteChannel sbc = Files.newByteChannel(file)) {
+    ByteBuffer buf = ByteBuffer.allocate(10);
+
+    // 读取具有该平台正确编码的字节
+    // 如果你跳过这个步骤，你可能会看到类似乱码的字符
+    String encoding = System.getProperty("file.encoding");
+    while (sbc.read(buf) > 0) {
+        buf.rewind();
+        System.out.print(Charset.forName(encoding).decode(buf));
+        buf.flip();
+    }
+} catch (IOException x) {
+    System.out.println("caught exception: " + x);
+```
