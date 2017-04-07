@@ -190,10 +190,51 @@ try (SeekableByteChannel sbc = Files.newByteChannel(file)) {
     // 如果你跳过这个步骤，你可能会看到类似乱码的字符
     String encoding = System.getProperty("file.encoding");
     while (sbc.read(buf) > 0) {
-        buf.rewind();
+        buf.rewind(); // 限制位置不变，当前位置重置为0？ 因为上面读取后，位置已经改变
         System.out.print(Charset.forName(encoding).decode(buf));
-        buf.flip();
+        buf.flip(); // 相当于清空内容？位置重置？
     }
 } catch (IOException x) {
     System.out.println("caught exception: " + x);
+```
+以下为UNIX和其他POSIX文件系统编写的示例，创建具有特定文件权限集的日志文件。此代码创建日志文件或附加到日志文件（如果它已经存在）。创建日志文件，具有对组的所有者和只读权限的读/写权限。
+```java
+import static java.nio.file.StandardOpenOption.*;
+import java.nio.*;
+import java.nio.channels.*;
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import java.io.*;
+import java.util.*;
+
+public class LogFilePermissionsTest {
+
+  public static void main(String[] args) {
+  
+    // 这是操作选项，存在则追加，不存在则创建
+    Set<OpenOption> options = new HashSet<OpenOption>();
+    options.add(APPEND);
+    options.add(CREATE);
+
+    // 自定义权限
+    Set<PosixFilePermission> perms =
+      PosixFilePermissions.fromString("rw-r-----");
+    FileAttribute<Set<PosixFilePermission>> attr =
+      PosixFilePermissions.asFileAttribute(perms);
+
+    // 把字符串转换为 ByteBuffer.
+    String s = "Hello World! ";
+    byte data[] = s.getBytes();
+    ByteBuffer bb = ByteBuffer.wrap(data);
+    
+    Path file = Paths.get("./permissions.log");
+
+    try (SeekableByteChannel sbc =
+      Files.newByteChannel(file, options, attr)) {
+      sbc.write(bb);
+    } catch (IOException x) {
+      System.out.println("Exception thrown: " + x);
+    }
+  }
+}
 ```
