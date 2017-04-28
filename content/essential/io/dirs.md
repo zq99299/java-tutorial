@@ -118,3 +118,5 @@ Files.createDirectories(Paths.get("foo/bar/test"));
 ```java
 DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filter)
 ```
+
+此方法仅用于过滤单个目录。但是，如果要查找文件树中的所有子目录，您将使用“ 走文件树”的机制。
