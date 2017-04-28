@@ -17,5 +17,6 @@
 Iterable<Path> dirs = FileSystems.getDefault().getRootDirectories();
 for (Path name: dirs) {
     System.err.println(name);
+    // 在windows系统中的话就是打印各个盘符路径
 }
 ```
