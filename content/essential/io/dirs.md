@@ -87,3 +87,15 @@ Files.createDirectories(Paths.get("foo/bar/test"));
 如果要仅获取每个名称与特定模式匹配的文件和子目录，可以使用 `newDirectoryStream(Path, String)`提供内置`glob`过滤器的方法来实现。如果您不熟悉`glob`语法，请参阅 [什么是Glob？](/content/essential/io/fileOps.md)
 
 例如，以下代码片段列出了与Java有关的文件：.class，.java和.jar文件：
+```java
+ Path dir = Paths.get("d:/");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.{java,class,jar}")) {
+            for (Path file : stream) {
+                System.out.println(file.getFileName());
+            }
+        } catch (IOException | DirectoryIteratorException x) {
+            // IOException can never be thrown by the iteration.
+            // In this snippet, it can only be thrown by newDirectoryStream.
+            System.err.println(x);
+        }
+```
