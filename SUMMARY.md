@@ -65,6 +65,7 @@
     * [管理元数据](/content/essential/io/fileAttr.md)
     * [读、写、创建文件](/content/essential/io/file.md)
     * [随机访问文件](/content/essential/io/rafs.md)
+    * [创建和读取目录](/content/essential/io/dirs.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
