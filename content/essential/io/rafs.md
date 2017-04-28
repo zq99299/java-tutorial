@@ -85,5 +85,5 @@ I was here14!
 最难懂的就是ByteBuffer 的使用，各种移动position的api需要慢慢领悟其设计意图。
 FileChannel 也是移动position来支持随机访问文件内容的。
 
-    
+总的来说，太偏向底层了，比较难掌握和理解
     
