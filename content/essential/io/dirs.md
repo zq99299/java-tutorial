@@ -78,3 +78,12 @@ Files.createDirectories(Paths.get("foo/bar/test"));
             System.err.println(x);
         }
 ```
+
+此方法返回目录的全部内容：文件，链接，子目录和隐藏文件。如果您希望对所检索的内容更有选择性，可以使用其他`newDirectoryStream`方法之一，如本页后面所述。
+
+请注意，如果在目录迭代期间`DirectoryIteratorException`有异常，那么将`IOException`作为原因抛出。迭代器方法不能抛出异常异常。
+
+## 使用Globbing过滤目录列表
+如果要仅获取每个名称与特定模式匹配的文件和子目录，可以使用 `newDirectoryStream(Path, String)`提供内置`glob`过滤器的方法来实现。如果您不熟悉`glob`语法，请参阅 [什么是Glob？](/content/essential/io/fileOps.md)
+
+例如，以下代码片段列出了与Java有关的文件：.class，.java和.jar文件：
