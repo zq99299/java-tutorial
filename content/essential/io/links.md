@@ -20,3 +20,22 @@
 * 创建硬链接
 * 检测符号链接
 * 查找链接的目标
+
+## 创建符号链接
+
+如果您的文件系统支持它，您可以使用该`createSymbolicLink(Path, Path, FileAttribute<?>)`方法创建一个符号链接 。第二个Path参数表示目标文件或目录，可能或可能不存在。以下代码片段将创建具有默认权限的符号链接：
+```java
+        Path newLink = Paths.get("d:/server2.xml");
+        Path target = Paths.get("d:/server.xml");
+        try {
+            Files.createSymbolicLink(newLink, target);
+        } catch (IOException x) {
+            System.err.println(x);
+        } catch (UnsupportedOperationException x) {
+            //某些文件系统不支持符号链接。
+            System.err.println(x);
+        }
+```
+上面生成的文件我查看了一下，在windos中就是一个快捷图标文件，文件类型是`.symlink`
+
+该FileAttributes可变参数，可以指定被原子设置在创建链接时初始文件属性。但是，这个论点是为了将来的使用而进行的，目前还没有实现。
