@@ -99,3 +99,11 @@ Files.createDirectories(Paths.get("foo/bar/test"));
             System.err.println(x);
         }
 ```
+
+## 编写自己的目录过滤器
+
+也许你想基于除模式匹配之外的一些条件来过滤目录的内容。您可以通过实现接口创建自己的过滤器 `DirectoryStream.Filter<T>`。该接口由一个方法`accept`组成，它确定文件是否满足搜索要求。
+
+例如以下代码实现 仅仅检索目录的过滤器：
+```java
+```
