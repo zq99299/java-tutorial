@@ -9,3 +9,13 @@
 * 列出目录的内容
 * 使用Globbing过滤目录列表
 * 编写自己的目录过滤器
+
+您可以使用`FileSystem.getRootDirectories`方法列出文件系统的所有根目录 。此方法返回一个`Iterable`，它使您能够使用 `enhanced for`语句来遍历所有根目录。
+
+以下代码使用默认文件系统打印根目录
+```java
+Iterable<Path> dirs = FileSystems.getDefault().getRootDirectories();
+for (Path name: dirs) {
+    System.err.println(name);
+}
+```
