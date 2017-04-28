@@ -106,4 +106,15 @@ Files.createDirectories(Paths.get("foo/bar/test"));
 
 例如以下代码实现 仅仅检索目录的过滤器：
 ```java
+        DirectoryStream.Filter<Path> filter = new DirectoryStream.Filter<Path>() {
+            @Override
+            public boolean accept(Path entry) throws IOException {
+                return entry.toFile().isDirectory();
+            }
+        };
+```
+
+一但创建过滤器，就可以使用`newDirectoryStream(Path, DirectoryStream.Filter<? super Path>)`方法来调用过滤器，如
+```java
+DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filter)
 ```
