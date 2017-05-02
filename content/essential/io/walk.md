@@ -436,5 +436,15 @@ public FileVisitResult
 ```
 遵循符号链接也就是说，任何时候访问到的都是链接对应的实际文件。在copy的时候，那么就会出现循环被copy的情况。这种情况只有在程序跟随符号链接时才会发生。
 
-## 控制流
+## 控制流程
+也许你想走文件树寻找一个特定的目录，当找到你想要的进程终止。也许你想跳过具体的目录。
+
+这些`FileVisitor`方法返回一个 `FileVisitResult`值。您可以中止文件行进过程或控制是否通过`FileVisitor`方法返回的值访问目录：
+
+* CONTINUE - 表示文件走路应该继续。如果该`preVisitDirectory`方法返回`CONTINUE`，则该目录被访问。
+* TERMINATE - 立即中止文件行走。在返回此值后，不再调用文件行走方法。
+* SKIP_SUBTREE- 当`preVisitDirectory`返回此值时，将跳过指定的目录及其子目录。这个树枝是“修剪出来”的树。
+* SKIP_SIBLINGS- 当`preVisitDirectory`返回此值时，指定的目录不被访问，`postVisitDirectory`不被调用，并且不再访问未访问的兄弟姐妹。如果从该`postVisitDirectory`方法返回，则不再访问进一步的兄弟姐妹。本质上，在指定的目录中没有任何进一步的发生。
+
+在此代码片段中，将跳过任何名为SCCS的目录：
 ## 例子
