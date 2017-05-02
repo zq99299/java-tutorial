@@ -57,3 +57,11 @@ try {
 ```
 
 上面代码在windows中生成的文件我看了一下，最直观的感受就是：貌似是一个复制出来的文件，文件类型和源文件一样。没有看出来有什么区别
+
+## 检测符号链接
+
+要确定Path实例是否是符号链接，可以使用该 `isSymbolicLink(Path)`方法。以下代码片段：
+```
+boolean isSymbolicLink = Files.isSymbolicLink(newLink)
+```
+注：该方法不能判断硬链接
