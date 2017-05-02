@@ -473,3 +473,11 @@ public FileVisitResult
 }
 ```
 ## 例子
+以下示例演示了文件行走机制：
+
+* Find - 重新查找文件树，寻找与特定的glob模式匹配的文件和目录。此示例在 查找文件中讨论。
+* Copy - 递归地复制文件树。
+上面两种示例在本文中已经注释好贴出来了。下面的暂时不想去看源码，直接链接到官网地址：
+
+* [Chmod ](http://docs.oracle.com/javase/tutorial/essential/io/examples/Chmod.java)- 递归地更改文件树上的权限（仅适用于POSIX系统）。
+* [WatchDir](http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java) - 演示为已创建，删除或修改的文件监视目录的机制。使用该-r选项调用此程序可以观察整个树的更改。有关文件通知服务的更多信息，请参阅查看 目录以进行更改。
