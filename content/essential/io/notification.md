@@ -241,6 +241,7 @@ try {
 
 ## 处理事件
 事件处理循环中的事件顺序如下：
+
 1. 拿到一个watchKey,提供了三种方法：
 拿一个手表钥匙 提供了三种方法：
     1. poll - 返回排队的key（如果可用）。如果不可用null，立即返回值。
@@ -248,5 +249,11 @@ try {
     3. take - 返回排队的key。如果没有排队的密钥可用，则此方法等待。
 
 2. 处理挂起的事件，key.[pollEvents](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchKey.html#pollEvents--)()
+
 3. 使用 event.[kind](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchEvent.html#kind--)() 检索事件类型。无论注册了什么事件，都可能收到一个`OVERFLOW`事件,您可以处理或则忽略，但是您应该测试它（也就是应该识别该类型事件）
+
 4. 检索与事件关联的文件名。文件名被存储为事件的上下文，因此 [WatchEvent.context()](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchEvent.html#context--) 方法用于检索它
+
+5. 在处理完事件后，您需要通过 `WatchKey.reset()` 将事件重置`ready`状态。如果此方法返回`false`,则该key不再有效，循环可以退出。这一步非常重要。如果您无法调用`reset`,此key将不会再收到任何进一步的事件。
+
+
