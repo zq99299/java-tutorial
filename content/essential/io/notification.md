@@ -223,3 +223,30 @@ WatchService watcher = FileSystems.getDefault().newWatchService();
 * ENTRY_DELETE - 目录条目被删除。
 * ENTRY_MODIFY - 修改目录条目。
 * OVERFLOW - 表示事件可能已丢失或丢弃。您不必注册该OVERFLOW活动即可收到。
+
+以下代码片段显示了Path如何为所有三种事件类型注册一个实例：
+```java
+import static java.nio.file.StandardWatchEventKinds.*;
+
+Path dir = ...;
+try {
+    WatchKey key = dir.register(watcher,
+                           ENTRY_CREATE,
+                           ENTRY_DELETE,
+                           ENTRY_MODIFY);
+} catch (IOException x) {
+    System.err.println(x);
+}
+```
+
+## 处理事件
+事件处理循环中的事件顺序如下：
+1. 拿到一个watchKey,提供了三种方法：
+拿一个手表钥匙 提供了三种方法：
+    1. poll - 返回排队的key（如果可用）。如果不可用null，立即返回值。
+    2. poll(long, TimeUnit) - 返回排队的key（如果有）。如果排队的key没有立即可用，程序将等待直到指定的时间。该TimeUnit参数确定指定时间是纳秒，毫秒还是其他某个时间单位。
+    3. take - 返回排队的key。如果没有排队的密钥可用，则此方法等待。
+
+2. 处理挂起的事件，key.[pollEvents](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchKey.html#pollEvents--)()
+3. 使用 event.[kind](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchEvent.html#kind--)() 检索事件类型。无论注册了什么事件，都可能收到一个`OVERFLOW`事件,您可以处理或则忽略，但是您应该测试它（也就是应该识别该类型事件）
+4. 检索与事件关联的文件名。文件名被存储为事件的上下文，因此 [WatchEvent.context()](https://docs.oracle.com/javase/8/docs/api/java/nio/file/WatchEvent.html#context--) 方法用于检索它
