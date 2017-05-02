@@ -447,4 +447,29 @@ public FileVisitResult
 * SKIP_SIBLINGS- 当`preVisitDirectory`返回此值时，指定的目录不被访问，`postVisitDirectory`不被调用，并且不再访问未访问的兄弟姐妹。如果从该`postVisitDirectory`方法返回，则不再访问进一步的兄弟姐妹。本质上，在指定的目录中没有任何进一步的发生。
 
 在此代码片段中，将跳过任何名为SCCS的目录：
+```java
+public FileVisitResult
+     preVisitDirectory(Path dir,
+         BasicFileAttributes attrs) {
+    (if (dir.getFileName().toString().equals("SCCS")) {
+         return SKIP_SUBTREE;
+    }
+    return CONTINUE;
+}
+```
+
+在这段代码片段中，只要找到一个特定的文件，文件名被打印到标准输出，文件行走终止：
+```java
+Path lookingFor = ...;
+
+public FileVisitResult
+    visitFile(Path file,
+        BasicFileAttributes attr) {
+    if (file.getFileName().equals(lookingFor)) {
+        System.out.println("Located file: " + file);
+        return TERMINATE;
+    }
+    return CONTINUE;
+}
+```
 ## 例子
