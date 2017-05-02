@@ -97,6 +97,7 @@ Files.walkFileTree(startingDir, pf);
 如果您的程序将更改文件系统，则需要仔细考虑如何实现FileVisitor。
 
 例如，
+
 1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在`postVisitDirectory`中删除目录。
 
 2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。
