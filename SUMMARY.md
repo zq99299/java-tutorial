@@ -68,8 +68,7 @@
     * [创建和读取目录](/content/essential/io/dirs.md)
     * [符号链接或其他](/content/essential/io/links.md)
     * [文件树](/content/essential/io/walk.md)
-
-    
+    * [查找文件](/content/essential/io/find.md)
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
