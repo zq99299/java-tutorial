@@ -433,7 +433,8 @@ public FileVisitResult
     }
     return CONTINUE;
 }
-    ```
+```
+遵循符号链接也就是说，任何时候访问到的都是链接对应的实际文件。在copy的时候，那么就会出现循环被copy的情况。
 
 ## 控制流
 ## 例子
