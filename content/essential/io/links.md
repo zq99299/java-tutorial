@@ -39,3 +39,21 @@
 上面生成的文件我查看了一下，在windos中就是一个快捷图标文件，文件类型是`.symlink`
 
 该FileAttributes可变参数，可以指定被原子设置在创建链接时初始文件属性。但是，这个论点是为了将来的使用而进行的，目前还没有实现。
+
+## 创建硬链接
+
+您可以使用该方法创建到现有文件的硬（或常规）链接 `createLink(Path, Path)`。第二个Path参数定位现有文件，它必须存在或`NoSuchFileException`抛出一个。以下代码片段显示了如何创建链接：
+```java
+Path newLink = ...;
+Path existingFile = ...;
+try {
+    Files.createLink(newLink, existingFile);
+} catch (IOException x) {
+    System.err.println(x);
+} catch (UnsupportedOperationException x) {
+    // 某些文件系统不支持硬链接
+    System.err.println(x);
+}
+```
+
+上面代码在windows中生成的文件我看了一下，最直观的感受就是：貌似是一个复制出来的文件，文件类型和源文件一样。没有看出来有什么区别
