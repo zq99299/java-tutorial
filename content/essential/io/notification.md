@@ -213,3 +213,5 @@ public class WatchDir {
 WatchService watcher = FileSystems.getDefault().newWatchService();
 ```
 
+接下来，注册一个`WatchService`服务或多个事件对象，
+
