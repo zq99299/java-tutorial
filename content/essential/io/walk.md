@@ -100,10 +100,219 @@ Files.walkFileTree(startingDir, pf);
 
 1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在`postVisitDirectory`中删除目录。
 
-2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。
+2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。 以下示例是模拟`UNIX cp -p`命令的功能：
 ```java
-xxx
+public class Copy {
+
+    /**
+     * Returns {@code true} if okay
+     * 如果返回true则覆盖文件，在控制台提示用户是否选择进行覆盖文件，处理("cp -i")命令
+     */
+    static boolean okayToOverwrite(Path file) {
+        String answer = System.console().readLine("overwrite %s (yes/no)? ", file);
+        return (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes"));
+    }
+
+    /**
+     * @param source   源文件
+     * @param target   目标路径
+     * @param prompt   当文件重复的时候是否提示 并让用户选择是否进行覆盖
+     * @param preserve 是否保留属性
+     */
+    static void copyFile(Path source, Path target, boolean prompt, boolean preserve) {
+        // 可以看到这里如果保留属性的话，提供的参数也只是多了一个 COPY_ATTRIBUTES
+        CopyOption[] options = (preserve) ?
+                new CopyOption[]{StandardCopyOption.COPY_ATTRIBUTES, StandardCopyOption.REPLACE_EXISTING} :
+                new CopyOption[]{StandardCopyOption.REPLACE_EXISTING};
+        // 如果 提示，那么就判断该文件是否已经存在，如果已经存在，则让用户决定是否覆盖
+        if (!prompt || Files.notExists(target) || okayToOverwrite(target)) {
+            try {
+                Files.copy(source, target, options);
+            } catch (IOException x) {
+                System.err.format("Unable to copy: %s: %s%n", source, x);
+            }
+        }
+    }
+
+    /**
+     * {@code FileVisitor} 拷贝一个文件树 模仿命令("cp -r")
+     */
+    static class TreeCopier implements FileVisitor<Path> {
+        private final Path source;
+        private final Path target;
+        private final boolean prompt;
+        private final boolean preserve;
+
+        TreeCopier(Path source, Path target, boolean prompt, boolean preserve) {
+            this.source = source;
+            this.target = target;
+            this.prompt = prompt;
+            this.preserve = preserve;
+        }
+
+        /**
+         * 访问目录前
+         * @param dir
+         * @param attrs
+         * @return
+         */
+        @Override
+        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+            // 在访问目录前，我们先复制该目录
+            // (okay if directory already exists).
+            CopyOption[] options = (preserve) ?
+                    new CopyOption[]{StandardCopyOption.COPY_ATTRIBUTES} : new CopyOption[0];
+
+            Path newdir = target.resolve(source.relativize(dir));
+            try {
+                Files.copy(dir, newdir, options);
+            } catch (FileAlreadyExistsException x) {
+                // ignore
+            } catch (IOException x) {
+                System.err.format("Unable to create: %s: %s%n", newdir, x);
+                return FileVisitResult.SKIP_SUBTREE;
+            }
+            return FileVisitResult.CONTINUE;
+        }
+
+        /**
+         * 访问具体的文件
+         * @param file
+         * @param attrs
+         * @return
+         */
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+            copyFile(file, target.resolve(source.relativize(file)),
+                     prompt, preserve);
+            return FileVisitResult.CONTINUE;
+        }
+
+        /**
+         * 访问目录后，该目录中的文件都访问完成之后
+         * @param dir
+         * @param exc
+         * @return
+         */
+        @Override
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
+            // 如果没有异常且需要copy源文件的属性的话
+            // 就需要修复最后修改该目录的时间为源文件的修改时间
+            if (exc == null && preserve) {
+                Path newdir = target.resolve(source.relativize(dir));
+                try {
+                    FileTime time = Files.getLastModifiedTime(dir);
+                    Files.setLastModifiedTime(newdir, time);
+                } catch (IOException x) {
+                    System.err.format("Unable to copy all attributes to: %s: %s%n", newdir, x);
+                }
+            }
+            return FileVisitResult.CONTINUE;
+        }
+
+        /**
+         * 访问文件失败
+         * @param file
+         * @param exc
+         * @return
+         */
+        @Override
+        public FileVisitResult visitFileFailed(Path file, IOException exc) {
+            if (exc instanceof FileSystemLoopException) {
+                System.err.println("cycle detected: " + file);
+            } else {
+                System.err.format("Unable to copy: %s: %s%n", file, exc);
+            }
+            return FileVisitResult.CONTINUE;
+        }
+    }
+
+    /**
+     * 如果输入的命令不对，则提示该如何使用命令
+     */
+    static void usage() {
+        System.err.println("java Copy [-ip] source... target");
+        System.err.println("java Copy -r [-ip] source-dir... target");
+        System.exit(-1);
+    }
+
+    public static void main(String[] args) throws IOException {
+        // 在这里 我们用ide运行，所以模拟了在控制台的输入
+        // 但是 -i 选项（如果目标文件存在，提示用户是否需要覆盖） 就不能使用了，因为获取不到控制台流
+        args = new String[]{"-rp", "G:\\系统维护", "E:\\系统维护"};
+
+        boolean recursive = false;   // r : 是否递归
+        boolean prompt = false; // i: 是否提示（当文件存在的时候，是否提示覆盖）
+        boolean preserve = false; // p: 是否保持文件属性，且文件如果存在则覆盖
+
+        // 处理选项对应的值，且统计选项个数
+        int argi = 0;
+        while (argi < args.length) {
+            String arg = args[argi];
+            if (!arg.startsWith("-"))
+                break;
+            if (arg.length() < 2)
+                usage();
+            for (int i = 1; i < arg.length(); i++) {
+                char c = arg.charAt(i);
+                switch (c) {
+                    case 'r':
+                        recursive = true;
+                        break;
+                    case 'i':
+                        prompt = true;
+                        break;
+                    case 'p':
+                        preserve = true;
+                        break;
+                    default:
+                        usage();
+                }
+            }
+            argi++;
+        }
+
+        // 剩余的参数是源文件和目标位置参数
+        int remaining = args.length - argi;
+        if (remaining < 2)
+            usage();
+        // 再减去最后的目标路径，得到1 - n 个源
+        // 支持多个源 copy到一个目标路径中
+        Path[] source = new Path[remaining - 1]; // 声明一个源文件数组
+        int i = 0;
+        while (remaining > 1) {
+            source[i++] = Paths.get(args[argi++]); // 获取源文件路径
+            remaining--;
+        }
+        // 获得目标路径
+        Path target = Paths.get(args[argi]);
+
+        // 检测目标路径是否是一个目录
+        boolean isDir = Files.isDirectory(target);
+
+        // copy源文件到目标路径
+        for (i = 0; i < source.length; i++) {
+            Path dest = (isDir) ? target.resolve(source[i].getFileName()) : target;
+
+            if (recursive) { // 是否递归处理
+                // follow links when copying files
+                EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
+                TreeCopier tc = new TreeCopier(source[i], dest, prompt, preserve);
+                Files.walkFileTree(source[i], opts, Integer.MAX_VALUE, tc);
+            } else { // 不递归的话，就处理一层
+                // 不使用递归模式的话，那么就只处理 文件而不处理目录
+                if (Files.isDirectory(source[i])) {
+                    System.err.format("%s: is a directory%n", source[i]);
+                    continue;
+                }
+                // copy 文件
+                copyFile(source[i], dest, prompt, preserve);
+            }
+        }
+    }
+}
 ```
+
+3. 如果您正在编写文件搜索，请在visitFile方法中执行比较。此方法查找与您的条件匹配的所有文件，但找不到目录。如果要同时查找文件和目录，还必须使用preVisitDirectory或postVisitDirectory方法进行比较。该 Find示例显示如何执行此操作。
 
 ## 控制流
 ## 例子
