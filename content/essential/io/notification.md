@@ -205,3 +205,11 @@ public class WatchDir {
     }
 }
 ```
+
+## 创建观察服务并注册事件
+第一步是通过`FileSystem`类中的方法创建一个`WatchService`,如下所示：
+
+```java
+WatchService watcher = FileSystems.getDefault().newWatchService();
+```
+
