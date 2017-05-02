@@ -85,3 +85,5 @@ boolean isSymbolicLink = Files.isSymbolicLink(newLink)
 该link文件 'd:\server2.xml' 的目标文件是 'd:\server.xml'
 
 ```
+
+如果Path不是一个符号链接，这个方法会抛出一个NotLinkException。
