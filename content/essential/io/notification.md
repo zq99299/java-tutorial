@@ -136,6 +136,7 @@ public class WatchDir {
 
                 // 提供如何处理 逸出事件的列子（难道说是没有被注册的事件 就称为溢出事件吗？）
                 // 经过测试，如果是没有注册事件的话， key.pollEvents() 是获取不到事件的
+                // 在后面的学习中，我找到了答案，原来表示该事件可能已丢失或被丢弃
                 // 但是 watcher.take(); 会被触发
                 if (kind == StandardWatchEventKinds.OVERFLOW) {
                     continue;
@@ -213,5 +214,12 @@ public class WatchDir {
 WatchService watcher = FileSystems.getDefault().newWatchService();
 ```
 
-接下来，注册一个`WatchService`服务或多个事件对象，
+接下来，使用Path注册一个`WatchService`服务或多个事件对象，`Path`类实现了`Watchable`接口，该接口就是注册监视服务的接口。所以要被监视的每个目录需要包装成`Path`对象
 
+与任何`Watchable`一样，`Path`该类实现两种`register`方法。此页面使用双参数版本 `register(WatchService, WatchEvent.Kind<?>...)`。（三参数版本需要一个`WatchEvent.Modifier`，目前尚未实现）。
+使用watch服务注册对象时，可以指定要监视的事件的类型。支持的 [StandardWatchEventKinds](https://docs.oracle.com/javase/8/docs/api/java/nio/file/StandardWatchEventKinds.html)事件类型如下：
+
+* ENTRY_CREATE - 创建一个目录条目。
+* ENTRY_DELETE - 目录条目被删除。
+* ENTRY_MODIFY - 修改目录条目。
+* OVERFLOW - 表示事件可能已丢失或丢弃。您不必注册该OVERFLOW活动即可收到。
