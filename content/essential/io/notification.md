@@ -36,7 +36,7 @@
 1. 在main方法里面指定监视的目录，运行该程序
 2. 可以在该目录下进行创建文件，删除文件，修改文件的操作，查看控制台的打印信息
 
-``java
+```java
 public class WatchDir {
     private final WatchService watcher;
     private final Map<WatchKey, Path> keys;
