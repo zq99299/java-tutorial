@@ -68,6 +68,42 @@ public class PrintFiles extends SimpleFileVisitor<Path> {
  }   
 ```
 ## 开始流程
+一旦你实现了`FileVisitor`，你如何启动它？Files中有两种walkFileTree方法。
+
+* walkFileTree(Path, FileVisitor)
+* walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)
+
+**第一种：**只需要一个起点和一个`FileVisitor`实例。您可以按以下方式调用文件访问者：
+```java
+Path startingDir = Paths.get("g:/");
+PrintFiles pf = new PrintFiles();
+Files.walkFileTree(startingDir, pf);
+```
+
+**第二种：**使您能够额外指定访问级别数量和一组`FileVisitOption`枚举的限制。如果要确保此方法遍历整个文件树，可以指定`Integer.MAX_VALUE`最大深度参数。
+
+您可以指定`FileVisitOption`枚举，`FOLLOW_LINKS`这表示应遵循符号链接。
+```java
+       Path startingDir = Paths.get("g:/");
+
+        EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
+        FileVisitor fileVisitor = new PrintFiles();
+        Files.walkFileTree(startingDir, opts, Integer.MAX_VALUE, fileVisitor);
+```
 ## 创建FileVisitor时的注意事项
+
+文件树首先是深度走过的，但是您不能对子目录访问的迭代顺序进行任何假设。
+
+如果您的程序将更改文件系统，则需要仔细考虑如何实现FileVisitor。
+
+例如，
+1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在`postVisitDirectory`中删除目录。
+
+2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。
+
+```java
+xxx
+```
+
 ## 控制流
 ## 例子
