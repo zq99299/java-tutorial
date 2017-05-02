@@ -73,11 +73,15 @@ boolean isSymbolicLink = Files.isSymbolicLink(newLink)
         Path newLink = Paths.get("d:/server2.xml");
         Path target = Paths.get("d:/server.xml");
         try {
-            System.out.format("该link文件的目标文件" +
-                                      " '%s' 是 '%s'%n", newLink,
-                              Files.readSymbolicLink(newLink)); 
-            //该link文件的目标文件 'd:\server2.xml' 是 'd:\server.xml'
+            System.out.format("该link文件" +
+                                      " '%s' 的目标文件是 '%s'%n", newLink,
+                              Files.readSymbolicLink(newLink));
         } catch (IOException x) {
             System.err.println(x);
         }
+```
+这里使用上面创建链接后的文件来测试：输出如下：
+```java
+该link文件 'd:\server2.xml' 的目标文件是 'd:\server.xml'
+
 ```
