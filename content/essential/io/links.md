@@ -65,3 +65,19 @@ try {
 boolean isSymbolicLink = Files.isSymbolicLink(newLink)
 ```
 注：该方法不能判断硬链接
+
+## 查找链接的目标
+
+您可以使用以下`readSymbolicLink(Path)`方法获取符号链接的目标 ：
+```java
+        Path newLink = Paths.get("d:/server2.xml");
+        Path target = Paths.get("d:/server.xml");
+        try {
+            System.out.format("该link文件的目标文件" +
+                                      " '%s' 是 '%s'%n", newLink,
+                              Files.readSymbolicLink(newLink)); 
+            //该link文件的目标文件 'd:\server2.xml' 是 'd:\server.xml'
+        } catch (IOException x) {
+            System.err.println(x);
+        }
+```
