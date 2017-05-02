@@ -17,3 +17,22 @@ PathMatcher matcher =
 ```
 
 传递的`string参数`指定要`getPathMatcher`匹配的语法`flavor`和`pattern`。此示例指定`glob`语法。如果您不熟悉`glob`语法，请参阅 [什么是Glob-该文章中的章节](/content/essential/io/fileOps.md)。
+
+Glob语法易于使用和灵活，但如果您愿意，还可以使用正则表达式或正则表达式语法。有关正则表达式的更多信息，请参见 [正则表达式的教程](http://docs.oracle.com/javase/tutorial/essential/regex/index.html)。一些文件系统实现可能支持其他语法。
+
+如果要使用其他形式的基于字符串的模式匹配，您可以创建自己的`PathMatcher`类。本页中的示例使用glob语法。
+
+一旦你创建了你的`PathMatcher`实例，你就可以根据它来匹配文件了。该`PathMatcher`接口有一个方法， `matches`它接受一个`Path`参数并返回一个布尔值：它与模式匹配，或者它不匹配。
+
+以下代码片段查找以这些`.java`或`.class`结尾的文件打印到标准输出流：
+```java
+  Path targetPath = Paths.get("d:/server.xml");
+
+        PathMatcher matcher =
+                FileSystems.getDefault().getPathMatcher("glob:*.{xml}");
+        // 特别注意这里。要返回FileName的path
+        // 区别是：fileName的Path对象中的path就只有文件名，而targetPath中的path 是整个路径
+        if (matcher.matches(targetPath.getFileName())) {
+            System.out.println(targetPath);
+        }
+```
