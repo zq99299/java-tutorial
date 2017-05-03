@@ -51,3 +51,5 @@ Files.delete（fp）;
 | File.delete	| Files.delete | [删除文件或目录](/content/essential/io/delete.md)
 | File.createNewFile |	Files.createFile | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
 | File.deleteOnExit |	使用该选项 DELETE_ON_CLOSE 替代 | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
+| File.createTempFile | Files.createTempFile(Path, String, FileAttributes<?>), Files.createTempFile(Path, String, String, FileAttributes<?>) | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)  [读、写、创建文件 - 使用I / O流创建和写入文件](/content/essential/io/file.md)
+
