@@ -55,6 +55,6 @@ Files.delete（fp）;
 | File.exists	| Files.exists and Files.notExists | [检查文件或目录](/content/essential/io/check.md)
 | File.compareTo and equals |	Path.compareTo and equals | [Path操作 - 比较两路径](/content/essential/io/pathOps.md)
 | File.getAbsolutePath and getAbsoluteFile | Path.toAbsolutePath  | [Path操作 - 转换路径](/content/essential/io/pathOps.md)
-| File.getCanonicalPath and getCanonicalFile | Path.toRealPath or normalize | [Path操作 - 转换路径](/content/essential/io/pathOps.md)
+| File.getCanonicalPath and getCanonicalFile | Path.toRealPath or normalize | [Path操作 - 转换路径](/content/essential/io/pathOps.md) , [Path操作 - 路径中删除冗余](/content/essential/io/pathOps.md)从
 
 
