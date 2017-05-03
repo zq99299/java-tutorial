@@ -44,3 +44,20 @@ String separator = File.separator;
 String separator = FileSystems.getDefault().getSeparator();
 // 该 getSeparator方法还用于检索任何可用文件系统的路径分隔符。
 ```
+
+## 文件系统的文件存储
+一个文件系统有一个或多个文件存储以其持有的文件和目录。这个文件存储代表底层的存储装置。在UNIX操作系统中，每个安装的文件系统都由文件存储区来表示。在Microsoft Windows中，每个卷都由一个文件存储：C:，... D:等表示。
+
+要检索文件系统的所有文件存储的列表，可以使用该 [FileSystem.getFileStores](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileSystem.html#getFileStores--)方法。此方法返回一个`Iterable`，它允许您使用 `enhanced for`语句遍历所有根目录。
+
+```java
+ // 遍历当前机器上的文件存储区
+        for (FileStore store : FileSystems.getDefault().getFileStores()) {
+            System.out.println(store);
+        }
+
+        // 查找 指定文件存储在哪一个存储区
+        Path file = Paths.get("d:/server.xml");
+        FileStore store = Files.getFileStore(file);
+        System.out.println(store);
+```
