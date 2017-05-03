@@ -24,7 +24,7 @@
 
 ## 官方教程 - 基本类
 
-* [基本类概述](/content/essential/README.md)
+* [基本类概述（必修）](/content/essential/README.md)
 * [异常](/content/essential/exceptions/README.md)
   * [什么是异常？](/content/essential/exceptions/definition.md)
   * [捕获或指定需求](/content/essential/exceptions/catchOrDeclare.md)
@@ -53,11 +53,11 @@
     * [命令行IO](/content/essential/io/cl.md)
     * [数据流](/content/essential/io/datastreams.md)
     * [对象流](/content/essential/io/objectstreams.md)
-  * [文件I/O (nio.2)](/content/essential/io/fileio.md) 
-    * [什么是路径？](/content/essential/io/path.md) 
-    * [Path类？](/content/essential/io/pathClass.md) 
-    * [Path操作](/content/essential/io/pathOps.md) 
-    * [文件操作](/content/essential/io/fileOps.md) 
+  * [文件I/O \(nio.2\)](/content/essential/io/fileio.md)
+    * [什么是路径？](/content/essential/io/path.md)
+    * [Path类？](/content/essential/io/pathClass.md)
+    * [Path操作](/content/essential/io/pathOps.md)
+    * [文件操作](/content/essential/io/fileOps.md)
     * [检查文件或目录](/content/essential/io/check.md)
     * [删除文件或目录](/content/essential/io/delete.md)
     * [复制文件或目录](/content/essential/io/copy.md)
@@ -72,9 +72,8 @@
     * [监视目录的变化](/content/essential/io/notification.md)
     * [其他有用的方法](/content/essential/io/misc.md)
     * [传统文件I / O代码](/content/essential/io/legacy.md)
-  * [总结](/content/essential/io/summary.md) 
+  * [总结](/content/essential/io/summary.md)
   * [问题和练习](/content/essential/io/questions.md)
-
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
