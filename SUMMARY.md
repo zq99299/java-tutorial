@@ -73,6 +73,7 @@
     * [其他有用的方法](/content/essential/io/misc.md)
     * [传统文件I / O代码](/content/essential/io/legacy.md)
   * [总结](/content/essential/io/summary.md) 
+  * [问题和练习](/content/essential/io/questions.md)
 
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
