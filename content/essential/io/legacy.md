@@ -33,3 +33,16 @@ Files.delete（fp）;
 
 
 ## 将java.io.File函数映射到java.nio.file
+
+由于Java SE 7版本中完全重新构建了文件I / O的Java实现，因此无法交换另一种方法。如果要使用软件包提供的丰富功能`java.nio.file`，您最简单的解决方案是使用`File.toPath`上一节中建议的 方法。但是，如果您不想使用该方法或者不满足您的需要，则必须重写文件I / O代码。
+
+两个API之间没有一对一的对应关系，但下表给出了`java.io.File`API 与`java.nio.file`概念类似的Api，并告诉您可以在哪里获取更多信息。
+
+| java.io.File 功能 | java.nio.file 功能 | 教程覆盖
+|------------------------------------------------
+| java.io.File	| java.nio.file.Path	| [The Path Class](/content/essential/io/pathClass.md)
+| java.io.RandomAccessFile | SeekableByteChannel | [随机访问文件](/content/essential/io/rafs.md)
+| File.canRead, canWrite, canExecute | Files.isReadable, Files.isWritable, and Files.isExecutable.在UNIX文件系统的[管理元数据](/content/essential/io/fileAttr.md)（文件和文件存储属性）包是用来检查九个文件的权限。| [检查文件或目录](/content/essential/io/check.md) [元数据管理](/content/essential/io/fileAttr.md)
+| File.isDirectory(), File.isFile(), and File.length() | Files.isDirectory(Path, LinkOption...), Files.isRegularFile(Path, LinkOption...), and Files.size(Path) | [元数据管理](/content/essential/io/fileAttr.md)
+| File.lastModified() and File.setLastModified(long)	| Files.getLastModifiedTime(Path, LinkOption...) and Files.setLastMOdifiedTime(Path, FileTime) | [元数据管理](/content/essential/io/fileAttr.md)
+| File的这些方法设置文件属性: setExecutable, setReadable, setReadOnly, setWritable | 这些方法替换 File的方法 setAttribute(Path, String, Object, LinkOption...). | [元数据管理](/content/essential/io/fileAttr.md)
