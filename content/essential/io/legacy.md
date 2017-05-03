@@ -47,3 +47,7 @@ Files.delete（fp）;
 | File.lastModified() and File.setLastModified(long)	| Files.getLastModifiedTime(Path, LinkOption...) and Files.setLastMOdifiedTime(Path, FileTime) | [元数据管理](/content/essential/io/fileAttr.md)
 | File的这些方法设置文件属性: setExecutable, setReadable, setReadOnly, setWritable | 这些方法替换 File的方法 setAttribute(Path, String, Object, LinkOption...). | [元数据管理](/content/essential/io/fileAttr.md)
 | new File(parent, "newfile") 基于父目录得到新的文件	| parent.resolve("newfile") | [Path操作](/content/essential/io/pathOps.md)
+| File.renameTo	 | Files.move | [移动文件或目录](/content/essential/io/move.md)
+| File.delete	| Files.delete | [删除文件或目录](/content/essential/io/delete.md)
+| File.createNewFile |	Files.createFile | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
+| File.deleteOnExit |	使用该选项 DELETE_ON_CLOSE 替代 | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
