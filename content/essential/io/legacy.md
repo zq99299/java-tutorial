@@ -58,7 +58,10 @@ Files.delete（fp）;
 | File.getCanonicalPath and getCanonicalFile | Path.toRealPath or normalize | [Path操作 - 转换路径](/content/essential/io/pathOps.md) , [Path操作 - 从路径中删除冗余](/content/essential/io/pathOps.md)
 | File.toURI	| Path.toURI | [Path操作 - 转换路径](/content/essential/io/pathOps.md)
 | File.isHidden	| Files.isHidden | [Path操作 - 检索路径信息](/content/essential/io/pathOps.md)
-| File.list and listFiles | Path.newDirectoryStream | [Path操作 - 检索路径信息](/content/essential/io/dirs.md)
+| File.list and listFiles | Path.newDirectoryStream | [创建和读取目录 - 列出目录的类容](/content/essential/io/dirs.md)
+| File.mkdir and mkdirs	 | Path.createDirectory | [创建和读取目录 - 创建目录](/content/essential/io/dirs.md)
+| File.listRoots	| FileSystem.getRootDirectories | [创建和读取目录 - 列出文件系统的根目录](/content/essential/io/dirs.md)
+| File.getTotalSpace, File.getFreeSpace, File.getUsableSpace	| FileStore.getTotalSpace, FileStore.getUnallocatedSpace, FileStore.getUsableSpace, FileStore.getTotalSpace | [管理元数据（文件和文件存储属性）- 文件存储属性](/content/essential/io/fileAttr.md)
 
 
 
