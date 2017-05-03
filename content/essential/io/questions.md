@@ -14,3 +14,4 @@
 1. Files.newByteChannel返回一个实例SeekableByteChannel，允许您从（或写入）文件中的任何位置读取。 [随机访问文件](/content/essential/io/rafs.md)
 2. 使用 `%n` 参数 而不是 `\n` [格式化](//content/essential/io/formatting.md) 
 3. `Files.probeContentType`方法使用平台的底层文件类型检测器来评估和返回MIME类型。 [其他有用的方法](/content/essential/io/misc.md)
+4. `Files.isSymbolicLink`方法。[ 符号链接或其他](//content/essential/io/links.md)
