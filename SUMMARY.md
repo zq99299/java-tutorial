@@ -72,6 +72,7 @@
     * [监视目录的变化](/content/essential/io/notification.md)
     * [其他有用的方法](/content/essential/io/misc.md)
     * [传统文件I / O代码](/content/essential/io/legacy.md)
+  * [总结](/content/essential/io/summary.md) 
 
 * [并发](/content/essential/concurrency/README.md)
 * [平台环境](/content/essential/environment/README.md)
