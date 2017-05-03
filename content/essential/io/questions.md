@@ -72,3 +72,47 @@ public class CountLetter {
 
 }
 ```
+
+### 练习2.
+文件 datafile以一个单一的方式开始long，告诉您int同一文件中单个数据的偏移量。编写一个获取int数据的程序。什么是int数据？
+
+官方 datafile 文件链接已经404了，所以下面这断代码是标识啥意思。我没有看明白，直接忽略跳过该练习
+```java
+public class FindInt {
+    private Path file;
+
+    FindInt(Path file) {
+        this.file = file;
+    }
+
+    public int seek() throws IOException {
+        int num = -1;
+
+        try (SeekableByteChannel fc = Files.newByteChannel(file)) {
+
+            ByteBuffer buf = ByteBuffer.allocate(8);
+
+            //Get the offset into the file.
+            fc.read(buf);
+            long offset = buf.getLong(0);
+
+            //Seek to the offset location.
+            fc.position(offset);
+            buf.rewind();
+
+            //Read the 'secret' value.
+            fc.read(buf);
+            num = buf.getInt(0);
+        } catch (IOException x) {
+            System.err.println(x);
+        }
+        return num;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Path file = Paths.get("datafile");
+        int num = new FindInt(file).seek();
+        System.out.println("The value is " + num);
+    }
+}
+```
