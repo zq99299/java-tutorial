@@ -54,5 +54,5 @@ Files.delete（fp）;
 | File.createTempFile | Files.createTempFile(Path, String, FileAttributes<?>), Files.createTempFile(Path, String, String, FileAttributes<?>) | [读、写、创建文件 - 创建文件](/content/essential/io/file.md) ， [读、写、创建文件 - 使用I / O流创建和写入文件](/content/essential/io/file.md) ， [读、写、创建文件 - 使用 Channel I/O 读写文件](/content/essential/io/file.md) 
 | File.exists	| Files.exists and Files.notExists | [检查文件或目录](/content/essential/io/check.md)
 | File.compareTo and equals |	Path.compareTo and equals | [Path操作 - 比较两路径](/content/essential/io/pathOps.md)
-| File.getAbsolutePath and getAbsoluteFile | Path.toAbsolutePath [Path操作 - 比较两路径](/content/essential/io/pathOps.md)
+| File.getAbsolutePath and getAbsoluteFile | Path.toAbsolutePath  | [Path操作 - 转换路径](/content/essential/io/pathOps.md)
 
