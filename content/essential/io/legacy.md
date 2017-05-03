@@ -42,7 +42,7 @@ Files.delete（fp）;
 |------------------------------------------------
 | java.io.File	| java.nio.file.Path	| [The Path Class](/content/essential/io/pathClass.md)
 | java.io.RandomAccessFile | SeekableByteChannel | [随机访问文件](/content/essential/io/rafs.md)
-| File.canRead, canWrite, canExecute | Files.isReadable, Files.isWritable, and Files.isExecutable.在UNIX文件系统的[管理元数据](/content/essential/io/fileAttr.md)（文件和文件存储属性）包是用来检查九个文件的权限。| [检查文件或目录](/content/essential/io/check.md) [元数据管理](/content/essential/io/fileAttr.md)
+| File.canRead, canWrite, canExecute | Files.isReadable, Files.isWritable, and Files.isExecutable.在UNIX文件系统的[管理元数据](/content/essential/io/fileAttr.md)（文件和文件存储属性）包是用来检查九个文件的权限。| [检查文件或目录](/content/essential/io/check.md) ，[元数据管理](/content/essential/io/fileAttr.md)
 | File.isDirectory(), File.isFile(), and File.length() | Files.isDirectory(Path, LinkOption...), Files.isRegularFile(Path, LinkOption...), and Files.size(Path) | [元数据管理](/content/essential/io/fileAttr.md)
 | File.lastModified() and File.setLastModified(long)	| Files.getLastModifiedTime(Path, LinkOption...) and Files.setLastMOdifiedTime(Path, FileTime) | [元数据管理](/content/essential/io/fileAttr.md)
 | File的这些方法设置文件属性: setExecutable, setReadable, setReadOnly, setWritable | 这些方法替换 File的方法 setAttribute(Path, String, Object, LinkOption...). | [元数据管理](/content/essential/io/fileAttr.md)
@@ -51,5 +51,7 @@ Files.delete（fp）;
 | File.delete	| Files.delete | [删除文件或目录](/content/essential/io/delete.md)
 | File.createNewFile |	Files.createFile | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
 | File.deleteOnExit |	使用该选项 DELETE_ON_CLOSE 替代 | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)
-| File.createTempFile | Files.createTempFile(Path, String, FileAttributes<?>), Files.createTempFile(Path, String, String, FileAttributes<?>) | [读、写、创建文件 - 创建文件](/content/essential/io/file.md)  [读、写、创建文件 - 使用I / O流创建和写入文件](/content/essential/io/file.md)
+| File.createTempFile | Files.createTempFile(Path, String, FileAttributes<?>), Files.createTempFile(Path, String, String, FileAttributes<?>) | [读、写、创建文件 - 创建文件](/content/essential/io/file.md) ， [读、写、创建文件 - 使用I / O流创建和写入文件](/content/essential/io/file.md) ， [读、写、创建文件 - 使用 Channel I/O 读写文件](/content/essential/io/file.md) 
+| File.exists	| Files.exists and Files.notExists | [检查文件或目录](/content/essential/io/check.md)
+| File.compareTo and equals |	Path.compareTo and equals | [Path操作 - 比较两条路径](//content/essential/io/pathOps.md)
 
