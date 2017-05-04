@@ -19,3 +19,5 @@ for (int i = 0; i < importantInfo.length; i++) {
     System.out.println(importantInfo[i]);
 }
 ```
+
+如果一个线程很长时间没有调用一个抛出`InterruptedException`的方法怎么办？那么它必须定期调用`Thread.interrupted`，如果已经接收到中断，则返回true。例如：
