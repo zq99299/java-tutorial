@@ -78,6 +78,7 @@
   * [进程和线程](/content/essential/concurrency/procthread.md)
   * [线程对象](/content/essential/concurrency/threads.md)
     * [线程的定义和启动](/content/essential/concurrency/runthread.md)
+    * [暂停执行与睡眠](/content/essential/concurrency/sleep.md)
 
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
