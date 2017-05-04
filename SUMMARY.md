@@ -79,7 +79,6 @@
   * [线程对象](/content/essential/concurrency/threads.md)
     * [线程的定义和启动](/content/essential/concurrency/runthread.md)
 
-  
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
 
