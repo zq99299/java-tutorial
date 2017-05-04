@@ -76,6 +76,8 @@
   * [问题和练习](/content/essential/io/questions.md)
 * [并发](/content/essential/concurrency/README.md)
   * [进程和线程](/content/essential/concurrency/procthread.md)
+  * [线程对象](/content/essential/concurrency/threads.md)
+  
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
 
