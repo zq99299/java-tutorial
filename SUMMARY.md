@@ -83,7 +83,7 @@
     * [Joins](/content/essential/concurrency/join.md)
     * [简单示例](/content/essential/concurrency/simple.md)
   * [同步](/content/essential/concurrency/sync.md)
-    *[线程干扰](/content/essential/concurrency/interfere.md)
+    * [线程干扰](/content/essential/concurrency/interfere.md)
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
 
