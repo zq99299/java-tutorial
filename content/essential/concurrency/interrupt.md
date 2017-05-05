@@ -43,4 +43,4 @@ if (Thread.interrupted()) {
 
 中断机制使用称为中断状态的内部标志来实现。调用`Thread.interrupt`设置此标志。当线程通过调用静态方法`Thread.interrupted`检查中断时，中断状态被清除。`isInterrupted`一个线程用于查询另一个线程的中断状态的非静态方法不会改变中断状态标志。
 
-按照惯例，任何方法抛出一个`InterruptedException`异常导致方法退出时。通过调用另一个线程调用interrupt，中断状态总是可以立即重新设置
+按照惯例，任何方法抛出一个`InterruptedException`异常导致方法退出时。通过调用另一个线程调用interrupt，中断状态总是可以立即重新设置。
