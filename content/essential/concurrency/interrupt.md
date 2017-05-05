@@ -21,3 +21,19 @@ for (int i = 0; i < importantInfo.length; i++) {
 ```
 
 如果一个线程很长时间没有调用一个抛出`InterruptedException`的方法怎么办？那么它必须定期调用`Thread.interrupted`，如果已经接收到中断，则返回true。例如：
+```java
+for (int i = 0; i < inputs.length; i++) {
+    heavyCrunch(inputs[i]);
+    if (Thread.interrupted()) {
+        // 已经中断了
+        return;
+    }
+}
+```
+
+在这个简单的例子中，代码只是测试中断并退出线程，如果已经被接收到。在更复杂的应用程序中，抛出InterruptedException：
+```java
+if (Thread.interrupted()) {
+    throw new InterruptedException();
+}
+```
