@@ -37,3 +37,10 @@ if (Thread.interrupted()) {
     throw new InterruptedException();
 }
 ```
+这允许中断处理代码集中在catch子句中。
+
+## 中断状态标志
+
+中断机制使用称为中断状态的内部标志来实现。调用`Thread.interrupt`设置此标志。当线程通过调用静态方法`Thread.interrupted`检查中断时，中断状态被清除。`isInterrupted`一个线程用于查询另一个线程的中断状态的非静态方法不会改变中断状态标志。
+
+按照惯例，任何通过在执行此操作时抛出`InterruptedException`中断状态而退出的方法。但是，通过调用另一个线程，interrupt中断状态总是可以立即重新设置
