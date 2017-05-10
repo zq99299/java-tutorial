@@ -87,6 +87,8 @@
     * [内存一致性错误](/content/essential/concurrency/memconsist.md)
     * [同步方法](/content/essential/concurrency/syncmeth.md)
     * [隐式锁和同步](/content/essential/concurrency/locksync.md)
+    * [原子访问](/content/essential/concurrency/atomic.md)
+  
 
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
