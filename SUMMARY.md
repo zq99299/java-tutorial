@@ -89,6 +89,7 @@
     * [隐式锁和同步](/content/essential/concurrency/locksync.md)
     * [原子访问](/content/essential/concurrency/atomic.md)
   * [活跃度](/content/essential/concurrency/liveness.md)
+    * [死锁](/content/essential/concurrency/deadlock.md)
   
 
 * [平台环境](/content/essential/environment/README.md)
