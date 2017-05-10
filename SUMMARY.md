@@ -91,7 +91,7 @@
   * [活跃度](/content/essential/concurrency/liveness.md)
     * [死锁](/content/essential/concurrency/deadlock.md)
     * [饥饿和活锁](/content/essential/concurrency/starvelive.md)
-
+ * [守护块](/content/essential/concurrency/guardmeth.md)
   
 
 * [平台环境](/content/essential/environment/README.md)
