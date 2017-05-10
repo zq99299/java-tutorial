@@ -25,3 +25,15 @@ public synchronized void guardedJoy() {
 ```
 
 注意：`wait`使用在一个循环中，不要假定中断事件是针对你正在等待的特定条件。一定要条件为真才能中断
+
+像许多暂停执行的方法一样，`wait`可以抛出`InterruptedException`。在这个例子中，我们可以忽略这个异常 - 我们只关心这个值joy。
+
+为什么这个版本是`guardedJoy`同步的？假设d是我们用来调用的对象`wait`。当一个线程调用`d.wait`时，它必须拥有固有的锁d- 否则会抛出一个错误。调用synchronized方法的wait是获取内部锁的简单方法。
+
+当`wait`被调用时，线程释放锁，并暂停执行。在将来的某个时间，另一个线程将获取相同的锁并调用 `Object.notifyAll`，通知所有等待该锁的线程发生了一些重要的事情：
+```java
+public synchronized notifyJoy() {
+    joy = true;
+    notifyAll();
+}
+```
