@@ -93,6 +93,8 @@
     * [饥饿和活锁](/content/essential/concurrency/starvelive.md)
  * [守护块](/content/essential/concurrency/guardmeth.md)
  * [不可变对象](/content/essential/concurrency/immutable.md)
+   * [同步类示例](/content/essential/concurrency/syncrgb.md)
+ 
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
 
