@@ -135,3 +135,65 @@ public class Drop {
     }
 }
 ```
+
+定义的生产者线程 Producer发送一系列熟悉的消息。字符串“DONE”表示已发送所有消息。为了模拟现实世界应用程序的不可预测性质，生产者线程在消息之间暂停随机间隔。
+
+```java
+public class Producer implements Runnable {
+    private Drop drop;
+
+    public Producer(Drop drop) {
+        this.drop = drop;
+    }
+
+    @Override
+    public void run() {
+        String importantInfo[] = {
+                "Mares eat oats",
+                "Does eat oats",
+                "Little lambs eat ivy",
+                "A kid will eat ivy too"
+        };
+        Random random = new Random();
+
+        for (int i = 0;
+             i < importantInfo.length;
+             i++) {
+            drop.put(importantInfo[i]);
+            try {
+                Thread.sleep(random.nextInt(5000));
+            } catch (InterruptedException e) {
+            }
+        }
+        drop.put("DONE");
+    }
+}
+```
+
+
+消费者线程，定义在 Consumer，只是检索消息并打印出来，直到它检索“DONE”字符串。这个线程也会随机停顿。
+```java
+public class Consumer implements Runnable {
+    private Drop drop;
+
+    public Consumer(Drop drop) {
+        this.drop = drop;
+    }
+
+    @Override
+    public void run() {
+        Random random = new Random();
+        for (String message = drop.take();
+             !message.equals("DONE");
+             message = drop.take()) {
+            System.out.format("MESSAGE RECEIVED: %s%n", message);
+            try {
+                Thread.sleep(random.nextInt(5000));
+            } catch (InterruptedException e) {
+            }
+        }
+    }
+}
+```
+
+注意：该Drop课程是为了展示守卫的块而编写的。为避免重新创建轮子，请在尝试编写自己的数据共享对象之前，先检查[Java Collections Framework](//content/collections/README.md)中的现有数据结构 。有关更多信息，请参阅问题和练习部分。
