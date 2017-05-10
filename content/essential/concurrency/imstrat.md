@@ -58,12 +58,6 @@ public final class ImmutableRGB {
      * 反转颜色
      */
     public ImmutableRGB invert() {
-        // 这一段代码好神奇。提示red等变量没有初始化，但是下面构造里面的表达式怎么可以用呢？
-//        int red = 255 - red;
-//        int green = 255 - green;
-//        int blue = 255 - blue;
-//        String name = "Inverse of " + name;
-
         return new ImmutableRGB(255 - red, 255 - green, 255 - blue, "Inverse of " + name);
     }
 }
