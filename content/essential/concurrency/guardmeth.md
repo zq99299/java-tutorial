@@ -196,4 +196,4 @@ public class Consumer implements Runnable {
 }
 ```
 
-注意：该Drop课程是为了展示守卫的块而编写的。为避免重新创建轮子，请在尝试编写自己的数据共享对象之前，先检查[Java Collections Framework](//content/collections/README.md)中的现有数据结构 。有关更多信息，请参阅问题和练习部分。
+注意：该Drop课程是为了展示守卫的块而编写的。为避免重新创建轮子，请在尝试编写自己的数据共享对象之前，先检查[Java Collections Framework](/content/collections/README.md)中的现有数据结构 。有关更多信息，请参阅问题和练习部分。
