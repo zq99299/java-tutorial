@@ -93,3 +93,45 @@ public class Test {
 }
 ```
 如上面这个例子；在test对象中有两个synchronized方法。在外面定义了两个线程，如果`guardedJoy`的`wait`方法不释放锁的话，那么该示例就称为了死锁。
+
+注意：还有一个通知方法`notify`，它唤醒一个线程。因为`notify`不允许你指定被唤醒的线程，所以它只在大规模并行应用程序中是有用的 - 也就是说，具有大量线程的程序，都做类似的事情。在这样的应用程序中，你不在乎哪个线程被唤醒。
+
+让我们使用守护块来创建一个`Producer-Consumer`应用程序。这种应用程序在两个线程之间共享数据：创建数据的生产者和与之相关的消费者。两个线程使用共享对象进行通信。协调是至关重要的：消费者线程不得在生产者线程传递之前尝试检索数据，如果消费者没有检索到旧数据，生产者线程不得尝试传递新数据。
+
+在此示例中，数据是一系列文本消息，它们通过以下类型的对象共享 Drop：
+```java
+public class Drop {
+    // 生产的消息
+    private String message;
+    // 如果为true则消费者应该等待
+    private boolean empty = true;
+
+    public synchronized String take() {
+        // 等待消息直到可用
+        while (empty) {
+            try {
+                wait();
+            } catch (InterruptedException e) {}
+        }
+        // 切换状态
+        empty = true;
+        // 通知生产者，该消息已经消费
+        notifyAll();
+        return message;
+    }
+
+    public synchronized void put(String message) {
+        // 等待消息已经被消费
+        while (!empty) {
+            try {
+                wait();
+            } catch (InterruptedException e) {}
+        }
+        empty = false;
+        // 存储消息
+        this.message = message;
+        // 通知消费者状态已改变
+        notifyAll();
+    }
+}
+```
