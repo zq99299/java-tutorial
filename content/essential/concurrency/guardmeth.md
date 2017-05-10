@@ -37,3 +37,59 @@ public synchronized notifyJoy() {
     notifyAll();
 }
 ```
+
+在第二个线程释放锁时，第一个线程会重新获得锁的调用返回等待
+```java
+public class Test {
+    @org.junit.Test
+    public void test1() throws InterruptedException {
+        final Test test = new Test();
+
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                test.guardedJoy();
+            }
+        });
+        thread.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                    test.notifyJoy();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
+        thread.join();
+    }
+
+    private boolean joy = false;
+
+    public void setJoy(boolean joy) {
+        this.joy = joy;
+    }
+
+    public synchronized void guardedJoy() {
+// 这个守护块只能针对每个特殊事件的循环一次，这可能不会是我们正在等待的事件
+        while (!joy) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+            }
+        }
+        System.out.println("Joy and efficiency have been achieved!");
+    }
+
+    public synchronized void notifyJoy() {
+        this.joy = true;
+        notifyAll();
+    }
+}
+```
+如上面这个例子；在test对象中有两个synchronized方法。在外面定义了两个线程，如果`guardedJoy`的`wait`方法不释放锁的话，那么该示例就称为了死锁。
