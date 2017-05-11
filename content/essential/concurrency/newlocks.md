@@ -8,5 +8,5 @@ Lock最大优点是他们有能力退出获取锁的尝试。`tryLock`如果锁�
 下例使用lock来解决 [Liveness.](/content/essential/concurrency/liveness.md)
 
 ```java
-
+xx
 ```
