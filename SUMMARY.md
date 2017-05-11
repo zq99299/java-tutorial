@@ -96,7 +96,9 @@
    * [同步类示例](/content/essential/concurrency/syncrgb.md)
    * [定义不可变对象的策略](/content/essential/concurrency/imstrat.md)
  * [高级并发对象](/content/essential/concurrency/highlevel.md)
- * [锁对象](/content/essential/concurrency/newlocks.md)
+   * [锁对象](/content/essential/concurrency/newlocks.md)
+   * [执行器](/content/essential/concurrency/executors.md)
+
  
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
