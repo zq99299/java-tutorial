@@ -8,6 +8,7 @@
 通常，引用执行器对象的变量被声明为这三种接口类型之一，而不是执行器类类型。
 
 ## Executor接口
+`Executor`接口提供了一种单一的方法，被设计为一个常用的线程创建方案的替换。如果 r 是一个 `Runnable`对象，e 是一个`Executor`对象
 
 ```java
 (new Thread(r)).start();
@@ -16,3 +17,7 @@ with
 
 e.execute(r);
 ```
+
+但是 `execute` 不太具体。低级的语法创建一个新线程并立即启动它。`Executor`可能会做同样的时间，但更有可能使用现有的工作线程来运行 r。也有可能将r放在队列中等待可用线程。
+
+`java.util.concurrent.Executor` 有两个更高级的子接口`ExecutorService`和`ScheduledExecutorService`接口
