@@ -4,7 +4,7 @@
 1. 你可以传递一个Thread对象Executor.execute吗？这样的调用是否有意义？
 
 ## 练习
-1. 以下代码怎么修改才能让主线程中的message始终都赋值成功,且打印出来？
+1. 以下代码怎么修改才能让主线程中的message始终都赋值成功,且打印出来？是否可以调整两个`sleep`的参数？如何保证始终都有效？
 
     ```java
     public class BadThreads {
