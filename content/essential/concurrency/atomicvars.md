@@ -63,3 +63,15 @@ class AtomicCounter {
 
 }
 ```
+
+! jdk6 上面中文翻译是，预期值 == 新值 就更新成功.难道当前值 == +1之后的值？那还怎么自增？
+```java
+    public final int incrementAndGet() {
+        for (;;) {
+            int current = get();
+            int next = current + 1;
+            if (compareAndSet(current, next))
+                return next;
+        }
+    }
+```
