@@ -270,3 +270,5 @@ public class ForkBlur extends RecursiveAction {
 ## 标准实施
 
 除了使用`fork / join`框架来实现在多处理器系统（例如ForkBlur.java上一节中的示例）中并行执行的任务的自定义算法，Java SE中还有一些通用的功能，它们已经使用`fork / join`实现框架。在`Java SE 8`中引入的一个这样的实现被 `java.util.Arrays`类用于其`parallelSort()`方法。这些方法类似于`sort()`，但通过`fork / join`框架来利用并发。在多处理器系统上运行时，大型阵列的并行排序比顺序排序更快。然而，这些方法如何利用这些`fork / join`框架呢是超出`Java Tutorial`的范围。有关此信息，请参阅Java API文档。
+
+该`java.util.streams`包中的方法使用`fork / join`框架的另一个实现，它是为`Java SE 8`发行版计划的[`Project Lambda`](http://openjdk.java.net/projects/lambda/)的一部分 。有关更多信息，请参阅“Lambda表达式”部分。
