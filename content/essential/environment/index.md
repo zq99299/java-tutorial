@@ -9,7 +9,7 @@
 - 系统实用程
 
     描述在`System`和`Runtime`类中定义的各种API 。
-    
-- `PATH`和`CLASSPATH`
+   
+- PATH和CLASSPATH
 
     描述用于配置JDK开发工具和其他应用程序的环境变量。
