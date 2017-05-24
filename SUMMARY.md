@@ -109,6 +109,7 @@
   * [问题和练习的答案：并发](/content/essential/concurrency/answers.md)
 
 * [平台环境](/content/essential/environment/index.md)
+  - [配置工具](/content/essential/environment/config.md)
 
 ---
 
