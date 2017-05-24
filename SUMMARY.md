@@ -101,7 +101,7 @@
      * [执行器接口](/content/essential/concurrency/exinter.md)
      * [线程池](/content/essential/concurrency/pools.md)
      * [Fork/Join](/content/essential/concurrency/forkjoin.md)
-  * [并发集合](/content/essential/concurrency/collections.md)
+    * [并发集合](/content/essential/concurrency/collections.md)
 
 
  
