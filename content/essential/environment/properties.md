@@ -28,3 +28,29 @@
 * Exiting
 
     退出后，应用程序将属性保存到其知名位置，以便在下次启动应用程序时再次加载该属性。
+    
+## 设置属性对象
+以下Java代码执行前面部分描述的前两个步骤：加载默认属性并加载记住的属性：
+```java
+. . .
+// 创建并加载默认值
+Properties defaultProps = new Properties();
+FileInputStream in = new FileInputStream("defaultProperties");
+defaultProps.load(in);
+in.close();
+
+// 创建应用程序属性
+Properties applicationProps = new Properties(defaultProps);
+
+// 现在加载属性
+in = new FileInputStream("appProperties");
+applicationProps.load(in);
+in.close();
+. . .
+```
+
+首先，应用程序设置一个默认`Properties`对象。此对象包含要在其他地方未显式设置值时要使用的一组属性。然后，`load`方法从名为defaultProperties的文件读取默认值。
+
+接下来，应用程序使用不同的构造函数创建第二个`Properties`对象`applicationProps`，其中包含默认值`defaultProps`。当检索到属性时，默认值将起作用。如果找不到该属性`applicationProps`，则搜索其默认列表。
+
+最后，代码`applicationProps`从一个名为的文件中加载一组属性`appProperties`。该文件中的属性是从上次调用应用程序中保存的属性，如下一节所述。
