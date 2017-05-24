@@ -110,6 +110,8 @@
 
 * [平台环境](/content/essential/environment/index.md)
   - [配置工具](/content/essential/environment/config.md)
+  - [属性](/content/essential/environment/properties.md)
+
 
 ---
 
