@@ -91,25 +91,24 @@
   * [活跃度](/content/essential/concurrency/liveness.md)
     * [死锁](/content/essential/concurrency/deadlock.md)
     * [饥饿和活锁](/content/essential/concurrency/starvelive.md)
- * [守护块](/content/essential/concurrency/guardmeth.md)
- * [不可变对象](/content/essential/concurrency/immutable.md)
-   * [同步类示例](/content/essential/concurrency/syncrgb.md)
-   * [定义不可变对象的策略](/content/essential/concurrency/imstrat.md)
- * [高级并发对象](/content/essential/concurrency/highlevel.md)
-   * [锁对象](/content/essential/concurrency/newlocks.md)
-   * [执行器](/content/essential/concurrency/executors.md)
-     * [执行器接口](/content/essential/concurrency/exinter.md)
-     * [线程池](/content/essential/concurrency/pools.md)
-     * [Fork/Join](/content/essential/concurrency/forkjoin.md)
+  * [守护块](/content/essential/concurrency/guardmeth.md)
+  * [不可变对象](/content/essential/concurrency/immutable.md)
+    * [同步类示例](/content/essential/concurrency/syncrgb.md)
+    * [定义不可变对象的策略](/content/essential/concurrency/imstrat.md)
+  * [高级并发对象](/content/essential/concurrency/highlevel.md)
+    * [锁对象](/content/essential/concurrency/newlocks.md)
+    * [执行器](/content/essential/concurrency/executors.md)
+      * [执行器接口](/content/essential/concurrency/exinter.md)
+      * [线程池](/content/essential/concurrency/pools.md)
+      * [Fork/Join](/content/essential/concurrency/forkjoin.md)
     * [并发集合](/content/essential/concurrency/collections.md)
     * [原子变量](/content/essential/concurrency/atomicvars.md)
     * [并发随机数](/content/essential/concurrency/threadlocalrandom.md)
   * [进一步阅读](/content/essential/concurrency/further.md)
-  * [问题和联系：并发](/content/essential/concurrency/questions.md)
+  * [问题和练习：并发](/content/essential/concurrency/questions.md)
 
+---
 
-
- 
 * [平台环境](/content/essential/environment/README.md)
 * [正则表达式](/content/essential/regex/README.md)
 
