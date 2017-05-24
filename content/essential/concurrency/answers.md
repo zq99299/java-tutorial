@@ -26,6 +26,10 @@
     第三种技术是简单地声明message为volatile。它们可能会顺序发生，但是由于调度的不确定性和未知的粒度sleep，这是不能保证的。
     
     改变两个sleep调用的参数也没有帮助，因为这并不能保证在关系之前发生。
+    
+2. 修改 [守护块](/content/essential/concurrency/guardmeth.md) 中的生产者 - 消费者示例，以使用标准库类而不是 `Drop` 类
+
+
 
 
     
