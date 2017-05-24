@@ -26,6 +26,103 @@ if(我的工作足够小){
 通过一次处理一个像素的源数组来实现模糊。每个像素的周围像素（红色，绿色和蓝色分量被平均）进行平均，并将结果放在目标数组中。由于图像是一个大阵列，这个过程可能需要很长时间。您可以通过使用fork / join框架实现算法来利用多处理器系统上的并发处理。这是一个可能的实现：
 
 1. 来看这部分代码。
+    ```java
+    public class ForkBlur extends RecursiveAction {
+        private int[] mSource;
+        private int mStart;
+        private int mLength;
+        private int[] mDestination;
+    
+        //  处理大小，应该是奇数
+        private int mBlurWidth = 15;
+    
+        /**
+         * @param src    源
+         * @param start  开始处理索引
+         * @param length 处理个数
+         * @param dst    目标承载
+         */
+        public ForkBlur(int[] src, int start, int length, int[] dst) {
+            mSource = src;
+            mStart = start;
+            mLength = length;
+            mDestination = dst;
+        }
+            /**
+         * 计算平均值和填充目标值的逻辑，如果看不懂可以不必深究
+         */
+        protected void computeDirectly() {
+            int sidePixels = (mBlurWidth - 1) / 2;
+            for (int index = mStart; index < mStart + mLength; index++) {
+                // 计算平均值
+                float rt = 0, gt = 0, bt = 0;
+                for (int mi = -sidePixels; mi <= sidePixels; mi++) {
+                    int mindex = Math.min(Math.max(mi + index, 0),
+                                          mSource.length - 1);
+                    int pixel = mSource[mindex];
+                    rt += (float) ((pixel & 0x00ff0000) >> 16)
+                            / mBlurWidth;
+                    gt += (float) ((pixel & 0x0000ff00) >> 8)
+                            / mBlurWidth;
+                    bt += (float) ((pixel & 0x000000ff) >> 0)
+                            / mBlurWidth;
+                }
+    
+                // 重组目标像素
+                int dpixel = (0xff000000) |
+                        (((int) rt) << 16) |
+                        (((int) gt) << 8) |
+                        (((int) bt) << 0);
+                mDestination[index] = dpixel;
+            }
+        }
+    ...    
+    ```
+2. 使用fork / join框架必须实现的一个方法，在这里进行任务的拆分
+
+    ```java
+        protected static int sThreshold = 100000;
+    
+        /**
+         * 现在您实现了抽象compute()方法，它可以直接执行模糊，也可以将其分成两个较小的任务。
+         * 简单的数组长度阈值有助于确定工作是执行还是拆分。
+         */
+        @Override
+        protected void compute() {
+            // 如果当前处理的个数小于 定义的 100000 个，那么就直接计算
+            if (mLength < sThreshold) {
+                computeDirectly();
+                return;
+            }
+    
+            // 否则进行拆分成2个任务
+            int split = mLength / 2;
+    
+            // 第一个任务处理：前一半的工作
+            // 第二个任务处理：剩下的工作
+            invokeAll(new ForkBlur(mSource, mStart, split, mDestination),
+                      new ForkBlur(mSource, mStart + split, mLength - split,
+                                   mDestination));
+        }
+    ```
+
+3. 启动这个任务
+
+    1. 创建实例
+    ```java
+    ForkBlur fb = new ForkBlur(src, 0, src.length, dst);
+    Create the ForkJoinPool that will run the task.
+    ```
+    2. 创建池
+    ```java
+    ForkJoinPool pool = new ForkJoinPool();
+    ```
+    3. 运行任务
+    ```java
+    pool.invoke(fb);
+    ```
+
+下面是完整的代码  和 测试：
 ```java
 public class ForkBlur extends RecursiveAction {
     private int[] mSource;
@@ -48,7 +145,8 @@ public class ForkBlur extends RecursiveAction {
         mLength = length;
         mDestination = dst;
     }
-        /**
+
+    /**
      * 计算平均值和填充目标值的逻辑，如果看不懂可以不必深究
      */
     protected void computeDirectly() {
@@ -76,11 +174,7 @@ public class ForkBlur extends RecursiveAction {
             mDestination[index] = dpixel;
         }
     }
-...    
-```
-2. 使用fork / join框架必须实现的一个方法，在这里进行任务的拆分
 
-```java
     protected static int sThreshold = 100000;
 
     /**
@@ -104,16 +198,71 @@ public class ForkBlur extends RecursiveAction {
                   new ForkBlur(mSource, mStart + split, mLength - split,
                                mDestination));
     }
+
+
+    // Plumbing follows.
+    public static void main(String[] args) throws Exception {
+        String srcName = "d:/23_iso100_14mm.jpg";
+        File srcFile = new File(srcName);
+        BufferedImage image = ImageIO.read(srcFile);
+
+        System.out.println("原图: " + srcName);
+
+        BufferedImage blurredImage = blur(image);
+
+        String dstName = "d:/23_iso100_14mm-dst.jpg";
+        File dstFile = new File(dstName);
+        ImageIO.write(blurredImage, "jpg", dstFile);
+
+        System.out.println("输出图: " + dstName);
+
+    }
+
+    public static BufferedImage blur(BufferedImage srcImage) {
+        int w = srcImage.getWidth();
+        int h = srcImage.getHeight();
+
+        int[] src = srcImage.getRGB(0, 0, w, h, null, 0, w);
+        int[] dst = new int[src.length];
+
+        System.out.println("像素数组大小：" + src.length);
+        System.out.println("边界大小：" + sThreshold);
+
+        int processors = Runtime.getRuntime().availableProcessors();
+        System.out.println(Integer.toString(processors) + " 个处理器可用");
+
+        // 使用一个fork，我们最终是想要处理完这一个图片。所以这里的输入参数是 0 - src.length
+        // 但是处理里面会根据定义的边界进行递归细分任务
+        ForkBlur fb = new ForkBlur(src, 0, src.length, dst);
+
+        // 再定义一个池
+        ForkJoinPool pool = new ForkJoinPool();
+
+        long startTime = System.currentTimeMillis();
+        // 提交给池
+        pool.invoke(fb);
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("图形模糊耗时 " + (endTime - startTime) +
+                                   " milliseconds.");
+
+        BufferedImage dstImage =
+                new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        dstImage.setRGB(0, 0, w, h, dst, 0, w);
+
+        return dstImage;
+    }
+}
+```
+测试输出如下：
+
+```java
+原图: d:/23_iso100_14mm.jpg
+像素数组大小：9980928
+边界大小：100000
+4 个处理器可用
+图形模糊耗时 560 milliseconds.
+输出图: d:/23_iso100_14mm-dst.jpg
 ```
 
-3. 启动这个任务
-
-1. 创建实例
-    ```java
-    ForkBlur fb = new ForkBlur(src, 0, src.length, dst);
-    Create the ForkJoinPool that will run the task.
-    ```
-ForkJoinPool pool = new ForkJoinPool();
-Run the task.
-
-pool.invoke(fb);
+这个类的效果就是，把图片模糊得不能再模糊了。但是大体轮廓能看出来，颜色风格被改变了，5m的图片处理后变成了700k
