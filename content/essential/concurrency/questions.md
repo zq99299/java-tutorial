@@ -1,4 +1,6 @@
 # 问题和练习
+
+1. 
 ```java
 public class BadThreads {
 
@@ -27,3 +29,8 @@ public class BadThreads {
     }
 }
 ```
+
+怎么修改才能让主线中中的message赋值成功？
+
+2. 修改 [守护块](/content/essential/concurrency/guardmeth.md) 中的生产者 - 消费者示例，以使用标准库类而不是 `Drop` 类
+
