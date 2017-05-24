@@ -88,3 +88,17 @@ out.close();
 
 * size()
     返回当前的键/值对数。
+    
+    
+## 设置属性
+用户与应用程序在执行过程中的交互可能会影响属性设置。这些更改应反映在`Properties`对象中，以便在应用程序退出时调用它们（并调用`store`方法）。以下方法更改`Properties`对象中的属性：
+
+* setProperty(String key, String value)
+    
+    将key/value放入对象
+
+* remove(Object key)
+
+    移除指定的key
+    
+注意：  上面描述的一些方法是在Hashtable其中定义的，因此接受除了以外的键和值参数类型`String`。始终使用`Strings`键和值，即使该方法允许其他类型。也不要调用`Hashtable.set`或`Hastable.setAll`; 总是使用`Properties.setProperty`。
