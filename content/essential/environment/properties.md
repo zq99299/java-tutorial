@@ -54,3 +54,37 @@ in.close();
 接下来，应用程序使用不同的构造函数创建第二个`Properties`对象`applicationProps`，其中包含默认值`defaultProps`。当检索到属性时，默认值将起作用。如果找不到该属性`applicationProps`，则搜索其默认列表。
 
 最后，代码`applicationProps`从一个名为的文件中加载一组属性`appProperties`。该文件中的属性是从上次调用应用程序中保存的属性，如下一节所述。
+
+## 保存属性
+以下示例使用上一个示例写出应用程序属性`Properties.store`。默认属性不需要每次保存，因为它们不会更改。
+```java
+FileOutputStream out = new FileOutputStream("appProperties");
+applicationProps.store(out, "---No Comment---");
+out.close();
+```
+该store方法需要一个流写入，以及一个字符串，它用作输出顶部的注释。
+
+## 获取属性信息
+一旦应用程序设置了其`Properties`对象，应用程序可以查询对象以获取有关其所包含的各种键和值的信息。应用程序在启动后从`Properties`对象获取信息，以便可以根据用户的选择对其进行初始化。本`Properties`类有获取属性信息的几种方法：
+
+* contains(Object value) 和 containsKey(Object key)
+
+    返回true，value或key是否在Properties对象中。Properties继承Hashtable这些方法。因此，他们接受Object对象，但只能使用String值。
+
+* getProperty(String key) 和 getProperty(String key, String default)
+
+    返回指定属性的值。第二个版本提供了默认值。如果找不到键，则返回默认值。
+    
+* list(PrintStream s) 和 list(PrintWriter w)
+    所有属性写入指定的流或作者。这对调试非常有用。
+
+* elements()，keys()，和propertynames（）
+
+    返回包含Enumeration对象中包含的键或值（如方法名称所示）Properties。该keys方法仅返回对象本身的键; 该propertyNames方法也返回默认属性的键。
+
+* stringPropertyNames()
+
+    喜欢propertyNames，但返回一个Set<String>，只返回属性的名称，其中key和value都是字符串。请注意，Set对象不受对象的支持Properties，因此一个对象的更改不会影响对方。
+
+* size()
+    返回当前的键/值对数。
