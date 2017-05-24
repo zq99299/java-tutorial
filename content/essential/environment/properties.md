@@ -76,7 +76,7 @@ out.close();
     返回指定属性的值。第二个版本提供了默认值。如果找不到键，则返回默认值。
     
 * list(PrintStream s) 和 list(PrintWriter w)
-    所有属性写入指定的流或作者。这对调试非常有用。
+    将属性列表输出到指定的输出流。此方法对调试很有用。
 
 * elements()，keys()，和propertynames（）
 
@@ -84,7 +84,7 @@ out.close();
 
 * stringPropertyNames()
 
-    喜欢propertyNames，但返回一个Set<String>，只返回属性的名称，其中key和value都是字符串。请注意，Set对象不受对象的支持Properties，因此一个对象的更改不会影响对方。
+    喜欢propertyNames，但返回一个Set<String>，只返回属性的名称，其中key和value都是字符串。请注意，Set对象不受Properties对象的支持，因此一个对象的更改不会影响对方。
 
 * size()
     返回当前的键/值对数。
