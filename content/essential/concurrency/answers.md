@@ -29,6 +29,11 @@
     
 2. 修改 [守护块](/content/essential/concurrency/guardmeth.md) 中的生产者 - 消费者示例，以使用标准库类而不是 `Drop` 类
 
+解决方案：
+`java.util.concurrent.BlockingQueue`接口定义了get阻塞队列为空，以及阻止队列已满的put方法。这些是有效的定义的操作`Drop`除了`Drop`不是队列！ 所以在前面的例子中，直接把 Drop换成`BlockingQueue`即可
+
+`BlockingQueue`几乎是Drop一个替代品。在主要的问题是`Producer`，随着BlockingQueue中，put和get方法抛出`InterruptedException`。这意味着现有的`try`必须向上移动一个级别：
+
 
 
 
