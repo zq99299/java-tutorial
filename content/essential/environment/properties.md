@@ -8,3 +8,6 @@
 * 列出key及其value，
 * 列举key
 * 将属性保存到流。
+
+有关流的介绍，请参阅[基本I / O课程中的 I / O流部分 ](/content/essential/io/streams.md)。
+![](/assets/essential/environment/environment-1loads.gif)
