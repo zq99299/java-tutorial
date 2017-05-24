@@ -104,7 +104,7 @@
     * [并发集合](/content/essential/concurrency/collections.md)
     * [原子变量](/content/essential/concurrency/atomicvars.md)
     * [并发随机数](/content/essential/concurrency/threadlocalrandom.md)
-
+  * [进一步阅读](/content/essential/concurrency/further.md)
 
 
  
