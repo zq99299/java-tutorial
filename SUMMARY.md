@@ -107,7 +107,8 @@
   * [进一步阅读](/content/essential/concurrency/further.md)
   * [问题和练习：并发](/content/essential/concurrency/questions.md)
   * [问题和练习的答案：并发](/content/essential/concurrency/answers.md)
-  
+
+* [平台环境](/content/essential/environment/index.md)
 
 ---
 
