@@ -21,7 +21,8 @@
     },
     "anchor-navigation-ex":{
         "associatedWithSummary":true,
-        "multipleH1":false
+        "multipleH1":false,
+        "printLog":true
     },
      "page-footer-ex": {
          "copyright": "[mrcode](http://blog.csdn.net/mr_zhuqiang)",
