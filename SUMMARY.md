@@ -109,11 +109,11 @@
   * [问题和练习的答案：并发](/content/essential/concurrency/answers.md)
 
 * [平台环境](/content/essential/environment/index.md)
-  - [配置工具](/content/essential/environment/config.md)
-  - [属性](/content/essential/environment/properties.md)
-  - [命令行参数](/content/essential/environment/cmdLineArgs.md)
-  - [环境变量](/content/essential/environment/env.md)
-  - [其他配置实用程序](/content/essential/environment/other.md)
+  * [配置工具](/content/essential/environment/config.md)
+    - [属性](/content/essential/environment/properties.md)
+    - [命令行参数](/content/essential/environment/cmdLineArgs.md)
+    - [环境变量](/content/essential/environment/env.md)
+    - [其他配置实用程序](/content/essential/environment/other.md)
   
 ---
 
