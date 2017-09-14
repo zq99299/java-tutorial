@@ -3,6 +3,7 @@
 
 ## 解析令牌输入
 默认情况下，`Scanner`使用空格分隔标记。（空格标记包括空格，制表符和行终止符），有关完整列表，请参阅`Character.isWhitespace`，要知道`Scanner`是如何工作的，我们来看看 ScanXan一个读取单个单词 xanadu.txt并打印出来的程序：
+
 ```java
 public class ScanXan {
     public static void main(String[] args) throws IOException {
@@ -109,7 +110,7 @@ public class ScanSum {
 }
 ```
 
-````java
+```java
 ------------- usnumbers.txt ------------------
 8.5
 32,767
