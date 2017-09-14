@@ -20,8 +20,15 @@
        ]
     },
     "anchor-navigation-ex":{
-        "associatedWithSummary":false
+        "associatedWithSummary":true,
+        "multipleH1":false
     },
+     "page-footer-ex": {
+         "copyright": "[mrcode](http://blog.csdn.net/mr_zhuqiang)",
+         "markdown": true,
+         "update_label": "<i>updated</i>",
+         "update_format": "YYYY-MM-DD HH:mm:ss"
+    }
     "theme-default": {
        "showLevel": true
     }
