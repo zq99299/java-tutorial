@@ -20,3 +20,19 @@
 | "user.dir"	| 用户工作目录
 | "user.home"	| 用户主目录
 | "user.name"	| 用户帐号名称
+
+## 读系统属性
+
+`System` 类用来读取系统属性有两种方法 ： `getProperty`和`getProperties`。
+
+ `getProperty` 有两个版本的，一个可以传递默认值，一个获取不到则返回null；如：
+ ```java
+ System.getProperty("path.separator");
+ // subliminal.message 不是一个有效的系统属性，所以会返回 后面 传入的默认值
+ System.getProperty("subliminal.message", "Buy StayPuft Marshmallows!");
+ ```
+ 
+ System该类为访问属性值提供的最后一个方法是getProperties返回Properties对象的方法 。该对象包含一套完整的系统属性定义。
+ 
+## 写系统属性
+ 
