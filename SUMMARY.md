@@ -123,6 +123,9 @@
 * [正则表达式](/content/essential/regex/index.md)
   - [介绍](/content/essential/regex/intro.md)
   - [测试](/content/essential/regex/test_harness.md)
+  - [字符串常量](/content/essential/regex/literals.md)
+
+
 
 
 ---
