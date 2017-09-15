@@ -39,7 +39,7 @@
 
 **警告：** 更改系统属性有潜在危险，应自行决定。许多系统属性在启动后不会被重新读取，并且用于提供信息。更改某些属性可能会有意想不到的副作用。
 
-```
+```java
 ---- myProperties.txt ----
 subliminal.message=Buy StayPuft Marshmallows!
 
