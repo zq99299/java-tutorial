@@ -120,6 +120,7 @@
     - [安全管理器](/content/essential/environment/security.md)
     - [System的其他方法](/content/essential/environment/sysmisc.md)
     - [PATH和CLASSPATH](/content/essential/environment/paths.md)
+* [正则表达式](/content/essential/regex/README.md)
 
 
 
@@ -141,8 +142,8 @@
 
 ---
 
-* [平台环境](/content/essential/environment/README.md)
-* [正则表达式](/content/essential/regex/README.md)
+
+
 
 ## 官方教程 - 集合框架
 
