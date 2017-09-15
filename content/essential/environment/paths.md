@@ -66,3 +66,20 @@ For ksh, bash, or sh:
 % . /.profile
 % java -version
 ```
+
+## 检查CLASSPATH变量（所有平台）
+CLASSPATH变量是一种告诉应用程序的方法，包括JDK工具，在哪里查找用户类。（作为JRE，JDK平台和扩展的一部分的类应通过其他方式定义，例如引导类路径或扩展名目录。）
+
+指定类路径的首选方法是使用`-cp`命令行开关。这允许CLASSPATH为每个应用程序单独设置，而不会影响其他应用程序。设置CLASSPATH可能很棘手，应该小心执行。
+
+类路径的默认值为“.”，表示只搜索当前目录。指定CLASSPATH变量或`-cp`命令行开关将覆盖此值。
+
+要检查是否CLASSPATH在Microsoft Windows NT / 2000 / XP上设置，请执行以下操作：
+```
+C:> echo %CLASSPATH%
+```
+在Solaris或Linux上，执行以下操作：
+
+```
+$ echo $CLASSPATH
+```
