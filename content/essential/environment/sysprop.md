@@ -38,4 +38,23 @@
 要修改现有的系统属性集，请使用`System.setProperties`。此方法接受已初始化的`Properties`对象，以包含要设置的属性。此方法用`Properties`对象表示的新集合替换整个系统属性集。
 
 **警告：** 更改系统属性有潜在危险，应自行决定。许多系统属性在启动后不会被重新读取，并且用于提供信息。更改某些属性可能会有意想不到的副作用。
+
+```
+---- myProperties.txt ----
+subliminal.message=Buy StayPuft Marshmallows!
+
+---- Test code ----
+        String path = PropertiesTest.class.getResource("/myProperties.txt").getPath();
+        FileInputStream propFile = new FileInputStream(path);
+        // 把系统属性设置为默认值的
+        Properties p = new Properties(System.getProperties());
+        // 从文件中读取配置
+        p.load(propFile);
+
+        System.out.println(p);
+        // 文件中是没有 java.version 这个属性的，但是能获取到值，就是上面初始化Properties的时候传入的系统属性
+        System.out.println(p.getProperty("java.version"));
+        System.getProperties().list(System.out);
+```
+
  
