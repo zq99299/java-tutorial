@@ -83,3 +83,7 @@ C:> echo %CLASSPATH%
 ```
 $ echo $CLASSPATH
 ```
+
+要修改CLASSPATH，请使用与PATH变量相同的过程。
+
+类路径通配符允许您在类路径中包含整个.jar文件目录，而不必单独明确地命名它们。有关详细信息，包括类路径通配符的说明以及有关如何清理CLASSPATH环境变量的详细说明，请参阅 [设置类路径技术说明](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html)。
