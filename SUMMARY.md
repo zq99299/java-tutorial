@@ -107,31 +107,22 @@
   * [进一步阅读](/content/essential/concurrency/further.md)
   * [问题和练习：并发](/content/essential/concurrency/questions.md)
   * [问题和练习的答案：并发](/content/essential/concurrency/answers.md)
-
 * [平台环境](/content/essential/environment/index.md)
-  - [配置工具](/content/essential/environment/config.md)
+  * [配置工具](/content/essential/environment/config.md)
     * [属性](/content/essential/environment/properties.md)
     * [命令行参数](/content/essential/environment/cmdLineArgs.md)
     * [环境变量](/content/essential/environment/env.md)
     * [其他配置实用程序](/content/essential/environment/other.md)
-  - [系统工具](/content/essential/environment/system.md)
+  * [系统工具](/content/essential/environment/system.md)
     * [命令行IO对象](/content/essential/environment/cl.md)
     * [系统属性](/content/essential/environment/sysprop.md)
     * [安全管理器](/content/essential/environment/security.md)
     * [System的其他方法](/content/essential/environment/sysmisc.md)
     * [PATH和CLASSPATH](/content/essential/environment/paths.md)
 * [正则表达式](/content/essential/regex/index.md)
-  - [介绍](/content/essential/regex/intro.md)
-  - [测试](/content/essential/regex/test_harness.md)
-  - [字符串常量](/content/essential/regex/literals.md)
-
-
-
-
----
-
-
-
+  * [介绍](/content/essential/regex/intro.md)
+  * [测试](/content/essential/regex/test_harness.md)
+  * [字符串文字](/content/essential/regex/literals.md)
 
 ## 官方教程 - 集合框架
 
