@@ -35,30 +35,34 @@ echo %SystemRoot%
 $ java -version
 ```
 如果上面的命令报错了，则该系统还未设置java的环境变量。
+
+对于 shell (csh)在文件(~/.cshrc)中
 ```bash
-For C shell (csh), edit the startup file (~/.cshrc):
-
 set path=(/usr/local/jdk1.7.0/bin $path)
-For bash, edit the startup file (~/.bashrc):
+```
 
+
+对于 bash(csh)在文件(~/.bashrc)中
+```bash
 PATH=/usr/local/jdk1.7.0/bin:$PATH
 export PATH
-For ksh, the startup file is named by the environment variable, ENV. To set the path:
-
+```
+对于 sh 在文件(~/.profile)中
+```bash
 PATH=/usr/local/jdk1.7.0/bin:$PATH
 export PATH
-For sh, edit the profile file (~/.profile):
+```
 
-PATH=/usr/local/jdk1.7.0/bin:$PATH
-export PATH
-Then load the startup file and verify that the path is set by repeating the java command:
+然后重新加载资源文件，再重复验证java 命令是否正确设置
 
 For C shell (csh):
-
+```bash
 % source ~/.cshrc
 % java -version
-For ksh, bash, or sh:
+```
 
+For ksh, bash, or sh:
+```bash
 % . /.profile
 % java -version
 ```
