@@ -23,7 +23,7 @@ regexTest("foo", "foofoofoo");
 
 ## 元字符
 
-该API还支持一些影响模式匹配方式的特殊字符。将正则表达式更改为cat.输入字符串cats。输出将显示如下：
+该API还支持一些影响模式匹配方式的特殊字符。将正则表达式更改为`cat.`输入字符串cats。输出将显示如下：
 ```java
 regexTest("cat.", "cats");
 ```
