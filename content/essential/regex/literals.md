@@ -25,8 +25,8 @@ regexTest("foo", "foofoofoo");
 
 该API还支持一些影响模式匹配方式的特殊字符。将正则表达式更改为cat.输入字符串cats。输出将显示如下：
 ```java
-regexTest("cat", "cats");
+regexTest("cat.", "cats");
 ```
 ```bash
-我发现文本中的 "cat" 在开始索引 0 和 结束索引 3.
+我发现文本中的 "cats" 在开始索引 0 和 结束索引 4.
 ```
