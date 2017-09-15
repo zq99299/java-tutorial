@@ -16,3 +16,12 @@ SecurityManager appsm = System.getSecurityManager();
 一旦应用程序对安全管理器对象的引用，它可以请求许可来执行特定的事情。标准库中的许多类都这样做。例如，`System.exit`它终止具有退出状态的Java虚拟机，调用`SecurityManager.checkExit`以确保当前线程有权关闭应用程序。
 
 `SecurityManager`类定义了许多用于验证其他类型操作的其他方法。例如，`SecurityManager.checkAccess`验证线程访问，`SecurityManager.checkPropertyAccess`验证对指定属性的访问。每个操作或一组操作有自己的checkXXX()方法，此外，该组方法标识已经收到安全管理器保护的一组操作。通常，应用程序不需要直接调用任何检查XXX（）方法.
+
+## 认识违反安全的行为
+许多没有安全管理器的常规操作可能会抛出 `SecurityException`运行时异常。例如，考虑以下用于读取文件的代码：
+```java
+reader = new FileReader("xanadu.txt")
+```
+在没有安全管理器的情况下，此语句无错误地执行，只要xanadu.txt存在并且是可读的。但是假设这个语句被插入到一个web applet中，该applet通常在不允许文件输入的安全管理器下运行。可能会导致以下错误消息：
+
+applet 没有接触过，不深入了。
