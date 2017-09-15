@@ -122,7 +122,8 @@
     * [PATH和CLASSPATH](/content/essential/environment/paths.md)
 * [正则表达式](/content/essential/regex/index.md)
   - [介绍](/content/essential/regex/intro.md)
-  
+  - [测试](/content/essential/regex/test_harness.md)
+
 
 ---
 
