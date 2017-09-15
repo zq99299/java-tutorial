@@ -117,6 +117,7 @@
   * [系统工具](/content/essential/environment/system.md)
     - [命令行IO对象](/content/essential/environment/cl.md)
     - [系统属性](/content/essential/environment/sysprop.md)
+    - [安全管理器](/content/essential/environment/security.md)
 
 
 
