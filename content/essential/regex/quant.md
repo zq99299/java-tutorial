@@ -209,14 +209,20 @@ No match found.
 类似地，我们可以对整个字符类应用量词：
 ```java
 ---- Test code ----
+System.out.println("===  [abc]{3}");
 regexTest("[abc]{3}", "abccabaaaccbbbc");
+System.out.println("===  abc{3}");
+regexTest("abc{3}", "abccabaaaccbbbc");
 
 ---- Output ----
+===  [abc]{3}
 我发现文本中的 "abc" 在开始索引 0 和 结束索引 3.
 我发现文本中的 "cab" 在开始索引 3 和 结束索引 6.
 我发现文本中的 "aaa" 在开始索引 6 和 结束索引 9.
 我发现文本中的 "ccb" 在开始索引 9 和 结束索引 12.
 我发现文本中的 "bbc" 在开始索引 12 和 结束索引 15.
+===  abc{3}
+No match found.
 ```
 
 
