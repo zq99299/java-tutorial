@@ -27,3 +27,6 @@
 * `public String replaceAll(String replacement)`：将与模式匹配的输入序列的每个子序列替换为给定的替换字符串。
 * `public String replaceFirst(String replacement)`：将与模式匹配的输入序列的第一个子序列替换为给定的替换字符串。
 * `public static String quoteReplacement(String s)`：返回String指定的文字替换String。该方法产生一个在类的方法中String作为文字替换s的appendReplacement方法Matcher。所String产生的字符串s将作为字面序列处理。斜杠（'\'）和美元符号（'$'）将没有特殊意义。
+
+## 使用 start 和 end 方法
+下面的例子中将计算输入字符串中出现“dog”一词的次数。
