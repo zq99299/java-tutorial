@@ -161,3 +161,14 @@ regexTest("a{3}", "aaaaaaaaa");
 我发现文本中的 "aaa" 在开始索引 3 和 结束索引 6.
 我发现文本中的 "aaa" 在开始索引 6 和 结束索引 9.
 ```
+
+要求模式至少出现n次，在数字后添加一个逗号：
+```java
+---- Test code ----
+regexTest("a{3,}", "aaaaaaaaa");
+
+---- Output ----
+我发现文本中的 "aaaaaaaaa" 在开始索引 0 和 结束索引 9.
+```
+
+
