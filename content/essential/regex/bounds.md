@@ -55,19 +55,13 @@ System.out.println("===  \\bdog\\b");
 regexTest("\\bdog\\b", " The dog plays in the yard.");
 System.out.println("===  \\bdog\\b");
 regexTest("\\bdog\\b", " The doggie plays in the yard.");
-System.out.println("===  \\bdog");
-regexTest("\\bdog", " The doggie plays in the yard.");
 
 ---- Output ----
 ===  \bdog\b
 我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
 ===  \bdog\b
 No match found.
-===  \bdog
-我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
 
 ```
-第一个例子是成功的，因为该模式完全匹配
-第二个例子是失败的，因为这里不允许dog是一个子串，而是一个独立的单词
-第三个例子是成功的，因为运行右侧不是边界
+
 
