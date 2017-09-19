@@ -117,3 +117,18 @@ split方法是一种很好的工具，用于收集位于匹配模式两侧的文
 [one, two, three, four, five]
 
 ```
+
+为了简单起见，我们匹配了字符串文字，冒号（:）而不是复杂的正则表达式。。由于我们仍在使用Pattern和Matcher对象，您可以使用split来获取任何正则表达式两边的文本。这是同样的例子，按数字拆分
+
+```java
+    String REGEX = "\\d";
+    String INPUT = "one9two4three7four1five";
+    Pattern pattern = Pattern.compile(REGEX);
+    String[] split = pattern.split(INPUT);
+    System.out.println(Arrays.toString(split));
+
+---- Output ----
+[one, two, three, four, five]
+
+
+```
