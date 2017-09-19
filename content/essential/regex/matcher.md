@@ -56,3 +56,5 @@ while (m.find()) {
 
 # 使用matches和lookingAt方法
 
+matches和lookingAt方法都尝试将输入序列与模式进行匹配。
+
