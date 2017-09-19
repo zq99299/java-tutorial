@@ -59,14 +59,12 @@ System.out.println("===  \\bdog");
 regexTest("\\bdog", " The doggie plays in the yard.");
 
 ---- Output ----
-===  ^dog$
-我发现文本中的 "dog" 在开始索引 0 和 结束索引 3.
-===  ^dog$
+===  \bdog\b
+我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
+===  \bdog\b
 No match found.
-===  \s*dog$ - s空白字符
-我发现文本中的 "       dog" 在开始索引 0 和 结束索引 10.
-===  ^dog\w* - W单词字符
-我发现文本中的 "dogblahblah" 在开始索引 0 和 结束索引 11.
+===  \bdog
+我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
 
 ```
 
