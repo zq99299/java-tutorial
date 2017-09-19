@@ -160,3 +160,9 @@ split方法是一种很好的工具，用于收集位于匹配模式两侧的文
 * `public String[] split(String regex)`：
 
     将此字符串拆分为给定则表达式的匹配项。此方法的工作方式与使用给定表达式和极限参数为零的双参数拆分方法相同。尾随的空字符串不包含在结果数组中。
+    
+还有一个替换方法，替换CharSequence另一个：
+
+* `public String replace(CharSequence target,CharSequence replacement)` ：
+
+    将与字面目标序列匹配的字符串的每个子字符串替换为指定的字面替换序列。替换从字符串开始到结束，例如，在字符串“aaa”中用“b”替换“aa”将导致“ba”而不是“ab”。

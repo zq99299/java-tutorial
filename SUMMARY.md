@@ -129,7 +129,8 @@
   * [捕获组](/content/essential/regex/groups.md)
   * [边界匹配者](/content/essential/regex/bounds.md)
   * [Pattern的方法](/content/essential/regex/pattern.md)
-
+  * [Matcher的方法](/content/essential/regex/matcher.md)
+ 
 
 
 
