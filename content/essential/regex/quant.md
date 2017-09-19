@@ -244,9 +244,9 @@ No match found.
 ---- Test code ----
 System.out.println("===  .*foo");
 regexTest(".*foo", "xfooxxxxxxfoo");
-System.out.println("===  .*foo");
+System.out.println("===  .*?foo");
 regexTest(".*?foo", "xfooxxxxxxfoo");
-System.out.println("===  .*foo");
+System.out.println("===  .*+foo");
 regexTest(".*+foo", "xfooxxxxxxfoo");
 
 ---- Output ----
