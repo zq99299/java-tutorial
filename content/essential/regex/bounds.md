@@ -89,6 +89,7 @@ No match found.
 ---- Test code ----
 regexTest("dog", "dog dog");
 regexTest("\\Gdog", "dog dog");
+
 ---- Output ----
 ===  \bdog\B
 No match found.
