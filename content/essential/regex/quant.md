@@ -187,7 +187,7 @@ regexTest("a{3,6}", "aaaaaaaaa");
 
 
 ## 捕获组和字符类与量词
-到目前为止，我们只测试了包含一个字符的输入字符串上的量词。事实上，量词只能一次附加到一个字符，所以正则表达式“abc+”将意味着“a，其后是b，后跟c一次或多次”。这不意味着“abc”一次或多次。然而，量词也可以附加到[ 字符类](/content/essential/regex/char_classes.md)和 捕获组，例如[abc]+（a或b或c，一次或多次）或(abc)+（组“abc”，一次或多次）。
+到目前为止，我们只测试了包含一个字符的输入字符串上的量词。事实上，量词只能一次附加到一个字符，所以正则表达式“abc+”将意味着“a，其后是b，后跟c一次或多次”。这不意味着“abc”一次或多次。然而，量词也可以附加到[ 字符类](/content/essential/regex/char_classes.md)和 [捕获组](/content/essential/regex/groups.md)，例如[abc]+（a或b或c，一次或多次）或(abc)+（组“abc”，一次或多次）。
 
 ```java
 ---- Test code ----
