@@ -74,3 +74,5 @@ matches():false
 
 ## 使用 replaceFirst(String) and replaceAll(String)
 
+在replaceFirst与replaceAll方法替换给定的正则表达式匹配的文本。按照他们的名字显示，replaceFirst替换第一次出现，并replaceAll替换所有的事件。
+
