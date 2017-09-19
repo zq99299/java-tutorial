@@ -139,6 +139,10 @@ split方法是一种很好的工具，用于收集位于匹配模式两侧的文
     
     返回指定 String 的字面值模式 String,此方法产生一个 String，可以将其用于创建与字符串 s 匹配的 Pattern，就好像它是字面值模式一样。输入序列中的元字符和转义序列不具有任何特殊意义。
     
+    尝试了下，没有搞懂是啥，返回的全是 "\Qxxx\E" 的串
+    
 * `public String toString()` 
 
     返回String此模式的表示。这是编译此模式的正则表达式。
+    
+## java.lang.String    
