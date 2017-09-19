@@ -225,6 +225,8 @@ regexTest("abc{3}", "abccabaaaccbbbc");
 No match found.
 ```
 
+这里，量词{3}适用于第一个例子中的整个字符类，但仅适用于第二个字母的“c”。
+
 
 
 
