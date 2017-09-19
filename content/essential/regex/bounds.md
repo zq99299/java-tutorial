@@ -19,3 +19,25 @@
 | \z	| 输入结束
 
 下面的例子演示了如何使用边界匹配器^和$。如上所述，^匹配一行的开始，并且$匹配结束。
+```
+---- Test code ----
+System.out.println("===  ^dog$");
+regexTest("^dog$", "dog");
+System.out.println("===  ^dog$");
+regexTest("^dog$", "       dog");
+System.out.println("===  \\s*dog$ - s空白字符");
+regexTest("\\s*dog$", "       dog");
+System.out.println("===  ^dog\\w* - W单词字符");
+regexTest("^dog\\w*", "dogblahblah");
+
+---- Output ----
+===  ^dog$
+我发现文本中的 "dog" 在开始索引 0 和 结束索引 3.
+===  ^dog$
+No match found.
+===  \s*dog$ - s空白字符
+我发现文本中的 "       dog" 在开始索引 0 和 结束索引 10.
+===  ^dog\w* - W单词字符
+我发现文本中的 "dogblahblah" 在开始索引 0 和 结束索引 11.
+
+```
