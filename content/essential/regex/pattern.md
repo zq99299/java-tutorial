@@ -104,4 +104,15 @@ Pattern类定义了一个方便的 [matches](https://docs.oracle.com/javase/8/do
 
 ## split(CharSequence input)
 
-split方法是一种很好的工具，用于收集位于匹配模式两侧的文本。如下示例，该split方法可以从字符串“one:two:three:four:five”中提取单词“one two three four five”：
+split方法是一种很好的工具，用于收集位于匹配模式两侧的文本。如下示例，该split方法可以从字符串“one:two:three:four:five”中提取单词“one two three four five”
+
+```java
+    String REGEX = ":";
+    String INPUT = "one:two:three:four:five";
+    Pattern pattern = Pattern.compile(REGEX);
+    String[] split = pattern.split(INPUT);
+    System.out.println(Arrays.toString(split));
+    
+---- Output ----
+[one, two, three, four, five]
+```
