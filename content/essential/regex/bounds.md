@@ -85,6 +85,18 @@ No match found.
 
 
 要求匹配仅在上一场匹配结束时发生，请使用\G：
+```java
+---- Test code ----
+regexTest("dog", "dog dog");
+regexTest("\\Gdog", "dog dog");
+---- Output ----
+===  \bdog\B
+No match found.
+===  \bdog\B
+我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
+
+```
+
 
 
 
