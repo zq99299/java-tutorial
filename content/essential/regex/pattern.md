@@ -97,3 +97,11 @@ regexTest("(?i)foo", "FOOfooFoOfoO");
 
 
 ## matches(String,CharSequence)
+
+Pattern类定义了一个方便的 [matches](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#matches-java.lang.String-java.lang.CharSequence-)方法，可以让你快速地检查模式是否出现在给定的输入字符串。
+
+与所有公共静态方法一样，您应该matches通过其类名称来调用`Pattern.matches("\\d","1");`。在此示例中，该方法返回true，因为数字“1”与正则表达式匹配\d。
+
+## split(CharSequence input)
+
+split方法是一种很好的工具，用于收集位于匹配模式两侧的文本。如下示例，该split方法可以从字符串“one:two:three:four:five”中提取单词“one two three four five”：
