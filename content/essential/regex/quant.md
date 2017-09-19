@@ -252,10 +252,10 @@ regexTest(".*+foo", "xfooxxxxxxfoo");
 ---- Output ----
 ===  .*foo
 我发现文本中的 "xfooxxxxxxfoo" 在开始索引 0 和 结束索引 13.
-===  .*foo
+===  .*?foo
 我发现文本中的 "xfoo" 在开始索引 0 和 结束索引 4.
 我发现文本中的 "xxxxxxfoo" 在开始索引 4 和 结束索引 13.
-===  .*foo
+===  .*+foo
 No match found.
 ```
 
