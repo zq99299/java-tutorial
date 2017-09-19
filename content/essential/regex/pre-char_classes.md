@@ -11,3 +11,62 @@
 | \S	| 非空格字符： [^\s]
 | \w	| 字词： [a-zA-Z_0-9]
 | \W	| 非字词： [^\w]
+
+上面左侧的每个构造都是右侧列中的字符类的简写，所以，尽可能使用预定义的类。它们使您的代码更容易阅读并消除由格式错误的字符类引入的错误。
+
+以反斜杠开始的构造称为转义构造。[字符串文字](/content/essential/regex/literals.md)，我们提到使用反斜线和部分\Q和\E。如果您使用字符串文字中的转义构造，则必须在反斜杠之前使用要编译的字符串的另一个反斜杠。例如：
+```java
+private final String REGEX = "\\d"; // a single digit
+```
+
+```java
+---- Test code ----
+System.out.println("--- 任意字符");
+regexTest(".", "@");
+regexTest(".", "1");
+regexTest(".", "a");
+System.out.println("--- 数字： [0-9]");
+regexTest("\\d", "1");
+regexTest("\\d", "a");
+System.out.println("--- 非数字： [^0-9]");
+regexTest("\\D", "1");
+System.out.println("--- 空白字符： [ \\t\\n\\x0B\\f\\r]");
+regexTest("\\s", " ");
+regexTest("\\s", "a");
+System.out.println("--- 非空格字符： [^\\s]");
+regexTest("\\S", " ");
+regexTest("\\S", "a");
+System.out.println("--- 字词： [a-zA-Z_0-9]");
+regexTest("\\w", "a");
+regexTest("\\w", "!");
+System.out.println("--- 字词：非字词： [^\\w]");
+regexTest("\\W", "a");
+regexTest("\\W", "!");
+
+---- Output ----
+--- 任意字符
+我发现文本中的 "@" 在开始索引 0 和 结束索引 1.
+我发现文本中的 "1" 在开始索引 0 和 结束索引 1.
+我发现文本中的 "a" 在开始索引 0 和 结束索引 1.
+--- 数字： [0-9]
+我发现文本中的 "1" 在开始索引 0 和 结束索引 1.
+No match found.
+--- 非数字： [^0-9]
+No match found.
+--- 空白字符： [ \t\n\x0B\f\r]
+我发现文本中的 " " 在开始索引 0 和 结束索引 1.
+No match found.
+--- 非空格字符： [^\s]
+No match found.
+我发现文本中的 "a" 在开始索引 0 和 结束索引 1.
+--- 字词： [a-zA-Z_0-9]
+我发现文本中的 "a" 在开始索引 0 和 结束索引 1.
+No match found.
+--- 字词：非字词： [^\w]
+No match found.
+我发现文本中的 "!" 在开始索引 0 和 结束索引 1.
+
+```
+
+
+
