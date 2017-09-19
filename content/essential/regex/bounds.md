@@ -91,10 +91,11 @@ regexTest("dog", "dog dog");
 regexTest("\\Gdog", "dog dog");
 
 ---- Output ----
-===  \bdog\B
-No match found.
-===  \bdog\B
-我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
+===  dog
+我发现文本中的 "dog" 在开始索引 0 和 结束索引 3.
+我发现文本中的 "dog" 在开始索引 4 和 结束索引 7.
+===  \Gdog
+我发现文本中的 "dog" 在开始索引 0 和 结束索引 3.
 
 ```
 
