@@ -191,11 +191,17 @@ regexTest("a{3,6}", "aaaaaaaaa");
 
 ```java
 ---- Test code ----
+System.out.println("===  (dog){3}");
 regexTest("(dog){3}", "dogdogdogdogdogdog");
+System.out.println("===  dog{3}");
+regexTest("dog{3}", "dogdogdogdogdogdog");
 
 ---- Output ----
+===  (dog){3}
 我发现文本中的 "dogdogdog" 在开始索引 0 和 结束索引 9.
 我发现文本中的 "dogdogdog" 在开始索引 9 和 结束索引 18.
+===  dog{3}
+No match found.
 ```
 
 
