@@ -56,5 +56,19 @@ while (m.find()) {
 
 # 使用matches和lookingAt方法
 
-matches和lookingAt方法都尝试将输入序列与模式进行匹配。然而，差异在于，matches要求整个输入序列匹配，lookingAt而不需要。两种方法始终从输入字符串的开头开始。
+matches和lookingAt方法都尝试将输入序列与模式进行匹配。然而，差异在于，matches要求整个输入序列匹配，lookingAt而不需要。两种方法始终从输入字符串的开头开始。下面是示例
+
+```java
+String REGEX = "foo";
+String INPUT = "fooooooooooooooooo";
+Pattern p = Pattern.compile(REGEX);
+Matcher m = p.matcher(INPUT);
+
+System.out.println("lookingAt():" + m.lookingAt());
+System.out.println("matches():" + m.matches());
+
+---- Output ----
+lookingAt():true
+matches():false
+```
 
