@@ -65,4 +65,18 @@ Pattern pattern = Pattern.compile("aa", flags);
 
 
 ## 嵌入式标志表达式
+也可以使用嵌入式标志表达式启用各种标志。嵌入式标志表达式是双参数版本的替代compile，并在正则表达式本身中指定。以下示例使用原始测试工具， RegexTestHarness.java使用嵌入式标志表达式(?i)来启用不区分大小写的匹配。
+
+```java
+---- Test code ----
+regexTest("(?i)foo", "FOOfooFoOfoO");
+
+---- Output ----
+===  (?i)foo
+我发现文本中的 "FOO" 在开始索引 0 和 结束索引 3.
+我发现文本中的 "foo" 在开始索引 3 和 结束索引 6.
+我发现文本中的 "FoO" 在开始索引 6 和 结束索引 9.
+我发现文本中的 "foO" 在开始索引 9 和 结束索引 12.
+
+```
 
