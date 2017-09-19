@@ -19,7 +19,7 @@
 | \z	| 输入结束
 
 下面的例子演示了如何使用边界匹配器^和$。如上所述，^匹配一行的开始，并且$匹配结束。
-```
+```java
 ---- Test code ----
 System.out.println("===  ^dog$");
 regexTest("^dog$", "dog");
@@ -48,3 +48,25 @@ No match found.
 第四个例子要求“dog”出现在一行的开头，随后是无限数量的字符。
 
 要检查一个模式是否开始和结束于一个单词边界（而不是一个较长的字符串中的子串），只需在任一侧使用`\b`; 例如，`\bdog\b`
+
+```java
+---- Test code ----
+System.out.println("===  \\bdog\\b");
+regexTest("\\bdog\\b", " The dog plays in the yard.");
+System.out.println("===  \\bdog\\b");
+regexTest("\\bdog\\b", " The doggie plays in the yard.");
+System.out.println("===  \\bdog");
+regexTest("\\bdog", " The doggie plays in the yard.");
+
+---- Output ----
+===  ^dog$
+我发现文本中的 "dog" 在开始索引 0 和 结束索引 3.
+===  ^dog$
+No match found.
+===  \s*dog$ - s空白字符
+我发现文本中的 "       dog" 在开始索引 0 和 结束索引 10.
+===  ^dog\w* - W单词字符
+我发现文本中的 "dogblahblah" 在开始索引 0 和 结束索引 11.
+
+```
+
