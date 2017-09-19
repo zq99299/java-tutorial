@@ -151,11 +151,11 @@ split方法是一种很好的工具，用于收集位于匹配模式两侧的文
 
 * `public boolean matches(String regex)`：
 
-    告诉这个字符串是否匹配给定的正则表达式。这种形式的这种方法的调用产生与表达式完全相同的结果。`str.matches(regex)Pattern.matches(regex, str)`
+    告诉这个字符串是否匹配给定的正则表达式。这种形式的这种方法的调用产生与表达式完全相同的结果。`str.matches(regex) 和 Pattern.matches(regex, str)`
     
 * `public String[] split(String regex, int limit)`：
 
-    将此字符串拆分为给定正则表达式的匹配项。这种形式的方法的调用产生与表达式相同的结果`str.split(regex, n)Pattern.compile(regex).split(str, n)`
+    将此字符串拆分为给定正则表达式的匹配项。这种形式的方法的调用产生与表达式相同的结果`str.split(regex, n) 和 Pattern.compile(regex).split(str, n)`
     
 * `public String[] split(String regex)`：
 
