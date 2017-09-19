@@ -62,3 +62,7 @@ pattern = Pattern.compile("[az]$", Pattern.MULTILINE | Pattern.UNIX_LINES);
 final int flags = Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE;
 Pattern pattern = Pattern.compile("aa", flags);
 ```
+
+
+## 嵌入式标志表达式
+
