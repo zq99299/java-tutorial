@@ -91,3 +91,5 @@ matches():false
 replaceAll():The cat says meow. All cats say meow.
 replaceFirst():The cat says meow. All dogs say meow.
 ```
+
+在第一个版本中，所有出现的代码dog都被替换cat。但为什么要停在这里？而不是替换一个简单的文字dog，您可以替换匹配任何正则表达式的文本。该方法的API指出，“给定正则表达式`a*b`，输入`aabfooaabfooabfoob`和替换字符串`-`，在该表达式的匹配器上调用此方法将产生字符串`-foo-foo-foo-`。
