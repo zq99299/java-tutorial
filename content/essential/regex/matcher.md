@@ -76,3 +76,18 @@ matches():false
 
 在replaceFirst与replaceAll方法替换给定的正则表达式匹配的文本。按照他们的名字显示，replaceFirst替换第一次出现，并replaceAll替换所有的事件。
 
+```java
+ String REGEX = "dog";
+    String INPUT = "The dog says meow. All dogs say meow.";
+    String REPLACE = "cat";
+    Pattern p = Pattern.compile(REGEX);
+    Matcher m = p.matcher(INPUT);
+
+    System.out.println("replaceAll():" + m.replaceAll(REPLACE));
+    System.out.println("replaceFirst():" + m.replaceFirst(REPLACE));
+    
+    
+---- Output ----
+replaceAll():The cat says meow. All cats say meow.
+replaceFirst():The cat says meow. All dogs say meow.
+```
