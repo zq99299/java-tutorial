@@ -145,4 +145,18 @@ split方法是一种很好的工具，用于收集位于匹配模式两侧的文
 
     返回String此模式的表示。这是编译此模式的正则表达式。
     
-## java.lang.String    
+##与 java.lang.String 等效的几个方法
+
+`java.lang.String`通过几种模仿行为的方法也存在正则表达式支持`java.util.regex.Pattern`中。为方便起见，他们的API的关键摘录如下。
+
+* `public boolean matches(String regex)`：
+
+    告诉这个字符串是否匹配给定的正则表达式。这种形式的这种方法的调用产生与表达式完全相同的结果。`str.matches(regex)Pattern.matches(regex, str)`
+    
+* `public String[] split(String regex, int limit)`：
+
+    将此字符串拆分为给定正则表达式的匹配项。这种形式的方法的调用产生与表达式相同的结果`str.split(regex, n)Pattern.compile(regex).split(str, n)`
+    
+* `public String[] split(String regex)`：
+
+    将此字符串拆分为给定则表达式的匹配项。此方法的工作方式与使用给定表达式和极限参数为零的双参数拆分方法相同。尾随的空字符串不包含在结果数组中。
