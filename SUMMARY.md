@@ -125,6 +125,7 @@
   * [字符串文字](/content/essential/regex/literals.md)
   * [字符类](/content/essential/regex/char_classes.md)
   * [预定义字符类](/content/essential/regex/pre-char_classes.md)
+  * [量词](/content/essential/regex/quant.md)
 
 
 
