@@ -207,6 +207,19 @@ No match found.
 
 
 类似地，我们可以对整个字符类应用量词：
+```java
+---- Test code ----
+regexTest("[abc]{3}", "abccabaaaccbbbc");
+
+---- Output ----
+===  (dog){3}
+我发现文本中的 "dogdogdog" 在开始索引 0 和 结束索引 9.
+我发现文本中的 "dogdogdog" 在开始索引 9 和 结束索引 18.
+===  dog{3}
+No match found.
+```
+
+
 
 
 
