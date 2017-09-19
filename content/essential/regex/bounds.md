@@ -64,4 +64,24 @@ No match found.
 
 ```
 
+要匹配非字边界 请使用`\B`
+
+注意下：在前面的章节中由于多次在调用处打印了 当前使用的正则，所以把之前的测试类稍微改动了下，把打印的语句放到了调用函数中。
+
+```java
+---- Test code ----
+regexTest("\\bdog\\B", " The dog plays in the yard.");
+regexTest("\\bdog\\B", " The doggie plays in the yard.");
+
+---- Output ----
+===  \bdog\b
+我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
+===  \bdog\b
+No match found.
+
+```
+
+
+
+
 
