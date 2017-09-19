@@ -126,6 +126,7 @@
   * [字符类](/content/essential/regex/char_classes.md)
   * [预定义字符类](/content/essential/regex/pre-char_classes.md)
   * [量词](/content/essential/regex/quant.md)
+  * [捕获组](/content/essential/regex/groups.md)
 
 
 
