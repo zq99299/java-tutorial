@@ -84,13 +84,13 @@ regexTest("(?i)foo", "FOOfooFoOfoO");
 
 对应于Pattern可公开访问的字段的嵌入式标志表达式如下表所示：
 
-变量 | 	等效嵌入式标志表达式
-----------------------------
-Pattern.CANON_EQ | 没有
-Pattern.CASE_INSENSITIVE|(?i)
-Pattern.COMMENTS | (?x)
-Pattern.MULTILINE | (?m)
-Pattern.DOTALL | (?s)
-Pattern.LITERAL | 没有
-Pattern.UNICODE_CASE	| (?u)
-Pattern.UNIX_LINES | (?d)
+| 变量 | 	等效嵌入式标志表达式
+| ----------------------------
+| Pattern.CANON_EQ | 没有
+| Pattern.CASE_INSENSITIVE|(?i)
+| Pattern.COMMENTS | (?x)
+| Pattern.MULTILINE | (?m)
+| Pattern.DOTALL | (?s)
+| Pattern.LITERAL | 没有
+| Pattern.UNICODE_CASE	| (?u)
+| Pattern.UNIX_LINES | (?d)
