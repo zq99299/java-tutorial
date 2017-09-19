@@ -94,3 +94,6 @@ regexTest("(?i)foo", "FOOfooFoOfoO");
 | Pattern.LITERAL | 没有
 | Pattern.UNICODE_CASE	| (?u)
 | Pattern.UNIX_LINES | (?d)
+
+
+## matches(String,CharSequence)
