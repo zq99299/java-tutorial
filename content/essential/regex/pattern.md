@@ -51,3 +51,14 @@ regexTest("dog", "DoGDOg");
 我发现文本中的 "DOg" 在开始索引 3 和 结束索引 6.
 
 ```
+
+正如你所看到的，字符串文字“狗”匹配两种情况，不管情况如何。要编译具有多个标志的模式，请使用按位OR运算符“ |” 分隔要包含的标志。为了清楚起见，以下代码示例对正则表达式进行硬编码，而不是从以下代码中读取Console：
+
+```java
+pattern = Pattern.compile("[az]$", Pattern.MULTILINE | Pattern.UNIX_LINES);
+
+也可以指定一个变量
+ 
+final int flags = Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE;
+Pattern pattern = Pattern.compile("aa", flags);
+```
