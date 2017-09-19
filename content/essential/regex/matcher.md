@@ -68,7 +68,7 @@ System.out.println("lookingAt():" + m.lookingAt());
 System.out.println("matches():" + m.matches());
 
 ---- Output ----
-lookingAt():true
+lookingAt():true   // 仅当输入序列的前缀匹配此匹配器的模式时才返回 true。
 matches():false
 ```
 
