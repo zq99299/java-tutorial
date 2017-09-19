@@ -13,3 +13,24 @@
 | X{n,m}| X{n,m}?| 	X{n,m}+	X，至少n但不超过m次数
 
 让我们从创建三个不同的正则表达式开始我们看看贪婪量词：字母“A”，然后要么?，*或+。让我们看看当这些表达式对输入空字符（""）串进行测试时会发生什么：
+
+```java
+---- Test code ----
+System.out.println("=== a?");
+regexTest("a?", "");
+System.out.println("=== a*");
+regexTest("a*", "");
+System.out.println("=== a+");
+regexTest("a+", "");
+        
+---- Output ----
+=== a?
+我发现文本中的 "" 在开始索引 0 和 结束索引 0.
+=== a*
+我发现文本中的 "" 在开始索引 0 和 结束索引 0.
+=== a+
+No match found.
+        
+```
+
+
