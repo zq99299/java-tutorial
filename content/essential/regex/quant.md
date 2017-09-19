@@ -203,7 +203,7 @@ regexTest("dog{3}", "dogdogdogdogdogdog");
 ===  dog{3}
 No match found.
 ```
-
+这里第一个例子找到三个匹配，因为量词适用于整个捕获组。删除括号，但匹配失败，因为量词{3}现在只适用于字母“g”。
 
 
 
