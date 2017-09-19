@@ -31,3 +31,24 @@
 ## 使用 start 和 end 方法
 下面的例子中将计算输入字符串中出现“dog”一词的次数。
 
+```java
+String REGEX = "\\bdog\\b";
+String INPUT = "dog dog dog doggie dogg";
+Pattern p = Pattern.compile(REGEX);
+Matcher m = p.matcher(INPUT);
+int count = 0;
+while (m.find()) {
+    count++;
+    System.out.println("匹配个数：" + count +
+                               " start()：" + m.start() +
+                               " end()：" + m.end()
+    );
+}
+
+---- Output ----
+匹配个数：1 start()：0 end()：3
+匹配个数：2 start()：4 end()：7
+匹配个数：3 start()：8 end()：11
+
+```
+
