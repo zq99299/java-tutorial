@@ -74,10 +74,10 @@ regexTest("\\bdog\\B", " The dog plays in the yard.");
 regexTest("\\bdog\\B", " The doggie plays in the yard.");
 
 ---- Output ----
-===  \bdog\b
-我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
-===  \bdog\b
+===  \bdog\B
 No match found.
+===  \bdog\B
+我发现文本中的 "dog" 在开始索引 5 和 结束索引 8.
 
 ```
 
