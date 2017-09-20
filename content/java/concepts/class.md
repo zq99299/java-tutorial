@@ -35,3 +35,5 @@ class Bicycle {
     }
 }
 ```
+
+Java编程语言的语法将看起来很新，但是这个类的设计是基于以前对自行车对象的讨论。字段cadence，speed和gear表示该对象的状态，并且这些方法（changeCadence，changeGear，speedUp等）限定与外部世界的相互作用。
