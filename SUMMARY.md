@@ -131,6 +131,9 @@
   * [Pattern的方法](/content/essential/regex/pattern.md)
   * [Matcher的方法](/content/essential/regex/matcher.md)
   * [PatternSyntaxException的方法](/content/essential/regex/pse.md)
+  * [Unicode支持](/content/essential/regex/unicode.md)
+
+
 
  
 ## 官方教程 - 集合框架
