@@ -3,6 +3,7 @@
 * [关于这本笔记](README.md)
 
 ## 计划中的源码阅读
+
 * [java.lang ](/content/README.md)
   * [String](/content/lang/string.md)
   * [StringBuilder](/content/lang/StringBuilder.md)
@@ -24,7 +25,6 @@
 ## 官方教程 - 学习Java
 
 * [概述](/content/java/index.md)
-
 
 ## 官方教程 - 基本类
 
@@ -131,9 +131,9 @@
   * [预定义字符类](/content/essential/regex/pre-char_classes.md)
   * [量词](/content/essential/regex/quant.md)
   * [捕获组](/content/essential/regex/groups.md)
-  * [边界匹配者](/content/essential/regex/bounds.md)
-  * [Pattern的方法](/content/essential/regex/pattern.md)
-  * [Matcher的方法](/content/essential/regex/matcher.md)
+  * [边界匹配](/content/essential/regex/bounds.md)
+  * [Pattern类的方法](/content/essential/regex/pattern.md)
+  * [Matcher类的方法](/content/essential/regex/matcher.md)
   * [PatternSyntaxException的方法](/content/essential/regex/pse.md)
   * [Unicode支持](/content/essential/regex/unicode.md)
   * [其他资源](/content/essential/regex/resources.md)
