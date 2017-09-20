@@ -65,3 +65,8 @@ class BicycleDemo {
     }
 }
 ```
+该测试的输出打印两辆自行车的结束踏板节奏，速度和档位：
+```java
+cadence:50 speed:10 gear:2
+cadence:40 speed:20 gear:3
+```
