@@ -39,3 +39,31 @@ class Bicycle {
 Java编程语言的语法将看起来很新，但是这个类的设计是基于以前对自行车对象的讨论。字段cadence，speed和gear表示该对象的状态，并且这些方法（changeCadence，changeGear，speedUp等）限定与外部世界的相互作用。
 
 您可能已经注意到Bicycle该类不包含main方法。这是因为它不是一个完整的应用程序; 它只是可能在应用程序中使用的自行车蓝图。创建和使用新Bicycle对象的责任属于您的应用程序中的其他类。
+
+这是一个 BicycleDemo创建两个单独Bicycle对象并调用其方法的类：
+```java
+class BicycleDemo {
+    public static void main(String[] args) {
+
+        // Create two different 
+        // Bicycle objects
+        Bicycle bike1 = new Bicycle();
+        Bicycle bike2 = new Bicycle();
+
+        // Invoke methods on 
+        // those objects
+        bike1.changeCadence(50);
+        bike1.speedUp(10);
+        bike1.changeGear(2);
+        bike1.printStates();
+
+        bike2.changeCadence(50);
+        bike2.speedUp(10);
+        bike2.changeGear(2);
+        bike2.changeCadence(40);
+        bike2.speedUp(10);
+        bike2.changeGear(3);
+        bike2.printStates();
+    }
+}
+```
