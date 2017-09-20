@@ -44,3 +44,20 @@
     }
 }
 ```
+
+下面来测试下：
+```java
+---- Test code ----
+regexTest("?i)foo", "FOOfooFoOfoO");
+        
+---- Output ----
+===  ?i)foo
+有一个问题，正则表达式: 
+模式是: ?i)foo
+描述是: Dangling meta character '?'
+消息是: Dangling meta character '?' near index 0
+?i)foo
+^
+索引为: 0
+
+```
