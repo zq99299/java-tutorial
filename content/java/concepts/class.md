@@ -45,13 +45,11 @@ Java编程语言的语法将看起来很新，但是这个类的设计是基于�
 class BicycleDemo {
     public static void main(String[] args) {
 
-        // Create two different 
-        // Bicycle objects
+        // 创建两个不同的自行车对象
         Bicycle bike1 = new Bicycle();
         Bicycle bike2 = new Bicycle();
 
-        // Invoke methods on 
-        // those objects
+        // 调用这些对象的方法
         bike1.changeCadence(50);
         bike1.speedUp(10);
         bike1.changeGear(2);
