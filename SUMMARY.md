@@ -25,13 +25,13 @@
 ## 官方教程 - 学习Java
 
 * [概述](/content/java/index.md)
-  * [面向对象编程概念](/content/java/concepts/index.md)
-    * [什么是对象](/content/java/concepts/obgect.md)
-    * [什么是类](/content/java/concepts/obgect.md)
-    * [什么是继承](/content/java/concepts/obgect.md)
-    * [什么是接口](/content/java/concepts/obgect.md)
-    * [什么是包](/content/java/concepts/obgect.md)
-    * [问题和练习](/content/java/concepts/obgect.md)
+* [面向对象编程概念](/content/java/concepts/index.md)
+  * [什么是对象](/content/java/concepts/obgect.md)
+  * [什么是类](/content/java/concepts/obgect.md)
+  * [什么是继承](/content/java/concepts/obgect.md)
+  * [什么是接口](/content/java/concepts/obgect.md)
+  * [什么是包](/content/java/concepts/obgect.md)
+  * [问题和练习](/content/java/concepts/obgect.md)
 
 ## 官方教程 - 基本类
 
