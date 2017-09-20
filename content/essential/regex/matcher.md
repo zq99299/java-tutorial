@@ -115,3 +115,21 @@ replaceFirst():-fooaabfooabfoob
 
 Matcher类还提供appendReplacement和appendTail文本替换方法。使用这两种方法来实现与之相同效果的 replaceAll
 
+```java
+String REGEX = "a*b";
+String INPUT = "aabfooaabfooabfoob";
+String REPLACE = "-";
+Pattern p = Pattern.compile(REGEX);
+Matcher m = p.matcher(INPUT);
+
+StringBuffer sb = new StringBuffer();
+while(m.find()){
+    m.appendReplacement(sb,REPLACE);
+}
+m.appendTail(sb);
+System.out.println(sb.toString());
+
+---- Output ----
+-foo-foo-foo-
+```
+
