@@ -1,13 +1,12 @@
 # Summary
 
 * [关于这本笔记](README.md)
+
+## 计划中的源码阅读
 * [java.lang ](/content/README.md)
   * [String](/content/lang/string.md)
   * [StringBuilder](/content/lang/StringBuilder.md)
   * [Integer](/content/lang/Integer.md)
-
-## java.util
-
 * [Collection ](/content/util/collection/README.md)
   * [List](/content/util/collection/list.md)
   * [ArrayList](/content/util/collection/ArrayList.md)
@@ -135,14 +134,6 @@
   * [其他资源](/content/essential/regex/resources.md)
   * [问题与答案](/content/essential/regex/answers.md)
 
-
-
-
-
-
-
-
- 
 ## 官方教程 - 集合框架
 
 * [集合框架概述](/content/collections/README.md)
