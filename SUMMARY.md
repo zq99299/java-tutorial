@@ -132,6 +132,8 @@
   * [Matcher的方法](/content/essential/regex/matcher.md)
   * [PatternSyntaxException的方法](/content/essential/regex/pse.md)
   * [Unicode支持](/content/essential/regex/unicode.md)
+  * [其他资源](/content/essential/regex/resources.md)
+
 
 
 
