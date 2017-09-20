@@ -130,8 +130,9 @@
   * [边界匹配者](/content/essential/regex/bounds.md)
   * [Pattern的方法](/content/essential/regex/pattern.md)
   * [Matcher的方法](/content/essential/regex/matcher.md)
- 
+  * [PatternSyntaxException的方法](/content/essential/regex/pse.md)
 
+ 
 ## 官方教程 - 集合框架
 
 * [集合框架概述](/content/collections/README.md)
