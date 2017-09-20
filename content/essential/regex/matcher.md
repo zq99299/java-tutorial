@@ -136,7 +136,7 @@ System.out.println(sb.toString());
 ## 与java.lang.String 等效的方法
 为了方便起见，String该类也模仿了几种Matcher方法：
 
-* `public String replaceFirst(String regex, String replacement)`：用给定的替换替换与给定正则表达式匹配的此字符串的第一个子字符串。这种形式的这种方法的调用产生与表达式完全相同的结果str.replaceFirst(regex, repl)Pattern.compile(regex).matcher(str).replaceFirst(repl)
+* `public String replaceFirst(String regex, String replacement)`：用给定的替换替换与给定正则表达式匹配的此字符串的第一个子字符串。这种形式的这种方法的调用产生与表达式完全相同的结果`str.replaceFirst(regex, repl)` 和 `Pattern.compile(regex).matcher(str).replaceFirst(repl)`
 
-* `public String replaceAll(String regex, String replacement)`：用给定的替换替换与给定正则表达式匹配的此字符串的每个子字符串。这种形式的这种方法的调用产生与表达式完全相同的结果str.replaceAll(regex, repl)Pattern.compile(regex).matcher(str).replaceAll(repl)
+* `public String replaceAll(String regex, String replacement)`：用给定的替换替换与给定正则表达式匹配的此字符串的每个子字符串。这种形式的这种方法的调用产生与表达式完全相同的结果`str.replaceAll(regex, repl)` 和 `Pattern.compile(regex).matcher(str).replaceAll(repl)`
 
