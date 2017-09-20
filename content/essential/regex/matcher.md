@@ -109,3 +109,9 @@ replaceAll():-foo-foo-foo-
 replaceFirst():-fooaabfooabfoob
 ```
 巩固下量词的知识：`a*b` 表示ab或则b 都符合条件，但是是贪婪量词，会出现长度零匹配的结果。所以就出现了上面的输出效果
+
+
+## 使用`appendReplacement(StringBuffer,String) and appendTail(StringBuffer)`
+
+Matcher类还提供appendReplacement和appendTail文本替换方法。使用这两种方法来实现与之相同效果的 replaceAll
+
