@@ -9,6 +9,7 @@
        "-highlight",
        "page-footer-ex",
        "anchor-navigation-ex",
+       "expandable-chapters",
        "advanced-emoji"
     ],
   "pluginsConfig": {
@@ -19,7 +20,7 @@
     },
     "anchor-navigation-ex":{
         "associatedWithSummary":true,
-        "multipleH1":false,
+        "multipleH1":true,
         "printLog":true
     },
      "page-footer-ex": {
