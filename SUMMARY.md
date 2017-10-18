@@ -31,7 +31,7 @@
   * [什么是继承](/content/java/concepts/inheritance.md)
   * [什么是接口](/content/java/concepts/interface.md)
   * [什么是包](/content/java/concepts/package.md)
-  * [问题和练习](/content/java/concepts/obgect.md)
+  * [问题和练习](/content/java/concepts/qande.md)
 
 ## 官方教程 - 基本类
 
