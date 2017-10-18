@@ -32,6 +32,8 @@
   * [什么是接口](/content/java/concepts/interface.md)
   * [什么是包](/content/java/concepts/package.md)
   * [问题和练习](/content/java/concepts/qande.md)
+* [语言基础](/content/java/nutsandbolts/index.md)
+
 
 ## 官方教程 - 基本类
 
