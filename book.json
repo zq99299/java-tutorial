@@ -9,8 +9,7 @@
        "-highlight",
        "page-footer-ex",
        "anchor-navigation-ex",
-       "advanced-emoji",
-       "bootstrap-callout"
+       "advanced-emoji"
     ],
   "pluginsConfig": {
     "prism": {
