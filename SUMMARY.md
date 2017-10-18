@@ -34,7 +34,7 @@
   * [问题和练习](/content/java/concepts/qande.md)
 * [语言基础](/content/java/nutsandbolts/index.md)
   * [变量](/content/java/nutsandbolts/variables.md)
-      * [原始数据类型](/content/java/nutsandbolts/variables.md)
+      * [原始数据类型](/content/java/nutsandbolts/datatypes.md)
       * [数组](/content/java/nutsandbolts/variables.md)     
       * [变量摘要](/content/java/nutsandbolts/variables.md)
       * [问题和练习](/content/java/nutsandbolts/variables.md)
