@@ -29,7 +29,7 @@
   * [什么是对象](/content/java/concepts/obgect.md)
   * [什么是类](/content/java/concepts/class.md)
   * [什么是继承](/content/java/concepts/inheritance.md)
-  * [什么是接口](/content/java/concepts/obgect.md)
+  * [什么是接口](/content/java/concepts/interface.md)
   * [什么是包](/content/java/concepts/obgect.md)
   * [问题和练习](/content/java/concepts/obgect.md)
 
