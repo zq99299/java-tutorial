@@ -57,5 +57,5 @@ Java编程语言是井类型的，这意味着所有变量必须先被声明才�
 | float	| 0.0F
 | double	| 0.0D
 | char	| '\ u0000的'
-| String（或任何对象）  	| 空值
+| String（或任何对象）  	| null
 | boolean	| false
