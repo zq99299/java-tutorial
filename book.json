@@ -10,7 +10,8 @@
        "page-footer-ex",
        "anchor-navigation-ex",
        "expandable-chapters",
-       "advanced-emoji"
+       "advanced-emoji",
+       "katex"
     ],
   "pluginsConfig": {
     "prism": {
