@@ -20,7 +20,7 @@
     },
     "anchor-navigation-ex":{
         "associatedWithSummary":true,
-        "multipleH1":true,
+        "multipleH1":false,
         "printLog":true
     },
      "page-footer-ex": {
