@@ -5,6 +5,7 @@
    "plugins": [
        "splitter",
        "-github",
+       "katex",
        "prism",
        "-highlight",
        "page-footer-ex",
