@@ -39,5 +39,6 @@ Java编程语言是井类型的，这意味着所有变量必须先被声明才�
 
     char数据类型是一个16位Unicode字符。它的最小值为'\u0000'（或0），最大值为'\uffff'（或65,535）。
     
+除了上面列出的八个基本数据类型之外，Java编程语言还通过`java.lang.String`类提供对字符串的特殊支持 。将您的字符串包含在双引号内将自动创建一个新String对象; 例如，` String s = "this is a string";`String对象是不可变的，这意味着一旦创建，它们的值不能被改变。.String类在技术上不是一个原始数据类型，但考虑由语言所赋予的特殊支持，你可能会倾向于认为它是这样的。您将在 [简单数据对象](http://docs.oracle.com/javase/tutorial/java/data/index.html)中了解String类的更多信息
 
         
