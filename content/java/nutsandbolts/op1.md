@@ -1,7 +1,3 @@
----
-description: This is a short description of my page
----
-
 # 分配、算术和一元运算符
 
 您将遇到的最常见的运算符之一是简单的赋值运算符“=”。你在自行车课上看到这个操作员 它将其右侧的值分配给左侧的操作数：
