@@ -135,6 +135,7 @@ class UnaryDemo {
 递增/递减运算符可以应用在操作数之前（前缀）或之后（后缀）。代码result++;和++result;将在result两端被加一。唯一的区别是前缀version（++result）计算为递增值，而后缀version（result++）计算为原始值。
 
 以下程序 PrePostDemo说明前缀/后缀一元增量运算符：
+
 ```java
 public class PrePostDemo {
     public static void main(String[] args) {
@@ -153,3 +154,4 @@ public class PrePostDemo {
         System.out.println(i);
     }
 }
+```
