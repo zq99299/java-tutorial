@@ -40,3 +40,24 @@ value1 != value2
 value1 <  value2
 value1 <= value2
 ```
+
+
+## 条件运算符
+
+`&&` 和 `||` 在两个布尔表达式运算中执行的时候。这些操作符表现出“短路”的行为，这意味着只有在需要时才对第二个操作数进行评估。
+
+以下程序， ConditionalDemo1测试这些运算符：
+
+```java
+class ConditionalDemo1 {
+
+    public static void main(String[] args){
+        int value1 = 1;
+        int value2 = 2;
+        if((value1 == 1) && (value2 == 2))
+            System.out.println("value1 is 1 AND value2 is 2");
+        if((value1 == 1) || (value2 == 1))
+            System.out.println("value1 is 1 OR value2 is 1");
+    }
+}
+```
