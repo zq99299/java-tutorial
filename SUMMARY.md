@@ -37,7 +37,7 @@
     * [原始数据类型](/content/java/nutsandbolts/datatypes.md)
     * [数组](/content/java/nutsandbolts/arrays.md)
     * [变量总结](/content/java/nutsandbolts/variablesummary.md)
-    * [问题和练习](/content/java/nutsandbolts/variables.md)
+    * [问题和练习](/content/java/nutsandbolts/qande.md)
 
 ## 官方教程 - 基本类
 
