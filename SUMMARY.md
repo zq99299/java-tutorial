@@ -44,6 +44,8 @@
     * [按位和位移操作符](/content/java/nutsandbolts/op3.md)
     * [运算符总结](/content/java/nutsandbolts/opsummary.md)
   * [表达式、语句和块](/content/java/nutsandbolts/expressions.md)
+  * [表达式、语句和块问题和练习](/content/java/nutsandbolts/qande/questions_expressions.md)
+
 
   
 
