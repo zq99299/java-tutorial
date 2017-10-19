@@ -52,3 +52,40 @@ for ( ; ; ) {
 }
 The for statem
 ```
+
+or语句还有另一种设计用于通过集合和 数组迭代的 形式此表格有时被称为增强的for语句，可用于使您的循环更紧凑和易于阅读。要演示，请考虑以下数组，其中保存数字1到10：
+
+```java
+int[] numbers = {1,2,3,4,5,6,7,8,9,10};
+```
+
+以下程序 EnhancedForDemo使用增强型for循环遍历数组：
+
+```java
+class EnhancedForDemo {
+    public static void main(String[] args){
+         int[] numbers = 
+             {1,2,3,4,5,6,7,8,9,10};
+         for (int item : numbers) {
+             System.out.println("Count is: " + item);
+         }
+    }
+}
+```
+在这个例子中，变量item保存来自数组数组的当前值。此程序的输出与以前相同：
+
+```java
+Count is: 1
+Count is: 2
+Count is: 3
+Count is: 4
+Count is: 5
+Count is: 6
+Count is: 7
+Count is: 8
+Count is: 9
+Count is: 10
+
+```
+
+我们建议for尽可能使用这种形式的语句，而不是一般的for循环。
