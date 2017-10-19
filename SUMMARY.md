@@ -40,6 +40,8 @@
     * [问题和练习](/content/java/nutsandbolts/qande/variables.md)
   * [运算符](/content/java/nutsandbolts/operators.md)
     * [分配、算术和一元运算符](/content/java/nutsandbolts/op1.md)
+    * [平等、关系和条件运算符](/content/java/nutsandbolts/op2.md)
+
 
 ### 官方教程 - 基本类
 
