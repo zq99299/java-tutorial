@@ -109,3 +109,6 @@ October
 November
 December
 ```
+
+该语句按照case的顺序进行判定，直到匹配上，如果没有 break声明，那么后面的case将被直接执行，而不管是否匹配
+
