@@ -22,8 +22,6 @@
   * [Queue](/content/util/collection/Queue.md)
   * [ArrayDeque](/content/util/collection/Queue.md)
 
------
-
 ### 官方教程 - 学习Java
 
 * [概述](/content/java/index.md)
