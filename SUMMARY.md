@@ -2,7 +2,7 @@
 
 * [关于这本笔记](README.md)
 
-### 计划中的源码阅读
+## 计划中的源码阅读
 
 * [java.lang ](/content/README.md)
   * [String](/content/lang/string.md)
@@ -22,7 +22,7 @@
   * [Queue](/content/util/collection/Queue.md)
   * [ArrayDeque](/content/util/collection/Queue.md)
 
-### 官方教程 - 学习Java
+## 官方教程 - 学习Java
 
 * [概述](/content/java/index.md)
 * [面向对象编程概念](/content/java/concepts/index.md)
@@ -41,11 +41,9 @@
   * [运算符](/content/java/nutsandbolts/operators.md)
     * [分配、算术和一元运算符](/content/java/nutsandbolts/op1.md)
     * [平等、关系和条件运算符](/content/java/nutsandbolts/op2.md)
-    * [位移操作符](/content/java/nutsandbolts/op3.md)
-    
+    * [按位和位移操作符](/content/java/nutsandbolts/op3.md)
 
-
-### 官方教程 - 基本类
+## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
 * [异常](/content/essential/exceptions/README.md)
@@ -158,7 +156,7 @@
   * [其他资源](/content/essential/regex/resources.md)
   * [问题与答案](/content/essential/regex/answers.md)
 
-### 官方教程 - 集合框架
+## 官方教程 - 集合框架
 
 * [集合框架概述](/content/collections/README.md)
 * [集合简介](/content/collections/intro.md)
