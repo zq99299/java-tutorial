@@ -109,3 +109,60 @@ anArray = new int [10];
 
 ArrayDemo.java:4：变量anArray可能尚未初始化。
 ```
+接下来的几行将值分配给数组的每个元素：
+```java
+anArray[0] = 100; // initialize first element
+anArray[1] = 200; // initialize second element
+anArray[2] = 300; // and so forth
+```
+每个数组元素都由其数字索引访问：
+```java
+System.out.println("Element 1 at index 0: " + anArray[0]);
+System.out.println("Element 2 at index 1: " + anArray[1]);
+System.out.println("Element 3 at index 2: " + anArray[2]);
+```
+
+或者，您可以使用快捷方式语法来创建和初始化数组：
+```java
+int[] anArray = { 
+    100, 200, 300,
+    400, 500, 600, 
+    700, 800, 900, 1000
+};
+```
+这里，数组的长度由大括号之间提供的值的数量确定，并用逗号分隔。
+
+您还可以通过使用两个或多个括号来声明数组数组（也称为多维数组）例如,String[][] names。因此，每个元素都必须由相应数量的索引值访问。
+在Java编程语言中，多维数组是一个数组，其组件本身就是数组。这与C或Fortran中的数组不同。这样做的结果是允许行的长度变化，如以下MultiDimArrayDemo程序所示 ：
+```java
+class MultiDimArrayDemo {
+    public static void main(String[] args) {
+        String[][] names = {
+            {"Mr. ", "Mrs. ", "Ms. "},
+            {"Smith", "Jones"}
+        };
+        // Mr. Smith
+        System.out.println(names[0][0] + names[1][0]);
+        // Ms. Jones
+        System.out.println(names[0][2] + names[1][1]);
+    }
+}
+```
+输出
+```java
+Mr. Smith
+Ms. Jones
+```
+最后，您可以使用内置length属性来确定任何数组的大小。以下代码将数组的大小打印到标准输出：
+```java
+ System.out.println（anArray.length）;
+ ```
+ 
+ ## 复制数组
+ 
+ System类有一个arraycopy，可以使用有效地将数据从一个数组复制到另一个的方法：
+```java
+public static void arraycopy(Object src, int srcPos,
+                             Object dest, int destPos, int length)
+```
+
