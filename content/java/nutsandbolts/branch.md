@@ -114,3 +114,44 @@ class ContinueDemo {
 ```java
 Found 9 p's in the string.
 ```
+
+要更清楚地看到这种效果，请尝试删除该continue语句并重新编译。当你再次运行程序时，计数将是错误的，说它发现35 p而不是9。
+
+标记的continue语句跳过标记有给定标签的外部循环的当前迭代。以下示例程序ContinueWithLabelDemo使用嵌套循环来搜索另一个字符串中的子字符串。需要两个嵌套循环：一个用于遍历子字符串，一个循环遍历正在搜索的字符串。以下程序 ContinueWithLabelDemo使用标记的continue格式跳过外部循环中的迭代。
+
+```java
+class ContinueWithLabelDemo {
+    public static void main(String[] args) {
+
+        String searchMe = "Look for a substring in me";
+        String substring = "sub";
+        boolean foundIt = false;
+
+        int max = searchMe.length() - 
+                  substring.length();
+
+    test:
+        for (int i = 0; i <= max; i++) {
+            int n = substring.length();
+            int j = i;
+            int k = 0;
+            while (n-- != 0) {
+                if (searchMe.charAt(j++) != substring.charAt(k++)) {
+                    continue test;
+                }
+            }
+            foundIt = true;
+                break test;
+        }
+        System.out.println(foundIt ? "Found it" : "Didn't find it");
+    }
+}
+```
+
+程序输出
+
+```java
+Found it
+```
+
+如果这里不使用`continue test;` 那么将只作用于while中，而不是跳过外层循环。
