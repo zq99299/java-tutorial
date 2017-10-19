@@ -45,3 +45,51 @@ x + (y / 100) // 无歧义，推荐
 ```
 
 写入复合表达式时，应该是明确的，并用圆括号表示哪些运算符应该先被评估。这种做法使代码更容易阅读和维护。
+
+## 语句
+
+语句大致相当于自然语言中的句子。一个_语句_形成一个完整的执行单位。通过用分号（;）终止表达式，可以将以下类型的表达式形成为语句。
+
+* 作业表达式
+* 任何使用++或--
+* 方法调用
+* 对象创建表达式
+
+这样的语句叫做_表达式_语句。下面是一些表达式语句的例子。
+
+```java
+// 赋值语句
+aValue = 8933.234;
+// 自增语句
+aValue++;
+// 方法调用语句
+System.out.println("Hello World!");
+// 对象创建语句
+Bicycle myBike = new Bicycle();
+```
+
+除表达式语句外，还有另外两种语句：_声明_语句和_控制流_语句。一个声明语句声明一个变量。你已经看到很多声明语句的例子：
+
+```java
+// 声明语句
+double aValue = 8933.234;
+```
+
+最后，_控制流_语句规定语句执行的顺序。您将在下一节“控制流语句”中了解 控制流语句
+
+## 块
+一个_块_是大括号之间的一组零个或多个语句，可以在允许单个语句的任何地方使用。以下示例 BlockDemo说明了块的使用：
+
+```java
+class BlockDemo {
+     public static void main(String[] args) {
+          boolean condition = true;
+          if (condition) { // 块1
+               System.out.println("Condition is true.");
+          } // end block one
+          else { // 块2
+               System.out.println("Condition is false.");
+          } // 块3
+     }
+}
+```
