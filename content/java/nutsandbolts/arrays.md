@@ -184,3 +184,30 @@ class ArrayCopyDemo {
 ```java
 caffein
 ```
+
+## 数组操作
+
+数组是编程中使用的强大而有用的概念。Java SE提供了执行与数组相关的一些最常见操作的方法。例如， ArrayCopyDemo示例使用System类的arraycopy方法，而不是手动迭代源数组的元素，
+
+为了方便起见，Java SE提供了几种在`java.util.Arrays`类中执行数组操作（常见任务，如复制，排序和搜索数组）的方法 。例如，可以将前面的示例修改为使用`java.util.Arrays`类的copyOfRange方法.，如您在ArrayCopyOfDemo示例中可以看到的 。不同之处在于，使用该copyOfRange方法不需要在调用方法之前创建目标数组，因为方法返回了目标数组：
+```java
+class ArrayCopyOfDemo {
+    public static void main(String[] args) {
+        
+        char[] copyFrom = {'d', 'e', 'c', 'a', 'f', 'f', 'e',
+            'i', 'n', 'a', 't', 'e', 'd'};
+            
+        char[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);
+        
+        System.out.println(new String(copyTo));
+    }
+}
+```
+如您所见，该程序的输出也是`caffein`,尽管它需要较少的代码。需要注意的是第二个参数和第三个参数，标识要复制的范围索引，从2（含）到9(不含)。
+
+在`java.util.Arrays`类中由方法提供的一些其他有用的操作是：
+
+* binarySearch : 搜索数组以获取特定值以获取其放置的索引
+* equals : 比较两个数组以确定它们是否相等
+* fill : 填充数组，在每个索引中放置一个特定的值
+* sort 或 parallelSort（Java8+） ： 将数组排列成升序。大型数组在多处理器系统上的parallelSort比sort更快
