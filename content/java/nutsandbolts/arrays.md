@@ -165,4 +165,22 @@ Ms. Jones
 public static void arraycopy(Object src, int srcPos,
                              Object dest, int destPos, int length)
 ```
+这两个Object参数指定了从源数组复制到目标数组中，三个int参数指定源数组中的起始位置，目标数组中的起始位置和要复制的数组元素的数量。
 
+以下程序， ArrayCopyDemo声明一系列char元素，拼写“decaffeinated”一词。它使用`System.arraycopy`方法将数组的子序列复制到第二个数组中：
+```java
+class ArrayCopyDemo {
+    public static void main(String[] args) {
+        char[] copyFrom = { 'd', 'e', 'c', 'a', 'f', 'f', 'e',
+			    'i', 'n', 'a', 't', 'e', 'd' };
+        char[] copyTo = new char[7];
+
+        System.arraycopy(copyFrom, 2, copyTo, 0, 7);
+        System.out.println(new String(copyTo));
+    }
+}
+```
+该程序的输出是：
+```java
+caffein
+```
