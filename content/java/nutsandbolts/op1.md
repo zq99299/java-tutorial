@@ -1,6 +1,8 @@
 # 分配、算术和一元运算符
 
 您将遇到的最常见的运算符之一是简单的赋值运算符“=”。你在自行车课上看到这个操作员 它将其右侧的值分配给左侧的操作数：
+
+
 ```java
 int cadence = 0;
  int speed = 0;
@@ -86,3 +88,68 @@ class ConcatDemo {
 在该程序结束时，变量thirdString包含“This is a concatenated string.”，它被打印到标准输出。
 
 ## 一元运算符
+
+一元运算符只需要一个操作数; 它们执行各种操作，例如将值递增/递减1，否定表达式或反转布尔值。
+
+
+| 操作者	| 描述
+| -----------
+| +	| 一元加运算符; 表示正值（然而，数字为正数）
+| -	| 一元减运算符 否定一个表达
+| ++	| 增量算子 将值递增1
+| --	| 递减算子 将值减1
+| !	| 逻辑互补算子 反转布尔值的值
+
+以下程序， UnaryDemo测试一元运算符：
+
+```java
+class UnaryDemo {
+
+    public static void main(String[] args) {
+
+        int result = +1;
+        // result is now 1
+        System.out.println(result);
+
+        result--;
+        // result is now 0
+        System.out.println(result);
+
+        result++;
+        // result is now 1
+        System.out.println(result);
+
+        result = -result;
+        // result is now -1
+        System.out.println(result);
+
+        boolean success = false;
+        // false
+        System.out.println(success);
+        // true
+        System.out.println(!success);
+    }
+}
+```
+
+递增/递减运算符可以应用在操作数之前（前缀）或之后（后缀）。代码result++;和++result;将在result两端被加一。唯一的区别是前缀version（++result）计算为递增值，而后缀version（result++）计算为原始值。
+
+以下程序 PrePostDemo说明前缀/后缀一元增量运算符：
+```java
+public class PrePostDemo {
+    public static void main(String[] args) {
+        int i = 3;
+        i++;
+        // prints 4
+        System.out.println(i);
+        ++i;
+        // prints 5
+        System.out.println(i);
+        // prints 6
+        System.out.println(++i);
+        // prints 6
+        System.out.println(i++);
+        // prints 7
+        System.out.println(i);
+    }
+}
