@@ -80,3 +80,37 @@ class BreakWithLabelDemo {
 ```java
 Found 12 at 1, 0
 ```
+
+该break声明终止标签语句; 它不会将控制流转移到标签上。控制流被传递到标签（终止）语句之后的语句。
+
+## continue
+
+continue 语句跳过的当前迭代for，while或do-while循环。未标记的跳到最内层循环的结尾，并评估boolean控制循环的表达式， ContinueDemo逐步执行String，计算字母“p”的出现。如果当前字符不是p，则该continue语句跳过循环的其余部分，并转到下一个字符。如果是 “p”，程序会增加字母数。
+
+```java
+
+class ContinueDemo {
+    public static void main(String[] args) {
+
+        String searchMe = "peter piper picked a " + "peck of pickled peppers";
+        int max = searchMe.length();
+        int numPs = 0;
+
+        for (int i = 0; i < max; i++) {
+            // interested only in p's
+            if (searchMe.charAt(i) != 'p')
+                continue;
+
+            // process p's
+            numPs++;
+        }
+        System.out.println("Found " + numPs + " p's in the string.");
+    }
+}
+```
+
+程序输出
+
+```java
+Found 9 p's in the string.
+```
