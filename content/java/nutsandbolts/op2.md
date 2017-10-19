@@ -11,3 +11,32 @@
 <       小于
 <=      小于等于
 ```
+
+以下程序， ComparisonDemo测试比较运算符：
+
+```java
+ComparisonDemo {
+
+    public static void main（String [] args）{
+        int value1 = 1;
+        int value2 = 2;
+        if（value1 == value2）
+            System.out.println（“value1 == value2”）;
+        if（value1！= value2）
+            System.out.println（“value1！= value2”）;
+        if（value1> value2）
+            System.out.println（“value1> value2”）;
+        if（value1 <value2）
+            System.out.println（“value1 <value2”）;
+        if（value1 <= value2）
+            System.out.println（“value1 <= value2”）;
+    }
+}
+```
+
+输出
+```java
+value1 != value2
+value1 <  value2
+value1 <= value2
+```
