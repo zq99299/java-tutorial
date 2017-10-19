@@ -127,3 +127,4 @@ obj2 instanceof MyInterface: true
 ```
 
 使用instanceof操作符时，请记住，null不是任何事情的实例。
+
