@@ -79,3 +79,6 @@ class ConditionalDemo2 {
     }
 }
 ```
+因为这someConditio为true，这个程序打印“1”到屏幕。 使用`?:`操作符而不是`if-then-else`声明，如果它使您的代码更可读;例如，当表达式紧凑并且没有副作用（如分配）时）。
+
+## 类型比较运算符instanceof
