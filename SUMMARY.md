@@ -38,7 +38,7 @@
     * [数组](/content/java/nutsandbolts/arrays.md)
     * [变量总结](/content/java/nutsandbolts/variablesummary.md)
     * [问题和练习](/content/java/nutsandbolts/qande/variables.md)
-  * [变量](/content/java/nutsandbolts/operators.md)
+  * [运算符](/content/java/nutsandbolts/operators.md)
 
 ## 官方教程 - 基本类
 
