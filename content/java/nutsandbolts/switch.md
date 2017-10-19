@@ -239,3 +239,4 @@ public class StringSwitchDemo {
 将表达式String与每个标签相关联的switch表达式进行比较，case就像使用该 String.equals方法一样。为了让StringSwitchDemo示例接受任何一个月，无论情况如何，month都将转换为小写（使用 toLowerCase方法），并且与case标签关联的所有字符串都是小写的。
 
 **注意：**此示例检查switch语句中的表达式是否为null。确保任何switch语句中的表达式不为null以防止NullPointerException抛出。
+
