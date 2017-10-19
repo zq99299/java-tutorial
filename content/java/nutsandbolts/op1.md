@@ -69,3 +69,20 @@ class ArithmeticDemo {
 2 + 8 = 10
 10 % 7 = 3
 ```
+
+您还可以将算术运算符与简单赋值运算符组合以创建**复合赋值**。例如，x+=1;并且x=x+1;都将值增加x1。
+
++操作者也可以用于级联（接合）两个字符串在一起，如示于下述 ConcatDemo方案：
+```java
+class ConcatDemo {
+    public static void main(String[] args){
+        String firstString = "This is";
+        String secondString = " a concatenated string.";
+        String thirdString = firstString+secondString;
+        System.out.println(thirdString);
+    }
+}
+```
+在该程序结束时，变量thirdString包含“This is a concatenated string.”，它被打印到标准输出。
+
+## 一元运算符
