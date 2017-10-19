@@ -38,3 +38,45 @@ class BreakDemo {
 ```java
 Found 12 at index 4
 ```
+
+未标记的break语句终止最内层switch，for，while，或do-while语句，但标记的break终止一个外部语句。以下程序 BreakWithLabelDemo与上一个程序类似，但使用嵌套for循环来搜索二维数组中的值。当找到该值时，标记break终止外部for循环（标记为“search”）：
+
+```java
+class BreakWithLabelDemo {
+    public static void main(String[] args) {
+
+        int[][] arrayOfInts = { 
+            { 32, 87, 3, 589 },
+            { 12, 1076, 2000, 8 },
+            { 622, 127, 77, 955 }
+        };
+        int searchfor = 12;
+
+        int i;
+        int j = 0;
+        boolean foundIt = false;
+
+    search:
+        for (i = 0; i < arrayOfInts.length; i++) {
+            for (j = 0; j < arrayOfInts[i].length;
+                 j++) {
+                if (arrayOfInts[i][j] == searchfor) {
+                    foundIt = true;
+                    break search;
+                }
+            }
+        }
+
+        if (foundIt) {
+            System.out.println("Found " + searchfor + " at " + i + ", " + j);
+        } else {
+            System.out.println(searchfor + " not in the array");
+        }
+    }
+}
+```
+程序输出：
+
+```java
+Found 12 at 1, 0
+```
