@@ -45,7 +45,7 @@
     * [运算符总结](/content/java/nutsandbolts/opsummary.md)
   * [表达式、语句和块](/content/java/nutsandbolts/expressions.md)
   * [表达式、语句和块问题和练习](/content/java/nutsandbolts/qande/questions_expressions.md)
-  * [控制流程语句](/content/java/nutsandbolts/qande/flow.md)
+  * [控制流程语句](/content/java/nutsandbolts/flow.md)
     * [if-then和if-then-else语句](/content/java/nutsandbolts/if.md)
     * [switch语句](/content/java/nutsandbolts/switch.md)
 
