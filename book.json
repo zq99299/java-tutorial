@@ -2,6 +2,7 @@
   "title": "jdk-source-code-note",
   "description": "JDK源码阅读笔记",
   "language": "zh-hans",
+  "author":"mrcode"
    "plugins": [
        "splitter",
        "-github",
