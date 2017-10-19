@@ -23,15 +23,29 @@
 
 ## 平等 运算符
 
-* `==`      Equal to
-* `!=`      Not equal to
-* `>`       Greater than
-* `>=`      Greater than or equal to
-* `<`       Less than
-* `<=`      Less than or equal to
+* `==`      等于
+* `!=`      不等于
+* `>`       大于
+* `>=`      大于等于
+* `<`       小于
+* `<=`      小于等于
 
 ## 条件
 
-* `&&`      Conditional-AND
-* `||`      Conditional-OR
-* `?:`      Ternary (shorthand for if-then-else statement)
+* `&&`      短路-AND
+* `||`      短路-OR
+* `?:`      三元运算符(是if-then-else的简写)
+
+## 类型比较运算符
+
+* instanceof  比较一个对象是否是指定类型
+
+## 按位和位移操作符
+
+* `~`       一元位补
+* `<<`      左移
+* `>>`      右移
+* `>>>`     无符号右移
+* `&`       AND
+* `^`       按位异或
+* `|`       按位或
