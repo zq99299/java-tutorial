@@ -61,3 +61,21 @@ class ConditionalDemo1 {
     }
 }
 ```
+
+另一个条件运算符`?:`可以被认为是一个 `if-then-else` 语句的简写(将在本课后面章节进行讨论).该运算符也称为三元制运算符，因为它使用三个操作数。在下面的例子中，这个操作应该被解读为：如果 someCondition 为 true，将value1赋值给result，否则将value2赋值给result
+以下程序， ConditionalDemo2测试`?:`操作：
+
+```java
+class ConditionalDemo2 {
+
+    public static void main(String[] args){
+        int value1 = 1;
+        int value2 = 2;
+        int result;
+        boolean someCondition = true;
+        result = someCondition ? value1 : value2;
+
+        System.out.println(result);
+    }
+}
+```
