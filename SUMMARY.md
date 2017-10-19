@@ -34,18 +34,10 @@
   * [问题和练习](/content/java/concepts/qande.md)
 * [语言基础](/content/java/nutsandbolts/index.md)
   * [变量](/content/java/nutsandbolts/variables.md)
-      * [原始数据类型](/content/java/nutsandbolts/datatypes.md)
-      * [数组](/content/java/nutsandbolts/arrays.md)     
-      * [变量摘要](/content/java/nutsandbolts/variables.md)
-      * [问题和练习](/content/java/nutsandbolts/variables.md)
-
-
-
-
-
-
-
-
+    * [原始数据类型](/content/java/nutsandbolts/datatypes.md)
+    * [数组](/content/java/nutsandbolts/arrays.md)
+    * [变量总结](/content/java/nutsandbolts/variablesummary.md)
+    * [问题和练习](/content/java/nutsandbolts/variables.md)
 
 ## 官方教程 - 基本类
 
@@ -159,8 +151,6 @@
   * [Unicode支持](/content/essential/regex/unicode.md)
   * [其他资源](/content/essential/regex/resources.md)
   * [问题与答案](/content/essential/regex/answers.md)
-
-
 
 ## 官方教程 - 集合框架
 
