@@ -72,4 +72,65 @@ Point originOne = new Point(23, 94);
 
 执行该语句的结果可以在下图中说明：
 
-![](assets/java/javaoo/objects-oneRef.gif)
+![](/assets/java/javaoo/objects-oneRef.gif)
+
+这里是Rectangle类的代码，它包含四个构造函数：
+
+```java
+public class Rectangle {
+    public int width = 0;
+    public int height = 0;
+    public Point origin;
+
+    // four constructors
+    public Rectangle() {
+        origin = new Point(0, 0);
+    }
+    public Rectangle(Point p) {
+        origin = p;
+    }
+    public Rectangle(int w, int h) {
+        origin = new Point(0, 0);
+        width = w;
+        height = h;
+    }
+    public Rectangle(Point p, int w, int h) {
+        origin = p;
+        width = w;
+        height = h;
+    }
+
+    // a method for moving the rectangle
+    public void move(int x, int y) {
+        origin.x = x;
+        origin.y = y;
+    }
+
+    // a method for computing the area of the rectangle
+    public int getArea() {
+        return width * height;
+    }
+}
+```
+
+每个构造函数允许您使用基本类型和引用类型来为矩形的起点，宽度和高度提供初始值。如果一个类有多个构造函数，它们必须有不同的签名。Java编译器根据参数的数量和类型区分构造函数。当Java编译器遇到以下代码时，它知道要调用Rectangle类中的构造函数，该构造函数需要一个Point参数，后跟两个整数参数：
+
+```java
+Rectangle rectOne = new Rectangle(originOne, 100, 200);
+```
+这需要一个Rectangle初始化的构造函数origin来originOne。此外，构造函数设置width为100和height200.现在有两个对同一个Point对象的引用 - 对象可以有多个引用，如下图所示：
+
+![](assets/java/javaoo/objects-multipleRefs.gif)
+
+以下代码行调用Rectangle构造函数，该构造函数需要两个整数参数，它们为宽度和高度提供初始值。如果您检查构造函数中的代码，您将看到它创建一个新的Point对象，其x和y值初始化为0：
+
+```java
+Rectangle rectTwo = new Rectangle(50, 100);
+```
+
+在以下语句中使用的Rectangle构造函数不接受任何参数，因此它被称为无参数构造函数：
+
+```java
+Rectangle rectTwo = new Rectangle(50, 100);
+```
+所有类都至少有一个构造函数。如果一个类没有明确声明，Java编译器会自动提供一个无参数的构造函数，称为_默认_构造函数。这个默认构造函数调用父类的无参构造函数，如果类没有其他父对象，则调用Object构造函数。如果父类没有构造函数（Object有一个），则编译器将拒绝该程序。

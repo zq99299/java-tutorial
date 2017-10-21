@@ -62,6 +62,8 @@
     * [将信息传递个方法或构造函数](/content/java/javaoo/arguments.md)
   * [对象](/content/java/javaoo/objects.md)
     * [创建对象](/content/java/javaoo/objectcreation.md)
+    * [使用对象](/content/java/javaoo/usingobject.md)
+
 
 
 
