@@ -54,12 +54,10 @@
     * [流程总结](/content/java/nutsandbolts/flowsummary.md)
     * [问题与练习](/content/java/nutsandbolts/qande/questions_flow.md)
 * [类和对象](/content/java/javaoo/index.md)
-  * [声明类](/content/java/javaoo/classes.md)
-  * [声明成员变量](/content/java/javaoo/classdecl.md)
+  * [类](/content/java/javaoo/classes.md)
+    * [声明类](/content/java/javaoo/classdecl.md)
+    * [声明成员变量](/content/java/javaoo/classdecl.md)
 
-
-
- 
 
 
 ## 官方教程 - 基本类
