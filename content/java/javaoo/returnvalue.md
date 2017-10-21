@@ -53,11 +53,29 @@ public Bicycle seeWhosFastest(Bicycle myBike, Bicycle yourBike,
 
 当一个方法使用类名作为其返回类型时，例如whosFastest，返回对象的类型的类必须是返回类型的子类，或类的确切类。假设你有一个类层次结构，它ImaginaryNumber是java.lang.Number的子类，它又是Object的一个子类， 如下图所示。
 
-![](assets/java/javaoo/classes-hierarchy.gif)
+![](/assets/java/javaoo/classes-hierarchy.gif)
 
+现在假设你有一个方法声明返回Number：
 
+```java
+public Number returnANumber() {
+    ...
+}
+```
 
+eturnANumber方法可以返回ImaginaryNumber但不能返回Object。ImaginaryNumber是Number因为它是Number的一个子类。但是，这Object不一定是Number- 它可能是一种String或另一种类型。
 
+您可以覆盖一个方法并定义它来返回原始方法的子类，如下所示：
+
+```java
+public ImaginaryNumber returnANumber() {
+    ...
+}
+```
+
+这种称为改变返回类型的技术意味着允许返回类型与子类相同的类型。
+
+> **注意：**  您也可以使用接口名为返回类型。在这种情况下，返回的对象必须实现指定的接口。
 
 
 
