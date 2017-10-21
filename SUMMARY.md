@@ -63,10 +63,7 @@
   * [对象](/content/java/javaoo/objects.md)
     * [创建对象](/content/java/javaoo/objectcreation.md)
     * [使用对象](/content/java/javaoo/usingobject.md)
-
-
-
-
+  * [类的更多信息](/content/java/javaoo/more.md)
 
 
 
