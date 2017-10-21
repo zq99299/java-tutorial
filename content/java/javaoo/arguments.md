@@ -123,3 +123,28 @@ public class PassPrimitiveByValue {
 ```java
 After invoking passMethod, x = 3
 ```
+
+## 传递引用数据类型参数
+引用数据类型参数（如对象）也通过_值_传递给方法。这意味着当该方法返回时，传入引用仍然引用与之前相同的对象。但是，如果对象的字段的值具有适当的访问级别，则可以在方法中更改对象的字段值。
+
+例如，考虑在任意类中移动Circle对象的方法：
+
+```java
+public void moveCircle(Circle circle, int deltaX, int deltaY) {
+    // code to move origin of circle to x+deltaX, y+deltaY
+    circle.setX(circle.getX() + deltaX);
+    circle.setY(circle.getY() + deltaY);
+        
+    // 为原点指定一个新的对象
+    circle = new Circle(0, 0);
+}
+```
+```java
+moveCircle(myCircle, 23, 56)
+```
+
+在方法之内，circle最初是指的myCircle。该方法将circle引用（即，myCircle）的对象的x和y坐标分别更改为23和56。当方法返回时，这些更改将会持续。然后circle分配一个Circle对象的引用x = y = 0。然而，这种重新分派没有永久性，因为引用是通过值传递的，不能改变。在方法中，指向的对象circle已经改变了，但是当方法返回时，myCircle仍然引用与Circle调用该方法之前相同的对象。
+
+简单来说：
+
+我把 myCircle的引用当成值传递给了 circle 参数，在方法体中计算完成后，重新把另外一个引用赋值个体了参数 circle。那么这个时候其实就是纯在 myCircle 和 新new的哪一个引用，只是myCircle不再赋值给circle了
