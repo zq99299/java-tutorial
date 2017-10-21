@@ -63,7 +63,7 @@ class ArithmeticDemo {
 ```
 
 这个程序打印以下内容
-````java
+```java
 1 + 2 = 3
 3 - 1 = 2
 2 * 2 = 4
