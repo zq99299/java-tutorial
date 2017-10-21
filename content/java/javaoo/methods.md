@@ -22,4 +22,57 @@ public double calculateAnswer(double wingSpan, int numberOfEngines,
 
 修饰符，返回类型和参数将在本课稍后讨论。异常将在后面的课程中讨论。
 
-**_定义：_**方法声明的两个组件包括方法签名-方法的名称和参数类型
+
+> **定义：**方法声明的两个组件包括方法签名-方法的名称和参数类型
+
+上述的方法前面是：
+
+```java
+calculateAnswer（double，int，double，double）
+```
+
+## 方法命名
+
+虽然方法名称可以是任何合法的标识符，但代码约定限制方法名称。按照惯例，方法名称应该是小写的动词或以小写开头的多字词名称，后跟形容词，名词等。在多字名称中，每个第二个和后面的单词的第一个字母应该资本化。这里有些例子：
+
+```java
+run
+runFast
+getBackground
+getFinalData
+compareTo
+setX
+isEmpty
+```
+通常，方法在其类中具有唯一的名称。但是，由于方法重载，方法可能与其他方法具有相同的名称。
+
+## 方法重载
+
+Java编程语言支持重载方法，Java可以区分不同方法签名的方法。这意味着如果一个类中的方法具有不同的参数列表，那么类中的方法可以具有相同的名称（在“Interfaces and Inheritance”课程中将讨论这些参数）。
+
+假设你有一个类可以使用书法绘制各种类型的数据（字符串，整数等等），并且包含一个绘制每个数据类型的方法。这是麻烦的使用一个新的名称为每个方法，例如，drawString，drawInteger，drawFloat，等。在Java编程语言中，您可以对所有绘图方法使用相同的名称，但将不同的参数列表传递给每个方法。因此，数据绘图类可能会声明四个名为的方法draw，每个方法具有不同的参数列表。
+
+```java
+public class DataArtist {
+    ...
+    public void draw(String s) {
+        ...
+    }
+    public void draw(int i) {
+        ...
+    }
+    public void draw(double f) {
+        ...
+    }
+    public void draw(int i, double f) {
+        ...
+    }
+}
+```
+重载方法根据传递给方法的参数的数量和类型进行区分。在代码示例，draw(String s)和draw(int i)是不同的和独特的方法，因为它们需要不同的参数类型。
+
+您不能声明具有相同名称和相同数量和类型的参数的多个方法，因为编译器无法将它们分开。
+
+在区分方法时，编译器不会考虑返回类型，因此即使有不同的返回类型，也不能声明具有相同签名的两个方法。
+
+> 注意：重载方法应该谨慎使用，因为他们可以使代码不那么易读
