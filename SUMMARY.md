@@ -61,6 +61,8 @@
     * [为您的class提供构造](/content/java/javaoo/constructors.md)
     * [将信息传递个方法或构造函数](/content/java/javaoo/arguments.md)
   * [对象](/content/java/javaoo/objects.md)
+    * [对象](/content/java/javaoo/objectcreation.md)
+
 
 
 
