@@ -9,3 +9,37 @@
         public int y = 3; 
     }
     ```
+    
+    1. 什么是类变量
+    2. 什么是实例变量
+    3. 以下代码的输出是什么？
+    ```java
+    IdentifyMyParts a = new IdentifyMyParts();
+    IdentifyMyParts b = new IdentifyMyParts();
+    a.y = 5;
+    b.y = 6;
+    a.x = 1;
+    b.x = 2;
+    System.out.println("a.y = " + a.y);
+    System.out.println("b.y = " + b.y);
+    System.out.println("a.x = " + a.x);
+    System.out.println("b.x = " + b.x);
+    System.out.println("IdentifyMyParts.x = " + IdentifyMyParts.x);
+    ```
+
+## 练习
+
+1. 写一个class，其实例代表一张卡片的单张纸牌。扑克牌有两个不同的特征：点数和花色。确保保留您的解决方案，因为您将被要求在枚举类型中重写它。
+
+      **提示：**
+        您可以使用assert语句来检查您的作业。你写：
+        
+        assert（要测试的布尔表达式）; 
+        
+        如果布尔表达式为false，您将收到一条错误消息。例如，
+       
+        assert toString（ACE）==“Ace”;
+       
+        应该返回true，所以没有错误信息。
+        如果您使用assert语句，则必须使用该ea标志运行程序：
+        `java -ea YourProgram.class`
