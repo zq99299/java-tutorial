@@ -148,3 +148,4 @@ moveCircle(myCircle, 23, 56)
 简单来说：
 
 我把 myCircle的引用当成值传递给了 circle 参数，在方法体中计算完成后，重新把另外一个引用赋值个体了参数 circle。那么这个时候其实就是纯在 myCircle 和 新new的哪一个引用，只是myCircle不再赋值给circle了
+
