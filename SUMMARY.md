@@ -68,7 +68,7 @@
     * [使用this关键字](/content/java/javaoo/thiskey.md)
     * [控制对类成员的访问](/content/java/javaoo/accesscontrol.md)
     * [了解类成员](/content/java/javaoo/classvars.md)
-    * [初始化字段](/content/java/javaoo/thiskey.md)
+    * [初始化字段](/content/java/javaoo/initial.md)
     * [创建和使用类和对象的总结](/content/java/javaoo/thiskey.md)
 
 ## 官方教程 - 基本类
