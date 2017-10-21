@@ -57,7 +57,8 @@
   * [类](/content/java/javaoo/classes.md)
     * [声明类](/content/java/javaoo/classdecl.md)
     * [声明成员变量](/content/java/javaoo/variables.md)
-    
+    * [定义方法](/content/java/javaoo/methods.md)
+
 
 
 
