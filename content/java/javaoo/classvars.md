@@ -100,3 +100,67 @@ static final double PI = 3.141592653589793;
 以这种方式定义的常量不能重新分配，如果您的程序尝试这样做，这是一个编译时错误。按照惯例，常数值的名称拼写为大写字母。如果名称由多个单词组成，则单词将以下划线（_）分隔。
 
 > **注意：**  如果一个原始类型或一个字符串被定义为一个常量，并且该值在编译时是已知的，则编译器将使用该值替代该代码中的常量名称。这被称为_编译时常量_。如果外部常量的值发生变化（例如，如果立法规定pi实际上应该是3.975），则需要重新编译使用此常量的任何类来获取当前值。
+
+## Bicycle 修改
+
+在本节所做的修改之后，Bicycle的代码如下
+
+```java
+public class Bicycle {
+        
+    private int cadence;
+    private int gear;
+    private int speed;
+        
+    private int id;
+    
+    private static int numberOfBicycles = 0;
+
+        
+    public Bicycle(int startCadence,
+                   int startSpeed,
+                   int startGear) {
+        gear = startGear;
+        cadence = startCadence;
+        speed = startSpeed;
+
+        id = ++numberOfBicycles;
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public static int getNumberOfBicycles() {
+        return numberOfBicycles;
+    }
+
+    public int getCadence() {
+        return cadence;
+    }
+        
+    public void setCadence(int newValue) {
+        cadence = newValue;
+    }
+        
+    public int getGear(){
+        return gear;
+    }
+        
+    public void setGear(int newValue) {
+        gear = newValue;
+    }
+        
+    public int getSpeed() {
+        return speed;
+    }
+        
+    public void applyBrake(int decrement) {
+        speed -= decrement;
+    }
+        
+    public void speedUp(int increment) {
+        speed += increment;
+    }
+}
+```
