@@ -44,3 +44,5 @@ Y Position of rectTwo: 94
 X Position of rectTwo: 40
 Y Position of rectTwo: 72
 ```
+
+稍后的课程将使用上述示例来描述程序中对象的生命周期。您将学习如何编写在自己的程序中创建和使用对象的代码。您还将了解一旦物体在生命结束后系统如何清理。
