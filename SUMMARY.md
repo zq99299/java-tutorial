@@ -64,19 +64,12 @@
     * [创建对象](/content/java/javaoo/objectcreation.md)
     * [使用对象](/content/java/javaoo/usingobject.md)
   * [类的更多信息](/content/java/javaoo/more.md)
-    * [从返回返回值](/content/java/javaoo/returnvalue.md)
+    * [从方法返回值](/content/java/javaoo/returnvalue.md)
     * [this关键字](/content/java/javaoo/thiskey.md)
     * [控制对类成员的访问](/content/java/javaoo/thiskey.md)
     * [了解类成员](/content/java/javaoo/thiskey.md)
     * [初始化字段](/content/java/javaoo/thiskey.md)
     * [创建和使用类和对象的总结](/content/java/javaoo/thiskey.md)
-
-
-
-
-
-
-
 
 ## 官方教程 - 基本类
 
