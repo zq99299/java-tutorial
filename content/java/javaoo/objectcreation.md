@@ -38,3 +38,38 @@ Point originOne;
 _new_通过一个新的对象分配内存，并返回到内存的引用实例化一个类。在_new_的操作符后还调用对象的构造函数。
 
 > **注意：**  “实例化一个类”这个短语意味着与“创建对象”相同。创建对象时，您正在创建一个类的“实例”，因此“实例化”一个类。
+
+_new_操作符需要一个单一的，后缀的参数：一个构造函数的调用。构造函数的名称提供要实例化的类的名称。
+
+new 操作符反回到它创建的对象的引用。此引用通常分配给适当类型的变量，如：
+
+```java
+int height = new Rectangle().height;
+```
+
+本声明将在下一节讨论。
+
+## 初始化对象
+这是Point类的代码：
+
+```java
+public class Point {
+    public int x = 0;
+    public int y = 0;
+    //constructor
+    public Point(int a, int b) {
+        x = a;
+        y = b;
+    }
+}
+```
+
+这个类包含一个单一的构造函数。您可以识别一个构造函数，因为它的声明使用与该类名相同的名称，它没有返回类型。Point类中的构造函数由代码（int a，int b）声明的两个整数参数。以下语句提供了23和94作为这些参数的值：
+
+```java
+Point originOne = new Point(23, 94);
+```
+
+执行该语句的结果可以在下图中说明：
+
+![](assets/java/javaoo/objects-oneRef.gif)
