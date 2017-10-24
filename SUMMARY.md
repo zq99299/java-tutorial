@@ -73,6 +73,8 @@
    * [创建-问题和练习](/content/java/javaoo/qande/creating-questions.md)
    * [对象-问题和练习](/content/java/javaoo/qande/objects-questions.md)
   * [嵌套类](/content/java/javaoo/nested.md) 
+    * [内部类范例](/content/java/javaoo/innerclasses.md) 
+
    
 
 
