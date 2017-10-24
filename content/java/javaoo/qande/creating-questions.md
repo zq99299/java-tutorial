@@ -46,7 +46,7 @@
         
 2. 写一个类，其实例代表一个完整的扑克牌。你也应该保留这个解决方案。
 
-3. 写一个小程序来测试你的甲板和卡牌。该程序可以像创建一张卡片一样简单，并显示其卡片。
+3. 写一个小程序来测试你的扑克牌。该程序可以像创建一张卡片一样简单，并显示其卡片。
 
 ## 问题 - 答案
 
@@ -65,5 +65,178 @@
     ```    
         因为类中x被定义为类变量，所以最后的值将以最后分配的值为准。
 
+2. 第二题
+
+    ```java
+    public class Card {
+        private final int rank;
+        private final int suit;
+    
+        // Kinds of suits
+        public final static int DIAMONDS = 1;   // 方块
+        public final static int CLUBS = 2;  // 梅花
+        public final static int HEARTS = 3; // 红桃
+        public final static int SPADES = 4; // 黑桃
+    
+        // Kinds of ranks
+        public final static int ACE = 1;
+        public final static int DEUCE = 2;
+        public final static int THREE = 3;
+        public final static int FOUR = 4;
+        public final static int FIVE = 5;
+        public final static int SIX = 6;
+        public final static int SEVEN = 7;
+        public final static int EIGHT = 8;
+        public final static int NINE = 9;
+        public final static int TEN = 10;
+        public final static int JACK = 11;
+        public final static int QUEEN = 12;
+        public final static int KING = 13;
+    
+        public Card(int rank, int suit) {
+            assert isValidRank(rank);
+            assert isValidSuit(suit);
+            this.rank = rank;
+            this.suit = suit;
+        }
+    
+        public int getSuit() {
+            return suit;
+        }
+    
+        public int getRank() {
+            return rank;
+        }
+    
+        public static boolean isValidRank(int rank) {
+            return ACE <= rank && rank <= KING;
+        }
+    
+        public static boolean isValidSuit(int suit) {
+            return DIAMONDS <= suit && suit <= SPADES;
+        }
+    
+        public static String rankToString(int rank) {
+            switch (rank) {
+                case ACE:
+                    return "Ace";
+                case DEUCE:
+                    return "Deuce";
+                case THREE:
+                    return "Three";
+                case FOUR:
+                    return "Four";
+                case FIVE:
+                    return "Five";
+                case SIX:
+                    return "Six";
+                case SEVEN:
+                    return "Seven";
+                case EIGHT:
+                    return "Eight";
+                case NINE:
+                    return "Nine";
+                case TEN:
+                    return "Ten";
+                case JACK:
+                    return "Jack";
+                case QUEEN:
+                    return "Queen";
+                case KING:
+                    return "King";
+                default:
+                    //Handle an illegal argument.  There are generally two
+                    //ways to handle invalid arguments, throwing an exception
+                    //(see the section on Handling Exceptions) or return null
+                    return null;
+            }
+        }
+    
+        public static String suitToString(int suit) {
+            switch (suit) {
+                case DIAMONDS:
+                    return "Diamonds";
+                case CLUBS:
+                    return "Clubs";
+                case HEARTS:
+                    return "Hearts";
+                case SPADES:
+                    return "Spades";
+                default:
+                    return null;
+            }
+        }
+    
+        public static void main(String[] args) {
+    
+            // 这里只单独的测试了点数和花色
+            assert rankToString(ACE) == "Ace";
+            assert rankToString(DEUCE) == "Deuce";
+            assert rankToString(THREE) == "Three";
+            assert rankToString(FOUR) == "Four";
+            assert rankToString(FIVE) == "Five";
+            assert rankToString(SIX) == "Six";
+            assert rankToString(SEVEN) == "Seven";
+            assert rankToString(EIGHT) == "Eight";
+            assert rankToString(NINE) == "Nine";
+            assert rankToString(TEN) == "Ten";
+            assert rankToString(JACK) == "Jack";
+            assert rankToString(QUEEN) == "Queen";
+            assert rankToString(KING) == "King";
+    
+            assert suitToString(DIAMONDS) == "Diamonds";
+            assert suitToString(CLUBS) == "Clubs";
+            assert suitToString(HEARTS) == "Hearts";
+            assert suitToString(SPADES) == "Spades";
+    
+        }
+    }
+    ```
+
+3. 第三题
+
+    ```java
+    public class Deck {
+    
+        public static int numSuits = 4;
+        public static int numRanks = 13;
+        public static int numCards = numSuits * numRanks;
+    
+        private Card[][] cards; // 用二维数组来存储是不是会不太方便呀？
+    
+        public Deck() {
+            cards = new Card[numSuits][numRanks];
+            for (int suit = Card.DIAMONDS; suit <= Card.SPADES; suit++) {
+                for (int rank = Card.ACE; rank <= Card.KING; rank++) {
+                    cards[suit - 1][rank - 1] = new Card(rank, suit);
+                }
+            }
+        }
+    
+        public Card getCard(int suit, int rank) {
+            return cards[suit - 1][rank - 1];
+        }
+    }
+    ```
+    
+4. 第4题
+
+    ```java
+    public class DisplayDeck {
+        public static void main(String[] args) {
+            Deck deck = new Deck();
+            for (int suit = Card.DIAMONDS; suit <= Card.SPADES; suit++) {
+                for (int rank = Card.ACE; rank <= Card.KING; rank++) {
+                    Card card = deck.getCard(suit, rank);
+                    System.out.format("%s of %s%n",
+                                      card.rankToString(card.getRank()),
+                                      card.suitToString(card.getSuit()));
+                }
+            }
+        }
+    }
+    ```
+        
+    
 
 
