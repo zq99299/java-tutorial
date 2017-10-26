@@ -76,6 +76,8 @@
     * [内部类范例](/content/java/javaoo/innerclasses.md) 
     * [本地类](/content/java/javaoo/localclasses.md) 
     * [匿名类](/content/java/javaoo/anonymousclasses.md) 
+    * [Lambda表达式](/content/java/javaoo/lambdaexpressions.md) 
+
 
     
     
