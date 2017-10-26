@@ -154,7 +154,7 @@ public class HelloWorld extends Application {
 }
 ```
 
-因为该 EventHandler<ActionEvent> 接口只包含一个方法，您可以使用lambda表达式而不是匿名类表达式。有关详细信息，请参阅“ Lambda表达式 ”一节 。
+因为该 EventHandler<ActionEvent> 接口只包含一个方法，您可以使用lambda表达式而不是匿名类表达式。有关详细信息，请参阅“ [Lambda表达式](/content/java/javaoo/lambdaexpressions.md) ”一节 。
 
 匿名类是实现包含两个或更多方法的接口的理想选择。以下JavaFX示例来自UI控件的自定义部分。突出显示的代码创建一个仅接受数值的文本字段。它重新定义了默认实现TextField通过重写与匿名类类replaceText和replaceSelection从继承的方法TextInputControl类。
 
