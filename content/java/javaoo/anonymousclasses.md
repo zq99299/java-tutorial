@@ -71,3 +71,28 @@ public class HelloWorldAnonymousClasses {
     }
 }
 ```
+
+## 匿名类的语法
+
+如前所述，一个匿名类是一个表达式。匿名类表达式的语法类似于构造函数的调用，除了在代码块中包含类定义。
+
+思考frenchGreeting对象的实例化
+```java
+ HelloWorld frenchGreeting = new HelloWorld() {
+            String name = "tout le monde";
+            public void greet() {
+                greetSomeone("tout le monde");
+            }
+            public void greetSomeone(String someone) {
+                name = someone;
+                System.out.println("Salut " + name);
+            }
+        };
+```
+
+匿名类表达式包含以下类容：
+
+* 使用new操作符
+* （new）要实现的接口的名称或扩展的类。在这个例子中，匿名类正在实现接口HelloWorld。
+* 包含构造函数的参数的括号，就像普通类实例创建表达式一样。注意：实现一个接口时，没有构造函数，所以你使用一个空的一对括号，就像这个例子一样。
+* 一个身体，这是一个类声明体。更具体地说，在主体中，方法声明是允许的，但语句不是。
