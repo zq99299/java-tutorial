@@ -330,7 +330,8 @@ processPersons(
      p -> p.getGender() == Person.Sex.MALE
          && p.getAge() >= 18
          && p.getAge() <= 25,
-     p -> p.printPerson()   //程序中调用 accept
+     p -> p.printPerson()   //程序中调用 accept方法的时候，相当于回调这里的代码块，
+     // 如果懂js的回调函数的话 。理解这一段代码就很好懂了
 );
 ```
 
@@ -350,3 +351,74 @@ public static void processPersonsWithFunction(
     }
 }
 ```
+
+## 方法8：更广泛地使用泛型
+
+重新考虑该方法processPersonsWithFunction。以下是它的通用版本，它接受包含任何数据类型的元素的集合作为参数：
+
+```java
+public static <X, Y> void processElements(
+    Iterable<X> source,
+    Predicate<X> tester,
+    Function <X, Y> mapper,
+    Consumer<Y> block) {
+    for (X p : source) {
+        if (tester.test(p)) {
+            Y data = mapper.apply(p);
+            block.accept(data);
+        }
+    }
+}
+```
+
+要打印符合选择性服务的会员的电子邮件地址，请调用以下processElements方法：
+
+```java
+processElements(
+                roster,
+                p -> p.getGender() == Person.Sex.MALE
+                        && p.getAge() >= 18
+                        && p.getAge() <= 25,
+                p -> p.getEmailAddress(),
+                email -> System.out.println(email)
+        );
+```
+
+此方法调用执行以下操作：
+
+1. 从集合source中获取对象。在此示例中 roster是List，而List实现了Iterable接口。
+2. 过滤与Predicate.tester匹配的条件。该Predicate对象是一个lambda表达式，它指定哪些成员将符合选择性服务的条件。
+3. mapper接收一个参数，并输出一个结果。在此示例中，该Function对象是一个返回成员的电子邮件地址的lambda表达式。
+4. 由指定对象的实例调用Consumer的block方法。在这个例子中，Consumer对象是一个lambda表达式，它打印一个字符串，它是Function对象返回的电子邮件地址。
+
+
+您可以使用聚合操作替换这些操作。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
