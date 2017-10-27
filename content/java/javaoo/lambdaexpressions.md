@@ -394,9 +394,81 @@ processElements(
 
 您可以使用聚合操作替换这些操作。
 
+## 方法9：使用接受Lambda表达式作为参数的聚合操作
+
+以下示例使用聚合操作打印包含在集合roster中的符合选择性服务的成员的电子邮件地址：
+
+```java
+roster
+        .stream()
+        .filter(
+                p -> p.getGender() == Person.Sex.MALE
+                        && p.getAge() >= 18
+                        && p.getAge() <= 25)
+        .map(p -> p.getEmailAddress())
+        .forEach(email -> System.out.println(email));
+```
+
+下面列出了方法processElements执行的每个操作与相应的聚合操作：
+
+1. 获得一个对象来源 ： `Stream<E> stream()`
+2. 过滤与对象匹配的Predicate对象 : `Stream<T> filter(Predicate<? super T> predicate)`
+3. 将对象映射到由Function对象指定的另一个值 : `<R> Stream<R> map(Function<? super T,? extends R> mapper)`
+4. 执行由Consumer对象指定的操作 : `void forEach(Consumer<? super T> action)`
 
 
+操作filter，map并且forEach是_聚合操作_。来自流的聚合操作流程元素，而不是直接来自集合（这是在此示例中调用的第一个方法stream的原因）. 流是元素的序列,与集合不同，它不是存储元素的数据结构。相反，流携带来自源的值，例如通过管道的收集。_管道_是流的操作的序列，在该示例中是filter，map。forEach。 此外，聚合操作通常接受lambda表达式作为参数，使您能够自定义它们的行为
 
+有关聚合操作的更详细的用法，请参阅 [聚合操作](https://docs.oracle.com/javase/tutorial/collections/streams/index.html)  课程
+
+
+## Lambda表达式在GUI应用程序
+
+忽略。这个[官网原文地址](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)。
+
+
+## Lambda表达式的语法
+
+
+lambda表达式由以下内容组成：
+
+* 括号中的逗号分隔的正式参数列表。该CheckPerson.test方法包含一个参数， p它表示Person该类的一个实例 。
+
+    > **注意：**可以忽略lambda表达式中参数的数据类型。另外，如果只有一个参数，可以省略括号。例如，以下lambda表达式也是有效的：
+    
+    ```java
+    p -> p.getGender() == Person.Sex.MALE 
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+    ```
+    
+* 箭头符号 `->`
+* 一个由单个表达式或语句块组成的体。此示例使用以下表达式：
+
+    ```java
+    p.getGender() == Person.Sex.MALE 
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+    ```
+    
+    如果指定单个表达式，则Java运行时将评估表达式，然后返回其值。或者，您可以使用return语句：
+    
+    ```java
+    p -> {
+        return p.getGender() == Person.Sex.MALE
+            && p.getAge() >= 18
+            && p.getAge() <= 25;
+    }
+    ```
+    
+    返回语句不是表达式; 在lambda表达式中，必须用大括号`（{}）`括起来。但是，您不必在大括号中包含一个void方法调用。例如，以下是有效的lambda表达式：
+
+    ```java
+    email -> System.out.println(email)
+    ```
+    
+    
+请注意，lambda表达式看起来很像一个方法声明; 你可以将lambda表达式视为匿名方法 - 没有名称的方法。
 
 
 
