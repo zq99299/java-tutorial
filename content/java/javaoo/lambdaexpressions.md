@@ -610,6 +610,48 @@ p -> p.getGender() == Person.Sex.MALE
 说实话。我没有看明白这一段，上面列出来的是啥意思？
 
 
+## 目标类型和方法参数
+
+对于方法参数，Java编译器使用其他两种语言功能来确定目标类型：重载解析和类型参数推断。
+
+考虑以下两个功能接口（ `java.lang.Runnable`和 `java.util.concurrent.Callable<V>`）：
+
+```java
+public interface Runnable {
+    void run();
+}
+
+public interface Callable<V> {
+    V call();
+}
+```
+
+`Runnable.run` 不返回值，而`Callable.call`返回值得
+
+假设你已经按照以下方法重载了该方法
+```java
+void invoke(Runnable r) {
+    r.run();
+}
+
+<T> T invoke(Callable<T> c) {
+    return c.call();
+}
+```
+
+在以下语句中将调用哪种方法？
+
+```java
+String s = invoke(() -> "done");
+```
+`invoke(Callable<T> c)` 将被调用。因为该方法返回一个值，而`invoke(Runnable r)`没有，在这种情况下 lambda表达式`() -> "done"`的类型是`Callable<T>`。
+
+
+## 序列化
+
+如果lambda表达式的目标类型及其捕获的参数是可序列化的，则可以 序列化它。然而，像 内部类一样，强烈地不鼓励lambda表达式的序列化。
+
+
 
 
 
