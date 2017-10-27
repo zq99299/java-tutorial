@@ -145,7 +145,56 @@ String[] stringArray = { "Barbara", "James", "Mary", "John",
     "Patricia", "Robert", "Michael", "Linda" };
 Arrays.sort(stringArray, String::compareToIgnoreCase);
 
-// 这里根据 定义的变量 stringArray 去推导目标类型，如果不符合后面传入的方法引用所对应的类型，将报错 
+// 这里根据 定义的变量 stringArray 去推导目标类型参数值，如果不符合后面传入的方法引用所对应的类型，将报错 
 ```
 
 该方法参考等效lambda表达式`String::compareToIgnoreCase`将有正式的参数列表`(String a, String b)`，其中a和b是用于更好地描述这个例子中的任意名称。方法引用将调用该方法`a.compareToIgnoreCase(b)`。
+
+### 引用构造函数
+
+您可以使用名称以静态方法的方式引用构造函数new。以下方法将元素从一个集合复制到另一个集合：
+
+```java
+    public static <T, SOURCE extends Collection<T>, DEST extends Collection<T>>
+    DEST transferElements(
+            SOURCE sourceCollection,
+            Supplier<DEST> collectionFactory) {
+
+        DEST result = collectionFactory.get();
+        for (T t : sourceCollection) {
+            result.add(t);
+        }
+        return result;
+    }
+```
+
+功能接口Supplier包含一个不带参数并返回对象的get方法。因此，您可以使用lambda表达式调用transferElements方法，如下所示：
+
+```java
+        Set<Person> rosterSetLambda =
+                transferElements(roster, () -> { return new HashSet<>(); });
+```
+
+您可以使用构造函数引用代替lambda表达式，如下所示：
+
+```java
+        Set<Person> rosterSetLambda =
+                transferElements(roster, HashSet::new);
+```
+
+Java编译器推断您要创建一个HashSet包含Person类型元素的集合。或者，您可以指定如下：
+
+```java
+        Set<Person> rosterSetLambda =
+                transferElements(roster, HashSet<Person>::new);
+```
+
+以上语法在Idea中已经支持了。在尝试的过程中看到了提示
+
+
+
+
+
+
+
+
