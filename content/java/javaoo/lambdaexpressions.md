@@ -33,35 +33,17 @@
 >
 > 原始的方法 -> 接口条件类 -> 匿名类 -> Lambda表达式
 
-xxxx
+---------
 
 > **注意：** 这一章节由于官网摘录的程序，不是完整的demo。所以我决定按照大致意思把demo重新编一个。
 
 
-假设您正在创建一个社交网络应用程序。您希望创建一个功能，使管理员能够对符合特定条件的社交网络应用程序的成员执行任何类型的操作（例如发送消息）。下表详细描述了这种用例：
-
-| Field | 描述 |
-|----------
-| 名称	 | 对所选成员执行操作
-| 主演员        | 管理员
-| 前提条件	| 管理员已登录到系统。
-| 后置条件	| 仅对符合指定条件的成员执行操作。
-| 扩展     |1A。管理员可以选择在指定要执行的操作之前或选择提交按钮之前预览符合指定条件的成员。
-| 发生频率	| 白天很多次
-
-主要成功案例:	
-
-1. 管理员指定执行某个操作的成员的标准。
-2. 管理员指定对所选成员执行的操作。
-3. 管理员选择提交按钮。
-4. 系统查找与指定条件匹配的所有成员。
-5. 系统对所有匹配的成员执行指定的操作。
+假设你在做一个社交软件的搜索功能。
 
 假设这个社交网络应用程序的成员由以下Persion类表示
 
 ```java
 public class Person {
-
     public enum Sex {
         MALE, FEMALE
     }
@@ -70,23 +52,67 @@ public class Person {
     LocalDate birthday;
     Sex gender;
     String emailAddress;
+    int age;
+
+    public Person(String name, LocalDate birthday, Sex gender, String emailAddress, int age) {
+        this.name = name;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.emailAddress = emailAddress;
+        this.age = age;
+    }
 
     public int getAge() {
-        // ...
+        return this.age;
+    }
+
+    @Override
+    public String toString() {
+        return "Persion{" +
+                "name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", gender=" + gender +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public void printPerson() {
-        // ...
+        System.out.println(this.toString());
     }
-}
 ```
 
 假设您的社交网络应用程序的成员存储在一个`List<Person>`实例中。
 
-本节首先介绍了原生用列的方法，它使用本地和匿名类改进了这种方法，然后使用lambda表达式完成了一个高效简洁的方法。
+本节会从最基本的方式来实现，然后一步一步的引导到Lambda表达式中，使用Lambad表达式来实现功能
+
+> 注：这里我直接使用现有的编程经验来编写，而不再考虑没有学过的只是了。
+
+首先构建一个`junit` 测试类，需要准备一些数据。大致的准备功能如下
+
+```java
+public class PersonTest {
+    private List<Person> roster = new ArrayList<>();
+
+    @Before
+    public void buildData() {
+        // 模拟10条数据
+        for (int i = 0; i < 10; i++) {
+            Person.Sex sex = (i % 2 == 0 ? Person.Sex.FEMALE : Person.Sex.MALE);
+
+            roster.add(new Person(
+                    "mrcode-" + i,
+                    LocalDate.now(),
+                    sex,
+                    "email-" + i,
+                    18 + i));
+        }
+    }
+}
+```
 
 ### 方法1：创建搜索匹配一个特征的成员的方法
-一种简单的方法是创建几种方法; 每个方法搜索符合一个特征的成员，如性别或年龄。以下方法打印比指定年龄更长的成员：
+一种简单的方法是创建几种方法; 每个方法搜索符合一个特征的成员，如性别或年龄。以下方法打印比指定年龄更年长的成员
 
 ```java
 public static void printPersonsOlderThan(List<Person> roster, int age) {
@@ -116,7 +142,7 @@ public static void printPersonsWithinAgeRange(
 }
 ```
 
-如果要打印指定性别的成员，或指定性别和年龄范围的组合，该怎么办？如果您决定更改Person课程并添加其他属性（如关系状态或地理位置），该怎么办？虽然这种方法比一般的方法printPersonsOlderThan更多，但是为每个可能的搜索查询创建一个单独的方法仍然可能导致脆弱的代码。您可以将指定要在其他类中搜索的条件的代码分开。
+如果要打印指定性别的成员，或指定性别和年龄范围的组合，该怎么办？如果您决定更改Person类并添加其他属性（如关系状态或地理位置），该怎么办？虽然这种方法比一般的方法printPersonsOlderThan支持的条件更多，但是为每个可能的搜索查询创建一个单独的方法仍然可能导致脆弱的代码。您可以将指定要在其他类中搜索的条件的代码分开。
 
 ### 方法3：在本地类中指定搜索条件代码
 以下方法打印与您指定的搜索条件匹配的成员：
@@ -132,7 +158,8 @@ public static void printPersons(
 }
 ```
 
-该方法通过调用该方法来检查参数中Person包含的每个实例是否满足参数中指定的搜索条件。如果方法返回一个值，那么该方法在该实例上被调用。
+该方法通过调用`CheckPerson.test`方法来检查参数中Person包含的每个实例是否满足参数中指定的搜索条件。如果方法返回一个值true，那么该方法在该实例上被调用。
+
 要指定搜索条件，您可以实现 CheckPerson接口：
 
 ```java
@@ -159,12 +186,11 @@ class CheckPersonEligibleForSelectiveService implements CheckPerson {
 printPersons(
     roster, new CheckPersonEligibleForSelectiveService());
 ```
-
-虽然这种方法不那么脆弱 - 如果您更改结构，您不必重写方法Person- 您仍然有其他代码：您计划在应用程序中执行的每个搜索的新界面和本地类。因为CheckPersonEligibleForSelectiveService 实现一个接口，你可以使用一个匿名类而不是一个本地类，并绕过需要为每个搜索声明一个新的类。
+虽然这种方法不那么脆弱了，如果宁更改Persion结构，可以不必重写该方法。但是如果你计划有更多不同的搜索条件（一种搜索条声明一个实现类），你可以使用一个匿名类而不是一个本地类，并绕过需要为每个搜索声明一个新的类。
 
 ### 方法4：在匿名类中指定搜索条件代码
 
-以下调用该方法printPersons的一个参数是一个匿名类，用于过滤在美国有资格选择性服务的成员：男性和年龄在18至25岁之间的成员：
+以下调用printPersons方法的一个参数是一个匿名类，用于过滤在美国有资格选择性服务的成员：男性和年龄在18至25岁之间的成员：
 
 ```java
 printPersons(
@@ -179,6 +205,8 @@ printPersons(
 );
 ```
 
+> 注：这里的p.getGender()在前面的定义中没有声明，这里响应的要修改 Persion的结构，提供该方法
+
 这种方法减少了所需的代码量，因为您不需要为每个要执行的搜索创建一个新类。然而，匿名类的语法是庞大的，因为CheckPerson接口只包含一种方法。在这种情况下，您可以使用lambda表达式而不是匿名类，如下一节所述。
 
 ### 方法5：使用Lambda表达式指定搜索条件代码
@@ -192,6 +220,17 @@ printPersons(
         && p.getAge() >= 18
         && p.getAge() <= 25
 );
+
+// 如果只有一行代码的话，可以省略return，上面的代码和下面的代码功能一致
+
+        printPersons(
+                roster,
+                (Person p) -> {
+                    return p.getGender() == Person.Sex.MALE
+                            && p.getAge() >= 18
+                            && p.getAge() <= 25;
+                }
+        );
 ```
 
 有关如何定义lambda表达式的信息，请参阅后面小节-Lambda表达式的语法。
@@ -268,7 +307,7 @@ public static void printPersonsWithPredicate(
 
 该方法检查参数中Person包含的每个实例是否满足参数中指定的条件。如果实例满足由此指定的条件，则该实例将调用该方法。
 
-而不是调用该方法printPerson，您可以指定在Person满足指定条件的那些实例上执行的其他操作tester。您可以使用lambda表达式指定此操作。假设你想要一个类似于一个lambda表达式printPerson，一个参数（一个类型的对象Person）并返回void。记住，要使用lambda表达式，需要实现一个功能接口。在这种情况下，您需要一个包含抽象方法的功能接口，该方法可以使用一个类型的参数Person并返回void。`Consumer<T>` 界面包含`void accept(T t)`具有这些特征的方法 。以下方法将p.printPerson()使用`Consumer<Person>`调用该方法的实例替换该调用 accept：
+而不是调用该方法printPerson，您可以指定在Person满足指定条件的那些实例上执行的其他操作tester。您可以使用lambda表达式指定此操作。假设你想要一个类似于一个lambda表达式printPerson，一个参数（一个类型的对象Person）并返回void。记住，要使用lambda表达式，需要实现一个功能接口。在这种情况下，您需要一个包含抽象方法的功能接口，该方法可以使用一个类型的参数Person并返回void。`Consumer<T>` 接口包含`void accept(T t)`具有这些特征的方法 。以下方法将p.printPerson()使用`Consumer<Person>`调用该方法的实例替换该调用 accept：
 
 ```java
 public static void processPersons(
@@ -291,11 +330,11 @@ processPersons(
      p -> p.getGender() == Person.Sex.MALE
          && p.getAge() >= 18
          && p.getAge() <= 25,
-     p -> p.printPerson()
+     p -> p.printPerson()   //程序中调用 accept
 );
 ```
 
-如果您想要更多地使用会员的个人资料，而不是打印出来。假设您要验证会员的个人资料或检索他们的联系信息？在这种情况下，您需要一个功能界面，其中包含一个返回值的抽象方法。该` Function<T,R> `接口包含的方法`R apply(T t)`。以下方法检索由参数指定的数据mapper，然后对该参数指定的操作执行操作block：
+如果你想要更多的反馈信息，希望传递条件，且满足条件的按照你的规则打印信息，那么可以用到功能接口`Consumer`,包含一个`void accept(T t)` 方法。
 
 ```java
 public static void processPersonsWithFunction(
