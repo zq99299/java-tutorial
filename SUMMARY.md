@@ -77,15 +77,9 @@
     * [本地类](/content/java/javaoo/localclasses.md) 
     * [匿名类](/content/java/javaoo/anonymousclasses.md) 
     * [Lambda表达式](/content/java/javaoo/lambdaexpressions.md) 
-
+    * [Lambda表达式-方法引用](/content/java/javaoo/methodreferences.md) 
 
     
-    
-
-
-   
-
-
 ## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
