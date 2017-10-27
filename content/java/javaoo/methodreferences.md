@@ -71,3 +71,27 @@ public class Person {
     }
     Arrays.sort(rosterAsArray, new PersonAgeComparator());
 ```
+
+此调用的方法签名sort如下：
+
+```java
+static <T> void sort(T[] a, Comparator<? super T> c)
+```
+
+请注意，该接口Comparator是一个功能接口。因此，您可以使用lambda表达式，而不是定义然后创建实现Comparator以下功能的类的新实例：
+
+```java
+Arrays.sort(rosterAsArray,
+                    (Person a, Person b) -> {
+                        return a.getBirthday().compareTo(b.getBirthday());
+                    }
+        );
+```
+
+然而，这种比较两个Person实例的出生日期的方法已经存在Person.compareByAge。您可以在lambda表达式的正文中调用此方法：
+
+```java
+Arrays.sort(rosterAsArray,
+    (a, b) -> Person.compareByAge(a, b)
+);
+```
