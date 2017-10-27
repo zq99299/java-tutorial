@@ -144,6 +144,8 @@ JRE推断方法类型参数，在这种情况下是(Person, Person)。
 String[] stringArray = { "Barbara", "James", "Mary", "John",
     "Patricia", "Robert", "Michael", "Linda" };
 Arrays.sort(stringArray, String::compareToIgnoreCase);
+
+// 这里根据 定义的变量 stringArray 去推导目标类型，如果不符合后面传入的方法引用所对应的类型，将报错 
 ```
 
 该方法参考等效lambda表达式`String::compareToIgnoreCase`将有正式的参数列表`(String a, String b)`，其中a和b是用于更好地描述这个例子中的任意名称。方法引用将调用该方法`a.compareToIgnoreCase(b)`。
