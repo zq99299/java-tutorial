@@ -471,6 +471,157 @@ lambda表达式由以下内容组成：
 请注意，lambda表达式看起来很像一个方法声明; 你可以将lambda表达式视为匿名方法 - 没有名称的方法。
 
 
+以下示例 Calculator是一个使用多个形式参数的lambda表达式示例：
+
+
+```java
+public class Calculator {
+
+    interface IntegerMath {
+        int operation(int a, int b);
+    }
+
+    public int operateBinary(int a, int b, IntegerMath op) {
+        return op.operation(a, b);
+    }
+
+    public static void main(String... args) {
+
+        Calculator myApp = new Calculator();
+        IntegerMath addition = (a, b) -> a + b;
+        IntegerMath subtraction = (a, b) -> a - b;
+        System.out.println("40 + 2 = " +
+                                   myApp.operateBinary(40, 2, addition));
+        System.out.println("20 - 10 = " +
+                                   myApp.operateBinary(20, 10, subtraction));
+    }
+}
+```
+operateBinary 使用两个整数操作执行数学运算。操作本身由一个实例指定IntegerMath。的例子中定义了lambda表达式两个操作，addition和subtraction。该示例打印以下内容：
+```java
+40 + 2 = 42
+20 - 10 = 10
+
+````
+
+## 访问封闭范围的局部变量
+像本地和匿名类，lambda表达式可以 捕获变量 ; 它们对包围范围的局部变量具有相同的访问权限。但是，与本地和匿名类不同，lambda表达式没有任何阴影问题（有关详细信息，请参阅 阴影）。Lambda表达式是词法的范围。这意味着它们不会从超类型继承任何名称或引入新的范围界定。lambda表达式中的声明就像在封闭环境中一样被解释。以下示例 LambdaScopeTest演示如下：
+
+```java
+public class LambdaScopeTest {
+
+    public int x = 0;
+
+    class FirstLevel {
+
+        public int x = 1;
+
+        void methodInFirstLevel(int x) {
+
+            // 下面的x=99 将会使编译器报错
+            // 将在statement A处出现错误信息："local variables referenced from a lambda expression
+            // must be final or effectively final"
+            //
+            // x = 99;
+
+            Consumer<Integer> myConsumer = (y) ->
+            {
+                System.out.println("x = " + x); // Statement A
+                System.out.println("y = " + y);
+                System.out.println("this.x = " + this.x);
+                System.out.println("LambdaScopeTest.this.x = " +
+                                           LambdaScopeTest.this.x);
+            };
+
+            myConsumer.accept(x);
+
+        }
+    }
+
+    public static void main(String... args) {
+        LambdaScopeTest st = new LambdaScopeTest();
+        LambdaScopeTest.FirstLevel fl = st.new FirstLevel();
+        fl.methodInFirstLevel(23);
+    }
+}
+```
+
+此示例生成以下输出：
+
+```java
+x = 23
+y = 23
+this.x = 1
+LambdaScopeTest.this.x = 0
+```
+
+如果在lambda表达式的声明中替换参数x，编译器将生成一个错误：
+
+```java
+Consumer<Integer> myConsumer = (x) -> {
+    // ...
+}
+```
+
+编译器报错：x 已经在被定义，因为lambda表达式不会引入新的范围界限。因此，您可以直接访问封闭范围的字段，方法和局部变量。例如，lambda表达式直接访问methodInFirstLevel参数x；要访问包围类中的变量，请使用关键字this。在这个例子中，`this.x`指的是成员变量`FirstLevel.x`。
+
+
+然而，像本地和匿名类一样，lambda表达式只能访问最终或有效最终的封闭块的局部变量和参数。例如，假设您在methodInFirstLevel定义语句之后立即添加以下赋值语句：
+
+
+```java
+void methodInFirstLevel(int x) {
+    x = 99;
+    // ...
+}
+```
+
+由于这个赋值语句，该变量FirstLevel.x不再有效地成为最终的。因此，lambda表达式myConsumer尝试访问FirstLevel.x变量的时候Java编译器会生成类似于“Variable used in lambda expression should be final or effectively final”的错误消息.
+
+
+## 目标类型
+
+如何确定lambda表达式的类型？回想一下选择的成年男性以及18至25岁之间的lambda表达：
+
+```java
+p -> p.getGender() == Person.Sex.MALE
+    && p.getAge() >= 18
+    && p.getAge() <= 25
+```
+
+这个lambda表达式用于以下两种方法：
+
+* `public static void printPersons(List<Person> roster, CheckPerson tester)` 在方法3：在局部类指定搜索条件码
+* `public void printPersonsWithPredicate(List<Person> roster, Predicate<Person> tester)` 在方法6：Lambda表达式使用标准的功能接口
+
+
+当Java运行时调用该方法时printPersons，它期望数据类型CheckPerson，因此lambda表达式是这种类型的。但是，当Java运行时调用该方法时printPersonsWithPredicate，它期待数据类型`Predicate<Person>`，因此lambda表达式是这种类型的。这些方法期望的数据类型称为_目标类型_。要确定lambda表达式的类型，Java编译器将使用上下文的目标类型或其中找到lambda表达式的情况。因此，您只能在Java编译器可以确定目标类型的情况下使用lambda表达式：
+
+
+* 变量声明
+* 赋值语句
+* return语句
+* 数组初始化
+* 方法或则构成参数
+* Lambda表达体
+* 条件表达式 `?:`
+* Cast expressions
+
+说实话。我没有看明白这一段，上面列出来的是啥意思？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
