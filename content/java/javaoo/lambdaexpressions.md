@@ -28,8 +28,16 @@
 
 > **前言**
 > 这一节的文字有点多，机器翻译的感觉还是有点度不太通顺，我给总结了下下面的用意
+>
 > 就是通过一个查询等操作的需求，然后慢慢的把你从最原始的实现方法 引导至lambda表达式来实现。
+>
 > 原始的方法 -> 接口条件类 -> 匿名类 -> Lambda表达式
+
+
+----
+
+
+> **注意：** 这一章节由于官网摘录的程序，不是完整的demo。所以我决定按照大致意思把demo重新编一个。
 
 
 假设您正在创建一个社交网络应用程序。您希望创建一个功能，使管理员能够对符合特定条件的社交网络应用程序的成员执行任何类型的操作（例如发送消息）。下表详细描述了这种用例：
@@ -95,7 +103,7 @@ public static void printPersonsOlderThan(List<Person> roster, int age) {
 
 这种方法可能会使您的应用程序变得脆弱，这是因为引入更新（例如较新的数据类型）而导致应用程序无法正常工作的可能性。假设您升级应用程序并更改Person类的结构，使其包含不同的成员变量; 也许是使用不同数据类型或算法的类记录和测量年龄。您将不得不重写很多API以适应这一变化。此外，这种方法是不必要的限制; 如果你想打印比一定年龄小的会员怎么办？
 
-## 方法2：创建更广泛的搜索方法
+### 方法2：创建更广泛的搜索方法
 
 以下方法比通用型printPersonsOlderThan更为普遍; 会在特定范围内打印成员：
 
@@ -112,7 +120,7 @@ public static void printPersonsWithinAgeRange(
 
 如果要打印指定性别的成员，或指定性别和年龄范围的组合，该怎么办？如果您决定更改Person课程并添加其他属性（如关系状态或地理位置），该怎么办？虽然这种方法比一般的方法printPersonsOlderThan更多，但是为每个可能的搜索查询创建一个单独的方法仍然可能导致脆弱的代码。您可以将指定要在其他类中搜索的条件的代码分开。
 
-## 方法3：在本地类中指定搜索条件代码
+### 方法3：在本地类中指定搜索条件代码
 以下方法打印与您指定的搜索条件匹配的成员：
 
 ```java
@@ -156,7 +164,7 @@ printPersons(
 
 虽然这种方法不那么脆弱 - 如果您更改结构，您不必重写方法Person- 您仍然有其他代码：您计划在应用程序中执行的每个搜索的新界面和本地类。因为CheckPersonEligibleForSelectiveService 实现一个接口，你可以使用一个匿名类而不是一个本地类，并绕过需要为每个搜索声明一个新的类。
 
-## 方法4：在匿名类中指定搜索条件代码
+### 方法4：在匿名类中指定搜索条件代码
 
 以下调用该方法printPersons的一个参数是一个匿名类，用于过滤在美国有资格选择性服务的成员：男性和年龄在18至25岁之间的成员：
 
@@ -171,4 +179,137 @@ printPersons(
         }
     }
 );
+```
+
+这种方法减少了所需的代码量，因为您不需要为每个要执行的搜索创建一个新类。然而，匿名类的语法是庞大的，因为CheckPerson接口只包含一种方法。在这种情况下，您可以使用lambda表达式而不是匿名类，如下一节所述。
+
+### 方法5：使用Lambda表达式指定搜索条件代码
+
+CheckPerson 接口是一个功能接口。功能接口是只包含一个抽象方法的任何接口 。（功能接口可能包含一个或多个 默认方法或 静态方法）因为功能界面只包含一个抽象方法，所以在实现时可以省略该方法的名称。为此，您不需要使用匿名类表达式，而是使用lambda表达式。
+
+```java
+printPersons(
+    roster,
+    (Person p) -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+);
+```
+
+有关如何定义lambda表达式的信息，请参阅后面小节-Lambda表达式的语法。
+
+您可以使用标准的功能接口来代替接口CheckPerson，进一步减少了所需的代码量。
+
+### 方法6：使用带有Lambda表达式的标准功能接口
+
+```java
+interface CheckPerson {
+    boolean test(Person p);
+}
+```
+
+这是一个非常简单的接口。它是一个功能接口，因为它只包含一个抽象方法。该方法使用一个参数并返回一个 boolean值。该方法非常简单，可能不值得在应用程序中定义一个。因此，JDK定义了几个标准的功能接口，您可以在包中找到它们`java.util.function`。
+
+例如，您可以使用 `Predicate<T>` 接口代替CheckPerson。此接口包含以下方法`boolean test(T t)`：
+
+```java
+interface Predicate<T> {
+    boolean test(T t);
+}
+```
+
+该接口`Predicate<T>`是通用接口的示例。(有关泛型相关信息请参考 泛型 章节)。例如，参数化类型`Predicate<Person>`如下：
+
+```java
+interface Predicate<Person> {
+    boolean test(Person t);
+}
+
+```
+
+该参数化类型包含一个具有相同返回类型和参数的方法`CheckPerson.boolean test(Person p)`。因此，您可以使用以下方法`Predicate<T>`来代替CheckPerson：
+
+```java
+public static void printPersonsWithPredicate(
+    List<Person> roster, Predicate<Person> tester) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            p.printPerson();
+        }
+    }
+}
+```
+
+因此，以下方法调用与printPersons在方法3中调用的方法相同 ：在本地类中指定搜索条件代码以获取符合选择性服务的成员：
+
+```java
+printPersonsWithPredicate(
+    roster,
+    p -> p.getGender() == Person.Sex.MALE
+        && p.getAge() >= 18
+        && p.getAge() <= 25
+);
+```
+
+这不是使用lambda表达式的唯一可能的方法。以下方法建议使用lambda表达式的其他方法。
+
+### 方法7：在整个应用程序中使用Lambda表达式
+
+重新考虑printPersonsWithPredicate 使用lambda表达式的方法：
+
+```java
+public static void printPersonsWithPredicate(
+    List<Person> roster, Predicate<Person> tester) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            p.printPerson();
+        }
+    }
+}
+```
+
+该方法检查参数中Person包含的每个实例是否满足参数中指定的条件。如果实例满足由此指定的条件，则该实例将调用该方法。
+
+而不是调用该方法printPerson，您可以指定在Person满足指定条件的那些实例上执行的其他操作tester。您可以使用lambda表达式指定此操作。假设你想要一个类似于一个lambda表达式printPerson，一个参数（一个类型的对象Person）并返回void。记住，要使用lambda表达式，需要实现一个功能接口。在这种情况下，您需要一个包含抽象方法的功能接口，该方法可以使用一个类型的参数Person并返回void。`Consumer<T>` 界面包含`void accept(T t)`具有这些特征的方法 。以下方法将p.printPerson()使用`Consumer<Person>`调用该方法的实例替换该调用 accept：
+
+```java
+public static void processPersons(
+    List<Person> roster,
+    Predicate<Person> tester,
+    Consumer<Person> block) {
+        for (Person p : roster) {
+            if (tester.test(p)) {
+                block.accept(p);
+            }
+        }
+}
+```
+
+因此，以下方法调用与printPersons在方法3中调用的方法相同：在本地类中指定搜索条件代码以获取符合选择性服务的成员。
+
+```java
+processPersons(
+     roster,
+     p -> p.getGender() == Person.Sex.MALE
+         && p.getAge() >= 18
+         && p.getAge() <= 25,
+     p -> p.printPerson()
+);
+```
+
+如果您想要更多地使用会员的个人资料，而不是打印出来。假设您要验证会员的个人资料或检索他们的联系信息？在这种情况下，您需要一个功能界面，其中包含一个返回值的抽象方法。该` Function<T,R> `接口包含的方法`R apply(T t)`。以下方法检索由参数指定的数据mapper，然后对该参数指定的操作执行操作block：
+
+```java
+public static void processPersonsWithFunction(
+    List<Person> roster,
+    Predicate<Person> tester,
+    Function<Person, String> mapper,
+    Consumer<String> block) {
+    for (Person p : roster) {
+        if (tester.test(p)) {
+            String data = mapper.apply(p);
+            block.accept(data);
+        }
+    }
+}
 ```
