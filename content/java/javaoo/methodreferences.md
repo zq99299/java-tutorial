@@ -97,7 +97,7 @@ Arrays.sort(rosterAsArray,
 ```
 方法引用Person::compareByAge在语义上与lambda表达式相同`(a, b) -> Person.compareByAge(a, b)`。每个都有以下特点：
 
-* 它的形参列表是`Comparator<Person>.compare`带来的`(Person, Person)`。
+* 它的形参列表是`Comparator<Person>.compare`带来的`(Person, Person)`。(形参一样)
 * 它的身体调用方法Person.compareByAge。
 
 ## 方法引用的方式
@@ -107,7 +107,43 @@ Arrays.sort(rosterAsArray,
 
 | 方式	| 例
 |--------
-| 参考静态方法	| ContainingClass::staticMethodName
+| 引用静态方法	| ContainingClass::staticMethodName
 | 引用特定对象的实例方法	| containingObject::instanceMethodName
 | 引用特定类型的任意对象的实例方法	| ContainingType::methodName
 | 引用构造函数	| ClassName::new
+
+### 引用静态方法
+方法引用`Person::compareByAge`是对静态方法的引用。
+
+### 引用特定对象的实例方法
+
+以下是对特定对象的实例方法的引用的示例：
+
+```java
+class ComparisonProvider {
+    public int compareByName(Person a, Person b) {
+        return a.getName().compareTo(b.getName());
+    }
+        
+    public int compareByAge(Person a, Person b) {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+}
+ComparisonProvider myComparisonProvider = new ComparisonProvider();
+Arrays.sort(rosterAsArray, myComparisonProvider::compareByName);
+```
+不要奇怪，方法引用就是使用 "::" 来引用
+方法引用`myComparisonProvider::compareByName` 调用`compareByName`作为myComparisonProvider对象一部分的方法
+JRE推断方法类型参数，在这种情况下是(Person, Person)。
+
+### 引用特定类型的任意对象的实例方法
+
+以下是对特定类型的任意对象的实例方法的引用的示例：
+
+```java
+String[] stringArray = { "Barbara", "James", "Mary", "John",
+    "Patricia", "Robert", "Michael", "Linda" };
+Arrays.sort(stringArray, String::compareToIgnoreCase);
+```
+
+该方法参考等效lambda表达式`String::compareToIgnoreCase`将有正式的参数列表`(String a, String b)`，其中a和b是用于更好地描述这个例子中的任意名称。方法引用将调用该方法`a.compareToIgnoreCase(b)`。
