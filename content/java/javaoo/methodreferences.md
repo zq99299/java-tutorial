@@ -95,3 +95,19 @@ Arrays.sort(rosterAsArray,
     (a, b) -> Person.compareByAge(a, b)
 );
 ```
+方法引用Person::compareByAge在语义上与lambda表达式相同`(a, b) -> Person.compareByAge(a, b)`。每个都有以下特点：
+
+* 它的形参列表是`Comparator<Person>.compare`带来的`(Person, Person)`。
+* 它的身体调用方法Person.compareByAge。
+
+## 方法引用的方式
+
+有以下四种方式
+
+
+| 方式	| 例
+|--------
+| 参考静态方法	| ContainingClass::staticMethodName
+| 引用特定对象的实例方法	| containingObject::instanceMethodName
+| 引用特定类型的任意对象的实例方法	| ContainingType::methodName
+| 引用构造函数	| ClassName::new
