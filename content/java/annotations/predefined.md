@@ -61,10 +61,19 @@
 
 **@Retention** 指定标记注解的存储方式：
 
-* RetentionPolicy.SOURCE - 标记的注解仅在源级别保留，并被编译器忽略。
-* RetentionPolicy.CLASS - 标记的注解由编译器在编译时保留，但被Java虚拟机（JVM）忽略。
-* RetentionPolicy.RUNTIME - 标记的注解由JVM保留，因此可以由运行时环境使用。
+* `RetentionPolicy.SOURCE` - 标记的注解仅在源级别保留，并被编译器忽略。
+* `RetentionPolicy.CLASS` - 标记的注解由编译器在编译时保留，但被Java虚拟机（JVM）忽略。
+* `RetentionPolicy.RUNTIME` - 标记的注解由JVM保留，因此可以由运行时环境使用。
 
 **@Documented** 表明，每当使用指定的注解时，应使用Javadoc工具记录这些元素。（默认情况下，注解不包括在Javadoc中。）有关详细信息，请参阅 [Javadoc工具页面](https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/index.html)。
 
-**@Target** 标记另一个注释，以限制注释可应用于哪种类型的Java元素。目标注释指定以下元素类型之一作为其值：
+**@Target** 标记另一个注解，以限制注解可应用于哪种类型的Java元素。目标注解指定以下元素类型之一作为其值：
+
+* `ElementType.ANNOTATION_TYPE` 可以应用于注解类型。
+* `ElementType.CONSTRUCTOR` 可以应用于构造函数。
+* `ElementType.FIELD` 可应用于字段。
+* `ElementType.LOCAL_VARIABLE` 可以应用于局部变量。
+* `ElementType.METHOD` 可以应用于方法级注解。
+* `ElementType.PACKAGE` 可以应用于一个包的声明。
+* `ElementType.PARAMETER` 可以应用于一个方法的参数。
+* `ElementType.TYPE` 可以应用于类的任何元素。
