@@ -81,6 +81,7 @@
     * [何时使用嵌套类和Lambda表达式](/content/java/javaoo/whentouse.md)
     * [问题与练习-嵌套类](/content/java/javaoo/qande/nested-questions.md)
     * [枚举类型](/content/java/javaoo/enum.md)
+    * [问题与练习-枚举](/content/java/javaoo/qande/enum-answers.md)
 
 ## 官方教程 - 基本类
 
