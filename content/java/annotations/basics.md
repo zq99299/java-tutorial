@@ -36,3 +36,25 @@ void myMethod() { ... }
 @SuppressWarnings("unchecked")
 void myMethod() { ... }
 ```
+
+如果注解没有元素，则可以省略括号，如前面的@Override示例所示。
+
+在同一声明中也可以使用多个注解：
+
+```java
+@Author(name = "Jane Doe")
+@EBook
+class MyClass { ... }
+```
+
+如果注解具有相同的类型，那么这称为重复注释：
+
+```java
+@Author(name = "Jane Doe")
+@Author(name = "John Smith")
+class MyClass { ... }
+```
+
+从Java SE 8版本开始支持重复注释。有关详细信息，请参阅 重复注释。
+
+注解类型可以是在Java API中 `java.lang or java.lang.annotation`包 中定义的类型；在前面的例子，Override并且SuppressWarnings是 预定义的Java注解。也可以定义自己的注解类型。上一个示例中的Author和Ebook注释是自定义注解类型。
