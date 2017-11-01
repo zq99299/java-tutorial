@@ -55,7 +55,7 @@ class MyClass { ... }
 class MyClass { ... }
 ```
 
-从Java SE 8版本开始支持重复注释。有关详细信息，请参阅 重复注释。
+从Java SE 8版本开始支持重复注释。有关详细信息，请参阅 重复注解。
 
 注解类型可以是在Java API中 `java.lang or java.lang.annotation`包 中定义的类型；在前面的例子，Override并且SuppressWarnings是 预定义的Java注解。也可以定义自己的注解类型。上一个示例中的Author和Ebook注释是自定义注解类型。
 
