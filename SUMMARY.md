@@ -86,6 +86,9 @@
   * [注解基础](/content/java/annotations/basics.md)
   * [声明一个注解类型](/content/java/annotations/declaring.md)
   * [预定义注解类型](/content/java/annotations/predefined.md)
+  * [注解类型和可插拨类型系统](/content/java/annotations/type_annotations.md)
+
+  
 
   
 
