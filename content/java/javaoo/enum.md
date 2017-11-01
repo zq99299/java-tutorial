@@ -71,7 +71,18 @@ public class EnumTest {
 周末是最最安逸的
 ```
 
+Java编程语言枚举类型比其他语言的类型更强大。该enum声明定义一个类（称为枚举类型）。枚举类体可以包括方法和其他字段。当它创建一个枚举时，编译器会自动添加一些特殊的方法。例如，它们有一个静态values方法，它返回一个包含枚举所有值的数组，并按它们被声明的顺序。该方法通常与`for-each`结构组合使用以迭代枚举类型的值。例如，下面的Planet类示例中的代码遍历太阳系中的所有行星。
 
+```java
+for (Planet p : Planet.values()) {
+    System.out.printf("Your weight on %s is %f%n",
+                      p, p.surfaceWeight(mass));
+}
+```
+
+> 注意：
+>
+> 所有枚举都会隐式扩展java.lang.Enum。因为一个类只能扩展一个父类（请参阅“ 声明类”），所以Java语言不支持状态的多重继承（请参见 State，Implementation和Type的多重继承），因此枚举不能扩展其他任何内容。
 
 
 
