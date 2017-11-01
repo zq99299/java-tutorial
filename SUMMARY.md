@@ -80,6 +80,7 @@
     * [Lambda表达式-方法引用](/content/java/javaoo/methodreferences.md)
     * [何时使用嵌套类和Lambda表达式](/content/java/javaoo/whentouse.md)
     * [问题与练习-嵌套类](/content/java/javaoo/qande/nested-questions.md)
+    * [枚举类型](/content/java/javaoo/enum.md)
 
 ## 官方教程 - 基本类
 
