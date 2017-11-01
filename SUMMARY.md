@@ -70,22 +70,17 @@
     * [了解类成员](/content/java/javaoo/classvars.md)
     * [初始化字段](/content/java/javaoo/initial.md)
     * [创建和使用类和对象的总结](/content/java/javaoo/summaryclasses.md)
-   * [创建-问题和练习](/content/java/javaoo/qande/creating-questions.md)
-   * [对象-问题和练习](/content/java/javaoo/qande/objects-questions.md)
-  * [嵌套类](/content/java/javaoo/nested.md) 
-    * [内部类范例](/content/java/javaoo/innerclasses.md) 
-    * [本地类](/content/java/javaoo/localclasses.md) 
-    * [匿名类](/content/java/javaoo/anonymousclasses.md) 
-    * [Lambda表达式](/content/java/javaoo/lambdaexpressions.md) 
-    * [Lambda表达式-方法引用](/content/java/javaoo/methodreferences.md) 
-    * [何时使用嵌套类和Lambda表达式](/content/java/javaoo/whentouse.md) 
-    * [问题与练习](/content/java/javaoo/qande/nested-questions.md)
- 
-   
+    * [创建-问题和练习](/content/java/javaoo/qande/creating-questions.md)
+    * [对象-问题和练习](/content/java/javaoo/qande/objects-questions.md)
+  * [嵌套类](/content/java/javaoo/nested.md)
+    * [内部类范例](/content/java/javaoo/innerclasses.md)
+    * [本地类](/content/java/javaoo/localclasses.md)
+    * [匿名类](/content/java/javaoo/anonymousclasses.md)
+    * [Lambda表达式](/content/java/javaoo/lambdaexpressions.md)
+    * [Lambda表达式-方法引用](/content/java/javaoo/methodreferences.md)
+    * [何时使用嵌套类和Lambda表达式](/content/java/javaoo/whentouse.md)
+    * [问题与练习-嵌套类](/content/java/javaoo/qande/nested-questions.md)
 
-    
-
-    
 ## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
