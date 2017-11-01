@@ -84,10 +84,11 @@
     * [问题与练习-枚举](/content/java/javaoo/qande/enum-answers.md)
 * [注解](/content/java/annotations/index.md)
   * [注解基础](/content/java/annotations/basics.md)
-  * [注解基础](/content/java/annotations/declaring.md)
-
+  * [声明一个注解类型](/content/java/annotations/declaring.md)
+  * [预定义注解类型](/content/java/annotations/predefined.md)
 
   
+
 ## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
