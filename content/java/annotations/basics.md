@@ -29,3 +29,10 @@ class MyClass() { ... }
 @SuppressWarnings(value = "unchecked")
 void myMethod() { ... }
 ```
+
+如果只有一个元素命名为value，那么该名称可以省略，如：
+
+```java
+@SuppressWarnings("unchecked")
+void myMethod() { ... }
+```
