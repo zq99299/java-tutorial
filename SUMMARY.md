@@ -78,6 +78,9 @@
     * [匿名类](/content/java/javaoo/anonymousclasses.md) 
     * [Lambda表达式](/content/java/javaoo/lambdaexpressions.md) 
     * [Lambda表达式-方法引用](/content/java/javaoo/methodreferences.md) 
+    * [何时使用嵌套类和Lambda表达式](/content/java/javaoo/whentouse.md) 
+
+    
 
     
 ## 官方教程 - 基本类
