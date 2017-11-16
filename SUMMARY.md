@@ -89,6 +89,7 @@
   * [注解类型和可插拨类型系统](/content/java/annotations/type_annotations.md)
   * [重复注解](/content/java/annotations/repeating.md)
   * [问题和练习](/content/java/annotations/qande/questions.md)
+* [接口和继承](/content/java/iandi/index.md)
 
 
   
