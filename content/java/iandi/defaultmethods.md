@@ -174,3 +174,5 @@ public interface HandleInvalidTimeZoneClient extends TimeClient {
     }
 }
 ```
+
+任何实现该接口的类HandleInvalidTimeZoneClient将使用getZonedDateTime由此接口指定的实现，而不是由接口TimeClient。指定的实现
