@@ -94,6 +94,13 @@
     * [定义一个接口](/content/java/iandi/interface_def.md)
     * [实现一个接口](/content/java/iandi/usinginterface.md)
     * [使用接口作为类型](/content/java/iandi/interface_as_type.md)
+    * [不断发展的接口](/content/java/iandi/nogrow.md)
+
+
+
+
+
+
 
 ## 官方教程 - 基本类
 
