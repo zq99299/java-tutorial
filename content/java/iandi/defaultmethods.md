@@ -68,3 +68,46 @@ public class SimpleTimeClient implements TimeClient {
     }
 }
 ```
+
+假设你想为TimeClient接口添加新的功能，比如通过一个ZonedDateTime对象来指定一个时区的能力 （它就像一个 LocalDateTime对象，除了存储时区信息）：
+
+```java
+public interface TimeClient {
+    void setTime(int hour, int minute, int second);
+    void setDate(int day, int month, int year);
+    void setDateAndTime(int day, int month, int year,
+        int hour, int minute, int second);
+    LocalDateTime getLocalDateTime();                           
+    ZonedDateTime getZonedDateTime(String zoneString);
+}
+```
+
+在对TimeClient接口进行修改之后，还需要修改类SimpleTimeClient并实现该方法getZonedDateTime。但是，不要getZonedDateTime像abstract以前的例子那样离开，而应该定义一个默认的实现。（请记住， 抽象方法是没有实现声明的方法。）
+
+```java
+package defaultmethods;
+ 
+import java.time.*;
+
+public interface TimeClient {
+    void setTime(int hour, int minute, int second);
+    void setDate(int day, int month, int year);
+    void setDateAndTime(int day, int month, int year,
+                               int hour, int minute, int second);
+    LocalDateTime getLocalDateTime();
+    
+    static ZoneId getZoneId (String zoneString) {
+        try {
+            return ZoneId.of(zoneString);
+        } catch (DateTimeException e) {
+            System.err.println("Invalid time zone: " + zoneString +
+                "; using default time zone instead.");
+            return ZoneId.systemDefault();
+        }
+    }
+        
+    default ZonedDateTime getZonedDateTime(String zoneString) {
+        return ZonedDateTime.of(getLocalDateTime(), getZoneId(zoneString));
+    }
+}
+```
