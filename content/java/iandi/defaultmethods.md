@@ -111,3 +111,66 @@ public interface TimeClient {
     }
 }
 ```
+
+您可以指定接口中的方法定义是default在方法签名开始处的关键字的默认方法。接口中的所有方法声明（包括默认方法）都是隐式的public，所以可以省略public修饰符。
+
+使用这个接口，你不需要修改这个类SimpleTimeClient，这个类（以及任何实现这个接口的类TimeClient）将会拥有getZonedDateTime已经定义好的方法。以下示例从以下实例 TestSimpleTimeClient调用方法：getZonedDateTimeSimpleTimeClient
+
+```java
+package defaultmethods;
+ 
+import java.time.*;
+import java.lang.*;
+import java.util.*;
+
+public class TestSimpleTimeClient {
+    public static void main(String... args) {
+        TimeClient myTimeClient = new SimpleTimeClient();
+        System.out.println("Current time: " + myTimeClient.toString());
+        System.out.println("Time in California: " +
+            myTimeClient.getZonedDateTime("Blah blah").toString());
+    }
+}
+```
+
+## 继承包含默认方法的接口
+
+继承包含默认方法的接口时，可以执行以下操作：
+
+* 根本不提及默认的方法，这可以让你的扩展接口继承默认的方法。
+* 重新声明默认的方法，这使得它abstract。
+* 重新定义覆盖它的默认方法。
+
+假设你扩展接口TimeClient如下：
+
+```java
+public interface AnotherTimeClient extends TimeClient { }
+```
+
+任何实现TimeClient接口的类，都将具有由默认方法的实现
+
+假设你扩展接口TimeClient如下：
+
+```java
+public interface AbstractZoneTimeClient extends TimeClient {
+    public ZonedDateTime getZonedDateTime(String zoneString);
+}
+```
+
+任何实现这个接口的类AbstractZoneTimeClient都必须实现这个方法getZonedDateTime; 此方法abstract与接口中的所有其他非默认（和非静态）方法一样。
+
+假设你扩展接口TimeClient如下：
+
+```java
+public interface HandleInvalidTimeZoneClient extends TimeClient {
+    default public ZonedDateTime getZonedDateTime(String zoneString) {
+        try {
+            return ZonedDateTime.of(getLocalDateTime(),ZoneId.of(zoneString)); 
+        } catch (DateTimeException e) {
+            System.err.println("Invalid zone ID: " + zoneString +
+                "; using the default time zone instead.");
+            return ZonedDateTime.of(getLocalDateTime(),ZoneId.systemDefault());
+        }
+    }
+}
+```
