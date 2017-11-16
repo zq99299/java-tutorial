@@ -88,6 +88,8 @@
   * [预定义注解类型](/content/java/annotations/predefined.md)
   * [注解类型和可插拨类型系统](/content/java/annotations/type_annotations.md)
   * [重复注解](/content/java/annotations/repeating.md)
+  * [问题和练习](/content/java/annotations/qande/questions.md)
+
 
   
 
