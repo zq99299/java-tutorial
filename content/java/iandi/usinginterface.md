@@ -78,5 +78,5 @@ public class RectanglePlus
 
 由于RectanglePlus实现了Relatable，任何两个RectanglePlus对象的大小可以比较。
 
-> 注意：
-注意：isLargerThan在Relatable接口中定义 的方法需要一个类型的对象Relatable。在前面的例子中粗体显示的代码行转换other为RectanglePlus实例。类型转换告诉编译器该对象究竟是什么。getArea直接调用other实例（other.getArea()）将无法编译，因为编译器不明白，other实际上是一个实例RectanglePlus。
+> **注意：**
+  isLargerThan在Relatable接口中定义 的方法需要一个类型的对象Relatable。在前面的例子中粗体显示的代码行转换other为RectanglePlus实例。类型转换告诉编译器该对象究竟是什么。getArea直接调用other实例（other.getArea()）将无法编译，因为编译器不明白，other实际上是一个实例RectanglePlus。
