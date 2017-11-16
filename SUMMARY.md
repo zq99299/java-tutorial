@@ -91,13 +91,9 @@
   * [问题和练习](/content/java/annotations/qande/questions.md)
 * [接口和继承](/content/java/iandi/index.md)
   * [接口](/content/java/iandi/createinterface.md)
+    * [定义一个接口](/content/java/iandi/interface_def.md)
+    * [实现一个接口](/content/java/iandi/usinginterface.md)
 
-
-
-
-  
-
-  
 
 ## 官方教程 - 基本类
 
