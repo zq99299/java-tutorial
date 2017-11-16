@@ -90,6 +90,9 @@
   * [重复注解](/content/java/annotations/repeating.md)
   * [问题和练习](/content/java/annotations/qande/questions.md)
 * [接口和继承](/content/java/iandi/index.md)
+  * [接口](/content/java/iandi/createinterface.md)
+
+
 
 
   
