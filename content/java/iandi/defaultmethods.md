@@ -176,3 +176,36 @@ public interface HandleInvalidTimeZoneClient extends TimeClient {
 ```
 
 任何实现该接口的类HandleInvalidTimeZoneClient将使用getZonedDateTime由此接口指定的实现，而不是由接口TimeClient。指定的实现
+
+
+## 静态方法
+
+除了默认方法之外，您还可以在接口中定义 静态方法。（静态方法是一个与定义它的类相关联的方法，而不是与任何对象相关联的类的每个实例共享其静态方法）这使得您可以更轻松地在库中组织帮助器方法; 您可以在同一个接口中保留特定于接口的静态方法，而不是在单独的类中。以下示例定义了一个静态方法，用于检索ZoneId与时区标识符对应的 对象; 如果没有ZoneId对应于给定标识符的对象，则使用系统默认时区。（因此，您可以简化该方法getZonedDateTime）：
+
+
+```java
+public interface TimeClient {
+    // ...
+    static public ZoneId getZoneId (String zoneString) {
+        try {
+            return ZoneId.of(zoneString);
+        } catch (DateTimeException e) {
+            System.err.println("Invalid time zone: " + zoneString +
+                "; using default time zone instead.");
+            return ZoneId.systemDefault();
+        }
+    }
+
+    default public ZonedDateTime getZonedDateTime(String zoneString) {
+        return ZonedDateTime.of(getLocalDateTime(), getZoneId(zoneString));
+    }    
+}
+```
+
+与类中的静态方法类似，您可以指定接口中的方法定义是一个静态方法static，在方法签名的开始处具有关键字。包含静态方法的接口中的所有方法声明都是隐式的public，所以可以省略public修饰符。
+
+## 将默认方法集成到现有的库中
+
+
+默认方法使您能够为现有接口添加新功能，并确保与为这些接口的旧版本编写的代码保持二进制兼容性。特别是，使用默认方法可以将接受lambda表达式的方法添加为现有接口的参数。本节演示如何 Comparator使用默认和静态方法增强接口。
+
