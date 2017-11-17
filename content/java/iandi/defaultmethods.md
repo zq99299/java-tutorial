@@ -501,3 +501,67 @@ public class SortByRankThenSuit implements Comparator<Card> {
 在这里例子里面，最重要的是演示，拉姆达表达式的排序中用到的 Comparator 接口的默认方法和静态方法。
 
 要自己提供一个比较器的话，传统的写法 `SortByRankThenSuit`,但是，这种方法太冗长了; 它会更好，如果你可以指定哪些要排序，而不是如何要排序。假设您是编写Comparatorjiek的开发人员。你可以添加什么样的默认或静态方法Comparator来使其他开发人员更容易地指定排序条件？
+
+首先，假设你想按照牌点大小排列，不管花色，你可以这样调用
+
+```java
+myDeck.sort((o1, o2) -> {
+            return o1.getRank().value() - o2.getRank().value()
+        });
+```
+
+因为接口Comparator是一个 功能接口，所以可以使用lambda表达式作为sort方法的参数。在这个例子中，lambda表达式比较两个整数值。
+
+
+如果他们可以通过Comparator调用方法来创建一个实例，那么对于开发者来说会更简单。特别是，如果您的开发人员可以创建一个Comparator实例来比较任何可以从诸如getValue或hashCode之类的方法返回数值的对象，这将会很有帮助，Comparator接口已得到增强，这种能力与静态方法 comparing：
+
+```java
+myDeck.sort(Comparator.comparing(card -> card.getRank()));
+```
+
+在这个列子中，还可以使用方法引用
+
+```java
+myDeck.sort(Comparator.comparing(Card::getRank));
+```
+
+这个调用更好地演示了要排序的内容，而不是如何去做。
+
+这个Comparator接口已经增强了其他版本的静态方法comparing，例如 comparingDouble， comparingLong可以让你创建Comparator比较其他数据类型的实例。
+
+假设您的开发人员想要创建一个Comparator可以比较具有多个条件的对象的实例。例如，你如何按照牌点数排列一副扑克牌，然后是花色？和以前一样，您可以使用lambda表达式来指定这些排序条件：
+
+```java
+myDeck.sort(
+    (firstCard, secondCard) -> {
+        int compare =
+            firstCard.getRank().value() - secondCard.getRank().value();
+        if (compare != 0)
+            return compare;
+        else
+            return firstCard.getSuit().value() - secondCard.getSuit().value();
+    }      
+); 
+```
+
+也可以从Comparator中构建一系列实例，那么会更简单。Comparator接口已经使用默认的方法增强了这个功能 thenComparing：
+
+```java
+myDeck.sort(
+    Comparator
+        .comparing(Card::getRank)
+        .thenComparing(Comparator.comparing(Card::getSuit)));
+```
+
+该Comparator接口已被其他版本的默认方法thenComparing（如 thenComparingDouble和 thenComparingLong）增强，使您可以构建Comparator比较其他数据类型的实例。
+
+假设您的开发人员想要创建一个Comparator实例，使其能够以相反的顺序对一组对象进行排序。例如，你如何按照牌点从高到低的顺序排列扑克牌，从Ace到Two（而不是从Two到Ace）？和以前一样，你可以指定另一个lambda表达式。但是，如果他们可以通过Comparator调用一个方法来反转现有的，那么开发人员会更简单。这个Comparator接口已经使用默认的方法增强了这个功能 reversed：
+
+```java
+    myDeck.sort(
+            Comparator.comparing(Card::getRank)
+                    .reversed() // 把结果反转
+                    .thenComparing(Comparator.comparing(Card::getSuit)));
+```
+
+本示例演示了如何使用Comparator默认方法，静态方法，lambda表达式和方法引用增强接口，以创建更多富有表现力的库方法，这些方法的功能程序员可以通过查看如何调用它们来快速推断。使用这些结构来增强库中的接口。
