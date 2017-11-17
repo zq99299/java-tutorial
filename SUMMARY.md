@@ -96,6 +96,10 @@
     * [使用接口作为类型](/content/java/iandi/interface_as_type.md)
     * [不断发展的接口](/content/java/iandi/nogrow.md)
     * [默认方法](/content/java/iandi/defaultmethods.md)
+    * [接口总结](/content/java/iandi/summary_interface.md)
+
+
+
 
 
 
