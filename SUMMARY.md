@@ -97,15 +97,7 @@
     * [不断发展的接口](/content/java/iandi/nogrow.md)
     * [默认方法](/content/java/iandi/defaultmethods.md)
     * [接口总结](/content/java/iandi/summary_interface.md)
-
-
-
-
-
-
-
-
-
+    * [问题和练习](/content/java/iandi/qande/interfaces_questions.md)
 
 
 ## 官方教程 - 基本类
