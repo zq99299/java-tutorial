@@ -209,3 +209,295 @@ public interface TimeClient {
 
 默认方法使您能够为现有接口添加新功能，并确保与为这些接口的旧版本编写的代码保持二进制兼容性。特别是，使用默认方法可以将接受lambda表达式的方法添加为现有接口的参数。本节演示如何 Comparator使用默认和静态方法增强接口。
 
+> 科普下：Jdk8 的 Comparator接口有好多默认方法和静态方法
+
+考虑之前所练习的卡牌和一副牌的实现类。这里将用新知识重写
+
+```java
+// 一张牌继承了Comparable，可实现排序
+public interface Card extends Comparable<Card> {
+
+    // 比点比花的牌技中 花色顺序如下
+    public enum Suit {
+        DIAMONDS(1, "Diamonds"), // 方块
+        CLUBS(2, "Clubs"), // 梅花
+        HEARTS(3, "Hearts"),// 红桃
+        SPADES(4, "Spades"); // 黑桃
+
+        private final int value;
+        private final String text;
+
+        Suit(int value, String text) {
+            this.value = value;
+            this.text = text;
+        }
+
+        public int value() {
+            return value;
+        }
+
+        public String text() {
+            return text;
+        }
+    }
+
+    public enum Rank {
+        DEUCE(2, "Two"),
+        THREE(3, "Three"),
+        FOUR(4, "Four"),
+        FIVE(5, "Five"),
+        SIX(6, "Six"),
+        SEVEN(7, "Seven"),
+        EIGHT(8, "Eight"),
+        NINE(9, "Nine"),
+        TEN(10, "Ten"),
+        JACK(11, "Jack"),
+        QUEEN(12, "Queen"),
+        KING(13, "King"),
+        ACE(14, "Ace");
+        private final int value;
+        private final String text;
+
+        Rank(int value, String text) {
+            this.value = value;
+            this.text = text;
+        }
+
+        public int value() {
+            return value;
+        }
+
+        public String text() {
+            return text;
+        }
+    }
+
+    public Card.Suit getSuit();
+
+    public Card.Rank getRank();
+}
+
+
+// 一副牌的接口，定义了各种方法
+public interface Deck {
+
+    List<Card> getCards();
+
+    Deck deckFactory();
+
+    int size();
+
+    void addCard(Card card);
+
+    void addCards(List<Card> cards);
+
+    void addDeck(Deck deck);
+    /** 洗牌 */
+    void shuffle();
+
+    /** 从小到大排序 */
+    void sort();
+
+    /** 自定义排序 */
+    void sort(Comparator<Card> c);
+
+    /** 返回整副牌的牌值字符串 */
+    String deckToString();
+
+    Map<Integer, Deck> deal(int players, int numberOfCards) throws IllegalArgumentException;
+
+}
+
+
+// 一张牌的实现，且实现了可比较大小的方法compareTo
+public class PlayingCard implements Card {
+    // 一张牌由两个元素组成，牌面值和花色
+    private Card.Rank rank;
+    private Card.Suit suit;
+
+    public PlayingCard(Card.Rank rank, Card.Suit suit) {
+        this.rank = rank;
+        this.suit = suit;
+    }
+
+    public Card.Suit getSuit() {
+        return suit;
+    }
+
+    public Card.Rank getRank() {
+        return rank;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof Card) {
+            if (((Card) obj).getRank() == this.rank &&
+                    ((Card) obj).getSuit() == this.suit) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    public int hashCode() {
+        return ((suit.value() - 1) * 13) + rank.value();
+    }
+
+    public int compareTo(Card o) {
+        return this.hashCode() - o.hashCode();
+    }
+
+    public String toString() {
+        return this.rank.text() + " of " + this.suit.text();
+    }
+
+    public static void main(String... args) {
+        new PlayingCard(Rank.ACE, Suit.DIAMONDS);
+        new PlayingCard(Rank.KING, Suit.SPADES);
+    }
+}
+
+// 一副牌的实现，和 main方法中的测试
+public class StandardDeck implements Deck {
+
+    private List<Card> entireDeck;
+
+    public StandardDeck(List<Card> existingList) {
+        this.entireDeck = existingList;
+    }
+
+    public StandardDeck() {
+        this.entireDeck = new ArrayList<>();
+        for (Card.Suit s : Card.Suit.values()) {
+            for (Card.Rank r : Card.Rank.values()) {
+                this.entireDeck.add(new PlayingCard(r, s));
+            }
+        }
+    }
+
+    public Deck deckFactory() {
+        return new StandardDeck(new ArrayList<Card>());
+    }
+
+    public int size() {
+        return entireDeck.size();
+    }
+
+    public List<Card> getCards() {
+        return entireDeck;
+    }
+
+    public void addCard(Card card) {
+        entireDeck.add(card);
+    }
+
+    public void addCards(List<Card> cards) {
+        entireDeck.addAll(cards);
+    }
+
+
+    public void addDeck(Deck deck) {
+        List<Card> listToAdd = deck.getCards();
+        entireDeck.addAll(listToAdd);
+    }
+
+    public void sort() {
+        Collections.sort(entireDeck);
+    }
+
+    public void sort(Comparator<Card> c) {
+        Collections.sort(entireDeck, c);
+    }
+
+
+    public void shuffle() {
+        Collections.shuffle(entireDeck);
+    }
+
+    public Map<Integer, Deck> deal(int players, int numberOfCards)
+            throws IllegalArgumentException {
+        int cardsDealt = players * numberOfCards;
+        int sizeOfDeck = entireDeck.size();
+        if (cardsDealt > sizeOfDeck) {
+            throw new IllegalArgumentException(
+                    "Number of players (" + players +
+                            ") times number of cards to be dealt (" + numberOfCards +
+                            ") is greater than the number of cards in the deck (" +
+                            sizeOfDeck + ").");
+        }
+
+        Map<Integer, List<Card>> dealtDeck = entireDeck
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                card -> {
+                                    int cardIndex = entireDeck.indexOf(card);
+                                    if (cardIndex >= cardsDealt) return (players + 1);
+                                    else return (cardIndex % players) + 1;
+                                }));
+
+        // Convert Map<Integer, List<Card>> to Map<Integer, Deck>
+        Map<Integer, Deck> mapToReturn = new HashMap<>();
+
+        for (int i = 1; i <= (players + 1); i++) {
+            Deck currentDeck = deckFactory();
+            currentDeck.addCards(dealtDeck.get(i));
+            mapToReturn.put(i, currentDeck);
+        }
+        return mapToReturn;
+    }
+
+    public String deckToString() {
+        // 拉姆达表达式 遍历牌值，并按回车符分割每张牌值
+        return this.entireDeck
+                .stream()
+                .map(Card::toString)
+                .collect(Collectors.joining("\n"));
+    }
+
+    public static void main(String... args) {
+        StandardDeck myDeck = new StandardDeck();
+        System.out.println("创建牌:");
+        myDeck.sort();
+        System.out.println("从小到大整理牌");
+        System.out.println(myDeck.deckToString());
+        myDeck.shuffle();
+        // 按点数排列，相同的则再次按花色排列，从小到大 - 传统的写法
+        myDeck.sort(new SortByRankThenSuit());
+        System.out.println("按点数排列，相同的则再次按花色排列，从小到大 - 传统的写法");
+        System.out.println(myDeck.deckToString());
+        myDeck.shuffle();
+        // 按点数排列，相同的则再次按花色排列，从小到大 - 拉姆达表达式
+        myDeck.sort(
+                Comparator.comparing(Card::getRank)
+                        .thenComparing(Comparator.comparing(Card::getSuit)));
+        System.out.println("按点数排列，相同的则再次按花色排列，从小到大 - 拉姆达表达式");
+        System.out.println(myDeck.deckToString());
+        myDeck.sort(
+                Comparator.comparing(Card::getRank)
+                        .reversed() // 把结果反转
+                        .thenComparing(Comparator.comparing(Card::getSuit)));
+        System.out.println("按点数排列（从大到小），相同的则再次按花色排列（从小到大） - 拉姆达表达式");
+        System.out.println(myDeck.deckToString());
+    }
+}
+
+// 传统的比较器
+public class SortByRankThenSuit implements Comparator<Card> {
+    public int compare(Card firstCard, Card secondCard) {
+        int compVal =
+                firstCard.getRank().value() - secondCard.getRank().value();
+        if (compVal != 0)
+            return compVal;
+        else
+            return firstCard.getSuit().value() - secondCard.getSuit().value();
+    }
+}
+```
+
+在这里例子里面，最重要的是演示，拉姆达表达式的排序中用到的 Comparator 接口的默认方法和静态方法。
+
+要自己提供一个比较器的话，传统的写法 `SortByRankThenSuit`
