@@ -500,4 +500,4 @@ public class SortByRankThenSuit implements Comparator<Card> {
 
 在这里例子里面，最重要的是演示，拉姆达表达式的排序中用到的 Comparator 接口的默认方法和静态方法。
 
-要自己提供一个比较器的话，传统的写法 `SortByRankThenSuit`
+要自己提供一个比较器的话，传统的写法 `SortByRankThenSuit`,但是，这种方法太冗长了; 它会更好，如果你可以指定哪些要排序，而不是如何要排序。假设您是编写Comparatorjiek的开发人员。你可以添加什么样的默认或静态方法Comparator来使其他开发人员更容易地指定排序条件？
