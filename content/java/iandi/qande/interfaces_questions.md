@@ -116,15 +116,16 @@
 
 2. 假设你已经写了一个时间服务器，定期通知其客户当前的日期和时间。编写一个接口，服务器可以使用它来强制客户端上的特定协议。
 
-```java
-import java.time.*; 
- 
-public interface TimeClient {
-    void setTime(int hour, int minute, int second);
-    void setDate(int day, int month, int year);
-    void setDateAndTime(int day, int month, int year,
-                               int hour, int minute, int second);
-    LocalDateTime getLocalDateTime();
-}
+    答：还是没有明白题目的意思是啥
+    ```java
+    import java.time.*; 
+     
+    public interface TimeClient {
+        void setTime(int hour, int minute, int second);
+        void setDate(int day, int month, int year);
+        void setDateAndTime(int day, int month, int year,
+                                   int hour, int minute, int second);
+        LocalDateTime getLocalDateTime();
+    }
 ```
     
