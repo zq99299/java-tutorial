@@ -106,3 +106,31 @@ Object类提供的回调方法,当对象变成垃圾时，该方法被回调。O
 你不能覆盖getClass。
 
 getClass()方法返回一个Class对象，该对象具有可用于获取有关该类的信息的方法，例如`name（getSimpleName()）`，其`superclass（getSuperclass()）`以及它实现的`接口（getInterfaces()）`。例如，以下方法获取并显示对象的类名称：
+
+```java
+void printClassName(Object obj) {
+    System.out.println("The object's" + " class is " +
+        obj.getClass().getSimpleName());
+}
+```
+`java.lang`包中的 Class类有大量的方法（超过50个）。例如，，您可以测试以查看该类是注释（isAnnotation()），接口（isInterface()）还是枚举（isEnum()）。你可以看到对象的字段是什么（getFields()）或者它的方法是什么（getMethods()）等等。
+
+## hashCode 方法
+
+hashCode() 方法返回的值是对象的哈希码，它是以十六进制表示的对象的内存地址。根据定义，如果两个对象相等，则它们的哈希码也_必须相等_。如果你重写了这个equals()方法，你就改变了两个对象的等同方式，而且其Object实现hashCode()不再有效。因此，如果您重写equals()方法，则还必须重写该hashCode()方法。
+
+## toString方法
+你的类中应该总是考虑重写toString()方法。
+
+所述Object的toString()方法返回String的对象，这是对于调试非常有用的表示。String对象的表示完全取决于对象，这就是为什么你需要在你的类中重写toString()。
+
+您可以使用 `System.out.println()` 来显示 toString()的内容（对象的文本表示形式），例如：
+
+```java
+System.out.println(firstBook.toString());
+```
+
+这对于一个正确的重写toString()方法来说，可以打印一些有用的东西，比如：
+```java
+ISBN：0201914670; Swing教程; 构建GUI的指南，第2版
+```
