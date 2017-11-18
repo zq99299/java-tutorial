@@ -63,26 +63,82 @@ The static method in Cat
 
 * 实例方法优于接口默认方法。
 
+    ```java
+    public class Horse {
+        public String identifyMyself() {
+            return "I am a horse.";
+        }
+    }
+    public interface Flyer {
+        default public String identifyMyself() {
+            return "I am able to fly.";
+        }
+    }
+    public interface Mythical {
+        default public String identifyMyself() {
+            return "I am a mythical creature.";
+        }
+    }
+    public class Pegasus extends Horse implements Flyer, Mythical {
+        public static void main(String... args) {
+            Pegasus myApp = new Pegasus();
+            System.out.println(myApp.identifyMyself());
+        }
+    }
+    ```
+    该方法`Pegasus.identifyMyself`返回字符串I am a horse.
+
+* 已被其他候选人覆盖的方法将被忽略。当超类型共享一个共同的祖先时，就会出现这种情况。
+    ```java
+    public interface Animal {
+        default public String identifyMyself() {
+            return "I am an animal.";
+        }
+    }
+    public interface EggLayer extends Animal {
+        default public String identifyMyself() {
+            return "I am able to lay eggs.";
+        }
+    }
+    public interface FireBreather extends Animal { }
+    public class Dragon implements EggLayer, FireBreather {
+        public static void main (String... args) {
+            Dragon myApp = new Dragon();
+            System.out.println(myApp.identifyMyself());
+        }
+    }
+    ```
+    该方法`Dragon.identifyMyself`返回字符串I am able to lay eggs.
+    
+
+如果两个或多个独立定义的默认方法冲突，或者默认方法与抽象方法冲突，则Java编译器会产生编译器错误。您必须显式重写超类型方法。
+    
+    
+考虑一下现在可以飞行的计算机控制汽车的例子。你有两个接口（OperateCar和FlyCar）为同一个方法提供默认实现，（startEngine）：
+    
 ```java
-public class Horse {
-    public String identifyMyself() {
-        return "I am a horse.";
+public interface OperateCar {
+    // ...
+    default public int startEngine(EncryptedKey key) {
+        // Implementation
     }
 }
-public interface Flyer {
-    default public String identifyMyself() {
-        return "I am able to fly.";
+public interface FlyCar {
+    // ...
+    default public int startEngine(EncryptedKey key) {
+        // Implementation
     }
 }
-public interface Mythical {
-    default public String identifyMyself() {
-        return "I am a mythical creature.";
-    }
-}
-public class Pegasus extends Horse implements Flyer, Mythical {
-    public static void main(String... args) {
-        Pegasus myApp = new Pegasus();
-        System.out.println(myApp.identifyMyself());
+```
+
+同时实现类OperateCar和FlyCar必须覆盖的方法startEngine。您可以使用super关键字调用任何默认实现。
+
+```java
+public class FlyingCar implements OperateCar, FlyCar {
+    // 不显式的声明则会报错
+    public int startEngine(EncryptedKey key) {
+        FlyCar.super.startEngine(key);
+        OperateCar.super.startEngine(key);
     }
 }
 ```
