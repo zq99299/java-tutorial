@@ -104,7 +104,9 @@
     * [多态性](/content/java/iandi/polymorphism.md)
     * [隐藏的字段](/content/java/iandi/hidevariables.md)
     * [使用关键字 super](/content/java/iandi/super.md)
-	* [Object作为超类](/content/java/iandi/objectclass.md)
+    * [Object作为超类](/content/java/iandi/objectclass.md)
+    * [编写最终类和方法-final](/content/java/iandi/final.md)
+
 
 
 
