@@ -106,7 +106,7 @@
     * [使用关键字 super](/content/java/iandi/super.md)
     * [Object作为超类](/content/java/iandi/objectclass.md)
     * [编写最终类和方法-final](/content/java/iandi/final.md)
-
+    * [抽象方法和类](/content/java/iandi/abstract.md)
 
 
 
