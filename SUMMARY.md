@@ -102,6 +102,8 @@
     * [多继承](/content/java/iandi/multipleinheritance.md)
     * [覆盖和隐藏方法](/content/java/iandi/override.md)
     * [多态性](/content/java/iandi/polymorphism.md)
+    * [隐藏的字段](/content/java/iandi/hidevariables.md)
+
 
 
 
