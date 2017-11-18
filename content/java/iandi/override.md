@@ -142,3 +142,27 @@ public class FlyingCar implements OperateCar, FlyCar {
     }
 }
 ```
+
+前面的名字super（在这个例子中，FlyCar或者OperateCar）必须引用一个直接的超级接口，它定义或者继承了被调用的方法的默认值。这种形式的方法调用并不局限于使用相同的签名来区分包含默认方法的多个实现的接口。您可以使用super关键字在类和接口中调用默认方法。
+
+类的继承实例方法可以覆盖抽象接口方法。考虑以下接口和类：
+
+```java
+public interface Mammal {
+    String identifyMyself();
+}
+public class Horse {
+    public String identifyMyself() {
+        return "I am a horse.";
+    }
+}
+public class Mustang extends Horse implements Mammal {
+    public static void main(String... args) {
+        Mustang myApp = new Mustang();
+        System.out.println(myApp.identifyMyself());
+    }
+}
+```
+该方法Mustang.identifyMyself返回字符串I am a horse. Horse 类覆盖了Mammal 中的抽象方法
+
+> **注意：**接口中的静态方法永远不会被继承。
