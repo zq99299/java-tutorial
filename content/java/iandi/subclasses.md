@@ -147,6 +147,7 @@ if (obj instanceof MountainBike) {
     MountainBike myBike = (MountainBike)obj;
 }
 ```
+在这里 instanceof验证obj是否引用一个MountainBike，这样我们就可以知道将不会抛出运行时异常。
 
 
 
