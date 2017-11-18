@@ -100,11 +100,53 @@ MountainBike继承Bicycle所有的字段和方法，并添加字段seatHeight和
 * 你可以编写一个调用超类的构造函数的子类构造函数，或者隐式地使用关键字super。
 
 
+本课的以下部分将讲述这些主题。
 
+## 父类的私有成员
 
+子类不会继承其父类的private成员，但是，如果超类具有访问其私有字段的公共或受保护的方法，则这些也可以由子类使用。
 
+## 对象
+我们已经看到，一个对象是它实例化的类的数据类型。例如，如果我们写
 
+```java
+public MountainBike myBike = new MountainBike();
+```
+那么myBike的类型是MountainBike。
 
+MountainBike 是Bicycle和Object的子类，因此，MountainBike是一个Bicycle，也是一个Object，并且它可用于任何Bicycle或Object对象被要求。
+
+反过来并不一定是正确的： Bicycle 可能是 MountainBike，但不一定。同样，一个Object 可能是一个Bicycle或一个MountainBike，但不一定。
+
+在继承和实现所允许的对象之中，Casting显示使用一种类型的对象来代替另一种类型的对象。例如，如果我们写
+
+```java
+Object obj = new MountainBike();
+```
+
+然后obj是一个Object和一个MountainBike（直到obj被分配的另一个对象不是一个MountainBike）。这被称为_隐式投射_。
+
+如果，另一方面，我们写
+
+```java
+MountainBike myBike = obj;
+```
+我们会得到一个编译时错误，因为obj不知道编译器是一个MountainBike。但是，我们可以告诉编译器，我们承诺通过显式的转换来分配一个MountainBiketo ：obj
+
+```java
+MountainBike myBike = (MountainBike)obj;
+```
+
+这个转换插入了一个运行时检查，这个检查obj被分配了一个MountainBike,这样编译器就可以安全地假定它obj是一个MountainBike。如果在运行时obj不是MountainBike，则会抛出异常。
+
+> **注意**
+
+> 您可以使用instanceof运算符对特定对象的类型进行逻辑测试。这可以避免由于不正确的转换造成的运行时错误。例如：
+> ```java
+    if (obj instanceof MountainBike) {
+        MountainBike myBike = (MountainBike)obj;
+    }
+> ```
 
 
 
