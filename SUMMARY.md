@@ -99,6 +99,8 @@
     * [接口总结](/content/java/iandi/summary_interface.md)
     * [问题和练习](/content/java/iandi/qande/interfaces_questions.md)
   * [继承](/content/java/iandi/subclasses.md)
+    * [多继承](/content/java/iandi/multipleinheritance.md)
+
 
 
 ## 官方教程 - 基本类
