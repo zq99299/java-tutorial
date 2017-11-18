@@ -19,7 +19,7 @@
 
 Object在java.lang包中定义的 类定义并实现了所有类共同的行为，包括你编写的类。在Java平台中，许多类直接派生自其他类，派生自其中一些类，等等，形成类的层次结构。
 
-![](assets/java/iandi/classes-object.gif)
+![](/assets/java/iandi/classes-object.gif)
 Java平台中的所有类都是Object的后代
 
 
