@@ -100,6 +100,8 @@
     * [问题和练习](/content/java/iandi/qande/interfaces_questions.md)
   * [继承](/content/java/iandi/subclasses.md)
     * [多继承](/content/java/iandi/multipleinheritance.md)
+    * [覆盖和隐藏方法](/content/java/iandi/override.md)
+
 
 
 
