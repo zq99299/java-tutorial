@@ -94,3 +94,15 @@ if (firstBook.equals(secondBook)) {
 如果equals默认的运算不符合你的类，则应该始始终重写该方法
 
 > 注意：如果您重写equals()，您也必须重写hashCode()。
+
+## finalize 方法
+
+Object类提供的回调方法,当对象变成垃圾时，该方法被回调。Object的`finalize()`什么都不做，你可以覆盖`finalize()`做清理工作，比如释放资源。
+
+该`finalize()`方法可以被系统自动调用，但是当它被调用时，或者即使被调用，也是不确定的。因此，你不应该依靠这种方法来为你做清理工作。例如，如果执行I / O之后没有在代码中关闭文件描述符，并且希望finalize()关闭它们，则可能会用完文件描述符。
+
+## getClass 方法
+
+你不能覆盖getClass。
+
+getClass()方法返回一个Class对象，该对象具有可用于获取有关该类的信息的方法，例如`name（getSimpleName()）`，其`superclass（getSuperclass()）`以及它实现的`接口（getInterfaces()）`。例如，以下方法获取并显示对象的类名称：
