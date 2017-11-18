@@ -142,11 +142,11 @@ MountainBike myBike = (MountainBike)obj;
 > **注意**
 
 > 您可以使用instanceof运算符对特定对象的类型进行逻辑测试。这可以避免由于不正确的转换造成的运行时错误。例如：
-> ```java
-    if (obj instanceof MountainBike) {
-        MountainBike myBike = (MountainBike)obj;
-    }
-> ```
+```java
+if (obj instanceof MountainBike) {
+    MountainBike myBike = (MountainBike)obj;
+}
+```
 
 
 
