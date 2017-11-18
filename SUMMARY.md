@@ -98,6 +98,7 @@
     * [默认方法](/content/java/iandi/defaultmethods.md)
     * [接口总结](/content/java/iandi/summary_interface.md)
     * [问题和练习](/content/java/iandi/qande/interfaces_questions.md)
+  * [继承](/content/java/iandi/subclasses.md)
 
 
 ## 官方教程 - 基本类
