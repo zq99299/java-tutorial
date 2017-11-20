@@ -41,6 +41,17 @@ public abstract class GraphicObject {
    
    
 JDK中的抽象类的一个例子 AbstractMap是集合框架的一部分。它的子类（包括HashMap，TreeMap，和ConcurrentHashMap）共享许多方法（包括get，put，isEmpty，containsKey，和containsValue），其AbstractMap限定。
+
+
+实现几个接口在JDK的类的例子是 HashMap，它实现了接口Serializable，Cloneable和`Map<K, V>`。通过阅读这个接口列表，你可以推断出一个实例HashMap（不论开发人员或公司是谁实现了这个类）是可以被克隆的，是可序列化的（这意味着它可以被转换成一个字节流;参见 Serializable对象），并具有map的功能。此外，该`Map<K, V>`接口已经增强了很多默认的方法，如merge和forEach那些已实现了这个接口，旧的类不必定义。
+
+请注意，许多软件库都使用抽象类和接口; 在HashMap类实现多个接口，并且还扩展了抽象类AbstractMap。
+
+
+## 一个抽象类的例子
+在面向对象的绘图应用程序中，您可以绘制圆形，矩形，线条，贝塞尔曲线和许多其他图形对象。这些对象都有一些共同的状态（例如：位置，方向，线条颜色，填充颜色）和行为（例如：moveTo，rotate，resize，draw）。其中一些状态和行为对于所有图形对象都是相同的（例如：位置，填充颜色和moveTo）。其他需要不同的实现（例如，调整大小或绘制）。所有人都必须能够自己画画或调整自己的身材; 他们只是不同的方式。这对抽象超类来说是一个完美的情况。您可以利用相似性并声明所有图形对象从相同的抽象父对象（例如，GraphicObject）继承，
+
+![](/assets/java/iandi/classes-graphicObject.gif)
    
    
    
