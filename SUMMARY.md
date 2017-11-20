@@ -108,6 +108,7 @@
     * [编写最终类和方法-final](/content/java/iandi/final.md)
     * [抽象方法和类](/content/java/iandi/abstract.md)
     * [继承总结](/content/java/iandi/summaryinherit.md)
+    * [问题和练习](/content/java/iandi/qande/inherit_questions.md)
 
 
 
