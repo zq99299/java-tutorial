@@ -52,6 +52,59 @@ JDK中的抽象类的一个例子 AbstractMap是集合框架的一部分。它�
 在面向对象的绘图应用程序中，您可以绘制圆形，矩形，线条，贝塞尔曲线和许多其他图形对象。这些对象都有一些共同的状态（例如：位置，方向，线条颜色，填充颜色）和行为（例如：moveTo，rotate，resize，draw）。其中一些状态和行为对于所有图形对象都是相同的（例如：位置，填充颜色和moveTo）。其他需要不同的实现（例如，调整大小或绘制）。所有人都必须能够自己画画或调整自己的身材; 他们只是不同的方式。这对抽象超类来说是一个完美的情况。您可以利用相似性并声明所有图形对象从相同的抽象父对象（例如，GraphicObject）继承，
 
 ![](/assets/java/iandi/classes-graphicObject.gif)
+
+首先，你声明一个抽象类，GraphicObject提供所有子类完全共享的成员变量和方法，比如当前位置和moveTo方法。GraphicObject也为方法声明抽象方法，比如draw或者resize需要被所有的子类实现，但是必须以不同的方式实现。这个GraphicObject类可以看起来像这样：
+
+```java
+abstract class GraphicObject {
+    int x, y;
+    ...
+    void moveTo(int newX, int newY) {
+        ...
+    }
+    abstract void draw();
+    abstract void resize();
+}
+```
+
+每个非抽象子类（GraphicObject如Circleand Rectangle）都必须提供draw和resize方法的实现：
+
+```java
+class Circle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
+class Rectangle extends GraphicObject {
+    void draw() {
+        ...
+    }
+    void resize() {
+        ...
+    }
+}
+```
+
+## 当一个抽象类实现一个接口
+在这一节中 [Interfaces](/content/java/iandi/createinterface.md)，有人指出实现接口的类必须实现接口的所有方法。但是，可以定义一个没有实现所有接口方法的类，只要该类声明为abstract。例如，
+
+```java
+abstract class X implements Y {
+  // implements all but one method of Y
+}
+
+class XX extends X {
+  // implements the remaining method in Y
+}
+```
+
+在这种情况下，类X必须是abstract因为它没有完全实现Y，但是类XX实际上是实现的Y。
+
+## 类成员
+抽象类可能有static字段和static方法。您可以像使用任何其他类一样，将这些静态成员与类引用（例如，AbstractClass.staticMethod()）一起使用。
    
    
    
