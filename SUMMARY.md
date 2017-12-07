@@ -113,6 +113,9 @@
   * [数字](/content/java/data/numbers.md)
     * [Number类](/content/java/data/numberclasses.md)
     * [格式化打印输出](/content/java/data/numberformat.md)
+    * [超越基础算术](/content/java/data/beyondmath.md)
+
+    
 
 
 
