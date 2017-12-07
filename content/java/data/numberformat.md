@@ -117,3 +117,40 @@ public class TestFormat {
 
 > 注意：   本节中的讨论仅涵盖format和printf方法的基础知识。进一步的细节可以[Basic I/O 在“格式”页面的基本轨迹部分找到](/content/essential/io/formatting.md) 。
 使用String.format创建的字符串在下一个章节 [字符串](/字符串)。
+
+
+## DecimalFormat类
+您可以使用 java.text.DecimalFormat 该类来控制前导和尾随零，前缀和后缀的显示，分组（千位）分隔符和小数点分隔符。DecimalFormat在数字格式化方面提供了很大的灵活性，但它可以使你的代码更加复杂。
+
+```java
+public class DecimalFormatDemo {
+    static public void customFormat(String pattern, double value) {
+        DecimalFormat myFormatter = new DecimalFormat(pattern);
+        String output = myFormatter.format(value);
+        System.out.println(value + "  " + pattern + "  " + output);
+    }
+
+    static public void main(String[] args) {
+
+        customFormat("###,###.###", 123456.789);
+        customFormat("###.##", 123456.789);
+        customFormat("000000.000", 123.78);
+        customFormat("$###,###.###", 12345.67);
+    }
+}
+```
+
+输出
+
+```java
+123456.789  ###,###.###  123,456.789
+123456.789  ###.##  123456.79
+123.78  000000.000  000123.780
+12345.67  $###,###.###  $12,345.67
+```
+
+
+
+
+
+
