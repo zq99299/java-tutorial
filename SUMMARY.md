@@ -109,7 +109,7 @@
     * [抽象方法和类](/content/java/iandi/abstract.md)
     * [继承总结](/content/java/iandi/summaryinherit.md)
     * [问题和练习](/content/java/iandi/qande/inherit_questions.md)
-* [继承](/content/java/data/index.md)
+* [数字和字符串](/content/java/data/index.md)
   
 
 
