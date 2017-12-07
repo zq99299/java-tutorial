@@ -110,6 +110,16 @@
     * [继承总结](/content/java/iandi/summaryinherit.md)
     * [问题和练习](/content/java/iandi/qande/inherit_questions.md)
 * [数字和字符串](/content/java/data/index.md)
+  * [数字](/content/java/data/numbers.md)
+    * [Number类](/content/java/data/numbers.md)
+    * [格式化打印输出](/content/java/data/numbers.md)
+
+
+
+
+
+
+
   
 
 
