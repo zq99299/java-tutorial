@@ -46,7 +46,7 @@ printf和format方法被重载。每个版本都有以下语法：
 public PrintStream format(Locale l, String format, Object... args)
 ```
 
-要在语法系统中打印数字%f转化成十进制浮点数），可以使用：
+要在语法系统中打印数字%f转化成十进制浮点数，用逗号代替小数点），可以使用：
 
 ```java
         float floatVar = 23.636F;
