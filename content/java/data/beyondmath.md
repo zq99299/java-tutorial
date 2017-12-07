@@ -67,3 +67,44 @@ Math类还包括超过40种静态方法。下表列出了一些基本的方法�
     int max(int arg1, int arg2)
     long max(long arg1, long arg2)
     ```
+    
+以下程序 BasicMathDemo演示了如何使用其中一些方法：
+
+```java
+public class BasicMathDemo {
+    public static void main(String[] args) {
+        double a = -191.635;
+        double b = 43.74;
+        int c = 16, d = 45;
+
+        System.out.printf("%.3f 的绝对值是 %.3f%n",
+                          a, Math.abs(a));
+
+        System.out.printf("%.2f 向上取整 %.0f%n",
+                          b, Math.ceil(b));
+
+        System.out.printf("%.2f 向下取整 %.0f%n",
+                          b, Math.floor(b));
+
+        System.out.printf("%.2f 最接近的整数(四舍五入) %.0f%n",
+                          b, Math.rint(b));
+
+        System.out.printf("%d 和 " + "%d 最大数 %d%n",
+                          c, d, Math.max(c, d));
+
+        System.out.printf("%d " + "和 %d 最小数 %d%n",
+                          c, d, Math.min(c, d));
+    }
+}
+```
+
+输出
+
+```java
+-191.635 的绝对值是 191.635
+43.74 向上取整 44
+43.74 向下取整 43
+43.74 最接近的整数(四舍五入) 44
+16 和 45 最大数 45
+16 和 45 最小数 16
+```
