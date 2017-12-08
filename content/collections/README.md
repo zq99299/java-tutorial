@@ -5,7 +5,7 @@
 
 * [接口](/content/collections/interfaces/README.md) 描述了核心集合接口，这是Java Collections Framework的心脏和灵魂。您将学习有效使用这些接口的一般准则，包括何时使用哪个接口。您还将学习每个接口的示例语法，这将帮助您充分利用接口。
 
-* 聚合操作 如何编写高效优雅的迭代操作代码- 大部分讲的JDK8+的流操作。
+* [聚合操作](/content/collections/streams/index.md) 如何编写高效优雅的迭代操作代码- 大部分讲的JDK8+的流操作。
 
 * [实现](/content/collections/implementations/README.md) 描述JDK的通用集合的实现 ，并告诉您何时使用哪种实现。您还可以了解包装的实现，这在通用实现添加功能。
 
