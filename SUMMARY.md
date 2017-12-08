@@ -258,6 +258,8 @@
   * [接口总结](/content/collections/interfaces/summary.md)
 * [聚合操作](/content/collections/streams/index.md)
   * [reduction](/content/collections/streams/reduction.md)
+  * [parallelism](/content/collections/streams/parallelism.md)
+
 * [实现](/content/collections/implementations/README.md)
   * [set实现](/content/collections/implementations/set.md)
   * [list实现](/content/collections/implementations/list.md)
