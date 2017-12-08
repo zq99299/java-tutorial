@@ -23,7 +23,7 @@ boolean removeAll(Collection<?> c)，boolean retainAll(Collection<?> c)，和 vo
 Object[] toArray()和<T> T[] toArray(T[] a)
 ```
 
-在JDK 8和更高版本中，Collection接口还公开了方法Stream<E> stream()，并Stream<E> parallelStream()从底层集合获取顺序或并行流。（有关使用流的详细信息，请参阅标题为“ [聚合操作](http://docs.oracle.com/javase/tutorial/collections/streams/index.html) ”的课程 。）
+在JDK 8和更高版本中，Collection接口暴露了方法`Stream<E> stream()` 和 `Stream<E> parallelStream()`，从底层集合获得顺序的或并行的流。。（有关使用流的详细信息，请参阅标题为“ [聚合操作](http://docs.oracle.com/javase/tutorial/collections/streams/index.html) ”的课程 。）
 
 
 Collection 表示一组对象，它有方法告诉你集合（size，isEmpty）中有多少元素，检查给定对象是否在collection（contains）中的方法，从集合（add，remove）中添加和删除元素的方法，以及提供迭代器对collection（iterator）；
