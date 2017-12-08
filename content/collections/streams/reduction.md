@@ -208,3 +208,14 @@ reducing操作有三个参数：
 
    操作函数用于reduce映射值。在这个例子中，操作函数添加了Integer值。
 
+以下示例检索每个性别成员的平均年龄：
+
+```java
+ Map<Person.Sex, Double> averageAgeByGender = roster
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person::getGender,
+                                Collectors.averagingInt(Person::getAge)
+                        ));
+```
