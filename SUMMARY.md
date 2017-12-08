@@ -257,6 +257,8 @@
   * [SortedMap接口](/content/collections/interfaces/sortedMap.md)
   * [接口总结](/content/collections/interfaces/summary.md)
 * [聚合操作](/content/collections/streams/index.md)
+  * [reduction](/content/collections/streams/reduction.md)
+
  
 * [实现](/content/collections/implementations/README.md)
   * [set实现](/content/collections/implementations/set.md)
