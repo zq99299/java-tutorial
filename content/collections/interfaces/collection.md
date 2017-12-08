@@ -23,8 +23,7 @@ boolean removeAll(Collection<?> c)，boolean retainAll(Collection<?> c)，和 vo
 Object[] toArray()和<T> T[] toArray(T[] a)
 ```
 
-在JDK 8和更高版本中，Collection接口暴露了方法`Stream<E> stream()` 和 `Stream<E> parallelStream()`，从底层集合获得顺序的或并行的流。。（有关使用流的详细信息，请参阅标题为“ [聚合操作](http://docs.oracle.com/javase/tutorial/collections/streams/index.html) ”的课程 。）
-
+在JDK 8和更高版本中，Collection接口暴露了方法`Stream<E> stream()` 和 `Stream<E> parallelStream()`，从底层集合获得顺序的或并行的流。。（有关使用流的详细信息，请参阅标题为“[聚合操作](/content/collections/streams/index.md)”的课程 。）
 
 Collection 表示一组对象，它有方法告诉你集合（size，isEmpty）中有多少元素，检查给定对象是否在collection（contains）中的方法，从集合（add，remove）中添加和删除元素的方法，以及提供迭代器对collection（iterator）；
 
@@ -40,7 +39,48 @@ Collection 表示一组对象，它有方法告诉你集合（size，isEmpty）�
 2. forEach
 3. Iterators
 
-stream是1.8的，不在1.7范围了，就不说了。forEach也不说了。
+### stream
+在JDK 8和更高版本中，迭代集合的首选方法是获取流并对其执行聚合操作。聚合操作通常与lambda表达式结合使用，使编程更具表现力，使用更少的代码行。以下代码按顺序遍历一组形状并打印出RED对象：
+
+```java
+myShapesCollection.stream()
+.filter(e -> e.getColor() == Color.RED)
+.forEach(e -> System.out.println(e.getName()));
+```
+
+同样，您可以轻松地请求一个并行流，如果集合足够大，并且您的计算机具有足够的核心，则这可能是有意义的：
+
+```java
+myShapesCollection.parallelStream()
+.filter(e -> e.getColor() == Color.RED)
+.forEach(e -> System.out.println(e.getName()));
+```
+使用此API收集数据的方法有很多种。例如，您可能希望将元素转换为String对象，然后加入它们，并用逗号分隔：
+
+```java
+String joined = myShapesCollection.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+```
+
+或则 需要统计所有员工的薪水
+
+```java
+int total = employees.stream()
+.collect(Collectors.summingInt(Employee::getSalary)));
+```
+
+这些只是使用流和聚合操作可以做的几个例子。有关更多信息和示例，请参阅标题为“[聚合操作](/content/collections/streams/index.md)”的课程 。
+
+Collections框架总是提供了一些所谓的“批量操作”作为其API的一部分。这些措施包括在整个集合进行操作的方法，如containsAll，addAll，removeAll，等不要混淆在JDK 8的新骨料业务和现有的批量操作（之间的主要区别中引入的聚合操作的那些方法containsAll，addAll等等。 ）是旧版本都是可变的，这意味着它们都修改了底层的集合。相比之下，新的总体运营不 修改底层的集合。当使用新的聚合操作和lambda表达式时，如果代码稍后从并行流中运行，则必须注意避免突变，以免将来引入问题。
+
+### for-each
+该for-each构造允许您使用for循环简洁地遍历集合或数组- [请参阅 for语句](/content/java/nutsandbolts/for.md)。以下代码使用该for-each构造在单独的行上打印集合的每个元素。
+
+```java
+for (Object o : collection)
+    System.out.println(o);
+```
 
 ### 迭代器
 Iterator是一个对象，使您能够遍历集合，并根据需要从集合中有选择性地删除元素。Iterator通过调用它的iterator方法获得一个集合。以下是Iterator接口。
