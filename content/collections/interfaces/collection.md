@@ -94,7 +94,7 @@ public interface Iterator <E> {
 }
 ```
 
-**注意**，这Iterator.remove是在迭代期间修改集合的唯一安全方法;在迭代期间使用其他修改方式应该都会报错？
+**注意**，这Iterator.remove是在迭代期间修改集合的唯一安全方法;在迭代期间使用其他修改方式应该都会报错
 
 当你需要以下操作时，应该选使用Iterator而不是for-each：
 - 迭代中删除元素，forEach 也是使用的Iterator，但是语法糖上隐藏了Iterator的相关操作
