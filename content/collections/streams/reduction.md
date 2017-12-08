@@ -51,23 +51,23 @@ reduce这个例子中的操作有两个参数：
 
   累加器函数有两个参数：reduce的部分结果（在本例中为所有已处理整数的总和）和流的下一个元素（在本例中为整数）。它返回一个新的部分结果。在这个例子中，累加器函数是一个lambda表达式，它添加了两个Integer值并返回一个Integer值：
   
-```java
-（a，b）→a + b
-```
+  ```java
+   （a，b）→a + b
+  ```
 
-这样写就明白了。
+  这样写就明白了。
 
-```java
-roster
-.stream()
-.map(Person::getAge)
-.reduce(
+  ```java
+   roster
+    .stream()
+    .map(Person::getAge)
+    .reduce(
         0,
         (a, b) -> {
             return a + b;
         });
-```
-
+  ```
+  reduce通用的提供操作，这个累加器的第一个参数就是上一次计算的结果，和下一个元素的值
 
 ## Stream.collect 方法
 
