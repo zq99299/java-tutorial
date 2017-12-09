@@ -245,6 +245,7 @@
   * [SortedSet接口](/content/collections/interfaces/sortedSet.md)
   * [SortedMap接口](/content/collections/interfaces/sortedMap.md)
   * [接口总结](/content/collections/interfaces/summary.md)
+  * [问题与练习](/content/collections/interfaces/qande/questions.md)
 * [聚合操作](/content/collections/streams/index.md)
   * [reduction](/content/collections/streams/reduction.md)
   * [parallelism](/content/collections/streams/parallelism.md)
