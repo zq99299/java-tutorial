@@ -118,6 +118,8 @@
     * [问题和练习](/content/java/data/qande/numbers_questions.md)
   * [字符](/content/java/data/characters.md)
   * [字符串](/content/java/data/strings.md)
+    * [转换数字和字符串](/content/java/data/converting.md)
+
 
 ## 官方教程 - 基本类
 
