@@ -35,3 +35,77 @@
 
 
 ## 练习
+
+1. 编写一个以随机顺序打印参数的程序。不要复制参数数组。演示如何使用流和传统的增强for语句打印出元素。 
+
+    ```java
+            Integer[] arr = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+    
+            List<Integer> ints = Arrays.asList(arr);
+            Collections.shuffle(ints);
+    
+            // for-each 打印
+            for (Integer i : ints) {
+                System.out.print(i + " ");
+            }
+            System.out.println();
+            // jdk8 流打印
+            ints.stream().forEach(i -> System.out.print(i + " "));
+    ```
+    
+2. 把以下代码修改成 SortedSort,且添指定Comparator忽略大小写排序
+
+    ```java
+    public class FindDups {
+        public static void main(String[] args) {
+            Set<String> s = new HashSet<String>();
+            for (String a : args)
+                   s.add(a);
+                   System.out.println(s.size() + " distinct words: " + s);
+        }
+    }
+    ```
+    答：
+    ```java
+            s = new TreeSet<>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.equalsIgnoreCase(o2) ? -1 : 1;
+            }
+        });
+        for (String a : args)
+            s.add(a);
+        System.out.println(s.size() + " distinct words: " + s);
+    ```
+    
+3. 练习：编写一个方法，将`List<String>`每个元素都应用于String.trim方法。
+
+ ```java
+ String[] args = new String[]{"10x", "10X", "2", "3 ", "4", " 5", "6", "7", "8", "9 "};
+        List<String> strings = Arrays.asList(args);
+        // 普通for
+        for (int i = 0; i < strings.size(); i++) {
+            strings.set(i, strings.get(i).trim());
+        }
+
+        // list迭代器
+        ListIterator<String> it = strings.listIterator();
+        while (it.hasNext()) {
+            it.set(it.next().trim());
+        }
+ ``` 
+ 
+4. 练习：考虑四个核心接口，Set，List，Queue，和Map。对于以下四个分配中的每一个，指定四个核心接口中的哪一个最适合，并说明如何使用它来实现分配。
+
+    * 异想天开玩具公司（WTI）需要记录所有员工的姓名。每月从这些记录中随机抽取一名员工，领取免费玩具。
+        
+        使用一个List。通过选择一个随机0和size()-1之间的数字来确定中奖员工。
+    * WTI已经决定，每个新产品都将以一名员工的名字命名 - 但是只有名字才会被使用，每个名字只能使用一次。准备一个独特的名字列表。
+    
+        使用一个Set。实现此接口的集合不允许多次输入相同的元素。
+    * WTI决定只使用最受欢迎的玩具名称。计算每个名字的雇员人数。
+    
+        使用Map，其中的键是名字，每个值是具有该名字的雇员数量的计数。
+    * WTI获得当地长曲棍球队的季票，由员工分享。为这个流行的运动创建一个等候名单。
+    
+        使用一个Queue。调用add()将员工添加到等待列表中，并将remove()其删除。
