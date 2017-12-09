@@ -120,7 +120,7 @@
   * [字符串](/content/java/data/strings.md)
     * [转换数字和字符串](/content/java/data/converting.md)
     * [操纵字符串中的字符](/content/java/data/manipstrings.md)
-
+    * [比较字符串和部分字符串](/content/java/data/comparestrings.md)
 
 
 ## 官方教程 - 基本类
