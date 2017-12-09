@@ -110,18 +110,14 @@
     * [继承总结](/content/java/iandi/summaryinherit.md)
     * [问题和练习](/content/java/iandi/qande/inherit_questions.md)
 * [数字和字符串](/content/java/data/index.md)
-  * [数字](/content/java/data/numbers.md)
+  * [数字-Number](/content/java/data/numbers.md)
     * [Number类](/content/java/data/numberclasses.md)
     * [格式化打印输出](/content/java/data/numberformat.md)
     * [超越基础算术](/content/java/data/beyondmath.md)
     * [总结](/content/java/data/numbersummary.md)
     * [问题和练习](/content/java/data/qande/numbers_questions.md)
-
-
-
-
-
-    
+  * [字符](/content/java/data/characters.md)
+  * [字符串](/content/java/data/strings.md)
 
 ## 官方教程 - 基本类
 
