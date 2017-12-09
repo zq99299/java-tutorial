@@ -108,3 +108,19 @@ public class BasicMathDemo {
 16 和 45 最大数 45
 16 和 45 最小数 16
 ```
+
+## 指数和对数方法
+## 三角函数
+
+https://docs.oracle.com/javase/tutorial/java/data/beyondmath.html
+
+## 随机数
+random()方法返回0.0到1.0之间的伪随机选择的数字。范围包括0.0但不是1.0。换句话说：`0.0 <= Math.random() < 1.0`。要获得不同范围的数字，可以对随机方法返回的值执行算术运算。例如，要生成一个0到9之间的整数，你可以这样写：
+
+```java
+int number = (int)(Math.random() * 10);
+```
+
+通过乘以10，可能值的范围变成`0.0 <= number < 10.0`。
+
+Math.random当需要生成一个随机数时，使用效果很好。如果您需要生成一系列随机数，则应该在java.util.Random对象上创建一个实例并调用方法来生成数字。

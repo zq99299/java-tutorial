@@ -114,6 +114,12 @@
     * [Number类](/content/java/data/numberclasses.md)
     * [格式化打印输出](/content/java/data/numberformat.md)
     * [超越基础算术](/content/java/data/beyondmath.md)
+    * [总结](/content/java/data/numbersummary.md)
+    * [问题和练习](/content/java/data/qande/numbers_questions.md)
+
+
+
+
 
     
 
