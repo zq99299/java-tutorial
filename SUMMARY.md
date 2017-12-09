@@ -259,7 +259,9 @@
 * [聚合操作](/content/collections/streams/index.md)
   * [reduction](/content/collections/streams/reduction.md)
   * [parallelism](/content/collections/streams/parallelism.md)
+  * [问题与练习](/content/collections/streams/qande/questions.md)
 
+  
 * [实现](/content/collections/implementations/README.md)
   * [set实现](/content/collections/implementations/set.md)
   * [list实现](/content/collections/implementations/list.md)
