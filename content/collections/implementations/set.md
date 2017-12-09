@@ -4,10 +4,12 @@
 
 ## 通用实现
 有三种通用set实现
-* HahsSet
+
+* HashSet
 * TreeSet
 * LinkedHashSet
-HashSet比TreeSet（大多数操作的恒定时间对对数时间）快得多，但不提供排序保证。如果需要可以使用`SortedSet`操作，如果需要按值排序，请使用TreeSet。否则使用 Hashe。
+
+HashSet比TreeSet（大多数操作的恒定时间对对数时间）快得多，但不提供排序保证。如果需要可以使用`SortedSet`操作，如果需要按值排序，请使用TreeSet。否则使用 HashSet。
 
 LinkedHashSet 某种意义上是HashSet和TreeSet的合并。通过哈希表+链表来实现，它提供了插入顺序，运行速度几乎与HashSet一样快。
 
@@ -32,7 +34,7 @@ for (Day d : EnumSet.range(Day.MONDAY, Day.FRIDAY))
     EnumSet.of(Style.BOLD, Style.ITALIC)
 ```
 
-CopyOnWriteArraySet ： 不明所以。没有接触过
+CopyOnWriteArraySet是一个Set由写时复制数组备份的实现。所有可变操作，如add，set，和remove，通过使所述阵列的一个新的复制来实现; 永远不需要锁定。即使迭代可以安全地同时进行元素插入和删除。不像大多数Set实施中，add，remove，和contains方法需要的时间与集合的大小。这个实现只适用于很少修改但频繁迭代的集合。它非常适合维护必须防止重复的事件处理程序列表。
 
 
 
