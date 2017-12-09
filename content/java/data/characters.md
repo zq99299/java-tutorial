@@ -26,4 +26,24 @@ Character在某些情况下，Java编译器也会为你创建一个对象。例�
 
 * 确定指定的char值是分别是一个字母还是一个数字。
     ```java
+    boolean isLetter(char ch)
+    boolean isDigit(char ch)
+    ```
+* 确定指定的char值是否为空白。
+    ```java
+    boolean isWhitespace(char ch)
+    ```
+* 确定指定的char值是分别是大写还是小写。
+    ```java
+    boolean isUpperCase(char ch)
+    boolean isLowerCase(char ch)
+    ```
+* 返回指定char值的大写或小写形式。
+    ```java
+    char toUpperCase(char ch)
+    char toLowerCase(char ch)
+    ```
+* 返回String表示指定字符值的对象 - 即一个字符的字符串。
+    ```java
+    toString(char ch)
     ```
