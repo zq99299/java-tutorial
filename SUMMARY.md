@@ -122,6 +122,9 @@
     * [操纵字符串中的字符](/content/java/data/manipstrings.md)
     * [比较字符串和部分字符串](/content/java/data/comparestrings.md)
     * [StringBuilder类](/content/java/data/buffers.md)
+    * [总结](/content/java/data/stringsummary.md)
+
+
 
 
 
