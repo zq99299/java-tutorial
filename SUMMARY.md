@@ -130,6 +130,8 @@
   * [泛型类型](/content/java/generics/types.md)
   * [原始类型](/content/java/generics/rawTypes.md)
   * [泛型方法](/content/java/generics/methods.md)
+  * [有界类型参数](/content/java/generics/bounded.md)
+
 
 
 
