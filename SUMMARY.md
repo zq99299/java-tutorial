@@ -131,6 +131,8 @@
   * [原始类型](/content/java/generics/rawTypes.md)
   * [泛型方法](/content/java/generics/methods.md)
   * [有界类型参数](/content/java/generics/bounded.md)
+  * [泛型方法和有界类型参数](/content/java/generics/boundedTypeParams.md)
+
 
 
 
