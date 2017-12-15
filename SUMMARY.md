@@ -134,13 +134,12 @@
   * [泛型方法和有界类型参数](/content/java/generics/boundedTypeParams.md)
   * [泛型，继承和子类型](/content/java/generics/inheritance.md)
   * [类型推断](/content/java/generics/genTypeInference.md)
+  * [通配符](/content/java/generics/wildcards.md)
+    * [上界通配符](/content/java/generics/upperBounded.md)
+    * [无界通配符](/content/java/generics/unboundedWildcards.md)
+    * [下界通配符](/content/java/generics/lowerBounded.md)
 
-
-
-
-
-
-
+    
 
 
 ## 官方教程 - 基本类
