@@ -130,12 +130,6 @@
   * [泛型类型](/content/java/generics/types.md)
 
 
-
-
-
-
-
-
 ## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
