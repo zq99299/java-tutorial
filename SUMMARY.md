@@ -127,6 +127,8 @@
   * [问题和练习](/content/java/data/qnde/characters_questions.md)
 * [泛型](/content/java/generics/index.md)
   * [为什么要使用泛型？](/content/java/generics/why.md)
+  * [泛型类型](/content/java/generics/types.md)
+
 
 
 
