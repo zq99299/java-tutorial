@@ -128,6 +128,10 @@
 * [泛型](/content/java/generics/index.md)
   * [为什么要使用泛型？](/content/java/generics/why.md)
   * [泛型类型](/content/java/generics/types.md)
+  * [原始类型](/content/java/generics/rawTypes.md)
+  * [泛型方法](/content/java/generics/methods.md)
+
+
 
 
 ## 官方教程 - 基本类
