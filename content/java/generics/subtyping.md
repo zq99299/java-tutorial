@@ -40,6 +40,8 @@ List<? extends Number>  numList = intList;  // ok ,List<? extends Integer>  是 
 因为Integer是Number的子类型，所以他们的list之间存在一个关系，下图标识了个泛型的关系
 ![](/assets/java/generics/generics-wildcardSubtyping.gif)
 
+你可以看到由` List<? extends NaturalNumber> `不是只读的，但是您可能会这样想，因为您无法存储新元素或更改列表中的现有元素。
+
 
 
 

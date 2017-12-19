@@ -141,6 +141,8 @@
     * [通配符和子类型](/content/java/generics/subtyping.md)
     * [通配符捕获和辅助方法](/content/java/generics/capture.md)
     * [通配符使用指南](/content/java/generics/wildcardGuidelines.md)
+  * [类型擦除](/content/java/generics/erasure.md)
+  
 
 ## 官方教程 - 基本类
 
