@@ -138,6 +138,8 @@
     * [上界通配符](/content/java/generics/upperBounded.md)
     * [无界通配符](/content/java/generics/unboundedWildcards.md)
     * [下界通配符](/content/java/generics/lowerBounded.md)
+    * [通配符和子类型](/content/java/generics/subtyping.md)
+
 
     
 
