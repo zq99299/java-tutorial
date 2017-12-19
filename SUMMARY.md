@@ -145,6 +145,7 @@
     * [擦除泛型类型](/content/java/generics/genTypes.md)
     * [擦除泛型方法](/content/java/generics/genMethods.md)
     * [类型擦除和桥接方法的影响](/content/java/generics/bridgeMethods.md)
+    * [不可确定的类型](/content/java/generics/nonReifiableVarargsType.md)
 
 ## 官方教程 - 基本类
 
