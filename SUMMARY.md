@@ -139,9 +139,7 @@
     * [无界通配符](/content/java/generics/unboundedWildcards.md)
     * [下界通配符](/content/java/generics/lowerBounded.md)
     * [通配符和子类型](/content/java/generics/subtyping.md)
-
-
-    
+    * [通配符捕获和辅助方法](/content/java/generics/capture.md)
 
 
 ## 官方教程 - 基本类
