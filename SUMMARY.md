@@ -142,9 +142,9 @@
     * [通配符捕获和辅助方法](/content/java/generics/capture.md)
     * [通配符使用指南](/content/java/generics/wildcardGuidelines.md)
   * [类型擦除](/content/java/generics/erasure.md)
-    * [删除泛型类型](/content/java/generics/genTypes.md)
+    * [擦除泛型类型](/content/java/generics/genTypes.md)
+    * [擦除泛型方法](/content/java/generics/genMethods.md)
 
-  
 
 ## 官方教程 - 基本类
 
