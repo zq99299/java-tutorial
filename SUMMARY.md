@@ -147,6 +147,8 @@
     * [类型擦除和桥接方法的影响](/content/java/generics/bridgeMethods.md)
     * [不可确定的类型](/content/java/generics/nonReifiableVarargsType.md)
   * [对泛型的限制](/content/java/generics/restrictions.md)
+  * [问题和练习](/content/java/generics/qande/generics_questions.md)
+
 
 
 ## 官方教程 - 基本类
