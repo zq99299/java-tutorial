@@ -108,4 +108,5 @@ objectArray[0] = Arrays.asList(42);
 但是，这种方法不会抑制该方法的调用网站产生的警告。如果您对@SuppressWarnings语法不熟悉，请参阅 注解。
 
 
-:exclamation: 完全没看懂这一节讲的
+> :exclamation: 完全没看懂这一节讲的
+> https://docs.oracle.com/javase/tutorial/java/generics/nonReifiableVarargsType.html
