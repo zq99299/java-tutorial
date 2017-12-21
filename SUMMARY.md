@@ -148,8 +148,11 @@
     * [不可确定的类型](/content/java/generics/nonReifiableVarargsType.md)
   * [对泛型的限制](/content/java/generics/restrictions.md)
   * [问题和练习](/content/java/generics/qande/generics_questions.md)
+* [包package](/content/java/package/index.md)
+  * [创建和使用包](/content/java/package/packages.md)
+  * [创建包](/content/java/package/createpkgs.md)
 
-
+  
 
 ## 官方教程 - 基本类
 
