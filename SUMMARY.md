@@ -151,6 +151,16 @@
 * [包package](/content/java/package/index.md)
   * [创建和使用包](/content/java/package/packages.md)
   * [创建包](/content/java/package/createpkgs.md)
+  * [命名包](/content/java/package/namingpkgs.md)
+  * [使用包成员](/content/java/package/usepkgs.md)
+  * [管理源文件和类文件](/content/java/package/managingfiles.md)
+  * [包总结](/content/java/package/summary_package.md)
+
+  
+
+  
+
+
 
   
 
