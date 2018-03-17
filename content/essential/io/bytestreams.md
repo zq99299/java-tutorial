@@ -1,10 +1,11 @@
 # 字节流
 
-程序使用**字节流**执行 8-bit 字节的输入和输出。所有字节流类都来自 `InputStream`和 `OutputStream`。
+程序使用**字节流**执行 8-bit 字节的输入和输出。所有字节流类都来自 `InputStream`和 `OutputStream` 。
 
 ## 使用字节流
 
 我们将探索和研究一个示例程序,它使用字节流复制,一次一个字节。
+
 ```java
 public class CopyBytes {
     public static void main(String[] args) throws IOException {
@@ -33,10 +34,10 @@ public class CopyBytes {
 }
 ```
 
-CopyBytes将大部分时间用在读取输入流和写入输出流的简单循环中，每次一个字节，如下 图所示。
+CopyBytes将大部分时间用在读取输入流和写入输出流的简单循环中，每次一个字节，如下 图所示。  
 ![](/assets/essential/io/byteStream.png)
 
-Integer Variable ：一个字节是一个int数值	0 - 255。二进制一个Byte表示也是最大255
+Integer Variable ：一个字节是一个int数值    0 - 255。二进制一个Byte表示也是最大255
 
 ## 始终关闭流
 
@@ -49,3 +50,4 @@ Integer Variable ：一个字节是一个int数值	0 - 255。二进制一个Byte
 CopyBytes似乎是一个正常的程序，但它实际上代表了一种应该避免的低级I / O。由于xanadu.txt包含字符数据，最好的方法是使用字符流，如下一节所述。还有更复杂数据类型的数据流。字节流只能用于最原始的I / O。
 
 那么为什么要谈论字节流？因为所有其他流类型都是基于字节流构建的。
+
