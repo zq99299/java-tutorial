@@ -20,6 +20,6 @@ outputStream = new BufferedWriter(new FileWriter("characteroutput.txt"));
 
 在关键点写出缓冲区通常是有意义的，而不用等待填充。这被称为**冲洗缓冲区**。
 
-一些缓冲输出类支持自动刷新，由可选的构造函数参数指定。当`autoflush `开启时，某些关键事件会导致缓冲区被刷新。自动冲洗PrintWriter对象在每次调用println或者format 时，将自动冲洗缓冲区。更多信息请查阅“扫描和格式化”章节
+一些缓冲输出类支持自动刷新，由可选的构造函数参数指定。当`autoflush `开启时，某些关键事件会导致缓冲区被刷新。自动冲洗PrintWriter对象在每次调用println或者format 时，将自动冲洗缓冲区。更多信息请查阅“[扫描和格式化](/content/essential/io/scanfor.md)”章节
 
 要手动刷新流，请调用其flush方法。该flush方法对任何输出流都有效，但除非流被缓冲，否则该方法无效。
