@@ -156,7 +156,6 @@
   * [管理源文件和类文件](/content/java/package/managingfiles.md)
   * [包总结](/content/java/package/summary_package.md)
 
-  
 ## 官方教程 - 基本类
 
 * [基本类概述（必修）](/content/essential/README.md)
@@ -305,18 +304,12 @@
 * [互操作性](/content/collections/interoperability.md)
   * [兼容性](/content/collections/interoperability/compatibility.md)
   * [API设计](/content/collections/interoperability/api-design.md)
-  
-## 官方教程 - 日期,时间API 
+
+## 官方教程 - 日期,时间API
+
 * [日期,时间API概述](/content/datetime/README.md)
-   * [日期时间设计原则](/content/datetime/overview/design.md)
-   * [时间包](/content/datetime/overview/packages.md)
-   * [方法命名约定](/content/datetime/overview/naming.md)
-* [日期,时间API概述](/content/datetime/iso/index.md)
-
-
-
-
-
-
-
+  * [日期时间设计原则](/content/datetime/overview/design.md)
+  * [时间包](/content/datetime/overview/packages.md)
+  * [方法命名约定](/content/datetime/overview/naming.md)
+* [标准日历](/content/datetime/iso/index.md)
 
