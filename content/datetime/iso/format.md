@@ -62,3 +62,36 @@ try {
     }
 }
 ```
+
+## 总结
+
+下面有两个dtf；注意第一个的YYYY 和 第二个的 yyyy ;两个标识的含义不一致；但是奇怪的是，format的时候值是正确的，但是再parse回去的时候就报错了；
+
+```java
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println(dtf.format(LocalDateTime.now()));
+        System.out.println(LocalDateTime.parse("2018-05-08 16:03:55",dtf));
+```
+
+为了解决这个错误，简单的跟了下源码；LocalDateTime.parse 中，formatter.parse 内部返回的是一个 Period 周期对象，又调用了query；所以说 LocalDateTime::from 是一个`TemporalQuery<T> `对象；
+
+```java
+ public static LocalDateTime parse(CharSequence text, DateTimeFormatter formatter) {
+        Objects.requireNonNull(formatter, "formatter");
+        return formatter.parse(text, LocalDateTime::from);
+    }
+```
+
+那么也就是说
+
+```java
+LocalDateTime.parse("2018-05-08 16:03:55",dtf) 
+
+等同于
+
+ dtf.parse("2018-05-08 16:03:55").query(LocalDateTime::from);
+ 
+而 dtf.parse("2018-05-08 16:03:55") 返回的对象中 不包含 LocalDate 只包含 LocalTime;
+那么问题就出在date未能解析，而time解析了
+```
