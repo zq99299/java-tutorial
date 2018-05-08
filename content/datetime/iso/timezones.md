@@ -181,3 +181,33 @@ System.out.printf("The last Thursday in July 2013 is the %sth.%n",
 
 实际上，结合 LocalDateTime与类 ZoneOffset类。它用于表示格林威治/ UTC时间偏移（+/-小时：分钟，例如+06：00或-08：00）的时间（小时，分钟，秒，纳秒）。
 OffsetTime类是在同一场合的使用OffsetDateTime类，但跟踪的日期时不需要。
+
+**总结下时区和偏移量的用法和转换的时候其中两个api的区别**
+
+* withZoneSameInstant : 调用了 toEpochSecond 把当前的时间纳秒 结合 指定的偏移量换算成新的纳秒
+* withZoneSameLocal ：不会换算时间，只是把时区更改了
+
+```java
+// 一个不带任何时区的时间
+LocalDateTime date = LocalDateTime.of(2018, 05, 01, 0, 0, 0);
+
+ZonedDateTime d1 = ZonedDateTime.of(date, ZoneId.systemDefault());
+
+ZoneOffset offset = ZoneOffset.of("+08:00");
+OffsetDateTime d2 = OffsetDateTime.of(date, offset);
+
+// 2018-05-01T00:00+08:00[GMT+08:00]
+// ZoneId 带了具体的ID
+System.out.println(d1);
+// 2018-05-01T00:00+08:00
+// 而偏移没有ID,因为多个ID对应的值有可能是一样的
+System.out.println(d2);
+
+// 那么把中国时间变成其他的时间
+// 2018-04-30T20:00+04:00[Asia/Yerevan]
+// 把该时间转换成指定时区了
+d1.withZoneSameInstant(ZoneId.of("Asia/Yerevan"));
+// 2018-05-01T00:00+04:00[Asia/Yerevan]
+// 只是改变了时区
+d1.withZoneSameLocal(ZoneId.of("Asia/Yerevan"));
+```
