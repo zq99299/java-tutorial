@@ -24,6 +24,9 @@ for (String s : zoneList) {
     ZoneId zone = ZoneId.of(s);
     // 把本地时间加时区信息 转换成一个ZonedDateTime
     // 但是这个LocalDateTime不包含时区信息，是怎么计算出来的呢？本地时间与这个时区相差n小时？
+    // 这里的偏移量是针对 格林威治标准时间来说的 +3 ，就是比标准时间快3个小时
+    // 如果说一个时区是 +3;而北京是+8，那么该时区比北京慢5个小时
+    // 北京时间是12点，那么该时区12-5 = 7
     ZonedDateTime zdt = dt.atZone(zone);
     ZoneOffset offset = zdt.getOffset();
     int secondsOfHour = offset.getTotalSeconds() % (60 * 60);
