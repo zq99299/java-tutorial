@@ -49,3 +49,20 @@ System.out.println("当前毫秒：" + i);
 System.out.println("所属季度：" + qoy);
 ```
 
+其他两个类定义了可能有用的附加字段， [WeekFields](https://docs.oracle.com/javase/8/docs/api/java/time/temporal/WeekFields.html)和 [JulianFields](https://docs.oracle.com/javase/8/docs/api/java/time/temporal/JulianFields.html)。
+
+* WeekFields : 提供了在某些周相关的访问，选下展示
+  
+  2008-12-31	星期三	2008年12月第5周	2008年12月第5周  2009年第1周	2008年第53周
+* JulianFields
+
+  天文科学界的时间表达
+  
+## ChronoUnit
+ ChronoUnit枚举实现TemporalUnit接口，并且提供了一组根据日期和时间，从毫秒到几千年标准单元。请注意，并非所有类都支持ChronoUnit对象。例如，Instant类不支持ChronoUnit.MONTHS或ChronoUnit.YEARS。
+ 
+  TemporalAccessor.isSupported（TemporalUnit）方法可用于验证一个类是否支持特定时间单位。以下对isSupported的调用返回false，确认Instant类不支持ChronoUnit.DAYS。
+  
+```java
+boolean isSupported = instant.isSupported(ChronoUnit.DAYS);
+```
