@@ -155,3 +155,29 @@ ARRIVING: 2013-07-21  22:20:00 (Asia/Tokyo)
 1. 首先固定一个不带任何时区的时间
 2. 把这个时间加上需要的时区，就标识这个时间就是该时区的
 3. 把带时区的时间转换成 目标 时区
+
+### OffsetDateTime
+
+实际上，结合了 LocalDateTime与类 ZoneOffset类。它用于表示格林威治/ UTC时间的偏移量（+/-小时：分钟，例如+06：00或-）的整个日期（年，月，日）和时间（小时，分钟，秒，纳秒）08:00）。
+
+```java
+// 2017.07.20 19:30
+LocalDateTime localDate = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
+ZoneOffset offset = ZoneOffset.of("-08:00");
+
+OffsetDateTime offsetDate = OffsetDateTime.of(localDate, offset);
+
+// 当前时间月中的最后一个周4
+// 得到的时间是 2017.07.25 19:30 ；时间没有错，但是偏移量有啥用？
+OffsetDateTime lastThursday =
+        offsetDate.with(TemporalAdjusters.lastInMonth(DayOfWeek.THURSDAY));
+System.out.printf("The last Thursday in July 2013 is the %sth.%n",
+                  lastThursday.getDayOfMonth());
+
+// 但是并没有看出来有什么作用
+```
+
+### OffsetTime
+
+实际上，结合 LocalDateTime与类 ZoneOffset类。它用于表示格林威治/ UTC时间偏移（+/-小时：分钟，例如+06：00或-08：00）的时间（小时，分钟，秒，纳秒）。
+OffsetTime类是在同一场合的使用OffsetDateTime类，但跟踪的日期时不需要。
