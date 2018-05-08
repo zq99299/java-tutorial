@@ -44,6 +44,7 @@ DateTimeFormatter类 的文档指定了可用于指定格式化或解析的模�
 ` format(DateTimeFormatter) `方法转换使用指定的格式的基于时间的对象为字符串表示；
 
 下面例子 日期的定义方式与之前的解析示例相同，但此模式还包括小时，分钟以及am和pm组件。
+
 ```java
 // 之前说道了MMM的解析包括am等需要和本地语言环境挂钩，
 // 所以这里需要时区信息
@@ -51,13 +52,13 @@ ZoneId leavingZone = ZoneId.systemDefault();
 ZonedDateTime departure = ZonedDateTime.of(LocalDateTime.now(), leavingZone);
 
 try {
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
-    String out = departure.format(format);
-    // LEAVING:  五月 8 2018  03:02 下午 (GMT+08:00)
-    System.out.printf("LEAVING:  %s (%s)%n", out, leavingZone);
-} catch (DateTimeException exc) {
-    System.out.printf("%s can't be formatted!%n", departure);
-    throw exc;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
+        String out = departure.format(format);
+        // LEAVING:  五月 8 2018  03:02 下午 (GMT+08:00)
+        System.out.printf("LEAVING:  %s (%s)%n", out, leavingZone);
+    } catch (DateTimeException exc) {
+        System.out.printf("%s can't be formatted!%n", departure);
+        throw exc;
+    }
 }
-}
-``
+```
