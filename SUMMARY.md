@@ -318,4 +318,7 @@
   * [日期和时间类 / Date and Time](/content/datetime/iso/datetime.md)
   * [时区和偏移类 / Zone and Offset](/content/datetime/iso/timezones.md)
   * [瞬时类 / Instant](/content/datetime/iso/instant.md)
+  * [解析与格式化](/content/datetime/iso/format.md)
+
+  
 
