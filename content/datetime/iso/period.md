@@ -24,3 +24,20 @@ Duration gap = Duration.ofSeconds(10);
 Instant later = start.plus(gap);
 System.out.println(later);
 ```
+
+## ChronoUnit
+定义了用于测量时间的单位。当你想要在一个单位的时间内测量一段时间，比如几天或几秒时，ChronoUnit.between 可以做到。between方法与所有基于时间的对象一起工作，但是它只返回单个单元的数量。下面的代码以毫秒为间隔计算两个时间戳之间的差距：
+
+```java
+Instant current = Instant.now();
+        // 10秒前
+        Instant previous = current.minus(10, ChronoUnit.SECONDS);
+        if (previous != null) {
+            // 计算两个时间之前间隔多少毫秒
+            long between = ChronoUnit.MILLIS.between(previous, current);
+            System.out.println(between); // 10000
+        }
+```
+
+而 Duration 类则可以转换为更多的时间单位；
+
