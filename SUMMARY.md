@@ -325,6 +325,11 @@
   * [周期和持续时间 / Period and Duration](/content/datetime/iso/period.md)
   * [clock](/content/datetime/iso/clock.md)
   * [非ISO日期转换](/content/datetime/iso/nonIso.md)
+  * [旧版日期时间代码](/content/datetime/iso/legacy.md)
+  
+  
+
+
 
   
 

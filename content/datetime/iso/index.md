@@ -47,7 +47,7 @@ Date-Time API的核心是 [java.time](https://docs.oracle.com/javase/8/docs/api/
 
 本节介绍如何将ISO日历系统中的日期转换为非ISO日历系统中的日期，如日语日期或ThaiBuddhistDate
 
-## 旧版日期 - 时间码
+## 旧版日期时间代码
 
 本节提供了一些关于如何将旧的java.util.Date和java.util.Calendar代码转换为Date-Time API的提示。
 
