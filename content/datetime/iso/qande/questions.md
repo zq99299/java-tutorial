@@ -92,5 +92,46 @@
 3. 写一个例子，测试一个给定的日期是否发生在13日星期五。
     
     ```java
-    -
+        // 假设给定5月13号，判断该日期是否是13号并且还是星期五
+        int m = 5;
+        int day = 13;
+
+        LocalDate date = Year.now().atMonth(m).atDay(day);
+        // 使用查询方式来处理是最方便的
+        Boolean query = date.query(temporal -> {
+            int dom = temporal.get(ChronoField.DAY_OF_MONTH);
+            int dow = temporal.get(ChronoField.DAY_OF_WEEK);
+            return dom == 13 && dow == 5;
+        });
+        System.out.println(query);
     ```
+    
+    
+扩展练习：找一年中是13号又是星期5的日期
+
+```java
+        int year = 2018;
+        Year y = Year.of(year);
+        LocalDate date = y.atMonth(1).atDay(1)
+                .with(TemporalAdjusters.firstInMonth(DayOfWeek.FRIDAY));
+        int targetY = date.getYear();
+        while (year == targetY) {
+            Boolean query = date.query(temporal -> {
+                int dom = temporal.get(ChronoField.DAY_OF_MONTH);
+                int dow = temporal.get(ChronoField.DAY_OF_WEEK);
+                return dom == 13 && dow == 5;
+            });
+            if (query) {
+                System.out.println(date);
+            }
+            date = date.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+            targetY = date.getYear();
+        }
+```
+
+输出
+
+```java
+2018-04-13
+2018-07-13
+```
