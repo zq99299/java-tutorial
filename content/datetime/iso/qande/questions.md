@@ -31,8 +31,66 @@
     ```
 
 ## 练习
-1. 写一个例子，在给定的一年里，报告当年每个月的时间长度。
+1. 写一个例子，给定一个年份，打印出该年中每个月有多少天
+
+    ```java
+        
+        int year = 2018;
+
+        Stream.of(Month.values())
+                // 注意这里：可以使用 YearMonth.of(year, month) 类
+                .map(month -> LocalDate.of(year, month.getValue(), 1))
+                .forEach(date -> {
+                    Month month = date.getMonth();
+                    String displayNameMonth = month.getDisplayName(TextStyle.FULL, Locale.getDefault());
+//                    System.out.printf("%s: %d days%n", displayNameMonth, date.lengthOfMonth());
+                    System.out.format("%3s %3s%n", displayNameMonth, date.lengthOfMonth());
+                });
+    ```
+    输出
+    ```java
+        一月    31
+        二月    28
+        三月    31
+        四月    30
+        五月    31
+        六月    30
+        七月    31
+        八月    31
+        九月    30
+        十月    31
+       十一月    30
+       十二月    31
+    ```
 
 2. 写一个例子，在当年的某个特定月份，列出当月的所有星期一。
+   
+    ```java        
+    int m = 5;
+    // LocalDate date = LocalDate.of(2018, month, 1);
+    Month month = Month.of(m);
+    // 注意这里的at用法，挺不错
+    LocalDate date = Year.now().atMonth(month).atDay(1)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));  // 找到该月的第一个星期并作为起始日期
+    Month mi = date.getMonth();
+    System.out.printf("%s的星期一有以下几天:%n", month.getDisplayName(TextStyle.FULL, Locale.getDefault()));
+    while (mi == month) {
+        System.out.printf("%s%n", date);
+        date = date.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+        mi = date.getMonth();
+    }
+    ```
+    输出
+    ```java
+    五月的星期一有以下几天:
+    2018-05-07
+    2018-05-14
+    2018-05-21
+    2018-05-28
+    ```
 
 3. 写一个例子，测试一个给定的日期是否发生在13日星期五。
+    
+    ```java
+    -
+    ```
