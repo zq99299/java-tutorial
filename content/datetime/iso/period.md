@@ -41,3 +41,32 @@ Instant current = Instant.now();
 
 而 Duration 类则可以转换为更多的时间单位；
 
+## Period
+要用基于日期的值（年、月、日）来定义大量的时间，使用周期类。周期类提供了各种get方法，例如 `getMonths`， `getDays`和 `getYears`，这样您就可以从周期中提取出时间的数量。
+
+时间由三个单位组成：月、日、年。为了显示在一个单位时间内测量的时间量，比如天数，你可以使用ChronoUnit.between的方法。
+
+下面的代码报告了你的年龄，假设你是在1960年1月1日出生的。周期类用于确定数年、月和日的时间。同一时期，在总天数中，是通过使用ChronoUnit.between来确定的。在方法之间，在括号中显示：
+```java
+LocalDate today = LocalDate.now();
+// 1960.06.01
+LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1);
+
+Period p = Period.between(birthday, today);
+long p2 = ChronoUnit.DAYS.between(birthday, today);
+// 生活了58年，4个月，8天，总共21313天
+System.out.println("You are " + p.getYears() + " years, " + p.getMonths() +
+                           " months, and " + p.getDays() +
+                           " days old. (" + p2 + " days total)");
+                                   
+// 下面是输出
+You are 58 years, 4 months, and 8 days old. (21313 days total)
+```
+
+这些计算不考虑时区差异。举个例子，如果你出生在澳大利亚，但现在住在班加罗尔，这就会略微影响你的确切年龄。在这种情况下，使用一个周期与ZonedDateTime类一起使用。当你向一个ZonedDateTime添加一个Period时，时间差异就会被观察到。
+
+
+## 总结
+* Duration ： 可被转换为天,小时，分钟，秒，毫秒，纳秒
+* Period ：可被转换为年，月，天
+* ChronoUnit：可以测量任意一个单位的间隔时间；也提供了各种单位常量
