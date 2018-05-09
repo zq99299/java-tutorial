@@ -15,19 +15,19 @@
  
 | 类或枚举| Year | Month | Day| Hours| Minutes| Seconds* | 区域偏移 / Zone Offset | 区域ID / Zone ID | toString输出 | 相关课程 
 |--|--|--|--|--|--|--|--|--|---|--
-| Instant | - | - |- |- |- | ✔ |- |- | 2013-08-20T15：16：26.355Z | 瞬时 
-| LocalDate | ✔ | ✔ | ✔ | - |- | - |- |- | 2013-08-20 | 日期类 
-| LocalDateTime | ✔ | ✔ |✔ |✔ |✔  | ✔  |- |- | 2013-08-20T08:16:26.937 | 日期和时间类 
-| ZonedDateTime | ✔| ✔ | ✔ | ✔ | ✔ | ✔ |✔ | ✔ | 2013-08-21T00:16:26.941+09:00[Asia/Tokyo] | 时区和偏移类
-| LocalTime | - | - |- |✔ |✔ | ✔ |- |- | 08:16:26.943 | 日期和时间类
-| MonthDay | - | ✔ | ✔ |- |- | - |- |- | --08-20 | 日期类
-| Year | ✔ | - |- |- |- | - |- |- | 	2013 | 日期类
-| YearMonth | ✔ | ✔ |- |- |- | - |- |- | 2013-08 | 日期类
+| Instant | - | - |- |- |- | ✔ |- |- | 2013-08-20T15：16：26.355Z | [瞬时](/content/datetime/iso/instant.md) 
+| LocalDate | ✔ | ✔ | ✔ | - |- | - |- |- | 2013-08-20 | [日期类 ](/content/datetime/iso/date.md)
+| LocalDateTime | ✔ | ✔ |✔ |✔ |✔  | ✔  |- |- | 2013-08-20T08:16:26.937 | [日期和时间类 ](/content/datetime/iso/datetime.md)
+| ZonedDateTime | ✔| ✔ | ✔ | ✔ | ✔ | ✔ |✔ | ✔ | 2013-08-21T00:16:26.941+09:00[Asia/Tokyo] | [时区和偏移类](/content/datetime/iso/timezones.md)
+| LocalTime | - | - |- |✔ |✔ | ✔ |- |- | 08:16:26.943 | [日期和时间类 ](/content/datetime/iso/datetime.md)
+| MonthDay | - | ✔ | ✔ |- |- | - |- |- | --08-20 | [日期类 ](/content/datetime/iso/date.md)
+| Year | ✔ | - |- |- |- | - |- |- | 	2013 | [日期类 ](/content/datetime/iso/date.md)
+| YearMonth | ✔ | ✔ |- |- |- | - |- |- | 2013-08 | [日期类 ](/content/datetime/iso/date.md)
 | Month | - | ✔ |- |- |- | - |- |- | 	AUGUST | [DayOfWeek and Month Enums](/content/datetime/iso/enum.md)
-| OffsetDateTime | ✔ | ✔ |✔ |✔ |✔  | ✔ |- |- | 	2013-08-20T08:16:26.954-07:00 | 时区和偏移类
-| OffsetTime | - | - |- |✔ |✔ | ✔ |- |- | - | 时区和偏移类
-| Duration | - | - | `**` | `**` | `**` | ✔  |- |- | PT20H (20 hours) | 周期和持续时间
-| Period | ✔ | ✔ |✔ |- |- | - |`***`|`***`| P10D (10 days) | 周期和持续时间
+| OffsetDateTime | ✔ | ✔ |✔ |✔ |✔  | ✔ |- |- | 	2013-08-20T08:16:26.954-07:00 | [时区和偏移类](/content/datetime/iso/timezones.md)
+| OffsetTime | - | - |- |✔ |✔ | ✔ |- |- | - | [时区和偏移类](/content/datetime/iso/timezones.md)
+| Duration | - | - | `**` | `**` | `**` | ✔  |- |- | PT20H (20 hours) | [周期和持续时间](/content/datetime/iso/period.md)
+| Period | ✔ | ✔ |✔ |- |- | - |`***`|`***`| P10D (10 days) | [周期和持续时间](/content/datetime/iso/period.md)
 
 * `*`秒被捕获到纳秒精度。
 * `**`这个类不存储这些信息，但有方法在这些单元中提供时间。
