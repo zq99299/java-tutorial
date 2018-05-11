@@ -337,7 +337,7 @@
     * [创建Jar文件](/content/datetime/deployment/jar/buil.md)
     * [查看Jar文件内容](/content/datetime/deployment/jar/view.md)
     * [提取/解压Jar文件内容](/content/datetime/deployment/jar/unpack.md)
-    * [更新Jar文件update](/content/datetime/deployment/jar/unpack.md)
+    * [更新Jar文件update](/content/datetime/deployment/jar/update.md)
 
 
 
