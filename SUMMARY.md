@@ -339,4 +339,6 @@
     * [提取/解压Jar文件内容](/content/deployment/jar/unpack.md)
     * [更新Jar文件](/content/deployment/jar/update.md)
     * [运行Jar文件](/content/deployment/jar/run.md)
+  * [使用清单文件：基础知识](/content/deployment/jar/manifestinde.md)
+
 
