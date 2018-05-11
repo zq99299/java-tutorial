@@ -331,11 +331,11 @@
 
 ## 官方教程 - 部署
 
-* [部署](/content/datetime/deployment/index.md)
-* [打包jar](/content/datetime/deployment/jar/index.md)
-  * [使用Jar文件：基础](/content/datetime/deployment/jar/basicsindex.md)
-    * [创建Jar文件](/content/datetime/deployment/jar/buil.md)
-    * [查看Jar文件内容](/content/datetime/deployment/jar/view.md)
-    * [提取/解压Jar文件内容](/content/datetime/deployment/jar/unpack.md)
-    * [更新Jar文件](/content/datetime/deployment/jar/update.md)
+* [部署](/content/deployment/index.md)
+* [打包jar](/content/deployment/jar/index.md)
+  * [使用Jar文件：基础](/content/deployment/jar/basicsindex.md)
+    * [创建Jar文件](/content/deployment/jar/buil.md)
+    * [查看Jar文件内容](/content/deployment/jar/view.md)
+    * [提取/解压Jar文件内容](/content/deployment/jar/unpack.md)
+    * [更新Jar文件](/content/deployment/jar/update.md)
 
