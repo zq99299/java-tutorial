@@ -340,5 +340,10 @@
     * [更新Jar文件](/content/deployment/jar/update.md)
     * [运行Jar文件](/content/deployment/jar/run.md)
   * [使用清单文件：基础知识](/content/deployment/jar/manifestinde.md)
-
+    * [了解默认清单](/content/deployment/jar/defman.md)
+    * [修改清单文件](/content/deployment/jar/modman.md) 
+    * [设置应用程序的入口点](/content/deployment/jar/defman.md)
+    * [将类添加到JAR文件的类路径](/content/deployment/jar/defman.md)
+    * [设置包版本信息](/content/deployment/jar/defman.md)
+    * [了解默认清单](/content/deployment/jar/defman.md)
 
