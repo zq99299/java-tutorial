@@ -328,7 +328,7 @@
   * [旧版日期时间代码](/content/datetime/iso/legacy.md)
   * [总结/概要](/content/datetime/iso/summary.md)
   * [问题和练习](/content/datetime/iso/qande/questions.md)
-  
+
 ## 官方教程 - 部署
 
 * [部署](/content/datetime/deployment/index.md)
@@ -337,27 +337,5 @@
     * [创建Jar文件](/content/datetime/deployment/jar/buil.md)
     * [查看Jar文件内容](/content/datetime/deployment/jar/view.md)
     * [提取/解压Jar文件内容](/content/datetime/deployment/jar/unpack.md)
-    * [更新Jar文件update](/content/datetime/deployment/jar/update.md)
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-  
-
-  
-  
-
-
-
-  
+    * [更新Jar文件](/content/datetime/deployment/jar/update.md)
 
