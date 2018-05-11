@@ -335,6 +335,8 @@
 * [打包jar](/content/datetime/deployment/jar/index.md)
   * [使用Jar文件：基础](/content/datetime/deployment/jar/basicsindex.md)
     * [创建Jar文件](/content/datetime/deployment/jar/buil.md)
+    * [查看Jar文件内容](/content/datetime/deployment/jar/view.md)
+
 
   
 
