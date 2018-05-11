@@ -1,5 +1,7 @@
 # 学习Java语言
 
+> 官网教程的实例教程源码下载：http://download.oracle.com/otn-pub/java/jdk/8u171-b11-demos/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-windows-x64-demos.zip
+
 本课程涵盖了Java编程语言编程的基础
 
 * [面向对象编程概念](/content/java/concepts/index.md)
