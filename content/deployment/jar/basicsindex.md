@@ -27,23 +27,23 @@ JAR文件以ZIP文件格式打包，因此您可以将它们用于无损数据�
 
 本节介绍如何执行最常见的JAR文件操作，并给出每个基本功能的示例：
 
-## 创建一个JAR文件
+## [创建一个JAR文件](/content/deployment/jar/buil.md)
 
 本节介绍如何使用Jar工具将文件和目录打包到JAR文件中。
 
-## 查看JAR文件的内容
+## [查看JAR文件的内容](/content/deployment/jar/view.md)
 
 您可以显示JAR文件的目录，以查看它包含的内容，而无需实际解压缩JAR文件。
 
-## 提取JAR文件的内容
+## [提取/解压JAR文件的内容](/content/deployment/jar/unpack.md)
 
 您可以使用Jar工具来解压缩JAR文件。提取文件时，Jar工具会复制所需的文件并将其写入当前目录，以再现文件在归档中的目录结构。
 
-## 更新JAR文件
+## [更新JAR文件](/content/deployment/jar/update.md)
 
 本节介绍如何通过修改其清单或添加文件来更新现有JAR文件的内容。
 
-## 运行JAR打包软件
+## [运行JAR打包软件](/content/deployment/jar/run.md)
 
 本节介绍如何调用和运行打包在JAR文件中的applet和应用程序。
 
