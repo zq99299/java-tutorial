@@ -25,16 +25,16 @@ JAR文件格式提供了许多好处：
 
 本课有四个部分：
 
-## 使用JAR文件：基础
+## [使用JAR文件：基础](/content/deployment/jar/basicsindex.md)
 本节介绍如何执行基本的JAR文件操作，以及如何运行捆绑在JAR文件中的软件。
 
-## 使用清单文件：基础知识
+## [使用清单文件：基础知识](/content/deployment/jar/manifestinde.md)
 本节介绍清单文件以及如何对它们进行定制，以便您可以执行封装包和设置应用程序的入口点等内容。
 
-## 签名和验证JAR文件
+## [签名和验证JAR文件](/content/deployment/jar/signindex.md)
 本节介绍如何对JAR文件进行数字签名并验证JAR文件的签名。
 
-## 使用JAR相关的API
+## [使用JAR相关的API](/content/deployment/jar/apiindex.md)
 本节将向您介绍Java平台的一些JAR处理功能。JAR文件格式是Java平台扩展机制的重要组成部分。您可以在本教程的扩展机制跟踪中了解有关JAR文件方面的更多信息。
 
 ## 问题和练习：JAR
