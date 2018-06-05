@@ -155,7 +155,6 @@
     * [使用包成员](/content/java/package/usepkgs.md)
     * [管理源文件和类文件](/content/java/package/managingfiles.md)
     * [包总结](/content/java/package/summary_package.md)
-
 * [基本类（必修）](/content/essential/README.md)
   * [异常](/content/essential/exceptions/README.md)
     * [什么是异常？](/content/essential/exceptions/definition.md)
@@ -266,7 +265,6 @@
     * [Unicode支持](/content/essential/regex/unicode.md)
     * [其他资源](/content/essential/regex/resources.md)
     * [问题与答案](/content/essential/regex/answers.md)
-
 * [集合框架](/content/collections/README.md)
   * [集合简介](/content/collections/intro.md)
   * [接口](/content/collections/interfaces/README.md)
@@ -300,7 +298,6 @@
   * [互操作性](/content/collections/interoperability.md)
     * [兼容性](/content/collections/interoperability/compatibility.md)
     * [API设计](/content/collections/interoperability/api-design.md)
-
 * [日期,时间API](/content/datetime/README.md)
   * [日期时间设计原则](/content/datetime/overview/design.md)
   * [时间包](/content/datetime/overview/packages.md)
@@ -322,7 +319,6 @@
     * [旧版日期时间代码](/content/datetime/iso/legacy.md)
     * [总结/概要](/content/datetime/iso/summary.md)
     * [问题和练习](/content/datetime/iso/qande/questions.md)
-
 * [部署](/content/deployment/index.md)
   * [打包jar](/content/deployment/jar/index.md)
     * [使用Jar文件：基础](/content/deployment/jar/basicsindex.md)
@@ -333,35 +329,23 @@
       * [运行Jar文件](/content/deployment/jar/run.md)
     * [使用清单文件：基础知识](/content/deployment/jar/manifestinde.md)
       * [了解默认清单](/content/deployment/jar/defman.md)
-      * [修改清单文件](/content/deployment/jar/modman.md) 
+      * [修改清单文件](/content/deployment/jar/modman.md)
       * [设置应用程序的入口点](/content/deployment/jar/appman.md)
       * [将类添加到JAR文件的类路径](/content/deployment/jar/downman.md)
       * [设置包版本信息](/content/deployment/jar/packageman.md)
       * [在JAR文件中密封包](/content/deployment/jar/sealman.md)
       * [用清单属性增强安全性](/content/deployment/jar/secman.md)
-   * [签名和验证Jar文件](/content/deployment/jar/signindex.md)
+    * [签名和验证Jar文件](/content/deployment/jar/signindex.md)
       * [了解签名和验证](/content/deployment/jar/intro.md)
       * [签名JAR文件](/content/deployment/jar/signing.md)
       * [验证JAR文件](/content/deployment/jar/verify.md)
-   * [使用JAR相关的API](/content/deployment/jar/apiindex.md)
-     * [JarClassLoader](/content/deployment/jar/jarclassloader.md)
-     * [JarRunner](/content/deployment/jar/jarrunner.md)
-   
+    * [使用JAR相关的API](/content/deployment/jar/apiindex.md)
+      * [JarClassLoader](/content/deployment/jar/jarclassloader.md)
+      * [JarRunner](/content/deployment/jar/jarrunner.md)
+
 ## 官方教程 - 网络篇
+
 * [自定义网络](/content/networking/index.md)
   * [网络概述](/content/networking/overview/index.md)
-    * [你可能已经找到关于Java中的网络](/content/networking/overview/alreadyknow.md)
+    * [你可能已经知道关于Java中的网络](/content/networking/overview/alreadyknow.md)
     * [网络基础知识](/content/networking/overview/networking.md)
-
-    
-
-  
-
-
-
-
-    
-
-
-
-
