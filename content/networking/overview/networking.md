@@ -47,7 +47,8 @@ TCP和UDP协议使用端口将传入数据映射到计算机上运行的特定�
 
 端口号范围从0到65,535，因为端口由16(2的16次方，一个byte8位，2byte)位数字表示。范围从0到1023的端口号受到限制; 它们被保留供诸如HTTP和FTP以及其他系统服务等众所周知的服务使用。这些端口被称为知名端口。您的应用程序不应尝试绑定到它们。
 
-
+## JDK中的网络类
+通过java.net中的类，Java程序可以使用TCP或UDP在Internet上进行通信。URL, URLConnection, Socket, and ServerSocket 类都是用了TCP在网络上通信。DatagramPacket, DatagramSocket, and MulticastSocket则使用了UDP
 
 
 
