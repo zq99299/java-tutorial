@@ -349,3 +349,16 @@
   * [网络概述](/content/networking/overview/index.md)
     * [你可能已经知道关于Java中的网络](/content/networking/overview/alreadyknow.md)
     * [网络基础知识](/content/networking/overview/networking.md)
+  * [urls](/content/networking/urls/index.md)
+    * [definition](/content/networking/urls/definition.md)
+    * [creatingUrls](/content/networking/urls/creatingUrls.md)
+    * [urlInfo](/content/networking/urls/urlInfo.md)
+    * [readingURL](/content/networking/urls/readingURL.md)
+    * [connecting](/content/networking/urls/connecting.md)
+    * [readingWriting](/content/networking/urls/readingWriting.md)
+
+
+
+
+
+    
