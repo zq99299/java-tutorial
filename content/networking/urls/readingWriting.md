@@ -91,7 +91,7 @@ public class Reverse {
 }
 ```
 
-扩展应用：模拟登陆和待cookie发送数据
+扩展应用：模拟登陆和带cookie发送数据
 ```java
    CookieManager manager = new CookieManager();
         //设置cookie策略，只接受与你对话服务器的cookie，而不接收Internet上其它服务器发送的cookie
