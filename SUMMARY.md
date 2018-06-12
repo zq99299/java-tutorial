@@ -359,5 +359,5 @@
   * [套接字 Sockets](/content/networking/sockets/index.md)
     * [什么是套接字](/content/networking/sockets/definition.md)
     * [读取和写入](/content/networking/sockets/readingWriting.md)
-    * [编写客户端/服务器端](/content/networking/sockets/clientServer.md)
+    * [编写服务器端](/content/networking/sockets/clientServer.md)
 

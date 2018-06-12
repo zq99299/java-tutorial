@@ -12,5 +12,5 @@ TCP提供了一种可靠的点对点通信通道，即互联网上的客户端 -
 ## [读取和写入](/content/networking/sockets/readingWriting.md)
 该页面包含一个小例子，演示了客户端程序如何读取和写入套接字。
 
-## [编写客户端/服务器端](/content/networking/sockets/clientServer.md)
+## [编写服务器端](/content/networking/sockets/clientServer.md)
 上一页显示了一个如何编写客户端程序的例子，该客户端程序通过Socket对象与现有服务器交互。本页面向您展示如何编写实现连接另一端的程序 - 一个服务器程序。
