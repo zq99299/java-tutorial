@@ -358,12 +358,6 @@
     * [URLConnection的读和写](/content/networking/urls/readingWriting.md)
   * [套接字 Sockets](/content/networking/sockets/index.md)
     * [什么是套接字](/content/networking/sockets/definition.md)
-    * [套接字的读取和写入](/content/networking/sockets/readingWriting.md)
-    * [编写套接字服务端](/content/networking/sockets/clientServer.md)
-
-
-
-
-
-    
+    * [读取和写入](/content/networking/sockets/readingWriting.md)
+    * [编写客户端/服务器端](/content/networking/sockets/clientServer.md)
 
