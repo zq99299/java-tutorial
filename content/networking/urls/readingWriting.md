@@ -1,0 +1,2 @@
+# URLConnection的读和写
+URLConnection类包含了许多方法，让你的URL在网络上通信。URLConnection是一个以HTTP为中心的类; 也就是说，只有在使用HTTP URL时，其许多方法才有用。但是，大多数URL协议允许您读取和写入连接。本节介绍这两个功能。
