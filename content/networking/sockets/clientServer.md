@@ -355,4 +355,4 @@ public class KKMultiServerThread extends Thread {
 ```
 
 
-我还是没有看到 服务端和客户端建立连接后
+我还是没有看到 服务端和客户端建立连接后，在服务端是用本地系统分配的端口和客户端保持链接的吗？如果只是一个端口，是怎么分辨不同的socket的呢？
