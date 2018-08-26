@@ -16,8 +16,8 @@ Java语言中的包本身是以java.或开始的javax.
 
 在某些情况下，互联网域名可能不是有效的软件包名称。如果域名包含连字符或其他特殊字符，如果包名称以非法用作Java名称开头的数字或其他字符开头，或者包名称包含保留的Java关键字，如“int”。在这种情况下，建议的约定是增加一个下划线。例如：
 
-| Domain Name	| Package Name Prefix
-| ---------------------------------
-| hyphenated-name.example.org	| org.example.hyphenated_name
-| example.int	| int_.example
-| 123name.example.com	| com.example._123name
+Domain Name                 | Package Name Prefix
+----------------------------|----------------------------
+hyphenated-name.example.org | org.example.hyphenated_name
+example.int                 | int_.example
+123name.example.com         | com.example._123name
