@@ -137,5 +137,47 @@ module.exports = () => {
                 'data/qnde/characters_questions.md',
             ]
         },
+        {
+            title: "泛型",
+            collapsable: true,
+            children: [
+                ['generics/','概述'],
+                'generics/why.md',
+                'generics/types.md',
+                'generics/rawTypes.md',
+                'generics/methods.md',
+                'generics/bounded.md',
+                'generics/boundedTypeParams.md',
+                'generics/inheritance.md',
+                'generics/genTypeInference.md',
+                'generics/wildcards.md',
+                'generics/upperBounded.md',
+                'generics/unboundedWildcards.md',
+                'generics/lowerBounded.md',
+                'generics/subtyping.md',
+                'generics/capture.md',
+                'generics/wildcardGuidelines.md',
+                'generics/erasure.md',
+                'generics/genTypes.md',
+                'generics/genMethods.md',
+                'generics/bridgeMethods.md',
+                'generics/nonReifiableVarargsType.md',
+                'generics/restrictions.md',
+                'generics/qande/generics_questions.md'
+            ]
+        },
+        {
+            title: "包 package",
+            collapsable: true,
+            children: [
+                ['package/','概述'],
+                'package/packages.md',
+                'package/createpkgs.md',
+                'package/namingpkgs.md',
+                'package/usepkgs.md',
+                'package/managingfiles.md',
+                'package/summary_package.md'
+            ]
+        },
     ]
 }

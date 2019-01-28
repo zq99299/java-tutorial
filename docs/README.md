@@ -13,6 +13,20 @@ features:
 footer: MIT Licensed | Copyright © 2018-2019 mrcode
 ---
 
+## 内容导航
+
+- 官方教程 - 基础
+  - [学习 JAVA](/java/)
+  - [基本类（必修）](/)
+  - [集合框架](/)
+  - [日期时间API](/)
+  - [部署](/)
+
+-----
+
+
+## 项目简述
+
 使用 atom + vuepress + markdown 构建笔记
 
 随笔，计划把Java官网教程文档看一遍，然后记录，由于是英文文档，全部依赖于机器翻译，然后依靠自身编程经验翻译并记录笔记。
@@ -24,7 +38,7 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 
 ## 关于图片存储
 
-```
+```bash
 |- chapter
   |- git
     |- assets    # 图片和当前编辑文件在同一目录的 assets 中

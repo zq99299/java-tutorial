@@ -36,7 +36,7 @@ public void boxTest(Box<Number> n) { /* ... */ }
 
 在泛型编程中，这是一个常见的误解，但这是一个很重要的概念。
 
-![](/assets/java/generics/generics-subtypeRelationship.gif)
+![](./assets/generics-subtypeRelationship.gif)
 
 
 > 注意：
@@ -51,7 +51,7 @@ public void boxTest(Box<Number> n) { /* ... */ }
 
 以Collections类为例，`ArrayList <E>`实现`List <E>`，`List <E>`扩展`Collection <E>`。所以`ArrayList <String>`是`List <String>`的一个子类型，它是`Collection <String>`的一个子类型。只要不改变类型参数，子类型关系在类型之间保留。
 
-![](/assets/java/generics/generics-sampleHierarchy.gif)
+![](./assets/generics-sampleHierarchy.gif)
 
 现在设想我们想要定义我们自己的列表接口PayloadList，它将泛型类型P的可选值与每个元素相关联。其声明可能如下所示：
 
@@ -70,7 +70,4 @@ PayloadList<String,Integer>
 PayloadList<String,Exception>
 ```
 
-![](/assets/java/generics/generics-payloadListHierarchy.gif)
-
-
-
+![](./assets/generics-payloadListHierarchy.gif)

@@ -77,7 +77,7 @@ import graphics.Rectangle.*;
 
 起初，软件包似乎是分层的，但不是。例如，Java API包含一个java.awt包，一个java.awt.color包，一个java.awt.font包以及许多其他的以java.awt开始。但是，java.awt.color软件包，java.awt.font软件包和其他java.awt.xxxx软件包不包含在java.awt软件包中。前缀java.awt（Java抽象窗口工具包）用于许多相关的包，以使关系明显，但不显示包含。
 
-导入java.awt.*进口所有在该类型的java.awt包，但它不会导入 java.awt.color，java.awt.font或者任何其它java.awt.xxxx的包。如果您打算使用类和其他类型java.awt.color以及其中的类java.awt，则必须将这两个包与其所有文件一起导入：
+导入`java.awt.*进口所有在该类型的java.awt包，但它不会导入 java.awt.color，java.awt.font或者任何其它java.awt.xxxx的包。如果您打算使用类和其他类型java.awt.color以及其中的类java.awt`，则必须将这两个包与其所有文件一起导入：
 
 ```java
 import java.awt.*;
@@ -105,7 +105,7 @@ graphics.Rectangle rect;
 有些情况下需要频繁访问一个或两个类的静态final字段（常量）和静态方法。反复添加这些类的名称可能会导致代码混乱。静态导入提供一种方式导入这些成员，就不再需要使用类前缀访问了
 
 ```java
-public static final double PI 
+public static final double PI
     = 3.141592653589793;
 public static double cos(double a)
 {
