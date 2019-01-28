@@ -13,6 +13,8 @@ features:
 footer: MIT Licensed | Copyright © 2018-2019 mrcode
 ---
 
+:exclamation::exclamation::exclamation: 正在重新整理到 vuepress 渲染网站格式
+
 ## 内容导航
 
 - 官方教程 - 基础
