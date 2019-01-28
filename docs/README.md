@@ -1,4 +1,17 @@
-# java-tutorial
+---
+home: true
+heroImage: /hero.png
+actionText: 学习 JAVA
+actionLink: /java/
+features:
+- title: 持续学习
+  details: 每天至少一小时学习，才是真的靠谱
+- title: 边学边记
+  details: 学习过程中记录笔记，防止忘记。
+- title: 知识库
+  details: 积少成多，串联知识，方便翻阅
+footer: MIT Licensed | Copyright © 2018-2019 mrcode
+---
 
 使用 atom + vuepress + markdown 构建笔记
 
@@ -32,7 +45,7 @@
 - 文档中的相关引用路径都使用相对路径
 - 良好的目录组织
 
-以上几点对于移植还是单独在 gitBook 上阅读都比较方便
+以上几点对于 Gitbook、vuerpess、Github 或则是单独使用单机版的 markdown 软件打开阅读都比较方便
 
 ## 纠正与错误
 有相关排版或则翻译不清楚的，可以提交 issues
