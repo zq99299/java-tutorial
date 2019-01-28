@@ -35,11 +35,11 @@ Point originOne;
 
 ## 实例化一个类
 
-_new_通过一个新的对象分配内存，并返回到内存的引用实例化一个类。在_new_的操作符后还调用对象的构造函数。
+`new` 通过一个新的对象分配内存，并返回到内存的引用实例化一个类。在_new_的操作符后还调用对象的构造函数。
 
 > **注意：**  “实例化一个类”这个短语意味着与“创建对象”相同。创建对象时，您正在创建一个类的“实例”，因此“实例化”一个类。
 
-_new_操作符需要一个单一的，后缀的参数：一个构造函数的调用。构造函数的名称提供要实例化的类的名称。
+`new` 操作符需要一个单一的，后缀的参数：一个构造函数的调用。构造函数的名称提供要实例化的类的名称。
 
 new 操作符反回到它创建的对象的引用。此引用通常分配给适当类型的变量，如：
 
@@ -72,7 +72,7 @@ Point originOne = new Point(23, 94);
 
 执行该语句的结果可以在下图中说明：
 
-![](/assets/java/javaoo/objects-oneRef.gif)
+![](./assets/objects-oneRef.gif)
 
 这里是Rectangle类的代码，它包含四个构造函数：
 
@@ -120,7 +120,7 @@ Rectangle rectOne = new Rectangle(originOne, 100, 200);
 ```
 这需要一个Rectangle初始化的构造函数origin来originOne。此外，构造函数设置width为100和height200.现在有两个对同一个Point对象的引用 - 对象可以有多个引用，如下图所示：
 
-![](assets/java/javaoo/objects-multipleRefs.gif)
+![](./assets/objects-multipleRefs.gif)
 
 以下代码行调用Rectangle构造函数，该构造函数需要两个整数参数，它们为宽度和高度提供初始值。如果您检查构造函数中的代码，您将看到它创建一个新的Point对象，其x和y值初始化为0：
 

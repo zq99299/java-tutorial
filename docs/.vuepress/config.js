@@ -20,7 +20,7 @@ module.exports = {
     themeConfig: {
         docsDir: 'docs',
         sidebar: 'auto',
-        sidebarDepth: 2, // 嵌套标题侧边栏提取深度，最大为 2，会提取到 h3
+        sidebarDepth: 1, // 嵌套标题侧边栏提取深度，最大为 2，会提取到 h3
         lastUpdated: '上次更新: ', // string | boolean
         // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
         repo: 'https://github.com/zq99299/java-tutorial',

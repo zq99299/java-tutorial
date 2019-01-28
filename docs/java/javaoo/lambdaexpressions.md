@@ -1,4 +1,5 @@
 # Lambda表达式
+[[toc]]
 
 匿名类的一个问题是，如果您的匿名类的实现非常简单，例如仅包含一个方法的接口，则匿名类的语法可能看起来很笨重且不清楚。在这些情况下，您通常会尝试将功能作为参数传递给另一种方法，例如当有人点击按钮时应该采取什么措施。Lambda表达式使您能够执行此操作，将功能视为方法参数或代码作为数据。
 
@@ -352,7 +353,7 @@ public static void processPersonsWithFunction(
 }
 ```
 
-## 方法8：更广泛地使用泛型
+### 方法8：更广泛地使用泛型
 
 重新考虑该方法processPersonsWithFunction。以下是它的通用版本，它接受包含任何数据类型的元素的集合作为参数：
 
@@ -394,7 +395,7 @@ processElements(
 
 您可以使用聚合操作替换这些操作。
 
-## 方法9：使用接受Lambda表达式作为参数的聚合操作
+### 方法9：使用接受Lambda表达式作为参数的聚合操作
 
 以下示例使用聚合操作打印包含在集合roster中的符合选择性服务的成员的电子邮件地址：
 
@@ -435,24 +436,24 @@ lambda表达式由以下内容组成：
 * 括号中的逗号分隔的正式参数列表。该CheckPerson.test方法包含一个参数， p它表示Person该类的一个实例 。
 
     > **注意：**可以忽略lambda表达式中参数的数据类型。另外，如果只有一个参数，可以省略括号。例如，以下lambda表达式也是有效的：
-    
+
     ```java
-    p -> p.getGender() == Person.Sex.MALE 
+    p -> p.getGender() == Person.Sex.MALE
         && p.getAge() >= 18
         && p.getAge() <= 25
     ```
-    
+
 * 箭头符号 `->`
 * 一个由单个表达式或语句块组成的体。此示例使用以下表达式：
 
     ```java
-    p.getGender() == Person.Sex.MALE 
+    p.getGender() == Person.Sex.MALE
         && p.getAge() >= 18
         && p.getAge() <= 25
     ```
-    
+
     如果指定单个表达式，则Java运行时将评估表达式，然后返回其值。或者，您可以使用return语句：
-    
+
     ```java
     p -> {
         return p.getGender() == Person.Sex.MALE
@@ -460,14 +461,14 @@ lambda表达式由以下内容组成：
             && p.getAge() <= 25;
     }
     ```
-    
+
     返回语句不是表达式; 在lambda表达式中，必须用大括号`（{}）`括起来。但是，您不必在大括号中包含一个void方法调用。例如，以下是有效的lambda表达式：
 
     ```java
     email -> System.out.println(email)
     ```
-    
-    
+
+
 请注意，lambda表达式看起来很像一个方法声明; 你可以将lambda表达式视为匿名方法 - 没有名称的方法。
 
 
@@ -650,40 +651,3 @@ String s = invoke(() -> "done");
 ## 序列化
 
 如果lambda表达式的目标类型及其捕获的参数是可序列化的，则可以 序列化它。然而，像 内部类一样，强烈地不鼓励lambda表达式的序列化。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
