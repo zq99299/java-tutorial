@@ -13,22 +13,22 @@ StringBuilder 对象就像 String 对象，除了它们可以被修改。在内�
 
     创建一个容量为16的空字符串生成器（16个空元素）。
 * StringBuilder(CharSequence cs)
-    
+
     构造一个包含与指定字符相同的字符串的字符串构建器CharSequence，以及一个额外的16个空元素CharSequence。
 * StringBuilder(int initCapacity)
-    
+
     用指定的初始容量创建一个空字符串生成器。
 * StringBuilder(String s)
 
     创建一个字符串生成器，其值由指定的字符串初始化，并在字符串后面加上一个额外的16个空元素。
-    
+
 ```java
 // creates empty builder, capacity 16
 StringBuilder sb = new StringBuilder();
-// 将产生长度为9，容量为16的StringBuilder 
+// 将产生长度为9，容量为16的StringBuilder
 sb.append("Greetings");
 ```
-![](/assets/java/data/objects-stringBuffer.gif)
+![](./assets/objects-stringBuffer.gif)
 
 
 StringBuilder类有一些与String类没有的长度和容量有关的方法：
@@ -37,9 +37,9 @@ StringBuilder类有一些与String类没有的长度和容量有关的方法：
 
     设置字符序列的长度。如果newLength小于length()，则字符序列中的最后一个字符被截断。如果newLength大于length()，则在字符序列的末尾添加空字符。
 * void ensureCapacity(int minCapacity)
-    
+
     确保容量至少等于规定的最小值。
-    
+
 多个操作（例如，append()，insert()，或setLength()）可以增加字符序列的长度,使得所得到的length()将是比当前capacity()更大。发生这种情况时，容量会自动增加。
 
 ## StringBuilder操作
@@ -143,11 +143,11 @@ public class StringDemo {
 public class StringBuilderDemo {
     public static void main(String[] args) {
         String palindrome = "Dot saw I was Tod";
-         
+
         StringBuilder sb = new StringBuilder(palindrome);
-        
+
         sb.reverse();  // reverse it
-        
+
         System.out.println(sb);
     }
 }

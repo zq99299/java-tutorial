@@ -1,4 +1,4 @@
-![](assets/java/data/objects-numberHierarchy.gif)# 操纵字符串中的字符
+# 操纵字符串中的字符
 String类有许多检查字符串内容的方法，在字符串中查找字符或子字符串，和其他操纵字符串的方法。
 
 ## 通过索引获取字符和子字符串
@@ -6,7 +6,7 @@ String类有许多检查字符串内容的方法，在字符串中查找字符�
 
 索引从0开始，所以索引9处的字符是'O'，如下图所示：
 
-![](/assets/java/data/objects-charAt.gif)
+![](./assets/objects-charAt.gif)
 
 如果要从字符串中获取多个连续的字符，则可以使用该substring方法。该substring方法有两个版本，如下表所示：
 
@@ -20,14 +20,14 @@ String类有许多检查字符串内容的方法，在字符串中查找字符�
     ```java
     String substring(int beginIndex)
     ```
-    
+
 下面是一个例子
 
 ```java
-String anotherPalindrome = "Niagara. O roar again!"; 
-String roar = anotherPalindrome.substring(11, 15); 
+String anotherPalindrome = "Niagara. O roar again!";
+String roar = anotherPalindrome.substring(11, 15);
 ```
-![](/assets/java/data/objects-substring.gif)
+![](./assets/objects-substring.gif)
 
 
 ## 其他操纵字符串的方法
@@ -38,26 +38,26 @@ String roar = anotherPalindrome.substring(11, 15);
     String[] split(String regex)
     String[] split(String regex, int limit)
     ```
-    
+
 * 返回从beginIndex索引构建的新的字符序列，直到endIndex-1。
 
     ```java
     CharSequence subSequence(int beginIndex, int endIndex)
     ```
-    
+
 * 返回此字符串的副本，并删除前导空白和尾部空白。
 
     ```java
     String trim()
     ```
-    
+
 * 返回转换为小写或大写字符串的副本。如果不需要转换，这些方法将返回原始字符串。
 
     ```java
     String toLowerCase()
     String toUpperCase()
     ```
-    
+
 ## 在字符串中搜索字符和子字符串
 
 以下是String在字符串中查找字符或子字符串的其他一些方法。String类提供存取方法返回一个特定的字符或字符串的字符串中的位置：indexOf()和lastIndexOf()。该indexOf()方法从字符串的开头向前搜索，和lastIndexOf()方法从字符串的结尾向后搜索。如果找不到字符或字符串，indexOf()并lastIndexOf()返回-1。
@@ -95,7 +95,7 @@ String类还提供了一个搜索方法contains，如果字符串中包含特定
     ```java
     boolean contains(CharSequence s)
     ```
-    
+
 > 注意： String类实现了CharSequence接口。因此，您可以使用字符串作为contains()方法的参数。
 * 返回指定字符的第一个（最后一个）匹配项的索引。
 
@@ -112,7 +112,7 @@ String类有插入字符或字符串转换成字符串非常少的方法。一�
     ```java
     String replace(CharSequence target, CharSequence replacement)
     ```
-*用给定的替换替换此字符串中与给定正则表达式匹配的每个子字符串。
+* 用给定的替换替换此字符串中与给定正则表达式匹配的每个子字符串。
     ```java
     String replaceAll(String regex, String replacement)
     ```
@@ -120,7 +120,7 @@ String类有插入字符或字符串转换成字符串非常少的方法。一�
     ```java
     String replaceFirst(String regex, String replacement)
     ```
-    
+
 ## 一个例子
 
 下面的类 Filename说明了文件名的不同部分的使用lastIndexOf()和substring()隔离。
@@ -176,4 +176,4 @@ Path = /home/user
 
 如下图所示，我们的extension方法用于lastIndexOf定位文件名中最后一次出现的句号（.）。然后substring使用返回值lastIndexOf来提取文件扩展名 - 也就是从字符串到句尾的子字符串。这段代码假定文件名有句点，如果文件名没有句点，则lastIndexOf返回-1，而substring方法则抛出一个StringIndexOutOfBoundsException。
 
-![](/assets/java/data/objects-lastIndexOf.gif)
+![](./assets/objects-lastIndexOf.gif)

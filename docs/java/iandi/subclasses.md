@@ -2,7 +2,7 @@
 
 在前面的课程中，你已经看到了几次提到的_继承_。在Java语言中，类可以从其他类_派生_，从而_继承_这些类的字段和方法。
 
-> **定义： ** 
+> 定义
 
 > 从另一个类派生的类称为子类（派生类，扩展类或子类）。派生子类的类称为超类（也是基类或父类）。
 
@@ -19,7 +19,8 @@
 
 Object在java.lang包中定义的 类定义并实现了所有类共同的行为，包括你编写的类。在Java平台中，许多类直接派生自其他类，派生自其中一些类，等等，形成类的层次结构。
 
-![](/assets/java/iandi/classes-object.gif)
+![](./assets/classes-object.gif)
+
 Java平台中的所有类都是Object的后代
 
 在层次结构的顶部，Object是所有类中最通用的。靠近层次结构底部的类提供更专业化的行为。
@@ -27,36 +28,36 @@ Java平台中的所有类都是Object的后代
 ## 一个继承的例子
 ```java
 public class Bicycle {
-        
+
     // the Bicycle class has three fields
     public int cadence;
     public int gear;
     public int speed;
-        
+
     // the Bicycle class has one constructor
     public Bicycle(int startCadence, int startSpeed, int startGear) {
         gear = startGear;
         cadence = startCadence;
         speed = startSpeed;
     }
-        
+
     // the Bicycle class has four methods
     public void setCadence(int newValue) {
         cadence = newValue;
     }
-        
+
     public void setGear(int newValue) {
         gear = newValue;
     }
-        
+
     public void applyBrake(int decrement) {
         speed -= decrement;
     }
-        
+
     public void speedUp(int increment) {
         speed += increment;
     }
-        
+
 }
 ```
 
@@ -64,7 +65,7 @@ Bicycle的子类MountainBike可能如下所示：
 
 ```java
 public class MountainBike extends Bicycle {
-        
+
     // the MountainBike subclass adds one field
     public int seatHeight;
 
@@ -76,7 +77,7 @@ public class MountainBike extends Bicycle {
         super(startCadence, startSpeed, startGear);
         seatHeight = startHeight;
     }   
-        
+
     // the MountainBike subclass adds one method
     public void setHeight(int newValue) {
         seatHeight = newValue;
@@ -148,11 +149,3 @@ if (obj instanceof MountainBike) {
 }
 ```
 在这里 instanceof验证obj是否引用一个MountainBike，这样我们就可以知道将不会抛出运行时异常。
-
-
-
-
-
-
-
-
