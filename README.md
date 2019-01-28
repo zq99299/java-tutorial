@@ -1,5 +1,7 @@
 # java-tutorial
 
+:exclamation::exclamation::exclamation: 正在重新整理到 vuepress 渲染网站格式
+
 使用 atom + vuepress + markdown 构建笔记
 
 随笔，计划把Java官网教程文档看一遍，然后记录，由于是英文文档，全部依赖于机器翻译，然后依靠自身编程经验翻译并记录笔记。
