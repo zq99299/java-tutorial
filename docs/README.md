@@ -26,12 +26,16 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 
 ## 内容导航
 
-- 官方教程 - 基础
-  - [学习 JAVA](/java/)
-  - [基本类（必修）](/essential/)
-  - [集合框架](/collections/)
-  - [日期时间API](/datetime/)
-  - [部署](/deployment/)
+[JAVA 官网教程首页地址](https://docs.oracle.com/javase/tutorial/index.html)
 
-- 官方教程 - 网络篇
+The Java Tutorials have been written for JDK 8. Examples and practices described in this page don't take advantage of improvements introduced in later releases.
+
+- 官方教程 - 基础篇
+  - [学习 JAVA](/java/) 描述 Java 编程语言基本概念和特性的课程
+  - [基本类（必修）](/essential/) 有关异常，基本输入/输出，并发，正则表达式和平台环境的课程。
+  - [集合框架](/collections/) 使用和扩展 Java 集合框架的经验教训。
+  - [日期时间API](/datetime/) 如何使用java.time 编写日期和时间代码。
+  - [部署](/deployment/) 如何使用 JAR 文件打包应用程序和 applet，并使用 Java Web Start 和 Java Plug-in 进行部署。
+
+- 官方教程 - 高级篇
   - [自定义网络](/networking/)

@@ -39,7 +39,7 @@ class Bicycle {
 
 Java 编程语言的语法将看起来很新，但是这个类的设计是基于以前对自行车对象的讨论。字段 cadence，speed 和 gear 表示该对象的状态，并且这些方法（changeCadence，changeGear，speedUp 等）限定与外部世界的相互作用。
 
-您可能已经注意到 Bicycle 该类不包含main方法。这是因为它不是一个完整的应用程序; 它只是可能在应用程序中使用的自行车蓝图。创建和使用新 Bicycle 对象的责任属于您的应用程序中的其他类。
+您可能已经注意到 Bicycle 该类不包含main方法。这是因为它不是一个完整的应用程序；它只是可能在应用程序中使用的自行车蓝图。创建和使用新 Bicycle 对象的责任属于您的应用程序中的其他类。
 
 这是一个 BicycleDemo 创建两个单独 Bicycle 对象并调用其方法的类：
 ```java

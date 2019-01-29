@@ -55,6 +55,16 @@ module.exports = {
         },
         nav: [
             {text: 'Home', link: '/'},
+            {
+              text: '基础篇',
+              items: [
+                  {text: '学习 JAVA', link: '/java/'},
+                  {text: '基本类（必修）', link: '/essential/'},
+                  {text: '集合框架', link: '/collections/'},
+                  {text: '日期时间 API', link: '/datetime/'},
+                  {text: '部署', link: '/deployment/'}
+              ]
+            },
             {text: '所有导航', link: '/nav.md'},
             {text: '项目介绍', link: '/introduction.md'},
         ],

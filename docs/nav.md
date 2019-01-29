@@ -1,3 +1,7 @@
+---
+sidebar: auto
+---
+
 # Summary
 
 本章安装官网路径做出导航，由于目前的 vuepress 无法多层级嵌套，只能暂时在这里保留这个官网的层级导航
@@ -323,7 +327,7 @@
       * [JarClassLoader](./deployment/jar/jarclassloader.md)
       * [JarRunner](./deployment/jar/jarrunner.md)
 
-## 官方教程 - 网络篇
+## 官方教程 - 高级篇
 
 * [自定义网络](./networking/index.md)
   * [网络概述](./networking/overview/index.md)
