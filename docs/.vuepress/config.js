@@ -1,5 +1,7 @@
 const javaSC = require('../java');
 const essentialSC = require('../essential');
+const collectionsSC = require('../collections');
+
 
 module.exports = {
     title: 'JAVA8 官网笔记教程',
@@ -53,7 +55,8 @@ module.exports = {
         ],
         sidebar: {
             '/java/': javaSC(),
-            '/essential/': essentialSC()
+            '/essential/': essentialSC(),
+            '/collections/': collectionsSC()
         }
     },
     plugins: [

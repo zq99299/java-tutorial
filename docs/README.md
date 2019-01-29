@@ -20,7 +20,7 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 - 官方教程 - 基础
   - [学习 JAVA](/java/)
   - [基本类（必修）](/essential/)
-  - [集合框架](/)
+  - [集合框架](/collections/)
   - [日期时间API](/)
   - [部署](/)
 
