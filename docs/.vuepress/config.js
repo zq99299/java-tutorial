@@ -54,7 +54,9 @@ module.exports = {
             // }
         },
         nav: [
-            {text: 'Home', link: '/'}
+            {text: 'Home', link: '/'},
+            {text: '所有导航', link: '/nav.md'},
+            {text: '项目介绍', link: '/introduction.md'},
         ],
         sidebar: {
             '/java/': javaSC(),
