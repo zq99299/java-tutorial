@@ -3,6 +3,7 @@ const essentialSC = require('../essential');
 const collectionsSC = require('../collections');
 const datetimeSC = require('../datetime');
 const deploymentSC = require('../deployment');
+const networkingSC = require('../networking');
 
 
 module.exports = {
@@ -60,7 +61,8 @@ module.exports = {
             '/essential/': essentialSC(),
             '/collections/': collectionsSC(),
             '/datetime/': datetimeSC(),
-            '/deployment/': deploymentSC()
+            '/deployment/': deploymentSC(),
+            '/networking/': networkingSC()
         }
     },
     plugins: [
