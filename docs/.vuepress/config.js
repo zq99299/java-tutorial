@@ -1,6 +1,8 @@
 const javaSC = require('../java');
 const essentialSC = require('../essential');
 const collectionsSC = require('../collections');
+const datetimeSC = require('../datetime');
+const deploymentSC = require('../deployment');
 
 
 module.exports = {
@@ -56,7 +58,9 @@ module.exports = {
         sidebar: {
             '/java/': javaSC(),
             '/essential/': essentialSC(),
-            '/collections/': collectionsSC()
+            '/collections/': collectionsSC(),
+            '/datetime/': datetimeSC(),
+            '/deployment/': deploymentSC()
         }
     },
     plugins: [
