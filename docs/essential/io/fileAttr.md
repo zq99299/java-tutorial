@@ -1,26 +1,27 @@
 # 管理元数据（文件和文件存储属性）
 元数据的定义：“其他数据的数据”。使用文件系统，数据包含在其文件和目录中，元数据跟踪有关每个对象的信息：它是常规文件，目录还是链接？它的大小，创建日期，上次修改日期，文件所有者，组所有者和访问权限是多少？
 
-文件系统的元数据通常称为其**文件属性**。Files类的方法可以用来获得一个文件的一个属性，或则设置一个文件的属性
+文件系统的元数据通常称为其 **文件属性**。Files类的方法可以用来获得一个文件的一个属性，或则设置一个文件的属性
 
-| 方法	| 说明
-|----------------------------
-| `size(Path)`	| 以字节为单位返回指定文件的大小。
-| `isDirectory(Path, LinkOption)`	| 如果指定Path的文件是目录，则返回true 。
-| `isRegularFile(Path, LinkOption...)`	| 如果指定Path的文件是常规文件，则返回true 。
-| `isSymbolicLink(Path)`| 如果指定的Path位置是一个符号链接的文件，则返回true 。
-| `isHidden(Path)`	| 如果指定Path的文件系统被视为隐藏的文件，则返回true 。
-| `getLastModifiedTime(Path, LinkOption...)`    `setLastModifiedTime(Path, FileTime)`	| 返回或设置指定文件的上次修改时间。
-| getOwner(Path, LinkOption...)    setOwner(Path, UserPrincipal)	| 返回或设置文件的所有者。
-| `getPosixFilePermissions(Path, LinkOption...)`    `setPosixFilePermissions(Path, Set<PosixFilePermission>)`	| 返回或设置文件的POSIX文件权限。
-| `getAttribute(Path, String, LinkOption...)`    `setAttribute(Path, String, Object, LinkOption...)`	| 返回或设置文件属性的值。
+| 方法                                                                                                        | 说明                                                  |
+|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| `size(Path)`                                                                                                | 以字节为单位返回指定文件的大小。                      |
+| `isDirectory(Path, LinkOption)`                                                                             | 如果指定Path的文件是目录，则返回true 。               |
+| `isRegularFile(Path, LinkOption...)`                                                                        | 如果指定Path的文件是常规文件，则返回true 。           |
+| `isSymbolicLink(Path)`                                                                                      | 如果指定的Path位置是一个符号链接的文件，则返回true 。 |
+| `isHidden(Path)`                                                                                            | 如果指定Path的文件系统被视为隐藏的文件，则返回true 。 |
+| `getLastModifiedTime(Path, LinkOption...)`    `setLastModifiedTime(Path, FileTime)`                         | 返回或设置指定文件的上次修改时间。                    |
+| getOwner(Path, LinkOption...)    setOwner(Path, UserPrincipal)                                              | 返回或设置文件的所有者。                              |
+| `getPosixFilePermissions(Path, LinkOption...)`    `setPosixFilePermissions(Path, Set<PosixFilePermission>)` | 返回或设置文件的POSIX文件权限。                       |
+| `getAttribute(Path, String, LinkOption...)`    `setAttribute(Path, String, Object, LinkOption...)`          | 返回或设置文件属性的值。                              |
+
 
 如果程序在同一时间内需要多个文件属性，则使用检索单个属性的方法可能效率低下。重复访问文件系统以检索单个属性可能会不利地影响性能。因此，`Files`该类提供了两种`readAttributes`在一个批量操作中获取文件属性的方法。
 
-| 方法	| 说明
-|----------------
-| `readAttributes(Path, String, LinkOption...)`	| 读取文件的属性作为批量操作。该String参数标识要读取的属性。
-| `readAttributes(Path, Class<A>, LinkOption...)`	| 读取文件的属性作为批量操作。该Class<A>参数是所请求的属性的类型，该方法返回该类的对象。
+| 方法                                            | 说明                                                                                   |
+|-------------------------------------------------|----------------------------------------------------------------------------------------|
+| `readAttributes(Path, String, LinkOption...)`   | 读取文件的属性作为批量操作。该String参数标识要读取的属性。                             |
+| `readAttributes(Path, Class<A>, LinkOption...)` | 读取文件的属性作为批量操作。该 `Class<A>` 参数是所请求的属性的类型，该方法返回该类的对象。 |
 
 在显示`readAttributes`方法的示例之前，应该提到不同的文件系统对于哪些属性应该被跟踪有不同的概念。因此，将相关的文件属性分组到视图中。视图映射到一个特定的文件系统的实例，如POSIX或DOS，或到共同的功能性，如文件所有权。
 
@@ -62,6 +63,7 @@
 在特定实现中可能不支持任何这些时间戳，在这种情况下，相应的访问器方法返回实现特定的值。当支持时，返回时间戳`FileTime`对象。
 
 以下代码片段读取并打印给定文件的基本文件属性，并使用`BasicFileAttributes`类中的 方法
+
 ```java
 Path file = ...;
 BasicFileAttributes attr = Files.readAttributes(file, BasicFileAttributes.class);
@@ -81,6 +83,7 @@ System.out.println("size: " + attr.size());
 
 ## 设定时间戳
 下面的代码片段设置最后修改时间以毫秒为单位:
+
 ```java
 Path file = ...;
 BasicFileAttributes attr =
@@ -93,6 +96,7 @@ Files.setLastModifiedTime(file, ft);
 
 ## DOS文件系统
 DOS文件属性也支持DOS以外的文件系统,如Samba。以下代码片段使用`DosFileAttributes`类的方法。
+
 ```java
 Path file = ...;
 try {
@@ -109,6 +113,7 @@ try {
 ```
 
 但是，您可以使用该`setAttribute(Path, String, Object, LinkOption...)`方法设置DOS属性 ，如下所示：
+
 ```java
 Path file = ...;
 Files.setAttribute(file, "dos:hidden", true);
@@ -142,6 +147,7 @@ System.out.format("%s %s %s%n",
 * **asFileAttribute** 方法接受一个Set文件权限并构造一个可以传递给`Path.createFile`或者`Path.createDirectory`方法的文件属性。
 
 以下代码段从一个文件中读取属性，并创建一个新文件，将属性从原始文件分配给新文件：
+
 ```java
 Path sourceFile = ...;
 Path newFile = ...;
@@ -155,6 +161,7 @@ Files.createFile(file, attr);
 该`asFileAttribute`方法将权限包装为`FileAttribute`。然后，代码尝试使用这些权限创建一个新文件。请注意，这umask也适用，所以新文件可能比请求的权限更安全。
 
 要将文件的权限设置为以硬编码字符串表示的值，可以使用以下代码：
+
 ```java
 Path file = ...;
 Set<PosixFilePermission> perms =
@@ -165,6 +172,7 @@ Files.setPosixFilePermissions(file, perms);
 ```
 
 这里有一个官网示例：同样我没有测试过.功能是：似于chmod实用程序的方式递归地更改文件的权限。
+
 ```java
 import java.nio.file.*;
 import java.nio.file.attribute.*;
@@ -483,6 +491,7 @@ public class Chmod {
 如果您的文件系统实现支持的文件属性不足以满足您的需要，您可以使用它`UserDefinedAttributeView`来创建和跟踪您自己的文件属性
 
 一些实现将此概念映射到文件系统（如ext3和ZFS）上的NTFS替代数据流和扩展属性等功能。大多数实现对值的大小施加了限制，例如，ext3将大小限制为4千字节。
+
 ```java
 Path file = ...;
 UserDefinedFileAttributeView view = Files
@@ -491,6 +500,7 @@ view.write("user.mimetype",
            Charset.defaultCharset().encode("text/html");
 ```
 文件的MIME类型可以通过使用此代码片段存储为用户定义的属性：
+
 ```java
 Path file = ...;
 UserDefinedFileAttributeView view = Files
@@ -504,18 +514,19 @@ String value = Charset.defaultCharset().decode(buf).toString();
 
 ## 文件存储属性
 
-您可以使用 [FileStore](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileStore.html)该类来了解有关文件存储的信息，例如可用空间多少。该 getFileStore(Path)方法将获取指定文件的文件存储。
+您可以使用 [FileStore](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileStore.html)该类来了解有关文件存储的信息，例如可用空间多少。该 `getFileStore(Path)`方法将获取指定文件的文件存储。
 
 以下代码片段将打印特定文件所在的文件存储区的空间使用情况：
-```java
-        Path file = Paths.get("D:/");
-//        Path file = Paths.get("D:/server.xml");  // 就算给定一个文件，也只会使用根目录驱动器来作为基准
-        FileStore store = Files.getFileStore(file);
 
-        long total = store.getTotalSpace() / 1024 / 1024 / 1024;
-        long used = (store.getTotalSpace() - store.getUnallocatedSpace()) / 1024 / 1024 / 1024;
-        long avail = store.getUsableSpace() / 1024 / 1024 / 1024;
-        System.out.println("总容量:" + total + "G");
-        System.out.println("已使用:" + used);
-        System.out.println("可用:" + avail);
+```java
+Path file = Paths.get("D:/");
+//        Path file = Paths.get("D:/server.xml");  // 就算给定一个文件，也只会使用根目录驱动器来作为基准
+FileStore store = Files.getFileStore(file);
+
+long total = store.getTotalSpace() / 1024 / 1024 / 1024;
+long used = (store.getTotalSpace() - store.getUnallocatedSpace()) / 1024 / 1024 / 1024;
+long avail = store.getUsableSpace() / 1024 / 1024 / 1024;
+System.out.println("总容量:" + total + "G");
+System.out.println("已使用:" + used);
+System.out.println("可用:" + avail);
 ```

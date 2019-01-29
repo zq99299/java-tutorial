@@ -25,7 +25,7 @@ class name<T1, T2, ..., Tn> { /* ... */ }
 由尖括号（`<>`）分隔的类型参数部分在类名后面。它指定了类型参数（也称为类型变量）T1，T2，...，和Tn。
 
 
-要更新Box类以使用泛型，可以通过将代码“ public class Box ”更改为“ public class Box <T> ” 来创建泛型类型声明。这引入了类型变量T，可以在类中的任何地方使用。
+要更新Box类以使用泛型，可以通过将代码“ public class Box ”更改为“ `public class Box <T>` ” 来创建泛型类型声明。这引入了类型变量T，可以在类中的任何地方使用。
 
 随着这个变化，Box类变成：
 
@@ -68,7 +68,7 @@ public class Box<T> {
 Box<Integer> integerBox;
 ```
 
-您可以将泛型类型调用看作与普通的方法调用类似，但不是将方法的参数传递给方法，而是将_类型参数_（本例中为整数）传递给Box类本身。
+您可以将泛型类型调用看作与普通的方法调用类似，但不是将方法的参数传递给方法，而是将“类型参数”（本例中为整数）传递给Box类本身。
 
 > Type Parameter 和 Type Argument ：泛型的类型是 Type Argument
 

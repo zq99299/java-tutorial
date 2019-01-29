@@ -8,7 +8,7 @@
 
 假设你想写一个把Integer对象放入列表的方法。为了最大限度地提高灵活性，您希望方法在`List <Integer>`，`List <Number>`和List `<Object>`上工作 - 任何可以保存Integer值的东西。
 
-要编写在Integer列表和Integer的超类型（例如Integer，Number和Object）上工作的方法，您可以指定`List<? super Integer>`。术语List <Integer>`比`List<? super Integer>`，因为前者只匹配Integer类型的列表，而后者匹配任何Integer类型的任何类型的列表。
+要编写在Integer列表和Integer的超类型（例如Integer，Number和Object）上工作的方法，您可以指定`List<? super Integer>`。术语`List <Integer>`比`List<? super Integer>`，因为前者只匹配Integer类型的列表，而后者匹配任何Integer类型的任何类型的列表。
 
 以下代码将数字1到10添加到列表的末尾：
 

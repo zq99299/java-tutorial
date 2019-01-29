@@ -11,21 +11,22 @@
 * 例子
 
 ## FileVisitor接口
+
 要走一个文件树，你首先需要实现一个`FileVisitor`,指定遍历过程中关键点所需的行为：访问文件时，在访问目录之前，访问目录之后，或发生故障时。该接口有四种方法对应于这些情况：
 
-* preVisitDirectory 
-    
+* preVisitDirectory
+
     在访问目录的条目之前调用。
 * postVisitDirectory
-    
+
     在访问目录中的所有条目之后调用。如果遇到任何错误，则将特定异常传递给该方法。
-* visitFile 
+* visitFile
 
     在被访问的文件上调用。该文件`BasicFileAttributes`被传递到该方法，或者您可以使用 文件属性包来读取一组特定的属性。例如，您可以选择读取文件`DosFileAttributeView`以确定文件是否具有“隐藏”位设置。
 * visitFileFailed
 
     当文件无法访问时调用。该特定异常传递给该方法。您可以选择是否抛出异常，将其打印到控制台或日志文件等等。
-    
+
 如果你并不想要全部的四种方法，您可以扩展 `SimpleFileVisitor`该类。实现该接口访问树中的所有文件，并在遇到IOError错误时抛出异常。您可以扩展此类，仅覆盖所需的方法。
 
 
@@ -67,40 +68,44 @@ public class PrintFiles extends SimpleFileVisitor<Path> {
     }
  }   
 ```
+
 ## 开始流程
 一旦你实现了`FileVisitor`，你如何启动它？Files中有两种walkFileTree方法。
 
-* walkFileTree(Path, FileVisitor)
-* walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)
+* `walkFileTree(Path, FileVisitor)`
+* `walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)`
 
-**第一种：**只需要一个起点和一个`FileVisitor`实例。您可以按以下方式调用文件访问者：
+**第一种：** 只需要一个起点和一个`FileVisitor`实例。您可以按以下方式调用文件访问者：
+
 ```java
 Path startingDir = Paths.get("g:/");
 PrintFiles pf = new PrintFiles();
 Files.walkFileTree(startingDir, pf);
 ```
 
-**第二种：**使您能够额外指定访问级别数量和一组`FileVisitOption`枚举的限制。如果要确保此方法遍历整个文件树，可以指定`Integer.MAX_VALUE`最大深度参数。
+**第二种：** 使您能够额外指定访问级别数量和一组`FileVisitOption`枚举的限制。如果要确保此方法遍历整个文件树，可以指定`Integer.MAX_VALUE`最大深度参数。
 
 您可以指定`FileVisitOption`枚举，`FOLLOW_LINKS`这表示应遵循符号链接。
-```java
-       Path startingDir = Paths.get("g:/");
 
-        EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
-        FileVisitor fileVisitor = new PrintFiles();
-        Files.walkFileTree(startingDir, opts, Integer.MAX_VALUE, fileVisitor);
+```java
+Path startingDir = Paths.get("g:/");
+
+EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
+FileVisitor fileVisitor = new PrintFiles();
+Files.walkFileTree(startingDir, opts, Integer.MAX_VALUE, fileVisitor);
 ```
 ## 创建FileVisitor时的注意事项
 
 文件树首先是深度走过的，但是您不能对子目录访问的迭代顺序进行任何假设。
 
-如果您的程序将更改文件系统，则需要仔细考虑如何实现FileVisitor。
+如果您的程序将更改文件系统，则需要仔细考虑如何实现 FileVisitor。
 
 例如，
 
 1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在`postVisitDirectory`中删除目录。
 
 2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。 以下示例是模拟`UNIX cp -p`命令的功能：
+
 ```java
 public class Copy {
 
@@ -313,6 +318,7 @@ public class Copy {
 ```
 
 3. 如果您正在编写文件搜索，请在`visitFile`方法中执行比较。此方法查找与您的条件匹配的所有文件，但找不到目录。如果要同时查找文件和目录，还必须使用`preVisitDirectory`或`postVisitDirectory`方法进行比较。该 Find示例显示如何执行此操作。
+
 ```java
 public class Find {
     /**
@@ -421,6 +427,7 @@ public class Find {
 4. 您需要决定是否要遵循符号链接。如果要删除文件，例如，以下符号链接可能不可取。如果要复制文件树，可能需要允许。默认情况下，`walkFileTree`不遵循符号链接。
 
     该visitFile方法被调用为文件。如果您指定了该`FOLLOW_LINKS`选项，并且您的文件树具有到父目录的循环链接，则循环目录将在该`visitFileFailed`方法中报告`FileSystemLoopException`。以下代码片段显示了如何捕获循环链接，并从上面的Copy示例中获取 ：
+
 ```java
 @Override
 public FileVisitResult
@@ -434,6 +441,7 @@ public FileVisitResult
     return CONTINUE;
 }
 ```
+
 遵循符号链接也就是说，任何时候访问到的都是链接对应的实际文件。在copy的时候，那么就会出现循环被copy的情况。这种情况只有在程序跟随符号链接时才会发生。
 
 ## 控制流程
@@ -447,6 +455,7 @@ public FileVisitResult
 * SKIP_SIBLINGS- 当`preVisitDirectory`返回此值时，指定的目录不被访问，`postVisitDirectory`不被调用，并且不再访问未访问的兄弟姐妹。如果从该`postVisitDirectory`方法返回，则不再访问进一步的兄弟姐妹。本质上，在指定的目录中没有任何进一步的发生。
 
 在此代码片段中，将跳过任何名为SCCS的目录：
+
 ```java
 public FileVisitResult
      preVisitDirectory(Path dir,
@@ -459,6 +468,7 @@ public FileVisitResult
 ```
 
 在这段代码片段中，只要找到一个特定的文件，文件名被打印到标准输出，文件行走终止：
+
 ```java
 Path lookingFor = ...;
 
@@ -472,7 +482,9 @@ public FileVisitResult
     return CONTINUE;
 }
 ```
+
 ## 例子
+
 以下示例演示了文件行走机制：
 
 * Find - 重新查找文件树，寻找与特定的glob模式匹配的文件和目录。此示例在 查找文件中讨论。

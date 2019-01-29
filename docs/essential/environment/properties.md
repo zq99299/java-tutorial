@@ -31,6 +31,7 @@
 
 ## 设置属性对象
 以下Java代码执行前面部分描述的前两个步骤：加载默认属性并加载记住的属性：
+
 ```java
 . . .
 // 创建并加载默认值
@@ -84,7 +85,7 @@ out.close();
 
 * stringPropertyNames()
 
-    喜欢propertyNames，但返回一个Set<String>，只返回属性的名称，其中key和value都是字符串。请注意，Set对象不受Properties对象的支持，因此一个对象的更改不会影响对方。
+    喜欢propertyNames，但返回一个 `Set<String>`，只返回属性的名称，其中key和value都是字符串。请注意，Set对象不受Properties对象的支持，因此一个对象的更改不会影响对方。
 
 * size()
     返回当前的键/值对数。

@@ -9,7 +9,7 @@ const networkingSC = require('../networking');
 module.exports = {
     title: 'JAVA8 官网笔记教程',
     description: '阅读JAVA8官网教程，翻译记录',
-    // base: '/java-tutorial/', // gh-page 中是增加了项目名
+    base: '/java-tutorial/', // gh-page 中是增加了项目名
     dest: 'build/.vuepress/dist',  // 目录配置在外,纯粹是有代码洁癖和强迫症，并不能规避开发模式下同时构建不报错的问题
     ga: 'UA-125573163-1', // 添加 ga 统计
     locales: {

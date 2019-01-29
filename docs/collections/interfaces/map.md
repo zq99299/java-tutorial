@@ -66,7 +66,7 @@ for (KeyType key : m.keySet())
 ```
 iterator:
 ```java
-// Filter a map based on some 
+// Filter a map based on some
 // property of its keys.
 for (Iterator<Type> it = m.keySet().iterator(); it.hasNext(); )
     if (it.next().isBogus())
@@ -85,7 +85,7 @@ for (Map.Entry<KeyType, ValType> e : m.entrySet())
 ## 喜欢集合的观点：map 代数？
 批量操作（containsAll，removeAll，和retainAll）会很方便。
 
-- boolean containsAll(Collection<?> c) 
+- `boolean containsAll(Collection<?> c) `
 
   如果此 set 包含指定 collection 的所有元素，则返回 true。
 
@@ -135,7 +135,7 @@ for (Map.Entry<KeyType, ValType> e : m.entrySet())
         }
         return valid;
     }
-``` 
+```
 输出
 ```java
 Missing attributes: [7]
@@ -178,4 +178,4 @@ Set<Employee> slackers = m.keySet();
 
 ## multimap
 
-就是一个键对应多个值，很容易实现，例如： Map<String, List<String>> m = new HashMap<String, List<String>>();
+就是一个键对应多个值，很容易实现，例如： `Map<String, List<String>> m = new HashMap<String, List<String>>()`;
