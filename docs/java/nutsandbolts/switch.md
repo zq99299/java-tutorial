@@ -1,10 +1,11 @@
 # switch 语句
+[[toc]]
 
-不同于if-then和if-then-else语句，switch语句可以有多个可能的执行路径。
+不同于 if-then 和 if-then-else 语句，switch 语句可以有多个可能的执行路径。
 
-一个switch 用byte，short，char，和int原始数据类型。它还可以与枚举类型（讨论 枚举类型），String类。以及一些特殊的类来封装某些基本类型： Character， Byte， Short，和 Integer（在讨论 数字和字符串）。
+一个 switch 用 byte，short，char，和 int 原始数据类型。它还可以与枚举类型（讨论 [枚举类型](../javaoo/enum.md)），String 类。以及一些特殊的类来封装某些基本类型： Character、Byte、Short 和 Integer（在讨论 [数字和字符串](../data/)）。
 
-以下代码示例， SwitchDemo声明一个int名称month的值表示一个月。代码根据month使用该switch语句的值显示月份的名称。
+以下代码示例， SwitchDemo 声明一个 int 名称 month 的值表示一个月。代码根据 month 使用该 switch 语句的值显示月份的名称。
 
 ```java
 public class SwitchDemo {
@@ -45,7 +46,7 @@ public class SwitchDemo {
 }
 ```
 
-一个switch语句的主体被称为一个开关块。switch块中的语句可以标记一个或多个case或default标签。该switch语句评估其表达式，然后执行匹配case标签后面的所有语句。
+一个 switch 语句的主体被称为一个开关块。switch 块中的语句可以标记一个或多个 case 或d efault 标签。该 switch 语句评估其表达式，然后执行匹配 case 标签后面的所有语句。
 
 您还可以使用 if-then-else 语句显示月份的名称
 
@@ -59,9 +60,9 @@ if (month == 1) {
 ...  // and so on
 ```
 
-决定是否使用if-then-else语句或switch语句是基于可读性和语句正在测试的表达式。一个if-then-else语句可以测试基于值或条件的范围的表达式，而switch语句测试仅基于一个整数，枚举值或表达式String对象。
+决定是否使用 if-then-else 语句或 switch 语句是基于可读性和语句正在测试的表达式。一个 if-then-else 语句可以测试基于值或条件的范围的表达式，而 switch 语句测试仅基于一个整数，枚举值或表达式 String 对象。
 
-另一个兴趣点是break声明。每个break语句都会结束封闭switch语句。控制流继续跟随该switch块后的第一个语句。这些break语句是必要的，因为没有这些语句，switch块中的语句落空：匹配case标签之后的所有语句都将按顺序执行，而不管后续case标签的表达，直到break遇到语句。该程序 SwitchDemoFallThrough显示一个switch块中的语句。该程序显示与month该年份相关的整数和以下月份的月份：
+另一个兴趣点是 break 声明。每个 break 语句都会结束封闭 switch 语句。控制流继续跟随该 switch 块后的第一个语句。这些 break 语句是必要的，因为没有这些语句，switch 块中的语句落空：匹配 case 标签之后的所有语句都将按顺序执行，而不管后续 case 标签的表达，直到遇到 break 语句。该程序 SwitchDemoFallThrough 显示一个 switch 块中的语句。该程序显示与 month 年份相关的整数和以下月份的月份：
 
 ```java
 public class SwitchDemoFallThrough {
@@ -110,11 +111,11 @@ November
 December
 ```
 
-该语句按照case的顺序进行判定，直到匹配上，如果没有 break声明，那么后面的case将被直接执行，而不管是否匹配
+该语句按照 case 的顺序进行判定，直到匹配上，如果没有 break 声明，那么后面的 case 将被直接执行，而不管是否匹配
 
-在技​​术上，最终break不是必需的，因为流程不在switch声明之内。建议使用break,以便修改代码更容易，更不容易出错。 default部分处理其中一个case部分未明确处理的所有值。
+在技​​术上，最终 break 不是必需的，因为流程不在 switc h声明之内。建议使用 break，以便修改代码更容易，更不容易出错。 default 部分处理其中一个 case 部分未明确处理的所有值。
 
-以下代码示例 SwitchDemo2显示语句如何具有多个case标签。代码示例计算特定月份的天数：
+以下代码示例 SwitchDemo2 显示语句如何具有多个 case 标签。代码示例计算特定月份的天数：
 
 ```java
 class SwitchDemo2 {
@@ -135,7 +136,7 @@ class SwitchDemo2 {
                 numDays = 30;
                 break;
             case 2: // 如果是2月则判定当年是否是闰年
-                if (((year % 4 == 0) && 
+                if (((year % 4 == 0) &&
                      !(year % 100 == 0))
                      || (year % 400 == 0))
                     numDays = 29;
@@ -158,9 +159,9 @@ Number of Days = 29
 ```
 
 
-## 在switch中使用 String
+## 在 switch 中使用 String
 
-在Java SE 7及更高版本中，您可以在switch语句的表达式中使用String对象.以下代码示例， StringSwitchDemo根据String命名的值显示月份的数量month：
+在 Java SE 7 及更高版本中，您可以在 switch 语句的表达式中使用 String 对象。以下代码示例， StringSwitchDemo 根据 String 命名的值显示月份的数量 month：
 
 ```java
 public class StringSwitchDemo {
@@ -210,7 +211,7 @@ public class StringSwitchDemo {
             case "december":
                 monthNumber = 12;
                 break;
-            default: 
+            default:
                 monthNumber = 0;
                 break;
         }
@@ -236,7 +237,8 @@ public class StringSwitchDemo {
 
 程序输出：8
 
-将表达式String与每个标签相关联的switch表达式进行比较，case就像使用该 String.equals方法一样。为了让StringSwitchDemo示例接受任何一个月，无论情况如何，month都将转换为小写（使用 toLowerCase方法），并且与case标签关联的所有字符串都是小写的。
+将表达式 String 与每个标签相关联的 switch 表达式进行比较，case 就像使用该 String.equals 方法一样。为了让 StringSwitchDemo示 例接受任何一个月，无论情况如何，month 都将转换为小写（使用 toLowerCase 方法），并且与 case 标签关联的所有字符串都是小写的。
 
-**注意：**此示例检查switch语句中的表达式是否为null。确保任何switch语句中的表达式不为null以防止NullPointerException抛出。
-
+::: tip
+此示例检查 switch 语句中的表达式是否为 null。确保任何 switch 语句中的表达式不为 null 以防止 NullPointerException 抛出。
+:::
