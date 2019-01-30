@@ -19,6 +19,8 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 进度：
 - [√] 初步整理：整体文章迁移至 docs 下、图片按新的要求迁移、按大模块进行导航
 - [×] 优化整理：快速阅读，并按照中文指北要求优化排版，还有好多关于路径引用的错误也要一并修复
+
+    进度：[Lambda 表达式](/java/javaoo/lambdaexpressions.md)
 - [×] 导航改进：看看 vuepress 有没有版本对导航排版进行改进
 - [×] 恢复正常：恢复到正常写作进度
 :::
