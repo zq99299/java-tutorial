@@ -33,7 +33,7 @@ public class Generation3List extends Generation2List {
 }
 ```
 
-注解类型定义看起来类似于接口定义，其中关键字interface前面加上`@`符号。注解类型是一种接口形式，将在后面的课程中介绍。目前，您不需要了解界面。
+注解类型定义看起来类似于接口定义，其中关键字 interface 前面加「@」符号。注解类型是一种接口形式，将在后面的课程中介绍。目前，您不需要了解。
 
 上一个注解定义的主体包含注解类型元素声明，它看起来很像方法。请注意，它们可以定义可选的默认值。
 
@@ -56,7 +56,9 @@ public class Generation3List extends Generation2List {
 }
 ```
 
-> 注意：  要使信息`@ClassPreamble`出现在Javadoc生成的文档中，您必须使用注解`@Documented`对`@ClassPreamble`定义进行注解：
+::: tip
+要使信息 `@ClassPreamble` 出现在 Javadoc 生成的文档中，您必须使用注解 `@Documented` 对 `@ClassPreamble` 定义进行注解：
+:::
 
 ```java
 // import this to use @Documented
@@ -66,6 +68,6 @@ import java.lang.annotation.*;
 @interface ClassPreamble {
 
    // Annotation element definitions
-   
+
 }
 ```
