@@ -74,7 +74,9 @@ JavaDoc 注释中有一个注解 `@deprecated` 和 方法上的注解 `@Deprecat
 
 每当使用指定的注解时，应使用 Javadoc 工具记录这些元素。（默认情况下，注解不包括在 Javadoc 中。）有关详细信息，请参阅 [Javadoc 工具页面](https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/index.html)。
 
-### `@Target` 标记另一个注解，以限制注解可应用于哪种类型的 Java 元素。目标注解指定以下元素类型之一作为其值：
+### `@Target`
+
+标记另一个注解，以限制注解可应用于哪种类型的 Java 元素。目标注解指定以下元素类型之一作为其值：
 
 * `ElementType.ANNOTATION_TYPE` 可以应用于注解类型。
 * `ElementType.CONSTRUCTOR` 可以应用于构造函数。
