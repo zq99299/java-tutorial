@@ -1,48 +1,51 @@
 # 问题和练习
+[[toc]]
 
 ## 问题
 
 1. 考虑以下两个类
-```java
-public class ClassA {
-    public void methodOne(int i) {
-    }
-    public void methodTwo(int i) {
-    }
-    public static void methodThree(int i) {
-    }
-    public static void methodFour(int i) {
-    }
-}
 
-public class ClassB extends ClassA {
-    public static void methodOne(int i) {
-    }
-    public void methodTwo(int i) {
-    }
-    public void methodThree(int i) {
-    }
-    public static void methodFour(int i) {
-    }
-}
-```
-* a. 哪个方法重写超类中的方法？
-    
-    答：methodTwo
-* b. 哪个方法在超类中隐藏一个方法？
-    
-    答：methodFour
-* c. 其他方法有什么作用？
+  ```java
+  public class ClassA {
+      public void methodOne(int i) {
+      }
+      public void methodTwo(int i) {
+      }
+      public static void methodThree(int i) {
+      }
+      public static void methodFour(int i) {
+      }
+  }
 
-    答：他们导致编译时错误
+  public class ClassB extends ClassA {
+      public static void methodOne(int i) {
+      }
+      public void methodTwo(int i) {
+      }
+      public void methodThree(int i) {
+      }
+      public static void methodFour(int i) {
+      }
+  }
+  ```
 
-2. 考虑 Card， Deck以及 DisplayDeck类你写的 问题和练习类。每个类应该覆盖Object哪些方法？
+  * a. 哪个方法重写超类中的方法？
 
-    答：Card和Deck应重写equals，hashCode和toString。
+      答：methodTwo
+  * b. 哪个方法在超类中隐藏一个方法？
+
+      答：methodFour
+  * c. 其他方法有什么作用？
+
+      答：他们导致编译时错误
+
+2. 考虑 Card， Deck 以及 DisplayDeck 类你写的问题和练习类。每个类应该覆盖 Object 哪些方法？
+
+    答：Card 和 Deck 应重写 equals、hashCode 和 toString。
 
 ## 练习
 
-编写您在问题2中回答的方法的实现。
+编写您在问题 2 中回答的方法的实现。
 
 ```java
 public class Card2 {
@@ -119,7 +122,7 @@ public class Card2 {
                 return "Deuce";
             case THREE:
                 return "Three";
-            case FOUR: 
+            case FOUR:
                 return "Four";
             case FIVE:
                 return "Five";
