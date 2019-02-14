@@ -19,26 +19,50 @@ module.exports = () => {
             collapsable: true,
             children: [
                 ['nutsandbolts/','概述'],
-                'nutsandbolts/variables.md',
-                'nutsandbolts/datatypes.md',
-                'nutsandbolts/arrays.md',
-                'nutsandbolts/variablesummary.md',
-                'nutsandbolts/qande/variables.md',
-                'nutsandbolts/operators.md',
-                'nutsandbolts/op1.md',
-                'nutsandbolts/op2.md',
-                'nutsandbolts/op3.md',
-                'nutsandbolts/opsummary.md',
-                'nutsandbolts/expressions.md',
-                'nutsandbolts/qande/questions_expressions.md',
-                'nutsandbolts/flow.md',
-                'nutsandbolts/if.md',
-                'nutsandbolts/switch.md',
-                'nutsandbolts/while.md',
-                'nutsandbolts/for.md',
-                'nutsandbolts/branch.md',
-                'nutsandbolts/flowsummary.md',
-                'nutsandbolts/qande/questions_flow.md'
+                {
+                    title: "语言基础",
+                    collapsable: true,
+                    children: [
+                      'nutsandbolts/variables.md',
+                      'nutsandbolts/datatypes.md',
+                      'nutsandbolts/arrays.md',
+                      'nutsandbolts/variablesummary.md',
+                      'nutsandbolts/qande/variables.md'
+                    ]
+                },
+                {
+                    title: "运算符",
+                    collapsable: true,
+                    children: [
+                      'nutsandbolts/operators.md',
+                      'nutsandbolts/op1.md',
+                      'nutsandbolts/op2.md',
+                      'nutsandbolts/op3.md',
+                      'nutsandbolts/opsummary.md',
+                    ]
+                },
+                {
+                    title: "表达式、语句和块",
+                    collapsable: true,
+                    children: [
+                      'nutsandbolts/expressions.md',
+                      'nutsandbolts/qande/questions_expressions.md'
+                    ]
+                },
+                {
+                    title: "控制流程语句",
+                    collapsable: true,
+                    children: [
+                      'nutsandbolts/flow.md',
+                      'nutsandbolts/if.md',
+                      'nutsandbolts/switch.md',
+                      'nutsandbolts/while.md',
+                      'nutsandbolts/for.md',
+                      'nutsandbolts/branch.md',
+                      'nutsandbolts/flowsummary.md',
+                      'nutsandbolts/qande/questions_flow.md'
+                    ]
+                }
             ]
         },
         {
