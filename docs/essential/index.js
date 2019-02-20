@@ -8,16 +8,28 @@ module.exports = () => {
                 ['exceptions/','概述'],
                 'exceptions/definition.md',
                 'exceptions/catchOrDeclare.md',
-                'exceptions/handling/',
-                'exceptions/handling/try.md',
-                'exceptions/handling/catch.md',
-                'exceptions/handling/finally.md',
-                'exceptions/handling/tryResourceClose.md',
-                'exceptions/handling/putItTogether.md',
+                {
+                    title: "捕获和处理异常",
+                    collapsable: true,
+                    children: [
+                      'exceptions/handling/',
+                      'exceptions/handling/try.md',
+                      'exceptions/handling/catch.md',
+                      'exceptions/handling/finally.md',
+                      'exceptions/handling/tryResourceClose.md',
+                      'exceptions/handling/putItTogether.md'
+                    ]
+                },
                 'exceptions/declaring.md',
-                'exceptions/throwing.md',
-                'exceptions/chained.md',
-                'exceptions/creating.md',
+                {
+                    title: "如何抛出异常",
+                    collapsable: true,
+                    children: [
+                      'exceptions/throwing.md',
+                      'exceptions/chained.md',
+                      'exceptions/creating.md'
+                    ]
+                },
                 'exceptions/runtime.md',
                 'exceptions/advantages.md',
                 'exceptions/summary.md',
@@ -28,35 +40,53 @@ module.exports = () => {
             collapsable: true,
             children: [
                 ['io/','概述'],
-                'io/streams.md',
-                'io/bytestreams.md',
-                'io/charstreams.md',
-                'io/buffers.md',
-                'io/scanfor.md',
-                'io/scanning.md',
-                'io/formatting.md',
-                'io/cl.md',
-                'io/datastreams.md',
-                'io/objectstreams.md',
-                'io/fileio.md',
-                'io/path.md',
-                'io/pathClass.md',
-                'io/pathOps.md',
-                'io/fileOps.md',
-                'io/check.md',
-                'io/delete.md',
-                'io/copy.md',
-                'io/move.md',
-                'io/fileAttr.md',
-                'io/file.md',
-                'io/rafs.md',
-                'io/dirs.md',
-                'io/links.md',
-                'io/walk.md',
-                'io/find.md',
-                'io/notification.md',
-                'io/misc.md',
-                'io/legacy.md',
+                {
+                    title: "I/O流",
+                    collapsable: true,
+                    children: [
+                      'io/streams.md',
+                      'io/bytestreams.md',
+                      'io/charstreams.md',
+                      'io/buffers.md',
+                      {
+                          title: "扫描和格式化",
+                          collapsable: true,
+                          children: [
+                            'io/scanfor.md',
+                            'io/scanning.md',
+                            'io/formatting.md'
+                          ]
+                      },
+                      'io/cl.md',
+                      'io/datastreams.md',
+                      'io/objectstreams.md'
+                    ]
+                },
+                {
+                    title: "文件I/O (nio.2)",
+                    collapsable: true,
+                    children: [
+                      'io/fileio.md',
+                      'io/path.md',
+                      'io/pathClass.md',
+                      'io/pathOps.md',
+                      'io/fileOps.md',
+                      'io/check.md',
+                      'io/delete.md',
+                      'io/copy.md',
+                      'io/move.md',
+                      'io/fileAttr.md',
+                      'io/file.md',
+                      'io/rafs.md',
+                      'io/dirs.md',
+                      'io/links.md',
+                      'io/walk.md',
+                      'io/find.md',
+                      'io/notification.md',
+                      'io/misc.md',
+                      'io/legacy.md'
+                    ]
+                },
                 'io/summary.md',
                 'io/questions.md'
             ]
