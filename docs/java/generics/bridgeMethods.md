@@ -1,6 +1,7 @@
 # 类型擦除和桥接方法的影响
 
-有时类型擦除导致您可能没有预料到的情况。以下示例显示如何发生这种情况。该示例（在“ 桥接方法”中进行了说明）显示了编译器有时会如何创建称为桥接方法的合成方法，作为类型擦除过程的一部分。
+有时类型擦除导致您可能没有预料到的情况。以下示例显示如何发生这种情况。
+该示例（在「桥接方法」中进行了说明）显示了编译器有时会如何创建称为桥接方法的合成方法，作为类型擦除过程的一部分。
 
 鉴于以下两类：
 
@@ -26,13 +27,14 @@ public class MyNode extends Node<Integer> {
     }
 }
 ```
+
 考虑下面的代码
 
 ```java
-        MyNode mn = new MyNode(5);
-        Node n = mn;            // A raw type - compiler throws an unchecked warning
-        n.setData("Hello");
-        Integer x = mn.data;    // 报错ClassCastException
+MyNode mn = new MyNode(5);
+Node n = mn;            // A raw type - compiler throws an unchecked warning
+n.setData("Hello");
+Integer x = mn.data;    // 报错ClassCastException
 ```
 
 类型擦除后，这段代码变成：
@@ -46,18 +48,23 @@ Integer x = (String)mn.data; // Causes a ClassCastException to be thrown.
 
 这是执行代码时发生的情况：
 
-* `n.setData("Hello");` 方法在 MyNode上执行
-* 在`setData(Object)`的主体中，由n引用的对象的数据字段被分配给一个String。
-* 可以通过mn引用访问data，并且期望它是一个整数（因为MyNode是一个`Node <Integer>`）
-* 起尝试强转一个字符串为Integer，导致ClassCastException 
+* `n.setData("Hello")` 方法在 MyNode 上执行
+* 在 `setData(Object)` 的主体中，由 n 引用的对象的数据字段被分配给一个 String。
+* 可以通过 mn 引用访问 data，并且期望它是一个整数（因为 MyNode 是一个 `Node <Integer>`）
+* 尝试强转一个字符串为 Integer，导致 ClassCastException
 
-> ??? 没有看明白上面说的，擦除后怎么变成强转了
+::: tip
+??? 没有看明白上面说的，擦除后怎么变成强转了
 
-## 桥梁方法
+by 2019年2月20日16:23:52：现在看明白了，如果不是 idea 检测只能在运行中才能发现问题
+:::
 
-编译扩展参数化类或实现参数化接口的类或接口时，编译器可能需要创建一个称为桥接方法的合成方法，作为类型擦除过程的一部分。您通常不需要担心桥接方法，但是如果出现在堆栈轨迹中，您可能会感到困惑。
+## 桥接方法
 
-类型擦除后，Node和MyNode类成为：
+编译扩展参数化类或实现参数化接口的类或接口时，编译器可能需要创建一个称为桥接方法的合成方法，
+作为类型擦除过程的一部分。您通常不需要担心桥接方法，但是如果出现在堆栈轨迹中，您可能会感到困惑。
+
+类型擦除后，Node 和 MyNode 类成为：
 
 ```java
 public class Node {
@@ -83,9 +90,10 @@ public class MyNode extends Node {
 }
 ```
 
-类型擦除后，方法签名不匹配。Node的`setData(Object data)`和MyNode的`setData(Integer data) ` 方法不会被重写了。
+类型擦除后，方法签名不匹配。Node 的 `setData(Object data)` 和 MyNode 的 `setData(Integer data)` 方法不会被重写了。
 
-为了解决这个问题并在类型擦除之后保留泛型类型的 多态性，Java编译器生成一个桥接方法来确保子类型按预期工作。对于MyNode类，编译器为setData生成以下桥接方法：
+为了解决这个问题并在类型擦除之后保留泛型类型的多态性，Java 编译器生成一个桥接方法来确保子类型按预期工作。
+对于 MyNode 类，编译器为 setData 生成以下桥接方法：
 
 ```java
 class MyNode extends Node {
@@ -105,4 +113,4 @@ class MyNode extends Node {
 }
 ```
 
-正如你看到的，桥接方法具有和Node类方法签名一致的方法，然后委托具体的类型方法。
+正如你看到的，桥接方法具有和 Node 类方法签名一致的方法，然后委托具体的类型方法。
