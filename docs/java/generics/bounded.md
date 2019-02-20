@@ -1,8 +1,8 @@
 # 有界类型参数
 
-有时可能需要限制可以用作参数化类型的类型参数的类型。例如，对数字进行操作的方法可能只想接受Number实例或其子类。这是有界的类型参数。
+有时可能需要限制可以用作参数化类型的类型参数的类型。例如，对数字进行操作的方法可能只想接受 Number 实例或其子类。这是有界的类型参数。
 
-要声明有界的类型参数，请列出类型参数的名称，后跟extends关键字，后跟其上限，在本例中为Number。注意，在这种情况下，extends在一般意义上用来表示“扩展”（如在类中）或“实现”（如在接口中）。
+要声明有界的类型参数，请列出类型参数的名称，后跟 extends 关键字，后跟其上限，在本例中为 Number。注意，extends 在一般意义上用来表示「扩展」（如在类中）或「实现」（如在接口中）。
 
 ```java
 public class Box<T> {
@@ -30,7 +30,7 @@ public class Box<T> {
 }
 ```
 
-通过修改我们的泛型方法来包含这个有界的类型参数，编译将会失败，因为我们的调用inspect仍然包含String：
+通过修改我们的泛型方法来包含这个有界的类型参数，编译将会失败，因为我们的调用 inspect 仍然包含 String：
 
 ```bash
 Box.java:21: <U>inspect(U) in Box<java.lang.Integer> cannot
@@ -57,7 +57,7 @@ public class NaturalNumber<T extends Integer> {
 }
 ```
 
-ISEVEN方法通过类T调用的Integer中所定义的intValue方法
+isEven 方法通过类 T 调用的 Integer 中所定义的 intValue 方法
 
 ## 多重界限
 
