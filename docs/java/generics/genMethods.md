@@ -1,6 +1,6 @@
 # 擦除泛型方法
 
-Java编译器也会擦除泛型方法参数中的类型参数。考虑下面的一般方法：
+Java 编译器也会擦除泛型方法参数中的类型参数。考虑下面的一般方法：
 
 ```java
 // 计算数组中元素出现的次数
@@ -13,7 +13,7 @@ public static <T> int count(T[] anArray, T elem) {
 }
 ```
 
-由于T是无界的，因此Java编译器将其替换为Object：
+由于 T 是无界的，因此 Java 编译器将其替换为 Object：
 
 ```java
 public static int count(Object[] anArray, Object elem) {
@@ -39,7 +39,7 @@ class Rectangle extends Shape { /* ... */ }
 public static <T extends Shape> void draw(T shape) { /* ... */ }
 ```
 
-Java编译器替换T
+Java 编译器替换 T
 
 ```java
 public static void draw(Shape shape) { /* ... */ }
