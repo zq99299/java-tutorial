@@ -1,6 +1,7 @@
 # 对泛型的限制
+[[toc]]
 
-要有效地使用Java泛型，您必须考虑以下限制：
+要有效地使用 Java 泛型，您必须考虑以下限制：
 
 * 不能实例化具有原始类型的泛型类型
 * 无法创建类型参数的实例
@@ -26,16 +27,16 @@ class Pair<K, V> {
         }
 
         // ...
-    }
+}
 ```
 
-创建Pair对象时，不能将基本类型替换为类型参数K或V
+创建 Pair 对象时，不能将基本类型替换为类型参数 K 或 V
 
 ```java
 Pair<int, char> p = new Pair<>(8, 'a');  // compile-time error
 ```
 
-您只能用非原始类型替换类型参数K和V：
+您只能用非原始类型替换类型参数 K 和 V：
 
 ```java
 Pair<Integer, Character> p = new Pair<>(8, 'a');
@@ -45,18 +46,17 @@ Pair<Integer, Character> p = new Pair<>(8, 'a');
 Pair<Integer, Character> p = new Pair<>(Integer.valueOf(8), new Character('a'));
 ```
 
-有关更多信息请参阅
-[自动装箱子拆箱](//content/java/data/autoboxing.md)
+有关更多信息请参阅 [自动装箱子拆箱](../data/autoboxing.md)
 
 ## 无法创建类型参数的实例
 
 你不能创建一个类型参数的实例。例如，下面的代码导致编译时错误：
 
 ```java
-    public static <E> void append(List<E> list) {
-        E elem = new E();  // compile-time error
-        list.add(elem);
-    }
+public static <E> void append(List<E> list) {
+    E elem = new E();  // compile-time error
+    list.add(elem);
+}
 ```
 
 作为解决方法，您可以通过反射来创建类型参数的对象：
@@ -68,7 +68,7 @@ public static <E> void append(List<E> list, Class<E> cls) throws Exception {
 }
 ```
 
-您可以按如下方式调用append方法：
+您可以按如下方式调用 append 方法：
 
 ```java
 List<String> ls = new ArrayList<>();
@@ -95,11 +95,12 @@ MobileDevice<Pager> pager = new MobileDevice<>();
 MobileDevice<TabletPC> pc = new MobileDevice<>();
 ```
 
-因为静态字段os被电话，寻呼机和pc共享，所以os的实际类型是什么？它不能同时是智能手机，寻呼机和平板电脑。因此，您不能创建类型参数的静态字段。
+因为静态字段 os 被智能手机，寻呼机和 pc 共享，所以 os 的实际类型是什么？
+它不能同时是智能手机，寻呼机和平板电脑。因此，您不能创建类型参数的静态字段。
 
-## 不能对参数化类型使用cast或instanceof
+## 不能对参数化类型使用 cast 或 instanceof
 
-因为Java编译器会删除泛型代码中的所有类型参数，所以无法验证运行时正在使用的泛型类型的参数化类型：
+因为 Java 编译器会删除泛型代码中的所有类型参数，所以无法验证运行时正在使用的泛型类型的参数化类型：
 
 ```java
 public static <E> void rtti(List<E> list) {
@@ -109,13 +110,14 @@ public static <E> void rtti(List<E> list) {
 }
 ```
 
-传递给rtti方法的参数化类型的集合是：
+传递给 rtti 方法的参数化类型的集合是：
 
 ```java
 S = { ArrayList<Integer>, ArrayList<String> LinkedList<Character>, ... }
 ```
 
-运行时不会跟踪类型参数，所以它不能区分`ArrayList <Integer>`和`ArrayList <String>`。你可以做的最多的是使用一个无界的通配符来验证列表是一个`ArrayList`：
+运行时不会跟踪类型参数，所以它不能区分 `ArrayList <Integer>` 和 `ArrayList <String>`。
+你可以做的最多的是使用一个无界的通配符来验证列表是一个 `ArrayList`：
 
 ```java
 public static void rtti(List<?> list) {
@@ -164,11 +166,11 @@ stringLists[1] = new ArrayList<Integer>();  // An ArrayStoreException should be 
                                             // 运行时无法检测到它
 ```
 
-如果允许参数化列表数组，则以前的代码将无法抛出所需的ArrayStoreException。
+如果允许参数化列表数组，则以前的代码将无法抛出所需的 ArrayStoreException。
 
 ## 无法创建，捕捉或抛出参数化类型的对象
 
-泛型类不能直接或间接地扩展Throwable类。例如，以下类将不会编译：
+泛型类不能直接或间接地扩展 Throwable 类。例如，以下类将不会编译：
 
 ```java
 // Extends Throwable indirectly
@@ -191,7 +193,7 @@ public static <T extends Exception, J> void execute(List<J> jobs) {
 }
 ```
 
-但是，您可以在throws子句中使用类型参数：
+但是，您可以在 throws 子句中使用类型参数：
 
 ```java
 class Parser<T extends Exception> {
