@@ -2,9 +2,11 @@
 
 ## 问题
 
-> 1. 编写一个通用方法来计算具有特定属性（例如，奇数整数，素数，回文）的集合中元素的数量。
+> 1.编写一个通用方法来计算具有特定属性（例如，奇数整数，素数，回文）的集合中元素的数量。
+
 
 答：
+
 ```java
 public class Algorithm {
     public static void main(String[] args) {
@@ -40,7 +42,7 @@ public class Algorithm {
 }
 ```
 
-> 2. 下列类会编译？如果没有，为什么？
+> 2.下列类会编译？如果没有，为什么？
 
 ```java
 public final class Algorithm {
@@ -49,9 +51,9 @@ public final class Algorithm {
     }
 }    
 ```
-答：大于小于运算符只能用于数字。这里的T有可能不是一个数字
+答：大于小于运算符只能用于数字。这里的 T 有可能不是一个数字
 
-> 3. 编写一个通用的方法来交换数组中两个不同元素的位置。
+> 3.编写一个通用的方法来交换数组中两个不同元素的位置。
 
 答：
 ```java
@@ -64,15 +66,15 @@ public final class Algorithm {
 }
 ```
 
-> 4. 如果编译器在编译时擦除所有类型参数，为什么要使用泛型？
+> 4.如果编译器在编译时擦除所有类型参数，为什么要使用泛型？
 
 答：您应该使用泛型，因为：
 
-* Java编译器在编译时对泛型代码执行更严格的类型检查。
+* Java 编译器在编译时对泛型代码执行更严格的类型检查。
 * 泛型支持编程类型作为参数。
 * 泛型使您能够实现泛型算法。
 
-> 5. 类型擦除后转换为以下类别的是什么？
+> 5.类型擦除后转换为以下类别的是什么？
 
 ```java
 public class Pair<K, V> {
@@ -93,9 +95,9 @@ public class Pair<K, V> {
 }
 ```
 
-答：K和V都转换为Object了
+答：K 和 V 都转换为 Object 了
 
-> 6. 类型擦除后转换为以下方法是什么？
+> 6.类型擦除后转换为以下方法是什么？
 
 ```java
 public static <T extends Comparable<T>>
@@ -111,7 +113,8 @@ public static int findFirstGreaterThan(Comparable[] at, Comparable elem) {
 // ...
 }
 ```
-> 7. 下面的方法会编译吗？如果没有，为什么？
+
+> 7.下面的方法会编译吗？如果没有，为什么？
 
 ```java
 public static void print(List<? extends Number> list) {
@@ -123,13 +126,12 @@ public static void print(List<? extends Number> list) {
 
 答：可以被编译
 
-> 8. 编写一个通用的方法来查找列表范围[begin，end）中的最大元素。
+> 8.编写一个通用的方法来查找列表范围 `[begin，end）`中的最大元素。
 
 答：
 
 ```java
-    public static <T extends Object & Comparable<? super T>>
-T max(List<? extends T> list, int begin, int end) {
+public static <T extends Object & Comparable<? super T>> T max(List<? extends T> list, int begin, int end) {
 
     T maxElem = list.get(begin);
 
@@ -164,7 +166,7 @@ System.out.println(max(listStr, 0, list.size()));
 ```
 官网的版本看上去就是高大上一点
 
-> 9. 下列类会编译？如果没有，为什么？
+> 9.下列类会编译？如果没有，为什么？
 
 ```java
 public class Singleton<T> {
@@ -179,9 +181,10 @@ public class Singleton<T> {
     private static T instance = null;
 }
 ```
-答：不可以。您不能创建类型参数T的静态字段。
 
-> 10. 鉴于以下类：
+答：不可以。您不能创建类型参数 T 的静态字段。
+
+> 10.鉴于以下类：
 
 ```java
 class Shape { /* ... */ }
@@ -190,15 +193,17 @@ class Rectangle extends Shape { /* ... */ }
 
 class Node<T> { /* ... */ }
 ```
+
 下面代码将被编译？如果没有，为什么？
 
 ```java
 Node<Circle> nc = new Node<>();
 Node<Shape>  ns = nc;
 ```
-答：不可以，因为`Node <Circle>`不是`Node <Shape>`的子类型。
 
-> 11. 考虑这个类：
+答：不可以，因为 `Node <Circle>` 不是 `Node <Shape>` 的子类型。
+
+> 11.考虑这个类：
 
 ```java
 class Node<T> implements Comparable<T> {
@@ -206,17 +211,20 @@ public int compareTo(T obj) { /* ... */ }
 // ...
 }
 ```
+
 下面代码将被编译？如果没有，为什么？
+
 ```java
 Node<String> node = new Node<>();
 Comparable<String> comp = node;
 ```
+
 答：被编译
 
-> 12. 你如何调用下面的方法来查找列表中的第一个整数是相对于指定整数列表的主要？
+> 12.你如何调用下面的方法来查找列表中的第一个整数是相对于指定整数列表的主要？
 
 ```java
 public static <T>
     int findFirst(List<T> list, int begin, int end, UnaryPredicate<T> p)
 ```
-答：？？？题目翻译的不好，没有看明白
+答：忽略，刚开始没有看懂题意，在优化整理阶段看懂了，却没有开 idea
