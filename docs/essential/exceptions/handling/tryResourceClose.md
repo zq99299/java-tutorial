@@ -1,6 +1,6 @@
 # try-with-resources
 
-在块中可以声明一个或多个资源。程序完成后，会自动释放该资源。实现了`java.lang.AutoCloseable`（包括实现的所有对象`java.io.Closeable`）可以用来声明。
+在块中可以声明一个或多个资源。程序完成后，会自动释放该资源。实现了 `java.lang.AutoCloseable`（包括实现 `java.io.Closeable` 的所有对象）可以用来声明。
 
 ```java
 static String readFirstLineFromFile(String path) throws IOException {
@@ -11,14 +11,18 @@ static String readFirstLineFromFile(String path) throws IOException {
 }
 ```
 
-在该示例中生命的资源是`BufferedReader`,声明语句出现在try后的括号中。`BufferedReader`在jdk7+实现了`java.lang.AutoCloseable`接口。因此可以在`try-with-resource`语句中声明，无论try语句是正常完成还是意外完成（BufferedReader.readLine抛出IOException），它都将被关闭。
+在该示例中生命的资源是 `BufferedReader`，声明语句出现在 try 后的括号中。
+`BufferedReader` 在 jdk7+ 实现了 `java.lang.AutoCloseable` 接口。
+因此可以在 `try-with-resource` 语句中声明，无论 try 语句是正常完成还是意外完成（BufferedReader.readLine 抛出 IOException），它都将被关闭。
 
-在jdk7之前，可以使用finally块来确保资源是否关闭。
+在 jdk7 之前，可以使用 finally 块来确保资源是否关闭。
 
-在finally块来确保资源是否关闭的话。try块中出现异常会被抛出，并需要你捕获。而使用`try-with-resource`语句，则异常会被屏蔽，可以不捕获异常，但是必须要抛出。
-在JDK7+版本中，可以检索屏蔽异常。请参阅“屏蔽异常”一节。
+在 finally 块来确保资源是否关闭的话。try 块中出现异常会被抛出，并需要你捕获。
+而使用 `try-with-resource` 语句，则异常会被屏蔽，可以不捕获异常，但是必须要抛出。
+在 JDK7+ 版本中，可以检索屏蔽异常。请参阅 [屏蔽异常](#屏蔽异常) 一节。
 
-以下是声明多个资源,使用try同样需要你捕获
+以下是声明多个资源，使用 try 同样需要你捕获
+
 ```java
  @Test
     public void test() throws IOException {
@@ -55,10 +59,12 @@ static String readFirstLineFromFile(String path) throws IOException {
     }
 ```
 
-多个声明使用 分号隔开，代码块终止时，无论是正常还是异常，将按照此顺序自动调用对象的`close`方法。注意，资源的`close`方法与他们创建相反的顺序调用。
+多个声明使用分号隔开，代码块终止时，无论是正常还是异常，将按照此顺序自动调用对象的 `close` 方法。
+注意，资源的 `close` 方法与他们创建相反的顺序调用。
 
 
-try-with-resources和捕获异常示例
+try-with-resources 和捕获异常示例
+
 ```java
 public static void viewTable(Connection con) throws SQLException {
 
@@ -74,7 +80,7 @@ public static void viewTable(Connection con) throws SQLException {
             int sales = rs.getInt("SALES");
             int total = rs.getInt("TOTAL");
 
-            System.out.println(coffeeName + ", " + supplierID + ", " + 
+            System.out.println(coffeeName + ", " + supplierID + ", " +
                                price + ", " + sales + ", " + total);
         }
     } catch (SQLException e) {
@@ -84,11 +90,12 @@ public static void viewTable(Connection con) throws SQLException {
 ```
 
 ## 屏蔽异常
-可通过Throwable[] getSuppressed()获得。添加的话用addSuppressed(Throwable exception)，这个函数一般是在try-with-resources语句中由自动调用的。
+可通过 `Throwable[] getSuppressed()` 获得。添加的话用 `addSuppressed(Throwable exception)`，这个函数一般是在 try-with-resources 语句中自动调用的。
 
-下面是上面的示例 被编译成的class文件。可以看到try-with-resources也就是一个语法糖被编译后还是使用try,catch,finally来处理的。最后抛出一个异常。
+下面是上面的示例被编译成的 class 文件。可以看到 try-with-resources 也就是一个语法糖被编译后还是使用 try、catch、finally 来处理的。最后抛出一个异常。
 
-仔细看只有finally中关闭资源的异常被 屏蔽了。“var5.addSuppressed(var32);”,而且也能获得屏蔽的异常列表。这样的话，就能解决又不丢失异常信息，又能捕获且传递被屏蔽的异常了。
+仔细看只有 finally 中关闭资源的异常被屏蔽了。`var5.addSuppressed(var32);` 而且也能获得屏蔽的异常列表。这样的话，就能解决又不丢失异常信息，又能捕获且传递被屏蔽的异常了。
+
 ```java
     public static void writeToFileZipFileContents(String zipFileName, String outputFileName) {
         Charset charset = StandardCharsets.US_ASCII;
@@ -151,8 +158,9 @@ public static void viewTable(Connection con) throws SQLException {
     }
 ```
 
-## 实现可自动关闭或可变比接口的类
-有关实现这些接口的类的列表，请参阅AutoCloseable和 Closeable接口的Javadoc 。
+## 实现 AutoCloseable 或 Closeable 接口的类
+有关实现这些接口的类的列表，请参阅 AutoCloseable 和 Closeable 接口的 Javadoc 。
+
 ```java
 public interface AutoCloseable {
      void close() throws Exception;
@@ -161,6 +169,5 @@ public interface Closeable extends AutoCloseable {
     public void close() throws IOException;
 }
 ```
-Closeable 扩展 AutoCloseable 接口，并且复写了close方法。抛出了一个具体的IO异常。
 
-
+Closeable 扩展 AutoCloseable 接口，并且复写了 close 方法。抛出了一个具体的 IO 异常。

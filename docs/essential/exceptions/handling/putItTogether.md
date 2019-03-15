@@ -1,6 +1,6 @@
 # 组合示例
 
-前面分别描述了 try，catch和finally代码块，现在来看看前面的例子，并分析可能发生的情况
+前面分别描述了 try、catch 和 finally 代码块，现在来看看前面的例子，并分析可能发生的情况
 
 ```java
 public class ListOfNumbers {
@@ -43,8 +43,8 @@ public class ListOfNumbers {
 }
 ```
 
-1. new FileWriter语句失败并引发IOException。
-   
-     这个异常有很多种可能，如不能创建或不能写入指定文件
-2. list.get(i)语句失败并引发IndexOutOfBoundsException。
-3. 一切成功，try块正常退出。
+1. new FileWriter 语句失败并引发 IOException。
+
+    这个异常有很多种可能，如不能创建或不能写入指定文件
+2. `list.get(i)` 语句失败并引发 IndexOutOfBoundsException。
+3. 一切成功，try 块正常退出。
