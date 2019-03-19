@@ -4,23 +4,23 @@
 
 1. 你将用什么类和方法来读取位于大文件末端附近已知位置的几条数据？
 
-2. 在调用format时，指示新行的最佳方式是什么？
+2. 在调用 forma t时，指示新行的最佳方式是什么？
 
-3. 如何确定文件的MIME类型？
+3. 如何确定文件的 MIME 类型？
 
 4. 您将用什么方法来确定文件是否是符号链接？
 
 ### 答案
-1. Files.newByteChannel返回一个实例SeekableByteChannel，允许您从（或写入）文件中的任何位置读取。 [随机访问文件](/content/essential/io/rafs.md)
-2. 使用 `%n` 参数 而不是 `\n` [格式化](//content/essential/io/formatting.md) 
-3. `Files.probeContentType`方法使用平台的底层文件类型检测器来评估和返回MIME类型。 [其他有用的方法](/content/essential/io/misc.md)
-4. `Files.isSymbolicLink`方法。[ 符号链接或其他](//content/essential/io/links.md)
+1. Files.newByteChannel 返回一个实例 SeekableByteChannel，允许您从（或写入）文件中的任何位置读取。 [随机访问文件](./rafs.md)
+2. 使用 `%n` 参数 而不是 `\n` [格式化](./formatting.md)
+3. `Files.probeContentType` 方法使用平台的底层文件类型检测器来评估和返回 MIME 类型。 [其他有用的方法](./misc.md)
+4. `Files.isSymbolicLink` 方法。[ 符号链接或其他](./links.md)
 
 
 ## 练习
 
-### 练习1
-编写一个例子来计算特定字符（例如e）出现在文件中的次数。字符可以在命令行中指定。您可以使用 xanadu.txt输入文件。
+### 练习 1
+编写一个例子来计算特定字符（例如 e）出现在文件中的次数。字符可以在命令行中指定。您可以使用 xanadu.txt 输入文件。
 
 ```java
 public class CountLetter {
@@ -74,9 +74,10 @@ public class CountLetter {
 ```
 
 ### 练习2.
-文件 datafile以一个单一的方式开始long，告诉您int同一文件中单个数据的偏移量。编写一个获取int数据的程序。什么是int数据？
+文件 datafile 以一个单一的方式开始 long，告诉您 int 同一文件中单个数据的偏移量。
+编写一个获取 int 数据的程序。什么是 int 数据？
 
-官方 datafile 文件链接已经404了，所以下面这断代码是标识啥意思。我没有看明白，直接忽略跳过该练习
+官方 datafile 文件链接已经 404 了，所以下面这断代码是标识啥意思。我没有看明白，直接忽略跳过该练习
 ```java
 public class FindInt {
     private Path file;

@@ -1,18 +1,20 @@
-# 走（walk?）文件树
+# 遍历（walk）文件树
 
-您是否需要创建一个递归访问文件树中的所有文件的应用程序？也许您需要删除树中的每个`.class`结尾的文件，或查找去年没有访问的每个文件。你可以用[FileVisitor](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileVisitor.html)接口来做到这 一点。
+您是否需要创建一个递归访问文件树中的所有文件的应用程序？也许您需要删除树中的每个 `.class` 结尾的文件，
+或查找去年没有访问的每个文件。你可以用 [FileVisitor](https://docs.oracle.com/javase/8/docs/api/java/nio/file/FileVisitor.html) 接口来做到这 一点。
 
 本节包括以下内容
 
-* FileVisitor接口
+* FileVisitor 接口
 * 开始流程
-* 创建FileVisitor时的注意事项
+* 创建 FileVisitor 时的注意事项
 * 控制流
 * 例子
 
-## FileVisitor接口
+## FileVisitor 接口
 
-要走一个文件树，你首先需要实现一个`FileVisitor`,指定遍历过程中关键点所需的行为：访问文件时，在访问目录之前，访问目录之后，或发生故障时。该接口有四种方法对应于这些情况：
+要遍历一个文件树，你首先需要实现一个 `FileVisitor`，指定遍历过程中关键点所需的行为：访问文件时、在访问目录之前、访问目录之后或发生故障时。
+该接口有四种方法对应于这些情况：
 
 * preVisitDirectory
 
@@ -22,15 +24,18 @@
     在访问目录中的所有条目之后调用。如果遇到任何错误，则将特定异常传递给该方法。
 * visitFile
 
-    在被访问的文件上调用。该文件`BasicFileAttributes`被传递到该方法，或者您可以使用 文件属性包来读取一组特定的属性。例如，您可以选择读取文件`DosFileAttributeView`以确定文件是否具有“隐藏”位设置。
+    在被访问的文件上调用。该文件 `BasicFileAttributes` 被传递到该方法，或者您可以使用文件属性包来读取一组特定的属性。
+    例如，您可以选择读取文件 `DosFileAttributeView` 以确定文件是否具有“隐藏”位设置。
 * visitFileFailed
 
     当文件无法访问时调用。该特定异常传递给该方法。您可以选择是否抛出异常，将其打印到控制台或日志文件等等。
 
-如果你并不想要全部的四种方法，您可以扩展 `SimpleFileVisitor`该类。实现该接口访问树中的所有文件，并在遇到IOError错误时抛出异常。您可以扩展此类，仅覆盖所需的方法。
+如果你并不想要全部的四种方法，您可以扩展 `SimpleFileVisitor` 该类。实现该接口访问树中的所有文件，
+并在遇到 IOError 错误时抛出异常。您可以扩展此类，仅覆盖所需的方法。
 
 
-这是一个扩展`SimpleFileVisitor`到打印文件树中的所有条目的示例。它打印条目是否是常规文件，符号链接，目录或其他“未指定”类型的文件。它还打印每个文件的大小（以字节为单位）。任何遇到的异常都会打印到控制台。
+这是一个扩展 `SimpleFileVisitor` 到打印文件树中的所有条目的示例。它打印条目是否是常规文件，符号链接，目录或其他“未指定”类型的文件。
+它还打印每个文件的大小（以字节为单位）。任何遇到的异常都会打印到控制台。
 
 ```java
 public class PrintFiles extends SimpleFileVisitor<Path> {
@@ -70,12 +75,12 @@ public class PrintFiles extends SimpleFileVisitor<Path> {
 ```
 
 ## 开始流程
-一旦你实现了`FileVisitor`，你如何启动它？Files中有两种walkFileTree方法。
+一旦你实现了 `FileVisitor`，你如何启动它？Files 中有两种 walkFileTree 方法。
 
 * `walkFileTree(Path, FileVisitor)`
 * `walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)`
 
-**第一种：** 只需要一个起点和一个`FileVisitor`实例。您可以按以下方式调用文件访问者：
+**第一种：** 只需要一个起点和一个 `FileVisitor` 实例。您可以按以下方式调用文件访问者：
 
 ```java
 Path startingDir = Paths.get("g:/");
@@ -83,9 +88,10 @@ PrintFiles pf = new PrintFiles();
 Files.walkFileTree(startingDir, pf);
 ```
 
-**第二种：** 使您能够额外指定访问级别数量和一组`FileVisitOption`枚举的限制。如果要确保此方法遍历整个文件树，可以指定`Integer.MAX_VALUE`最大深度参数。
+**第二种：** 使您能够额外指定访问级别数量和一组 `FileVisitOption` 枚举的限制。
+如果要确保此方法遍历整个文件树，可以指定 `Integer.MAX_VALUE` 最大深度参数。
 
-您可以指定`FileVisitOption`枚举，`FOLLOW_LINKS`这表示应遵循符号链接。
+您可以指定 `FileVisitOption` 枚举，`FOLLOW_LINKS` 这表示应遵循符号链接。
 
 ```java
 Path startingDir = Paths.get("g:/");
@@ -94,17 +100,19 @@ EnumSet<FileVisitOption> opts = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
 FileVisitor fileVisitor = new PrintFiles();
 Files.walkFileTree(startingDir, opts, Integer.MAX_VALUE, fileVisitor);
 ```
-## 创建FileVisitor时的注意事项
+## 创建 FileVisitor 时的注意事项
 
-文件树首先是深度走过的，但是您不能对子目录访问的迭代顺序进行任何假设。
+文件树首先是深度遍历的，但是您不能对子目录访问的迭代顺序进行任何假设。
 
 如果您的程序将更改文件系统，则需要仔细考虑如何实现 FileVisitor。
 
 例如，
 
-1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在`postVisitDirectory`中删除目录。
+1. 如果您正在编写递归删除，则在删除目录本身之前首先删除目录中的文件。在这种情况下，您将在 `postVisitDirectory` 中删除目录。
 
-2. 如果您正在编写递归副本，则`preVisitDirectory`在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于`UNIX cp -p`命令），则需要在文件复制后执行此操作`postVisitDirectory`。该 Copy示例显示如何执行此操作。 以下示例是模拟`UNIX cp -p`命令的功能：
+2. 如果您正在编写递归副本，则 `preVisitDirectory` 在尝试将文件复制到其中之前创建新目录如果要保留源目录的属性（类似于 `UNIX cp -p` 命令），则需要在文件复制后执行此操作 `postVisitDirectory`。
+
+该 Copy 示例显示如何执行此操作。 以下示例是模拟 `UNIX cp -p` 命令的功能：
 
 ```java
 public class Copy {
@@ -317,7 +325,10 @@ public class Copy {
 }
 ```
 
-3. 如果您正在编写文件搜索，请在`visitFile`方法中执行比较。此方法查找与您的条件匹配的所有文件，但找不到目录。如果要同时查找文件和目录，还必须使用`preVisitDirectory`或`postVisitDirectory`方法进行比较。该 Find示例显示如何执行此操作。
+3. 如果您正在编写文件搜索，请在`visitFile`方法中执行比较。此方法查找与您的条件匹配的所有文件，
+但找不到目录。如果要同时查找文件和目录，还必须使用 `preVisitDirectory` 或 `postVisitDirectory` 方法进行比较。
+
+该 Find 示例显示如何执行此操作。
 
 ```java
 public class Find {
@@ -424,9 +435,10 @@ public class Find {
 }
 ```
 
-4. 您需要决定是否要遵循符号链接。如果要删除文件，例如，以下符号链接可能不可取。如果要复制文件树，可能需要允许。默认情况下，`walkFileTree`不遵循符号链接。
+4. 您需要决定是否要遵循符号链接。如果要删除文件，例如，以下符号链接可能不可取。如果要复制文件树，可能需要允许。默认情况下，`walkFileTree` 不遵循符号链接。
+该 visitFile 方法被调用为文件。如果您指定了该 `FOLLOW_LINKS` 选项，并且您的文件树具有到父目录的循环链接，则循环目录将在该 `visitFileFailed` 方法中报告 `FileSystemLoopException`。
 
-    该visitFile方法被调用为文件。如果您指定了该`FOLLOW_LINKS`选项，并且您的文件树具有到父目录的循环链接，则循环目录将在该`visitFileFailed`方法中报告`FileSystemLoopException`。以下代码片段显示了如何捕获循环链接，并从上面的Copy示例中获取 ：
+以下代码片段显示了如何捕获循环链接，并从上面的 Copy 示例中获取 ：
 
 ```java
 @Override
@@ -442,19 +454,21 @@ public FileVisitResult
 }
 ```
 
-遵循符号链接也就是说，任何时候访问到的都是链接对应的实际文件。在copy的时候，那么就会出现循环被copy的情况。这种情况只有在程序跟随符号链接时才会发生。
+遵循符号链接也就是说，任何时候访问到的都是链接对应的实际文件。在 copy 的时候，那么就会出现循环被 copy 的情况。这种情况只有在程序跟随符号链接时才会发生。
 
 ## 控制流程
-也许你想走文件树寻找一个特定的目录，当找到你想要的进程终止。也许你想跳过具体的目录。
+也许你想遍历文件树寻找一个特定的目录，当找到你想要的进程终止。也许你想跳过具体的目录。
 
-这些`FileVisitor`方法返回一个 `FileVisitResult`值。您可以中止文件行进过程或控制是否通过`FileVisitor`方法返回的值访问目录：
+这些 `FileVisitor` 方法返回一个 `FileVisitResult` 值。您可以中止文件行进过程或控制是否通过 `FileVisitor` 方法返回的值访问目录：
 
-* CONTINUE - 表示文件走路应该继续。如果该`preVisitDirectory`方法返回`CONTINUE`，则该目录被访问。
-* TERMINATE - 立即中止文件行走。在返回此值后，不再调用文件行走方法。
-* SKIP_SUBTREE- 当`preVisitDirectory`返回此值时，将跳过指定的目录及其子目录。这个树枝是“修剪出来”的树。
-* SKIP_SIBLINGS- 当`preVisitDirectory`返回此值时，指定的目录不被访问，`postVisitDirectory`不被调用，并且不再访问未访问的兄弟姐妹。如果从该`postVisitDirectory`方法返回，则不再访问进一步的兄弟姐妹。本质上，在指定的目录中没有任何进一步的发生。
+* CONTINUE - 表示文件遍历应该继续。如果该 `preVisitDirectory` 方法返回 `CONTINUE`，则该目录被访问。
+* TERMINATE - 立即中止文件遍历。在返回此值后，不再调用文件行走方法。
+* SKIP_SUBTREE- 当 `preVisitDirectory` 返回此值时，将跳过指定的目录及其子目录。这个树枝是“修剪出来”的树。
+* SKIP_SIBLINGS- 当 `preVisitDirectory` 返回此值时，指定的目录不被访问，`postVisitDirectory` 不被调用，并且不再访问未访问的兄弟姐妹。
 
-在此代码片段中，将跳过任何名为SCCS的目录：
+    如果从该 `postVisitDirectory` 方法返回，则不再访问进一步的兄弟姐妹。本质上，在指定的目录中没有任何进一步的发生。
+
+在此代码片段中，将跳过任何名为 SCCS 的目录：
 
 ```java
 public FileVisitResult
@@ -467,7 +481,7 @@ public FileVisitResult
 }
 ```
 
-在这段代码片段中，只要找到一个特定的文件，文件名被打印到标准输出，文件行走终止：
+在这段代码片段中，只要找到一个特定的文件，文件名被打印到标准输出，文件遍历终止：
 
 ```java
 Path lookingFor = ...;
@@ -485,11 +499,13 @@ public FileVisitResult
 
 ## 例子
 
-以下示例演示了文件行走机制：
+以下示例演示了文件遍历机制：
 
-* Find - 重新查找文件树，寻找与特定的glob模式匹配的文件和目录。此示例在 查找文件中讨论。
+* Find - 重新查找文件树，寻找与特定的 glob 模式匹配的文件和目录。此示例在 查找文件中讨论。
 * Copy - 递归地复制文件树。
 上面两种示例在本文中已经注释好贴出来了。下面的暂时不想去看源码，直接链接到官网地址：
 
 * [Chmod ](http://docs.oracle.com/javase/tutorial/essential/io/examples/Chmod.java)- 递归地更改文件树上的权限（仅适用于POSIX系统）。
-* [WatchDir](http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java) - 演示为已创建，删除或修改的文件监视目录的机制。使用该-r选项调用此程序可以观察整个树的更改。有关文件通知服务的更多信息，请参阅查看 目录以进行更改。
+* [WatchDir](http://docs.oracle.com/javase/tutorial/essential/io/examples/WatchDir.java) - 演示为已创建，删除或修改的文件监视目录的机制。
+
+    使用该 -r 选项调用此程序可以观察整个树的更改。有关文件通知服务的更多信息，请参阅查看 目录以进行更改。

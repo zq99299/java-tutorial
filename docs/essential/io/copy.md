@@ -1,36 +1,45 @@
 # 复制文件或目录
 
-您可以使用该 [copy(Path, Path, CopyOption...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.nio.file.Path-java.nio.file.Path-java.nio.file.CopyOption...-)方法复制文件或目录 。如果目标文件存在，复制将失败，除非指定了该`REPLACE_EXISTING`选项。
+您可以使用该 [copy(Path, Path, CopyOption...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.nio.file.Path-java.nio.file.Path-java.nio.file.CopyOption...-)
+方法复制文件或目录 。如果目标文件存在，复制将失败，除非指定了该 `REPLACE_EXISTING` 选项。
 
 目录可以复制。但是，目录中的文件不会被复制，所以即使原始目录包含文件，新目录也是空的。
 
-当复制符号链接时，链接的目标被复制。如果要复制链接本身，而不是链接的内容，请指定`NOFOLLOW_LINKS`或`REPLACE_EXISTING`选项。
+当复制符号链接时，链接的目标被复制。如果要复制链接本身，而不是链接的内容，请指定 `NOFOLLOW_LINKS` 或 `REPLACE_EXISTING` 选项。
 
-此方法采用`varargs`参数。支持以下StandardCopyOption和LinkOption枚举：
+此方法采用 `varargs` 参数。支持以下 StandardCopyOption 和 LinkOption 枚举：
 
 * REPLACE_EXISTING
-    
-    即使目标文件已经存在也执行拷贝。如果目标是符号链接，则链接本身被复制（而不是链接的目标）。如果目标是非空目录，则副本将失败，抛出`FileAlreadyExistsException`异常。
-* COPY_ATTRIBUTES 
-    
-    将与文件关联的文件属性复制到目标文件。支持的确切文件属性是文件系统和平台相关，但`last-modified-time`跨平台支持(该属性需要特别照顾，如下面的例子中有说道)，并被复制到目标文件。
-* NOFOLLOW_LINKS
-    
-    表示不应遵循符号链接。如果要复制的文件是符号链接，则链接被复制（而不是链接的目标）。
-    
-    
-如果您不熟悉enums，请参阅 枚举类型。
 
-以下说明如何使用copy方法：
+    即使目标文件已经存在也执行拷贝。如果目标是符号链接，则链接本身被复制（而不是链接的目标）。
+    如果目标是非空目录，则副本将失败，抛出 `FileAlreadyExistsException` 异常。
+* COPY_ATTRIBUTES
+
+    将与文件关联的文件属性复制到目标文件。支持的确切文件属性是文件系统和平台相关，
+    但 `last-modified-time` 跨平台支持(该属性需要特别照顾，如下面的例子中有说道)，并被复制到目标文件。
+* NOFOLLOW_LINKS
+
+    表示不应遵循符号链接。如果要复制的文件是符号链接，则链接被复制（而不是链接的目标）。
+
+
+如果您不熟悉 enums，请参阅 枚举类型。
+
+以下说明如何使用 copy 方法：
+
 ```java
 import static java.nio.file.StandardCopyOption.*;
 ...
 Files.copy(source, target, REPLACE_EXISTING);
 ```
 
-除了文件复制之外，`Files`该类还定义了可用于在文件和流之间复制的方法。该[ copy(InputStream, Path, CopyOptions...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.io.InputStream-java.nio.file.Path-java.nio.file.CopyOption...-)方法可用于将所有字节从输入流复制到文件。该 [copy(Path, OutputStream)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.nio.file.Path-java.io.OutputStream-)方法可用于将文件中的所有字节复制到输出流。
+除了文件复制之外，`Files` 该类还定义了可用于在文件和流之间复制的方法。
+该[ copy(InputStream, Path, CopyOptions...)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.io.InputStream-java.nio.file.Path-java.nio.file.CopyOption...-)
+方法可用于将所有字节从输入流复制到文件。
+该 [copy(Path, OutputStream)](https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#copy-java.nio.file.Path-java.io.OutputStream-)
+方法可用于将文件中的所有字节复制到输出流。
 
-以下Copy示例使用`copy`和`Files.walkFileTree`方法来支持递归副本。有关详细信息，请参阅 **文件树** 章节。
+以下 Copy 示例使用 `copy` 和 `Files.walkFileTree` 方法来支持递归副本。有关详细信息，请参阅 **文件树** 章节。
+
 ```java
 import java.io.IOException;
 import java.nio.file.*;

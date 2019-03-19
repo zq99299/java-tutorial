@@ -1,13 +1,15 @@
 # 数据流
-数据流支持原始数据类型值的二进制I / O操作，`boolean`, `char`, `byte`, `short`, `int`, `long`, `float`, and `double`以及字符串值。所有数据流都实现 `DataInput`接口或 `DataOutput`接口。本节重点介绍这些接口中最广泛使用的实现， `DataInputStream`以及 `DataOutputStream`。
+数据流支持原始数据类型值的二进制 I / O 操作，`boolean`、`char`、`byte`、`short`、`int`、
+`long`、`float` and `double` 以及字符串值。所有数据流都实现 `DataInput` 接口或 `DataOutput` 接口。
+本节重点介绍这些接口中最广泛使用的实现， `DataInputStream` 以及 `DataOutputStream`。
 
-该 DataStreams示例通过写出一组数据记录来演示数据流，然后再次读取它们。每个记录由与发票上的项目相关的三个值组成，如下表所示：
+该 DataStreams 示例通过写出一组数据记录来演示数据流，然后再次读取它们。每个记录由与发票上的项目相关的三个值组成，如下表所示：
 
-| 订单记录	| 数据类型	| 数据描述	| 输出方法	| 输入法方法| 样品值
-|--------------------------------------
-| 1	| double	| 项目价格	| DataOutputStream.writeDouble	| DataInputStream.readDouble  | 19.99
-| 2	| int	        | 单位数        | DataOutputStream.writeInt	| DataInputStream.readInt	| 12
-| 3	| String	| 商品描述	| DataOutputStream.writeUTF	| DataInputStream.readUTF      | Java T-Shirt"
+订单记录 | 数据类型 | 数据描述 | 输出方法                     | 输入法方法                 | 样品值
+---------|----------|----------|------------------------------|----------------------------|--------------
+1        | double   | 项目价格 | DataOutputStream.writeDouble | DataInputStream.readDouble | 19.99
+2        | int      | 单位数   | DataOutputStream.writeInt    | DataInputStream.readInt    | 12
+3        | String   | 商品描述 | DataOutputStream.writeUTF    | DataInputStream.readUTF    | Java T-Shirt"
 
 
 ```java
@@ -70,11 +72,15 @@ public class DataStreams {
 ```
 
 **需要特别注意的是：**
-* 输入流判断是否结束，不是按普通流那样判断一个返回值，而是通过：`EOFException`异常。
-此异常主要被数据输入流用来表明到达流的末尾。注意，其他许多输入操作返回一个特殊值表示到达流的末尾，而不是抛出异常。
 
-* write和read的取值顺序一定要匹配。  输入流由简单的二进制数据组成，没有指示单个值的类型，或者它们在流中开始的位置。
+* 输入流判断是否结束，不是按普通流那样判断一个返回值，而是通过：`EOFException` 异常。
 
-该示例使用一个非常糟糕的编程技术：它使用浮点数来表示货币值。一般来说，浮点对精确值是不利的。它对于小数分数特别不利，因为常用值（如0.1）不具有二进制表示形式。
+    此异常主要被数据输入流用来表明到达流的末尾。注意，其他许多输入操作返回一个特殊值表示到达流的末尾，而不是抛出异常。
 
-用于货币值的正确类型是 `java.math.BigDecimal`。不幸的是，它是一个对象类型，所以它不会与数据流一起使用。但是，`BigDecimal` 将使用对象流，这将在下一节中介绍
+* write 和 read 的取值顺序一定要匹配。  
+
+    输入流由简单的二进制数据组成，没有指示单个值的类型，或者它们在流中开始的位置。
+
+    该示例使用一个非常糟糕的编程技术：它使用浮点数来表示货币值。一般来说，浮点对精确值是不利的。它对于小数分数特别不利，因为常用值（如 0.1）不具有二进制表示形式。
+
+    用于货币值的正确类型是 `java.math.BigDecimal`。不幸的是，它是一个对象类型，所以它不会与数据流一起使用。但是，`BigDecimal` 将使用对象流，这将在下一节中介绍
