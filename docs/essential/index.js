@@ -94,7 +94,7 @@ module.exports = () => {
             title: "并发",
             collapsable: true,
             children: [
-                ['concurrency/','概述'],
+                'concurrency/',
                 'concurrency/procthread.md',
                 'concurrency/threads.md',
                 'concurrency/runthread.md',
