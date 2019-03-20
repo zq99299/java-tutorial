@@ -1,12 +1,15 @@
 # ForkJoin
-Fork/Join框架的实现`ExecutorService`，帮助您充分利用多个处理器。它的设计工作可以分解为更小任务递归。目标是使用所有可用的处理能力来提高应用程序的性能。
+Fork/Join 框架的实现 `ExecutorService`，帮助您充分利用多个处理器。它的设计工作可以分解为更小任务递归。
+目标是使用所有可用的处理能力来提高应用程序的性能。
 
-与任何实现`ExecutorService`一样，`fork / join`框架将任务分配到线程池中的工作线程。`fork / join`框架是不同的，因为它使用**工作窃取算法**。工作线程无法完成的事情可能会从仍然忙碌的其他线程窃取任务。
-`fork / join`框架的中心是 `ForkJoinPool`类，该类的扩展`AbstractExecutorService`。`ForkJoinPool`核心实现是工作窃取算法，可以执行 `ForkJoinTask`流程。
+与任何实现 `ExecutorService` 一样，`fork / join` 框架将任务分配到线程池中的工作线程。
+`fork / join` 框架是不同的，因为它使用 **工作窃取算法**。工作线程无法完成的事情可能会从仍然忙碌的其他线程窃取任务。
+`fork / join` 框架的中心是 `ForkJoinPool` 类，该类的扩展 `AbstractExecutorService`。
+`ForkJoinPool` 核心实现是工作窃取算法，可以执行 `ForkJoinTask` 流程。
 
 ## 基本使用
 
-使用fork / join框架的第一步是编写执行工作段的代码。您的代码应类似于以下伪代码：
+使用 fork / join 框架的第一步是编写执行工作段的代码。您的代码应类似于以下伪代码：
 ```java
 if(我的工作足够小){
     直接做工作
@@ -16,14 +19,17 @@ if(我的工作足够小){
 }
 ```
 
-将这个代码包含在一个`ForkJoinTask`子类中，通常使用一个更专业的类型`RecursiveTask`（可以返回一个结果）或 `RecursiveAction`。
+将这个代码包含在一个 `ForkJoinTask` 子类中，通常使用一个更专业的类型 `RecursiveTask`（可以返回一个结果）或 `RecursiveAction`。
 
-在您的`ForkJoinTask`子类准备好之后，创建表示所有要完成的工作的对象，并将其传递给`ForkJoinPool`实例的`invoke()`方法。
+在您的 `ForkJoinTask` 子类准备好之后，创建表示所有要完成的工作的对象，并将其传递给 `ForkJoinPool` 实例的 `invoke()` 方法。
 
 ## 模糊图形例子
-为了帮助您了解fork / join框架的工作原理，请考虑以下示例。假设你想模糊图像。原始源图像是由整数的数组，其中每个整数包含用于单个像素的颜色值来表示。目标图像模糊也用与源的大小相同的整数数组表示。
+为了帮助您了解 fork / join 框架的工作原理，请考虑以下示例。假设你想模糊图像。原始源图像是由整数的数组，
+其中每个整数包含用于单个像素的颜色值来表示。目标图像模糊也用与源的大小相同的整数数组表示。
 
-通过一次处理一个像素的源数组来实现模糊。每个像素的周围像素（红色，绿色和蓝色分量被平均）进行平均，并将结果放在目标数组中。由于图像是一个大阵列，这个过程可能需要很长时间。您可以通过使用fork / join框架实现算法来利用多处理器系统上的并发处理。这是一个可能的实现：
+通过一次处理一个像素的源数组来实现模糊。每个像素的周围像素（红色，绿色和蓝色分量被平均）进行平均，
+并将结果放在目标数组中。由于图像是一个大阵列，这个过程可能需要很长时间。您可以通过使用 fork / join 框架实现算法来利用多处理器系统上的并发处理。
+这是一个可能的实现：
 
 1. 来看这部分代码。
     ```java
@@ -32,10 +38,10 @@ if(我的工作足够小){
         private int mStart;
         private int mLength;
         private int[] mDestination;
-    
+
         //  处理大小，应该是奇数
         private int mBlurWidth = 15;
-    
+
         /**
          * @param src    源
          * @param start  开始处理索引
@@ -67,7 +73,7 @@ if(我的工作足够小){
                     bt += (float) ((pixel & 0x000000ff) >> 0)
                             / mBlurWidth;
                 }
-    
+
                 // 重组目标像素
                 int dpixel = (0xff000000) |
                         (((int) rt) << 16) |
@@ -78,11 +84,11 @@ if(我的工作足够小){
         }
     ...    
     ```
-2. 使用fork / join框架必须实现的一个方法，在这里进行任务的拆分
+2. 使用 fork / join 框架必须实现的一个方法，在这里进行任务的拆分
 
     ```java
         protected static int sThreshold = 100000;
-    
+
         /**
          * 现在您实现了抽象compute()方法，它可以直接执行模糊，也可以将其分成两个较小的任务。
          * 简单的数组长度阈值有助于确定工作是执行还是拆分。
@@ -94,10 +100,10 @@ if(我的工作足够小){
                 computeDirectly();
                 return;
             }
-    
+
             // 否则进行拆分成2个任务
             int split = mLength / 2;
-    
+
             // 第一个任务处理：前一半的工作
             // 第二个任务处理：剩下的工作
             invokeAll(new ForkBlur(mSource, mStart, split, mDestination),
@@ -123,6 +129,7 @@ if(我的工作足够小){
     ```
 
 下面是完整的代码  和 测试：
+
 ```java
 public class ForkBlur extends RecursiveAction {
     private int[] mSource;
@@ -254,6 +261,7 @@ public class ForkBlur extends RecursiveAction {
     }
 }
 ```
+
 测试输出如下：
 
 ```java
@@ -265,10 +273,12 @@ public class ForkBlur extends RecursiveAction {
 输出图: d:/23_iso100_14mm-dst.jpg
 ```
 
-这个类的效果就是，把图片模糊得不能再模糊了。但是大体轮廓能看出来，颜色风格被改变了，5m的图片处理后变成了700k
+这个类的效果就是，把图片模糊得不能再模糊了。但是大体轮廓能看出来，颜色风格被改变了，5m 的图片处理后变成了 700k
 
 ## 标准实施
 
-除了使用`fork / join`框架来实现在多处理器系统（例如ForkBlur.java上一节中的示例）中并行执行的任务的自定义算法，Java SE中还有一些通用的功能，它们已经使用`fork / join`实现框架。在`Java SE 8`中引入的一个这样的实现被 `java.util.Arrays`类用于其`parallelSort()`方法。这些方法类似于`sort()`，但通过`fork / join`框架来利用并发。在多处理器系统上运行时，大型阵列的并行排序比顺序排序更快。然而，这些方法如何利用这些`fork / join`框架呢是超出`Java Tutorial`的范围。有关此信息，请参阅Java API文档。
+除了使用 `fork / join` 框架来实现在多处理器系统（例如 ForkBlur.java 上一节中的示例）中并行执行的任务的自定义算法，
+Java SE 中还有一些通用的功能，它们已经使用 `fork / join` 实现框架。在 `Java SE 8` 中引入的一个这样的实现被 `java.util.Arrays` 类用于其 `parallelSort()` 方法。这些方法类似于 `sort()` ，但通过 `fork / join` 框架来利用并发。在多处理器系统上运行时，
+大型阵列的并行排序比顺序排序更快。然而，这些方法如何利用这些 `fork / join` 框架呢是超出 `Java Tutorial` 的范围。有关此信息，请参阅 Java API 文档。
 
-该`java.util.streams`包中的方法使用`fork / join`框架的另一个实现，它是为`Java SE 8`发行版计划的[`Project Lambda`](http://openjdk.java.net/projects/lambda/)的一部分 。有关更多信息，请参阅“Lambda表达式”部分。
+该 `java.util.streams` 包中的方法使用 `fork / join` 框架的另一个实现，它是为 `Java SE 8` 发行版计划的 [`Project Lambda`](http://openjdk.java.net/projects/lambda/)的一部分 。有关更多信息，请参阅 “Lambda表达式” 部分。

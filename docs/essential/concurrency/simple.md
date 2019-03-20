@@ -1,8 +1,10 @@
 # 简单示例
 
-以下示例汇集了本节的一些概念。 SimpleThreads由两个线程组成。第一个是每个Java应用程序的主线程。主线程从Runnable对象创建一个新的线程MessageLoop，并等待它完成。如果MessageLoop线程花费的时间太长，主线程就会中断它。
+以下示例汇集了本节的一些概念。 SimpleThreads 由两个线程组成。第一个是每个 Java 应用程序的主线程。
+主线程从 Runnable 对象创建一个新的线程 MessageLoop，并等待它完成。如果 MessageLoop 线程花费的时间太长，主线程就会中断它。
 
-该MessageLoop线程打印出一系列消息。在打印所有消息之前中断，MessageLoop线程将打印一条消息并退出。
+该 MessageLoop 线程打印出一系列消息。在打印所有消息之前中断，MessageLoop 线程将打印一条消息并退出。
+
 ```java
 public class SimpleThreads {
 
