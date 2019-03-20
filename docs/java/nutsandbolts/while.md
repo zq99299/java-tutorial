@@ -1,5 +1,4 @@
 # while 和 do-while 语句
-[[toc]]
 
 该 while 声明在特定条件为 true 下持续执行一组语句。其语法可以表示为：
 
