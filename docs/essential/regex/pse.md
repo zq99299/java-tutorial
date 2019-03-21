@@ -1,13 +1,15 @@
 # PatternSyntaxException 类的方法
 
- [PatternSyntaxException](https://docs.oracle.com/javase/8/docs/api/java/util/regex/PatternSyntaxException.html)是未经检查的异常，指示正则表达式模式中的语法错误。PatternSyntaxException类提供了以下方法来帮助你确定是什么出了问题：
- 
+ [PatternSyntaxException](https://docs.oracle.com/javase/8/docs/api/java/util/regex/PatternSyntaxException.html)
+ 是未经检查的异常，指示正则表达式模式中的语法错误。PatternSyntaxException 类提供了以下方法来帮助你确定是什么出了问题：
+
 * `public String getDescription()`：检索错误的描述。
 * `public int getIndex()`：检索错误索引。
 * `public String getPattern()`：检索错误的正则表达式模式。
 * `public String getMessage()`：返回一个多行字符串，其中包含语法错误及其索引的描述，错误的正则表达式模式以及模式中错误索引的可视指示。
 
-检查异常，更新之前的测试工具类,这里就更新之前一直使用的函数就行了
+检查异常，更新之前的测试工具类，这里就更新之前一直使用的函数就行了
+
 ```java
  public static void regexTest(String regex, String input) {
     System.out.println("===  " + regex);
@@ -46,13 +48,14 @@
 ```
 
 下面来测试下：
+
 ```java
 ---- Test code ----
 regexTest("?i)foo", "FOOfooFoOfoO");
-        
+
 ---- Output ----
 ===  ?i)foo
-有一个问题，正则表达式: 
+有一个问题，正则表达式:
 模式是: ?i)foo
 描述是: Dangling meta character '?'
 消息是: Dangling meta character '?' near index 0
@@ -62,4 +65,4 @@ regexTest("?i)foo", "FOOfooFoOfoO");
 
 ```
 
-从这个输出，我们可以看到，语法错误是索引0上的悬挂元字符（问号）。缺少的开头圆括号是罪魁祸首。
+从这个输出，我们可以看到，语法错误是索引 0 上的悬挂元字符（问号）。缺少的开头圆括号是罪魁祸首。

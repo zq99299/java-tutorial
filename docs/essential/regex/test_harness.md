@@ -1,6 +1,8 @@
 # 测试
 
-本节定义了一个可重用的测试工具， RegexTestHarness.java用于探索此API支持的正则表达式结构。运行此代码的命令是java RegexTestHarness; 如果没有在命令行中输入参数。应用程序反复循环，提示用户正则表达式和输入字符串。使用此测试工具是可选的，但您可能会发现方便查看以下页面中讨论的测试用例。
+本节定义了一个可重用的测试工具， RegexTestHarness.java 用于探索此 API 支持的正则表达式结构。
+运行此代码的命令是 java RegexTestHarness; 如果没有在命令行中输入参数。应用程序反复循环，
+提示用户正则表达式和输入字符串。使用此测试工具是可选的，但您可能会发现方便查看以下页面中讨论的测试用例。
 
 ```java
 public class RegexTestHarness {
@@ -61,7 +63,8 @@ public class RegexTestHarness {
 }
 ```
 
-为了方便在ide中使用，我编写了 regexTest 函数 和 test 测试例子。输出结果如下：
+为了方便在 ide 中使用，我编写了 regexTest 函数 和 test 测试例子。输出结果如下：
+
 ```bash
 我发现文本中的 "ab" 在开始索引 0 和 结束索引 2.
 我发现文本中的 "b" 在开始索引 3 和 结束索引 4.
