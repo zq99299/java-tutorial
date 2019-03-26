@@ -20,7 +20,7 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 - [√] 初步整理：整体文章迁移至 docs 下、图片按新的要求迁移、按大模块进行导航
 - [×] 优化整理：快速阅读，并按照中文指北要求优化排版，还有好多关于路径引用的错误也要一并修复
 
-    进度：[集合框架](/collections/) 从该文件开始
+    进度：[集合框架-实现](/collections/implementations) 从该文件开始
 - [√] 导航改进：看看 vuepress 有没有版本对导航排版进行改进
 
     高版本 vuerpress 支持侧边栏分组，已经完成
