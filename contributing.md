@@ -1,6 +1,6 @@
 # Contributing to Java-tutorial
 
-## 关于排版
+## 关于排版 
 
 排版遵循 [中文文案排版指北](https://github.com/zq99299/chinese-copywriting-guidelines) ，
 可以让文章整体看起来很舒服。所以尽量遵循该排版规则
