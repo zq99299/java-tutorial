@@ -1,21 +1,24 @@
 # 时区和偏移类 / Zone and Offset
-time 是其中使用相同的标准时间；每个时区都由一个标识符来描述，并且通常具有格式地区/城市（亚洲/东京）和格林威治/ UTC时间的偏移量。例如，东京的抵消是+09：00。
+time 是其中使用相同的标准时间；每个时区都由一个标识符来描述，并且通常具有格式地区/城市（亚洲/东京）和格林威治/ UTC 时间的偏移量。
+例如，东京的抵消是 +09：00。
 
-**林威治/ UTC时间的偏移量** 这个很重要；+3 +8 -4 这些都是一个不带时区的时间加上时区后，和UTC时间进行对比，快还是慢
+**林威治/ UTC时间的偏移量** 这个很重要；+3 +8 -4 这些都是一个不带时区的时间加上时区后，和 UTC 时间进行对比，快还是慢
 
-比如：北京时间2018-05-03 12:00:00 那么utc时间就是2018-05-03 04:00:00;
+比如：北京时间 2018-05-03 12:00:00 那么 utc 时间就是 2018-05-03 04:00:00;
+
 ```
-// 在中国，是用下面的获取到的就是带时区的北京时间，里面的offset就是+8:00
-ZonedDateTime.now() 
+// 在中国，是用下面的获取到的就是带时区的北京时间，里面的 offset 就是 +8:00
+ZonedDateTime.now()
 ```
 
-## ZoneId和ZoneOffset
-Date-Time API提供了两个用于指定时区或偏移量的类：
+## ZoneId 和 ZoneOffset
+Date-Time API 提供了两个用于指定时区或偏移量的类：
 
-* ZoneId指定时区标识符并提供Instant 和LocalDateTime之间转换的规则。
-* ZoneOffset指定格林威治/ UTC时间的时区偏移量。
+* ZoneId 指定时区标识符并提供 Instant 和 LocalDateTime 之间转换的规则。
+* ZoneOffset 指定格林威治/ UTC 时间的时区偏移量。
 
-格林威治/ UTC时间的抵消通常在整个小时内定义，但也有例外。以下代码从 TimeZoneId示例中打印出使用Greenwich / UTC中的偏移量的所有时区的列表，这些时区不是整点，没有打印的时区 都是整点或则是没有被定义的
+格林威治/ UTC 时间的抵消通常在整个小时内定义，但也有例外。以下代码从 TimeZoneId 示例中打印出使用 Greenwich / UTC 中的偏移量的所有时区的列表，
+这些时区不是整点，没有打印的时区 都是整点或则是没有被定义的
 
 ```java
 // 获取所有可用的时区
@@ -81,23 +84,30 @@ for (String s : zoneList) {
 ```
 
 ## 日期 - 时间类
-Date-Time API提供了三个基于时间的类与时区一起工作：
+Date-Time API 提供了三个基于时间的类与时区一起工作：
 
-* ZonedDateTime使用格林威治/ UTC的时区偏移量处理具有相应时区的日期和时间。
-* OffsetDateTime使用格林威治/ UTC的相应时区偏移量处理日期和时间，但不包含时区ID。
-* OffsetTime使用格林威治/ UTC的相应时区偏移量处理时间，但不包含时区ID。
+* ZonedDateTime 使用格林威治/ UTC 的时区偏移量处理具有相应时区的日期和时间。
+* OffsetDateTime 使用格林威治/ UTC 的相应时区偏移量处理日期和时间，但不包含时区 ID。
+* OffsetTime 使用格林威治/ UTC 的相应时区偏移量处理时间，但不包含时区 ID。
 
-你什么时候使用OffsetDateTime而不是ZonedDateTime？如果您正在编写复杂的软件，该软件根据地理位置对自己的日期和时间计算规则进行建模，或者将时间戳存储在仅跟踪格林威治/ UTC时间的绝对偏移量的数据库中，则可能需要使用OffsetDateTime。另外，XML和其他网络格式将日期时间传输定义为OffsetDateTime或OffsetTime。
+你什么时候使用 OffsetDateTime 而不是 ZonedDateTime？如果您正在编写复杂的软件，
+该软件根据地理位置对自己的日期和时间计算规则进行建模，或者将时间戳存储在仅跟踪格林威治/ UTC 时间的绝对偏移量的数据库中，
+则可能需要使用 OffsetDateTime。另外，XML 和其他网络格式将日期时间传输定义为 OffsetDateTime 或 OffsetTime。
 
-尽管所有三个类都保持了格林威治/ UTC时间的偏移量，但只有ZonedDateTime使用 [ZoneRules](https://docs.oracle.com/javase/8/docs/api/java/time/zone/ZoneRules.html)（java.time.zone包的一部分）来确定偏移量对于特定时区的变化方式。例如，大多数时区在将时钟向前移动到夏令时时遇到间隙（通常为1小时），并且在将时钟移回标准时间和重复转换前的最后一个小时时，时间重叠。该ZonedDateTime类适应这种情况，而OffsetDateTime和OffsetTime类，它们不具备访问ZoneRules
+尽管所有三个类都保持了格林威治/ UTC 时间的偏移量，但只有 ZonedDateTime 使用 [ZoneRules](https://docs.oracle.com/javase/8/docs/api/java/time/zone/ZoneRules.html)
+（java.time.zone 包的一部分）来确定偏移量对于特定时区的变化方式。例如，大多数时区在将时钟向前移动到夏令时时遇到间隙（通常为 1 小时），
+并且在将时钟移回标准时间和重复转换前的最后一个小时时，时间重叠。该 ZonedDateTime 类适应这种情况，
+而 OffsetDateTime 和 OffsetTime 类，它们不具备访问 ZoneRules
 
 
 ### ZonedDateTime
-实际上，结合了 LocalDateTime与类 了zoneid类。它用于表示具有时区（地区/城市，如欧洲/巴黎）的完整日期（年，月，日）和时间（小时，分钟，秒，纳秒）。
+实际上，结合了 LocalDateTime 与类 了 zoneid 类。它用于表示具有时区（地区/城市，如欧洲/巴黎）的完整日期（年，月，日）和时间（小时，分钟，秒，纳秒）。
 
-下面的代码从 Flight示例中定义了从旧金山到东京的航班的出发时间，作为美国/洛杉矶时区的ZonedDateTime。该withZoneSameInstant和plusMinutes方法用于创建实例ZonedDateTime代表在东京的预计到达时间，650分钟的飞行后。该ZoneRules.isDaylightSavings方法确定它是否是当飞机抵达东京是否是夏令时。
+下面的代码从 Flight 示例中定义了从旧金山到东京的航班的出发时间，作为美国/洛杉矶时区的 ZonedDateTime。
+该 withZoneSameInstant 和 plusMinutes 方法用于创建实例 ZonedDateTime 代表在东京的预计到达时间，
+650 分钟的飞行后。该 ZoneRules.isDaylightSavings 方法确定它是否是当飞机抵达东京是否是夏令时。
 
-DateTimeFormatter对象用于格式化ZonedDateTime实例进行打印：
+DateTimeFormatter 对象用于格式化 ZonedDateTime 实例进行打印：
 
 ```java
 //        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
@@ -158,7 +168,8 @@ ARRIVING: 2013-07-21  22:20:00 (Asia/Tokyo)
 
 ### OffsetDateTime
 
-实际上，结合了 LocalDateTime与类 ZoneOffset类。它用于表示格林威治/ UTC时间的偏移量（+/-小时：分钟，例如+06：00或-）的整个日期（年，月，日）和时间（小时，分钟，秒，纳秒）08:00）。
+实际上，结合了 LocalDateTime 与类 ZoneOffset 类。它用于表示格林威治/ UTC 时间的偏移量
+（+/-小时：分钟，例如 +06：00 或-）的整个日期（年，月，日）和时间（小时，分钟，秒，纳秒）08:00）。
 
 ```java
 // 2017.07.20 19:30
@@ -179,10 +190,11 @@ System.out.printf("The last Thursday in July 2013 is the %sth.%n",
 
 ### OffsetTime
 
-实际上，结合 LocalDateTime与类 ZoneOffset类。它用于表示格林威治/ UTC时间偏移（+/-小时：分钟，例如+06：00或-08：00）的时间（小时，分钟，秒，纳秒）。
-OffsetTime类是在同一场合的使用OffsetDateTime类，但跟踪的日期时不需要。
+实际上，结合 LocalDateTime 与类 ZoneOffset 类。它用于表示格林威治/ UTC 时间偏移
+（+/-小时：分钟，例如+06：00或-08：00）的时间（小时，分钟，秒，纳秒）。
+OffsetTime 类是在同一场合的使用 OffsetDateTime 类，但跟踪的日期时不需要。
 
-**总结下时区和偏移量的用法和转换的时候其中两个api的区别**
+**总结下时区和偏移量的用法和转换的时候其中两个 api 的区别**
 
 * withZoneSameInstant : 调用了 toEpochSecond 把当前的时间纳秒 结合 指定的偏移量换算成新的纳秒
 * withZoneSameLocal ：不会换算时间，只是把时区更改了

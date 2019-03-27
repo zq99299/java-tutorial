@@ -1,22 +1,26 @@
-# 非ISO日期转换
-本教程没有详细讨论`java.time.chrono`包。然而，如果知道这个包提供了几个预定义的时间点，比如日语、希贾拉、Minguo和泰国佛教徒，可能会很有用。你也可以使用这个包来创建你自己的年表。
+# 非 ISO 日期转换
+本教程没有详细讨论 `java.time.chrono` 包。然而，如果知道这个包提供了几个预定义的时间点，
+比如日语、希贾拉、Minguo 和泰国佛教徒，可能会很有用。你也可以使用这个包来创建你自己的年表。
 
-本部分向您介绍如何在其他预定义时间顺序之一中基于ISO的日期和日期之间进行转换。
+本部分向您介绍如何在其他预定义时间顺序之一中基于 ISO 的日期和日期之间进行转换。
 
-## 转换为非基于ISO的日期
+## 转换为非基于 ISO 的日期
 
-您可以使用`from(TemporalAccessor)`方法（如 `JapaneseDate.from(TemporalAccessor)`）将基于ISO的日期转换为另一个年代表中的日期。如果无法将日期转换为有效实例，则此方法会引发DateTimeException。以下代码将LocalDateTime实例转换为几个预定义的非ISO日历日期：
+您可以使用 `from(TemporalAccessor)` 方法（如 `JapaneseDate.from(TemporalAccessor)`）
+将基于 ISO 的日期转换为另一个年代表中的日期。如果无法将日期转换为有效实例，则此方法会引发 DateTimeException。
+以下代码将 LocalDateTime 实例转换为几个预定义的非 ISO 日历日期：
 
 ```java
- LocalDateTime date = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
-        JapaneseDate jdate = JapaneseDate.from(date);
-        HijrahDate hdate = HijrahDate.from(date);
-        // 中华民国 台湾
-        MinguoDate mdate = MinguoDate.from(date);
-        ThaiBuddhistDate tdate = ThaiBuddhistDate.from(date);
+LocalDateTime date = LocalDateTime.of(2013, Month.JULY, 20, 19, 30);
+JapaneseDate jdate = JapaneseDate.from(date);
+HijrahDate hdate = HijrahDate.from(date);
+// 中华民国 台湾
+MinguoDate mdate = MinguoDate.from(date);
+ThaiBuddhistDate tdate = ThaiBuddhistDate.from(date);
 ```
 
-下列程序将LocalDate转换为ChronoLocalDate并返回到String；采用指定的日历表格式化成指定的格式；另外采用指定的日历表和格式解析字符串为date; 注意`DateTimeFormatterBuilder()`的使用
+下列程序将 LocalDate 转换为 ChronoLocalDate 并返回到 String；
+采用指定的日历表格式化成指定的格式；另外采用指定的日历表和格式解析字符串为 date; 注意 `DateTimeFormatterBuilder()` 的使用
 
 ```java
 /*
@@ -94,7 +98,7 @@ public class StringConverter {
                           StringConverter.toString(date, ThaiBuddhistChronology.INSTANCE));
         System.out.printf("%s%n",
                           StringConverter.toString(date, HijrahChronology.INSTANCE));
-      
+
       // 转换/解析为基于ISO的日期
 
         System.out.printf("%s%n", StringConverter.fromString("10/29/0008 H",
@@ -125,13 +129,13 @@ public class StringConverter {
 1996-10-29
 ```
 
-## 转换/解析为基于ISO的日期
-您可以使用静态LocalDate.from方法将非ISO日期转换为LocalDate实例 ，如以下示例所示：
+## 转换/解析为基于 ISO 的日期
+您可以使用静态 LocalDate.from 方法将非 ISO 日期转换为 LocalDate 实例 ，如以下示例所示：
 
 ```java
 LocalDate date = LocalDate.from(JapaneseDate.now());
 ```
 
-其他基于时间的类也提供此方法，如果无法转换日期，则会引发DateTimeException。
+其他基于时间的类也提供此方法，如果无法转换日期，则会引发 DateTimeException。
 
 示例在上面
