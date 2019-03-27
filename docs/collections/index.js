@@ -52,6 +52,7 @@ module.exports = () => {
             title: "互操作性",
             collapsable: true,
             children: [
+                'interoperability/interoperability.md'
                 'interoperability/compatibility.md',
                 'interoperability/api-design.md',
             ]
