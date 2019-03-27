@@ -1,18 +1,18 @@
 # 查看Jar文件内容
 
-查看JAR文件内容的命令的基本格式是：
+查看 JAR 文件内容的命令的基本格式是：
 
 ```bash
 jar tf jar-file
 ```
 参数说明：
 
-* t : 表示要查看jar文件的内容
+* t : 表示要查看 jar 文件的内容
 * f : 表示从一个文件查看
 * jar-file : 具体的文件路径
 * v : 显示文件的大小和上次修改日期信息
 
-同样，tf没有固定顺序，但是中间不能有空格
+同样，tf 没有固定顺序，但是中间不能有空格
 
 ## 一个例子
 
@@ -34,7 +34,7 @@ images/
 images/cross.gif
 images/not.gif
 
-加v输出详细信息
+加 v 输出详细信息
 
 $ jar tvf TicTacToe.jar
      0 Fri May 11 15:19:34 GMT+08:00 2018 META-INF/
@@ -53,4 +53,3 @@ $ jar tvf TicTacToe.jar
    157 Thu Mar 29 07:39:22 GMT+08:00 2018 images/cross.gif
    158 Thu Mar 29 07:39:22 GMT+08:00 2018 images/not.gif
 ```
-

@@ -1,28 +1,32 @@
-# 使用JAR相关的API
+# 使用 JAR 相关的 API
 
-Java平台包含几个用于JAR 文件的类，其中一些API是：
+Java 平台包含几个用于 JAR 文件的类，其中一些 API 是：
 
-* java.util.jar中的包
-* java.net.JarURLConnection类
-* java.net.URLClassLoader类
+* java.util.jar 中的包
+* java.net.JarURLConnection 类
+* java.net.URLClassLoader 类
 
-为了让您了解这些新api所带来的可能性，本课程将指导您了解一个名为JarRunner的示例应用程序的内部工作原理。
+为了让您了解这些新 api 所带来的可能性，本课程将指导您了解一个名为 JarRunner 的示例应用程序的内部工作原理。
 
-## 一个示例 - JarRunner应用程序
+## 一个示例 - JarRunner 应用程序
 
-JarRunner使您能够通过在命令行上指定JAR文件的URL来运行捆绑在JAR文件中的应用程序。例如，如果名为TargetApp的应用程序捆绑在`http://www.example.com/TargetApp.jar`的JAR文件中，则可以使用以下命令运行该应用程序：
+JarRunner 使您能够通过在命令行上指定 JAR 文件的 URL 来运行捆绑在 JAR 文件中的应用程序。
+例如，如果名为 TargetApp 的应用程序捆绑在 `http://www.example.com/TargetApp.jar` 的 JAR 文件中，
+则可以使用以下命令运行该应用程序：
 
 ```
 java JarRunner http://www.example.com/TargetApp.jar
 ```
 
-为了使JarRunner能够工作，它必须能够执行以下任务，所有这些都是通过使用新的API来完成的：
+为了使 JarRunner 能够工作，它必须能够执行以下任务，所有这些都是通过使用新的 API 来完成的：
 
-* 访问远程JAR文件并与其建立通信链接。
-* 检查JAR文件的清单以查看归档中哪些类是主类。
-* 加载JAR文件中的类。
+* 访问远程 JAR 文件并与其建立通信链接。
+* 检查 JAR 文件的清单以查看归档中哪些类是主类。
+* 加载 JAR 文件中的类。
 
-`JarRunner`应用程序由两个类`JarRunner`和`JarClassLoader`组成。`JarRunner`将大部分JAR处理任务委托给`JarClassLoader`类。`JarClassLoader`扩展了`java.net.URLClassLoader`类。继续本课程之前，您可以浏览`JarRunner`和`JarClassLoader`类的源代码：
+`JarRunner` 应用程序由两个类 `JarRunner` 和 `JarClassLoader` 组成。`JarRunner` 将大部分 JAR 处理任务委托给
+`JarClassLoader` 类。`JarClassLoader` 扩展了 `java.net.URLClassLoader` 类。继续本课程之前，
+您可以浏览 `JarRunner` 和 `JarClassLoader` 类的源代码：
 
 ```java
 import java.io.IOException;
@@ -166,8 +170,6 @@ class JarClassLoader extends URLClassLoader {
 
 本课有两个部分：
 
-JarClassLoader类
-本节向您展示JarClassLoader如何使用一些新的API来执行JarRunner应用程序工作所需的任务。
+JarClassLoader 类：本节向您展示 JarClassLoader 如何使用一些新的 API 来执行 JarRunner 应用程序工作所需的任务。
 
-JarRunner类
-本节总结了构成JarRunner应用程序的JarRunner类。
+JarRunner 类：本节总结了构成 JarRunne r应用程序的 JarRunner 类。
