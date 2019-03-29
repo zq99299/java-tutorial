@@ -42,6 +42,16 @@ module.exports = () => {
                 'datagrams/clientServer.md',
                 'datagrams/broadcasting.md'
             ]
+        },
+        {
+          title: "对网络参数的编程访问",
+          collapsable: true,
+          children: [
+              ['nifs/','对网络参数的编程访问概述'],
+              'nifs/retrieving.md',
+              'nifs/listing.md',
+              'nifs/parameters.md'
+          ]
         }
     ]
 }
