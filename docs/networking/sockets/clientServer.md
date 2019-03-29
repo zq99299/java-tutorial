@@ -11,7 +11,11 @@ Server: "Dexter halls with boughs of holly."
 Client: "Groan."
 ```
 
-该示例由两个独立运行的Java程序组成：客户端程序和服务器程序。客户端程序由一个KnockKnockClient类实现，并且与上一节中的EchoClient示例非常相似 。服务器程序由两个类实现： KnockKnockServer和 KnockKnockProtocol。KnockKnockServer 类似于 EchoServer,包含main服务器程序的方法，并执行侦听端口，建立连接以及读取和写入套接字的工作。KnockKnockProtocol 跟着会话，并根据当前的对话返回各种文本片断，这个对象实现了协议 - 客户端和服务器同意用来通信的语言。
+该示例由两个独立运行的 Java 程序组成：客户端程序和服务器程序。
+客户端程序由一个 KnockKnockClient 类实现，并且与上一节中的 EchoClient 示例非常相似 。
+服务器程序由两个类实现： KnockKnockServer 和 KnockKnockProtocol。
+KnockKnockServer 类似于 EchoServer，包含 main 方法，并执行侦听端口，建立连接以及读取和写入套接字的工作。
+KnockKnockProtocol 跟着会话，并根据当前的对话返回各种文本片断，这个对象实现了协议 - 客户端和服务器同意用来通信的语言。
 
 以下部分详细介绍了客户端和服务器中的每个类，然后向您展示如何运行它们。
 
@@ -186,7 +190,7 @@ public class KnockKnockClient {
 下面来逐一介绍
 
 ```java
-try ( 
+try (
     ServerSocket serverSocket = new ServerSocket(portNumber);
     Socket clientSocket = serverSocket.accept();
     PrintWriter out =
@@ -196,15 +200,21 @@ try (
 ) {
 ```
 
-ServerSocket是java.net中的类，提供了客户端/服务器socket链接与系统无关的实现。如果构造函数ServerSocket无法侦听指定的端口（例如，端口已被使用），则会引发异常。在这种情况下，KnockKnockServer别无选择，只能退出。
+ServerSocket是java.net 中的类，提供了客户端/服务器 socket 链接与系统无关的实现。
+如果构造函数 ServerSocket 无法侦听指定的端口（例如，端口已被使用），则会引发异常。
+在这种情况下，KnockKnockServer 别无选择，只能退出。
 
-如果服务器成功绑定到其端口，则该ServerSocket对象将成功创建，服务器将继续下一步 - 接受来自客户端的连接（try-with-resources语句中的下一个语句）：
+如果服务器成功绑定到其端口，则该 ServerSocket 对象将成功创建，服务器将继续下一步 -
+接受来自客户端的连接（ `try-with-resources` 语句中的下一个语句）：
 
 ```
 clientSocket = serverSocket.accept（）;
 ```
 
-accept方法一直等待，直到客户端启动并请求该服务器的主机和端口上的连接。accept方法返回一个新的socket对象，它被绑定到同一个本地端口，并且有它的远程地址和远程端口集到客户端。服务器可以通过这个新的套接字与客户端进行通信，并继续侦听原始ServerSocket上的客户端连接请求，这个特定版本的程序不监听更多的客户端连接请求。但是，在支持多个客户机时，提供了改良版的程序。
+accept 方法一直等待，直到客户端启动并请求该服务器的主机和端口上的连接。accept 方法返回一个新的 socket 对象，
+它被绑定到同一个本地端口，并且有它的远程地址和远程端口集到客户端。服务器可以通过这个新的套接字与客户端进行通信，
+并继续侦听原始 ServerSocket 上的客户端连接请求，这个特定版本的程序不监听更多的客户端连接请求。
+但是，在支持多个客户机时，提供了改良版的程序。
 
 在服务器成功建立与客户端的连接之后，它使用以下代码与客户端进行通信：
 
@@ -217,7 +227,7 @@ try (
         new InputStreamReader(clientSocket.getInputStream()));
 ) {
     String inputLine, outputLine;
-            
+
     // Initiate conversation with client
     KnockKnockProtocol kkp = new KnockKnockProtocol();
     outputLine = kkp.processInput(null);
@@ -234,19 +244,22 @@ try (
 
 1. 获取套接字的输入和输出流并打开其上的读和写。
 2. 通过写入套接字来启动与客户端的通信。
-3. 通过读取和写入套接字（while循环）与客户端进行通信。
+3. 通过读取和写入套接字（while 循环）与客户端进行通信。
 
-第一步比较熟悉了。第二步中值得讲一下，创建了一个KnockKnockProtocol对象，跟踪当前的会话状态
+第一步比较熟悉了。第二步中值得讲一下，创建了一个 KnockKnockProtocol 对象，跟踪当前的会话状态
 
 ## KnockKnockProtocol
 
-KnockKnockProtocol类实现客户端和服务器使用通信的协议。这个类跟踪客户端和服务器在对话中的位置，并提供服务器对客户端语句的响应。该KnockKnockProtocol对象包含所有对话的文本，并确保客户端正确响应服务器的语句。
+KnockKnockProtocol 类实现客户端和服务器使用通信的协议。这个类跟踪客户端和服务器在对话中的位置，
+并提供服务器对客户端语句的响应。该 KnockKnockProtocol 对象包含所有对话的文本，并确保客户端正确响应服务器的语句。
 
-所有客户机/服务器对必须有一些协议，通过它们彼此交谈; 否则，来回传递的数据将毫无意义。您自己的客户端和服务器使用的协议完全取决于他们完成任务所需的通信。
+所有客户机/服务器对必须有一些协议，通过它们彼此交谈; 否则，来回传递的数据将毫无意义。
+您自己的客户端和服务器使用的协议完全取决于他们完成任务所需的通信。
 
 ##  KnockKnockClient
 
-当你启动客户端程序时，服务器应该已经在运行并监听端口，等待客户端请求连接。因此，客户端程序所做的第一件事是打开一个连接到指定主机名和端口上运行的服务器的套接字：
+当你启动客户端程序时，服务器应该已经在运行并监听端口，等待客户端请求连接。
+因此，客户端程序所做的第一件事是打开一个连接到指定主机名和端口上运行的服务器的套接字：
 
 ```java
 String hostName = args[0];
@@ -260,9 +273,11 @@ try (
 )
 ```
 
-当链接成功，将获得一个socket对象，请记住，服务器也会获得一个新的套接字。
+当链接成功，将获得一个 socket 对象，请记住，服务器也会获得一个新的套接字。
 
-接下来是while实现客户端和服务器之间通信的循环。服务器先说话，所以客户必须先听。客户端通过从连接到套接字的输入流读取数据。如果服务端说了`Bye.`,那么客户端将结束本次对话；否则当用户键入回车后，将把信息发送到服务端
+接下来是 while 实现客户端和服务器之间通信的循环。服务器先说话，所以客户必须先听。
+客户端通过从连接到套接字的输入流读取数据。如果服务端说了`Bye.`,那么客户端将结束本次对话；否则当用户键入回车后，
+将把信息发送到服务端
 
 ```java
 while ((fromServer = in.readLine()) != null) {
@@ -279,7 +294,9 @@ while ((fromServer = in.readLine()) != null) {
 ```
 
 ## 支持多个客户端
-为了保持KnockKnockServer简单的例子，我们设计它来监听和处理单个连接请求。但是，多个客户端请求可能会进入相同的端口，因此会进入相同的端口ServerSocket。客户端连接请求在端口排队，因此服务器必须按顺序接受连接。但是，服务器可以通过使用线程同时为它们提供服务 - 每个客户端连接一个线程。
+为了保持 KnockKnockServer 简单的例子，我们设计它来监听和处理单个连接请求。
+但是，多个客户端请求可能会进入相同的端口，因此会进入相同的端口 ServerSocket。
+客户端连接请求在端口排队，因此服务器必须按顺序接受连接。但是，服务器可以通过使用线程同时为它们提供服务 - 每个客户端连接一个线程。
 
 在服务器的逻辑基本流程是这样的:
 
@@ -355,4 +372,8 @@ public class KKMultiServerThread extends Thread {
 ```
 
 
-我还是没有看到 服务端和客户端建立连接后，在服务端是用本地系统分配的端口和客户端保持链接的吗？如果只是一个端口，是怎么分辨不同的socket的呢？
+我还是没有看到 服务端和客户端建立连接后，在服务端是用本地系统分配的端口和客户端保持链接的吗？
+如果只是一个端口，是怎么分辨不同的 socket 的呢？
+
+这个知识貌似是比较底层的知识点，通过一个主要端口，但是实际上绑定的是本地端口，数据从主要端口进出，
+但是可以通过本地端口区分到底是哪一个连接发送的数据
