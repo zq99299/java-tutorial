@@ -59,8 +59,9 @@ module.exports = () => {
           children: [
               ['cookies/','使用 Cookie 概述'],
               'cookies/definition.md',
-              'cookies/.md',
-              'cookies/.md'
+              'cookies/cookiehandler.md',
+              'cookies/cookiemanager.md',
+              'cookies/custom.md'
           ]
         }
     ]
