@@ -52,6 +52,16 @@ module.exports = () => {
               'nifs/listing.md',
               'nifs/parameters.md'
           ]
+        },
+        {
+          title: "使用 Cookie",
+          collapsable: true,
+          children: [
+              ['cookies/','使用 Cookie 概述'],
+              'cookies/definition.md',
+              'cookies/.md',
+              'cookies/.md'
+          ]
         }
     ]
 }
