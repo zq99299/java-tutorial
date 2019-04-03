@@ -15,6 +15,8 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 
 :smile: 已恢复写作进度
 
+基础篇大量使用谷歌翻译，后来发现有道翻译比较准确，能看懂，从扩展机制开始，大量使用有道翻译
+
 ## 内容导航
 
 [JAVA 官网教程首页地址](https://docs.oracle.com/javase/tutorial/index.html)
