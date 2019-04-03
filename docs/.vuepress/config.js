@@ -4,7 +4,7 @@ const collectionsSC = require('../collections');
 const datetimeSC = require('../datetime');
 const deploymentSC = require('../deployment');
 const networkingSC = require('../networking');
-
+const extSC = require('../ext');
 
 module.exports = {
     title: 'JAVA8 官网笔记教程',
@@ -68,7 +68,8 @@ module.exports = {
             {
               text: '高级篇',
               items: [
-                  {text: '自定义网络', link: '/networking/'}
+                  {text: '自定义网络', link: '/networking/'},
+                  {text: '扩展机制', link: '/ext/'}
               ]
             },
             {text: '所有导航', link: '/nav.md'},
@@ -80,7 +81,8 @@ module.exports = {
             '/collections/': collectionsSC(),
             '/datetime/': datetimeSC(),
             '/deployment/': deploymentSC(),
-            '/networking/': networkingSC()
+            '/networking/': networkingSC(),
+            '/ext/': extSC()
         }
     },
     plugins: [

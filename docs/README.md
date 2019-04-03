@@ -30,3 +30,4 @@ The Java Tutorials have been written for JDK 8. Examples and practices described
 
 - 官方教程 - 高级篇
   - [自定义网络](/networking/) 介绍 Java 平台强大的网络功能。
+  - [扩展机制](/ext/) - 如何使 Java 平台上运行的所有应用程序都可以使用自定义 API。
