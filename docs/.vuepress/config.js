@@ -74,6 +74,7 @@ module.exports = {
             },
             {text: '所有导航', link: '/nav.md'},
             {text: '项目介绍', link: '/introduction.md'},
+            {text: '笔记精选汇总', link: 'https://github.com/zq99299/repository-summary'}
         ],
         sidebar: {
             '/java/': javaSC(),
