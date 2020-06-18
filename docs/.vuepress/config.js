@@ -5,6 +5,7 @@ const datetimeSC = require('../datetime');
 const deploymentSC = require('../deployment');
 const networkingSC = require('../networking');
 const extSC = require('../ext');
+const extraSC = require('../extra');
 
 module.exports = {
     title: 'JAVA8 官网笔记教程',
@@ -20,7 +21,7 @@ module.exports = {
         }
     },
     markdown: {
-      lineNumbers: true
+        lineNumbers: true
     },
     // theme: 'vue',
     themeConfig: {
@@ -56,21 +57,22 @@ module.exports = {
         nav: [
             {text: 'Home', link: '/'},
             {
-              text: '基础篇',
-              items: [
-                  {text: '学习 JAVA', link: '/java/'},
-                  {text: '基本类（必修）', link: '/essential/'},
-                  {text: '集合框架', link: '/collections/'},
-                  {text: '日期时间 API', link: '/datetime/'},
-                  {text: '部署', link: '/deployment/'}
-              ]
+                text: '基础篇',
+                items: [
+                    {text: '学习 JAVA', link: '/java/'},
+                    {text: '基本类（必修）', link: '/essential/'},
+                    {text: '集合框架', link: '/collections/'},
+                    {text: '日期时间 API', link: '/datetime/'},
+                    {text: '部署', link: '/deployment/'}
+                ]
             },
             {
-              text: '高级篇',
-              items: [
-                  {text: '自定义网络', link: '/networking/'},
-                  {text: '扩展机制', link: '/ext/'}
-              ]
+                text: '高级篇',
+                items: [
+                    {text: '自定义网络', link: '/networking/'},
+                    {text: '扩展机制', link: '/ext/'},
+                    {text: '泛型', link: '/extra/generics/'}
+                ]
             },
             {text: '所有导航', link: '/nav.md'},
             {text: '项目介绍', link: '/introduction.md'},
@@ -83,7 +85,8 @@ module.exports = {
             '/datetime/': datetimeSC(),
             '/deployment/': deploymentSC(),
             '/networking/': networkingSC(),
-            '/ext/': extSC()
+            '/ext/': extSC(),
+            '/extra/': extraSC()
         }
     },
     plugins: [

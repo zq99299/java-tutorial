@@ -32,4 +32,6 @@ The Java Tutorials have been written for JDK 8. Examples and practices described
 
 - 官方教程 - 高级篇
   - [自定义网络](/networking/) 介绍 Java 平台强大的网络功能。
-  - [扩展机制](/ext/) - 如何使 Java 平台上运行的所有应用程序都可以使用自定义 API。
+  - [扩展机制](/ext/) 如何使 Java 平台上运行的所有应用程序都可以使用自定义 API。
+  - [全屏独占模式API](https://docs.oracle.com/javase/tutorial/extra/fullscreen/index.html) 如何编写更充分利用用户图形硬件的应用程序。（不学习）
+  - [泛型](/extra/generics/) 对类型系统的增强，它支持对各种类型的对象进行操作，同时提供编译时类型安全。此课程是高级课程，[初级泛型知识请参考](/java/generics/)
