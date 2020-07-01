@@ -50,7 +50,7 @@ String str = writeAll(cs, s); // Yes!
 ```
 
 - `? super T`：下界通配符，至少是 T 类型
-- `? extends T`：上届通配符，必须是 T 的子类或 T
+- `? extends T`：上限通配符，必须是 T 的子类或 T
 
 让我们再来看一个例子， ` java.util.TreeSet<E>` 的 E 表示要排序的元素类型。在构造函数可以传入一个比较器
 
@@ -124,7 +124,7 @@ public static <T extends Comparable<? super T>> T max(Collection<T> coll)
 
   如果 API 用 T 作为参数
 
-- `? extends T`：上届通配符
+- `? extends T`：上限通配符
 
   如果 API 只返回 T
 
