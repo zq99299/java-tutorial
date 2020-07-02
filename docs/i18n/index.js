@@ -17,7 +17,10 @@ module.exports = () => {
         'locale/',
         'locale/create.md',
         'locale/extensions.md',
-        'locale/identify.md'
+        'locale/identify.md',
+        'locale/matching.md',
+        'locale/scope.md',
+        'locale/services.md'
       ]
     }
   ]
