@@ -1,5 +1,7 @@
 # 使用 PropertyResourceBundle 
 
+本文通过一个 `PropertiesDemo` 示例来讲解如何使用 PropertyResourceBundle 
+
 ## 创建默认的 property 文件
 
 默认的属性文件名就是你的 ResourceBundle 基本名称， 本例使用 LabelsBundle，默认的属性文件名则是 LabelsBundle.properties
@@ -121,5 +123,67 @@ for (Locale locale : supportedLocales) {
 Locale = fr, key = s2, value = Disque dur
 Locale = de, key = s2, value = Platte
 Locale = en, key = s2, value = disk
+```
+
+## 最终程序
+
+```java
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+public class PropertiesDemo {
+    static public void main(String[] args) {
+        Locale[] supportedLocales = {
+                Locale.FRENCH,
+                Locale.GERMAN,
+                Locale.ENGLISH
+        };
+
+        for (int i = 0; i < supportedLocales.length; i++) {
+            displayValue(supportedLocales[i], "s2");
+        }
+
+        System.out.println();
+
+        iterateKeys(supportedLocales[0]);
+
+    } // main
+
+    static void displayValue(Locale currentLocale, String key) {
+
+        ResourceBundle labels = ResourceBundle.getBundle("LabelsBundle", currentLocale);
+        String value = labels.getString(key);
+        System.out.println(
+                "Locale = " + currentLocale.toString() + ", " +
+                        "key = " + key + ", " +
+                        "value = " + value);
+
+    } // displayValue
+
+
+    static void iterateKeys(Locale currentLocale) {
+        ResourceBundle labels =
+                ResourceBundle.getBundle("LabelsBundle", currentLocale);
+
+        Enumeration bundleKeys = labels.getKeys();
+
+        while (bundleKeys.hasMoreElements()) {
+            String key = (String) bundleKeys.nextElement();
+            String value = labels.getString(key);
+            System.out.println("key = " + key + ", " +
+                    "value = " + value);
+        }
+
+    } // iterateKeys
+}
+```
+
+还有记得配套的三个属性文件
+
+```
+LabelsBundle.properties
+LabelsBundle_de.properties
+LabelsBundle_fr.properties
 ```
 
