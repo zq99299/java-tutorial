@@ -10,15 +10,5 @@
 - [准备使用 ResourceBundle](./prepare.md) 
 - [使用 PropertyResourceBundle](./propfile.md)
 - [使用 ListResourceBundle](./list.md) 
-- 自定义资源包加载
-
-
-
-## 准备使用 ResourceBundle 
-
-## 使用属性文件备份 ResourceBundle 
-
-## 使用 ListResourceBundle 
-
-## 自定义资源包加载
+- [自定义资源包加载](./control.md)
 
