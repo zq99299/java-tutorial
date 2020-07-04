@@ -9,7 +9,7 @@
 - [关于 ResourceBundle 类](./concept.md)
 - [准备使用 ResourceBundle](./prepare.md) 
 - [使用 PropertyResourceBundle](./propfile.md)
-- [使用 ListResourceBundle]() 
+- [使用 ListResourceBundle](./list.md) 
 - 自定义资源包加载
 
 
