@@ -22,6 +22,18 @@ module.exports = () => {
         'locale/scope.md',
         'locale/services.md'
       ]
+    },
+    {
+      title: '隔离指定 Locale 数据',
+      collapsable: true,
+      children: [
+        'resbundle/',
+        'resbundle/concept.md',
+        'resbundle/prepare.md',
+        'resbundle/propfile.md',
+        'resbundle/list.md',
+        'resbundle/control.md'
+      ]
     }
   ]
 }

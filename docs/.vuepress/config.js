@@ -78,7 +78,13 @@ module.exports = {
       },
       { text: '所有导航', link: '/nav.md' },
       { text: '项目介绍', link: '/introduction.md' },
-      { text: '笔记精选汇总', link: 'https://github.com/zq99299/repository-summary' }
+      {
+        text: '笔记精选汇总',
+        items: [
+          { text: 'GitHub 站', link: 'https://github.com/zq99299/repository-summary' },
+          { text: '国内镜像站', link: 'http://book.mrcode.cn/' }
+        ]
+      }
     ],
     sidebar: {
       '/java/': javaSC(),
