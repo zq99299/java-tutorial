@@ -34,6 +34,32 @@ module.exports = () => {
         'resbundle/list.md',
         'resbundle/control.md'
       ]
+    },
+    {
+      title: '格式化',
+      collapsable: true,
+      children: [
+        'format/',
+        {
+          title: '数字和货币',
+          collapsable: true,
+          children: [
+            'format/numberintro.md',
+            'format/numberFormat.md',
+            'format/decimalFormat.md'
+          ]
+        },
+        {
+          title: '日期和时间',
+          collapsable: true,
+          children: [
+            'format/dateintro.md',
+            'format/dateFormat.md',
+            'format/simpleDateFormat.md',
+            'format/dateFormatSymbols.md'
+          ]
+        }
+      ]
     }
   ]
 }
