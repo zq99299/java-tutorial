@@ -12,7 +12,7 @@
 
   如何使用 `NumberFormat`，`DecimalFormat` 以及 `DecimalFormatSymbols` 类
 
-- 日期和时间
+- [日期和时间](./dateintro.md)
 
   本节的重点是 `DateFormat`，`SimpleDateFormat` 和 `DateFormatSymbols` 类。
 

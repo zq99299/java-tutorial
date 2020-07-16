@@ -94,3 +94,222 @@ DateFormat formatter = DateFormat.getDateTimeInstance(
 
 ## 完整示例程序
 
+```java
+package com.java;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import java.util.*;
+import java.text.*;
+
+public class DateFormatDemo {
+    /**
+     * 格式化日期显示 - 使用默认的日期格式
+     * @param currentLocale
+     */
+    static public void displayDate(Locale currentLocale) {
+
+        Date today;
+        String dateOut;
+        DateFormat dateFormatter;
+
+        dateFormatter =
+                DateFormat.getDateInstance(DateFormat.DEFAULT, currentLocale);
+        today = new Date();
+        dateOut = dateFormatter.format(today);
+
+        System.out.println(dateOut + "   " + currentLocale.toString());
+    }
+
+    /**
+     * 格式化日期显示 - 预定义格式演示
+     * @param currentLocale
+     */
+    static public void showDateStyles(Locale currentLocale) {
+
+        Date today = new Date();
+        String result;
+        DateFormat formatter;
+
+        int[] styles = {
+                DateFormat.DEFAULT,
+                DateFormat.SHORT,
+                DateFormat.MEDIUM,
+                DateFormat.LONG,
+                DateFormat.FULL
+        };
+
+        System.out.println();
+        System.out.println("Locale: " + currentLocale.toString());
+        System.out.println();
+
+        for (int k = 0; k < styles.length; k++) {
+            formatter =
+                    DateFormat.getDateInstance(styles[k], currentLocale);
+            result = formatter.format(today);
+            System.out.println(result);
+        }
+    }
+
+    /**
+     * 格式化时间显示 - 预定义格式演示
+     * @param currentLocale
+     */
+    static public void showTimeStyles(Locale currentLocale) {
+
+        Date today = new Date();
+        String result;
+        DateFormat formatter;
+
+        int[] styles = {
+                DateFormat.DEFAULT,
+                DateFormat.SHORT,
+                DateFormat.MEDIUM,
+                DateFormat.LONG,
+                DateFormat.FULL
+        };
+
+        System.out.println();
+        System.out.println("Locale: " + currentLocale.toString());
+        System.out.println();
+
+        for (int k = 0; k < styles.length; k++) {
+            formatter =
+                    DateFormat.getTimeInstance(styles[k], currentLocale);
+            result = formatter.format(today);
+            System.out.println(result);
+        }
+    }
+
+    /**
+     * 格式化 日期时间 显示 - 预定义格式演示
+     * @param currentLocale
+     */
+    static public void showBothStyles(Locale currentLocale) {
+
+        Date today;
+        String result;
+        DateFormat formatter;
+
+        int[] styles = {
+                DateFormat.DEFAULT,
+                DateFormat.SHORT,
+                DateFormat.MEDIUM,
+                DateFormat.LONG,
+                DateFormat.FULL
+        };
+
+        System.out.println();
+        System.out.println("Locale: " + currentLocale.toString());
+        System.out.println();
+
+        today = new Date();
+
+        for (int k = 0; k < styles.length; k++) {
+            formatter = DateFormat.getDateTimeInstance(
+                    styles[k], styles[k], currentLocale);
+            result = formatter.format(today);
+            System.out.println(result);
+        }
+    }
+
+
+
+    static public void main(String[] args) {
+ 		Locale[] locales = {
+                new Locale("fr", "FR"),
+                new Locale("de", "DE"),
+                new Locale("en", "US"),
+                new Locale("zh", "CN")
+        };
+        System.out.println("格式化日期显示 - 使用默认的日期格式");
+        for (int i = 0; i < locales.length; i++) {
+            displayDate(locales[i]);
+        }
+
+        System.out.println();
+        System.out.println("格式化日期显示 - 预定义格式演示");
+        showDateStyles(new Locale("en", "US"));
+        showDateStyles(new Locale("fr", "FR"));
+
+        System.out.println();
+        System.out.println("格式化时间显示 - 预定义格式演示");
+        showTimeStyles(new Locale("en", "US"));
+        showTimeStyles(new Locale("de", "DE"));
+
+        System.out.println();
+        System.out.println("格式化 日期时间 显示 - 预定义格式演示");
+        showBothStyles(new Locale("en", "US"));
+        showBothStyles(new Locale("fr", "FR"));
+
+    }
+}
+
+```
+
+测试输出
+
+```
+格式化日期显示 - 使用默认的日期格式
+16 juil. 2020   fr_FR
+16.07.2020   de_DE
+Jul 16, 2020   en_US
+2020-7-16   zh_CN
+
+格式化日期显示 - 预定义格式演示
+
+Locale: en_US
+
+Jul 16, 2020
+7/16/20
+Jul 16, 2020
+July 16, 2020
+Thursday, July 16, 2020
+
+Locale: fr_FR
+
+16 juil. 2020
+16/07/20
+16 juil. 2020
+16 juillet 2020
+jeudi 16 juillet 2020
+
+格式化时间显示 - 预定义格式演示
+
+Locale: en_US
+
+7:13:05 PM
+7:13 PM
+7:13:05 PM
+7:13:05 PM CST
+7:13:05 PM CST
+
+Locale: de_DE
+
+19:13:05
+19:13
+19:13:05
+19:13:05 CST
+19:13 Uhr CST
+
+格式化 日期时间 显示 - 预定义格式演示
+
+Locale: en_US
+
+Jul 16, 2020 7:13:05 PM
+7/16/20 7:13 PM
+Jul 16, 2020 7:13:05 PM
+July 16, 2020 7:13:05 PM CST
+Thursday, July 16, 2020 7:13:05 PM CST
+
+Locale: fr_FR
+
+16 juil. 2020 19:13:05
+16/07/20 19:13
+16 juil. 2020 19:13:05
+16 juillet 2020 19:13:05 CST
+jeudi 16 juillet 2020 19 h 13 CST
+```
+

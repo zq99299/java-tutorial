@@ -16,10 +16,10 @@ Date 对象表示日期和时间。如果不先将 Date 对象转换为适当格
 
   DateFormat 类提供了预定义的格式化样式，这些样式特定于 Locale，易于使用。
 
-- 自定义格式
+- [自定义格式](./simpleDateFormat.md)
 
   使用 SimpleDateFormat 类，您可以创建定制的、特定于 Locale 的格式。
 
-- 更改日期格式符号
+- [更改日期格式符号](./dateFormatSymbols.md)
 
   使用 DateFormatSymbols 类，可以更改表示月份名称、星期名称和其他格式化元素的符号。
