@@ -18,7 +18,7 @@
 
   版本说明：部分类容使用了 `java.util` 包中的日期和时间 API，JDK8+ 中的 `java.time` API 提供了全面的时间模型，该模型对 `java.util` 类进行了重大改进
 
-- 文本消息
+- [文本信息](./messageintro.md)
 
-  介绍 `MessageFormat` 和 `ChoiceFormat` 类如何帮助您解决格式化文本消息时可能遇到的一些问题。
+  介绍 `MessageFormat` 和 `ChoiceFormat` 类如何帮助您解决格式化文本信息时可能遇到的一些问题。
 

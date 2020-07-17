@@ -58,6 +58,16 @@ module.exports = () => {
             'format/simpleDateFormat.md',
             'format/dateFormatSymbols.md'
           ]
+        },
+        {
+          title: '文本消息',
+          collapsable: true,
+          children: [
+            'format/dateintro.md',
+            'format/dateFormat.md',
+            'format/simpleDateFormat.md',
+            'format/dateFormatSymbols.md'
+          ]
         }
       ]
     }
