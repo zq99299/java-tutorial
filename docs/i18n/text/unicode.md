@@ -9,9 +9,9 @@ Unicode 标准使用 **十六进制来表示字符**。例如，值 0x0041 表�
 
 本课包含以下部分内容：
 
-- [术语](./terminology.md)：解释了 代码点（codePoint）和其他术语
-- 补充字符作为扩展：16 位扩展用于实现补充字符，这些补充字符不能作为单个原始 `char` 数据类型实现。
-- 字符和字符串  API： `Character` 、`String` 和相关类的 API
+- [术语](./terminology.md)：解释了 码点（codePoint）和其他术语
+- [补充字符作为扩展](./supplementaryChars.md)：16 位扩展用于实现补充字符，这些补充字符不能作为单个原始 `char` 数据类型实现。
+- [字符和字符串  API](./characterClass.md)： `Character` 、`String` 和相关类的 API
 - 用法示例：提供一些拥有的代码片段
 - 设计注意事项：记住设计注意事项，确保你的应用程序可以与任何语言脚本一起使用
 - 更多信息：提供了更多的资源列表
