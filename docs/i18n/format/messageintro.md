@@ -39,7 +39,7 @@ String message = msgBundle.getString(
   复合信息可以包含几种类型的变量：日期、时间、字符串、数字、货币和百分比。
   要以与 Locale 无关的方式格式化复合信息，需要构造一个应用于 MessageFormat 对象的模式。
 
-- 处理复数
+- [处理复数](./choiceFormat.md)
 
   如果单词的复数形式和单数形式都可以的话，信息中的单词通常会有所变化。
   通过 ChoiceFormat 类，可以将数字映射到单词或短语，从而构造语法正确的信息。
