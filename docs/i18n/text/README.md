@@ -10,6 +10,8 @@
 
   本节中，你将学习使用 Collator 类执行与 Locale 敏感的字符串比较
 
+- [Unicode](./unicode.md)
+
 - 检查文本边界
 
   本节展示 BreakIterator 类如何检测字符、单词、句子和行边界。
@@ -17,6 +19,8 @@
 - 转换非 unicode 文本
 
   世界各地的不同计算机系统将文本存储在各种编码方案中。本节介绍可帮助您在 Unicode 和其他编码之间转换文本的类。
+
+- 规范化文本
 
 - 使用 JTextComponent 类处理双向文本
 
