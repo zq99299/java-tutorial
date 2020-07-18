@@ -120,16 +120,8 @@ module.exports = () => {
             'text/stream.md'
           ]
         },
-        {
-          title: '规范化文本',
-          collapsable: true,
-          children: []
-        },
-        {
-          title: '使用 JTextComponent 类处理双向文本',
-          collapsable: true,
-          children: []
-        }
+        'text/normalizerapi.md',
+        'text/bidi.md'
       ]
     }
   ]
