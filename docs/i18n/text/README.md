@@ -12,11 +12,13 @@
 
 - [Unicode](./unicode.md)
 
-- 检查文本边界
+- [检查文本边界](./boundaryintro.md)
 
   本节展示 BreakIterator 类如何检测字符、单词、句子和行边界。
 
-- 转换非 unicode 文本
+- [将拉丁数字转换为其他 Unicode 数字](./shapedDigits.md)
+
+- [转换非 unicode 文本](./convertintro.md)
 
   世界各地的不同计算机系统将文本存储在各种编码方案中。本节介绍可帮助您在 Unicode 和其他编码之间转换文本的类。
 

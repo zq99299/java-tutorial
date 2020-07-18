@@ -93,7 +93,10 @@ module.exports = () => {
             'text/unicode.md',
             'text/terminology.md',
             'text/supplementaryChars.md',
-            'text/characterClass.md'
+            'text/characterClass.md',
+            'text/usage.md',
+            'text/design.md',
+            'text/info.md'
           ]
         },
         {
