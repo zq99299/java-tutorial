@@ -102,12 +102,23 @@ module.exports = () => {
         {
           title: '检查文本边界',
           collapsable: true,
-          children: []
+          children: [
+            'text/boundaryintro.md',
+            'text/about.md',
+            'text/char.md',
+            'text/word.md',
+            'text/sentence.md',
+            'text/line.md'
+          ]
         },
         {
           title: '转换非 unicode 文本',
           collapsable: true,
-          children: []
+          children: [
+            'text/convertintro.md',
+            'text/string.md',
+            'text/stream.md'
+          ]
         },
         {
           title: '规范化文本',
