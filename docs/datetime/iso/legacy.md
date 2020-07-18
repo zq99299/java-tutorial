@@ -65,7 +65,7 @@ LocalTime time = zdt.toLocalTime();
 
 这两个 api 之间没有一对一的映射对应关系，但是下面列出了 大致功能概念的映射
 
-### java.util.Date 与 java.timeInstant
+### java.util.Date 与 java.time.Instant
 这两个类是相似的：
 
 * 代表时间轴(UTC)上的瞬时点
