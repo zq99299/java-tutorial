@@ -414,4 +414,6 @@ sidebar: auto
             - [字符和字节流](./i18n/text/stream.md)
         - [规范化文本](./i18n/text/normalizerapi.md)
         - [使用 JTextComponent 类处理双向文本](./i18n/text/bidi.md)
-       
+    - [网络资源国际化](./i18n/network/)
+    - [国际化服务提供商](./i18n/serviceproviders/)
+        - [将自定义资源包作为扩展安装](./i18n/serviceproviders/resourcebundlecontrolprovider.md)
