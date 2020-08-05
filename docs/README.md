@@ -37,3 +37,4 @@ The Java Tutorials have been written for JDK 8. Examples and practices described
   - [泛型](/extra/generics/) 对类型系统的增强，它支持对各种类型的对象进行操作，同时提供编译时类型安全。此课程是高级课程，[初级泛型知识请参考](/java/generics/)
   - [国际化](/i18n/) 介绍如何设计软件，使其易于适应(本地化)各种语言和地区。
   - [JavaBeans](/javabeans/) Java 平台的组件技术。
+  - [JDBC 数据库访问](/jdbc/) 引入了用于在 Java 应用程序和各种数据库和数据源之间连接的 API。

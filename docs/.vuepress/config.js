@@ -8,6 +8,7 @@ const extSC = require('../ext')
 const extraSC = require('../extra')
 const i18nSC = require('../i18n')
 const javabeansSC = require('../javabeans')
+const jdbcSC = require('../jdbc')
 
 module.exports = {
   title: 'JAVA8 官网笔记教程',
@@ -76,6 +77,7 @@ module.exports = {
           { text: '泛型', link: '/extra/generics/' },
           { text: '国际化 i18n', link: '/i18n/' },
           { text: 'JavaBeans', link: '/javabeans/' },
+          { text: 'JDBC 数据库访问', link: '/jdbc/' },
         ]
       },
       { text: '所有导航', link: '/nav.md' },
@@ -98,7 +100,8 @@ module.exports = {
       '/ext/': extSC(),
       '/extra/': extraSC(),
       '/i18n/': i18nSC(),
-      '/javabeans/': javabeansSC()
+      '/javabeans/': javabeansSC(),
+      '/jdbc/': jdbcSC()
     }
   },
   plugins: [

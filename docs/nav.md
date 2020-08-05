@@ -419,3 +419,4 @@ sidebar: auto
         - [将自定义资源包作为扩展安装](./i18n/serviceproviders/resourcebundlecontrolprovider.md)
         
 - [JavaBeans](/javabeans/)
+- [JDBC 数据库访问](/javabeans/)
