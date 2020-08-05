@@ -417,3 +417,5 @@ sidebar: auto
     - [网络资源国际化](./i18n/network/)
     - [国际化服务提供商](./i18n/serviceproviders/)
         - [将自定义资源包作为扩展安装](./i18n/serviceproviders/resourcebundlecontrolprovider.md)
+        
+- [JavaBeans](/javabeans/)
