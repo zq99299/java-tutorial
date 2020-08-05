@@ -36,3 +36,4 @@ The Java Tutorials have been written for JDK 8. Examples and practices described
   - [全屏独占模式API](https://docs.oracle.com/javase/tutorial/extra/fullscreen/index.html) 如何编写更充分利用用户图形硬件的应用程序。（不学习）
   - [泛型](/extra/generics/) 对类型系统的增强，它支持对各种类型的对象进行操作，同时提供编译时类型安全。此课程是高级课程，[初级泛型知识请参考](/java/generics/)
   - [国际化](/i18n/) 介绍如何设计软件，使其易于适应(本地化)各种语言和地区。
+  - [JavaBeans](/javabeans/) Java 平台的组件技术。

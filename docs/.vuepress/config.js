@@ -7,6 +7,7 @@ const networkingSC = require('../networking')
 const extSC = require('../ext')
 const extraSC = require('../extra')
 const i18nSC = require('../i18n')
+const javabeansSC = require('../javabeans')
 
 module.exports = {
   title: 'JAVA8 官网笔记教程',
@@ -74,6 +75,7 @@ module.exports = {
           { text: '扩展机制', link: '/ext/' },
           { text: '泛型', link: '/extra/generics/' },
           { text: '国际化 i18n', link: '/i18n/' },
+          { text: 'JavaBeans', link: '/javabeans/' },
         ]
       },
       { text: '所有导航', link: '/nav.md' },
@@ -95,7 +97,8 @@ module.exports = {
       '/networking/': networkingSC(),
       '/ext/': extSC(),
       '/extra/': extraSC(),
-      '/i18n/': i18nSC()
+      '/i18n/': i18nSC(),
+      '/javabeans/': javabeansSC()
     }
   },
   plugins: [
