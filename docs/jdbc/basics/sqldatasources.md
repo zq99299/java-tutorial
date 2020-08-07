@@ -150,7 +150,211 @@ ctx.bind("jdbc/fastCoffeeDB", ds)
 
 ##  获取和使用池连接
 
+**连接池** 是数据库连 **接对象的缓存**。这些对象表示可以由应用程序连接到数据库的 **物理数据库连接**。在运行时，应用程序 **从池中请求连接**。如果池中包含可以满足请求的连接，则将该连接返回给应用程序。如果没有找到连接，则创建一个新连接并返回给应用程序。应用程序使用该连接对数据库执行一些工作，然后 **将对象返回到池中。**然后该连接可用于下一个连接请求。
+
+连接池促进了 **连接对象的重用**，并减少了 **创建连接对象的次数**。连接池可以 **显著提高数据库密集型应用程序的性能**，因为创建连接对象在时间和资源方面都很昂贵。
+
+ 现在已经部署了这些数据源和连接池数据源对象，程序员可以使用数据源对象来获得集合连接。 获取集合连接的代码就像获取非池连接的代码一样，如下两行所示：
+
+```java
+ctx = new InitialContext();
+ds = (DataSource)ctx.lookup("jdbc/fastCoffeeDB");
+```
+
+变量 ds 表示一个数据源对象，它产生到数据库 COFFEEBREAK 的池连接。您只需要检索此 DataSource 对象一次，因为您可以使用它生成所需的池连接。在 ds 变量上调用  getConnection 方法，会自动生成池连接，因为 ds 变量表示的数据源对象被配置为生成池连接。
+
+连接池对程序员通常是透明的。当你使用池连接时，你只需要做两件事：
+
+1. 使用 DataSource 对象而不是 DriverManager 类来获取连接。
+
+   在下面的代码行中，ds 是一个 DataSource 对象实现和部署，它将创建池连接，用户名和密码是变量，表示用户的凭据，可以访问数据库：
+
+   ```java
+   Connection con = ds.getConnection(username, password);
+   ```
+
+2. 使用 finally 语句关闭池连接。
+
+   下面的 finally 块将出现在 try/catch 块之后，该块适用于使用池连接的代码：
+
+   ```java
+   try {
+       Connection con = ds.getConnection(username, password);
+       // ... code to use the pooled
+       // connection con
+   } catch (Exception ex {
+       // ... code to handle exceptions
+   } finally {
+       if (con != null) con.close();
+   }
+   ```
+
+否则，使用池连接的应用程序与 **使用常规连接的应用程序是相同的**。当使用连接池时，应用程序程序员可能注意到的唯一另一件事是 **性能更好了**。
+
+下面的示例代码获取一个 DataSource 对象，该对象产生到数据库 COFFEEBREAK 的连接，并使用它来更新咖啡表中的价格：
+
+```java
+import java.sql.*;
+import javax.sql.*;
+import javax.ejb.*;
+import javax.naming.*;
+
+public class ConnectionPoolingBean implements SessionBean {
+
+    // ...
+
+    public void ejbCreate() throws CreateException {
+        ctx = new InitialContext();
+        ds = (DataSource)ctx.lookup("jdbc/fastCoffeeDB");
+    }
+
+    public void updatePrice(float price, String cofName,
+                            String username, String password)
+        throws SQLException{
+
+        Connection con;
+        PreparedStatement pstmt;
+        try {
+            con = ds.getConnection(username, password);
+            con.setAutoCommit(false);
+            pstmt = con.prepareStatement("UPDATE COFFEES " +
+                        "SET PRICE = ? " +
+                        "WHERE COF_NAME = ?");
+            pstmt.setFloat(1, price);
+            pstmt.setString(2, cofName);
+            pstmt.executeUpdate();
+
+            con.commit();
+            pstmt.close();
+
+        } finally {
+            if (con != null) con.close();
+        }
+    }
+
+    private DataSource ds = null;
+    private Context ctx = null;
+}
+
+```
+
+这个代码示例中的连接参与到连接池中，因为以下条件为真：
+
+- 已经部署了实现 ConnectionPoolDataSource 的类的实例。
+
+- 已经部署了一个实现 DataSource 的类实例，并且为其 dataSourceName 属性设置的值是绑定到先前部署的ConnectionPoolDataSource 对象的逻辑名。
+
+请注意，虽然这段代码与您以前看到的代码非常相似，但它在以下方面有所不同：
+
+- 导入了  `javax.sql`, `javax.ejb` 和  `javax.naming` `
+
+  DataSource 和 ConnectionPoolDataSource 接口 `javax.sql` 包中，InitialContext  和 Context.lookup 是 `javax.naming` 包中，这个特定的示例代码是使用 `javax.ejb`  包中的 API 的 EJB 组件的形式。这个示例的目的是展示您使用池连接的方式与使用非池连接的方式相同，因此您不必担心理解 EJB API。
+
+- 它使用 DataSource 对象来获取连接，而不是使用 DriverManager 工具。
+
+- 它使用 finally 块来确保连接已关闭。
+
+获取和使用池连接类似于 **获取和使用常规连接**。当作为系统管理员的某人正确地部署了 ConnectionPoolDataSource 对象和 DataSource 对象时，应用程序将使用该数据源对象来获得池连接。
+但是，应用程序应该使用 finally 块来关闭池连接。为简单起见，前面的示例使用了 finally 块，但没有使用 catch块。如果 try 块中的方法抛出异常，则该异常将在默认情况下被抛出，并且在任何情况下都将执行 finally 子句。
+
 ##  部署分布式事务
+
+可以部署 DataSource 对象来获取可以在 **分布式事务中使用的连接**。与连接池一样，必须部署两个不同的类实例：一个 XADataSource 对象和一个为使用它而实现的 DataSource 对象。
+
+假设这位休息时间的企业家购买的 EJB 服务器包含  DataSource 类 `com.applogic.TransactionalDS`，它与`com.dbaccess.XATransactionalDS` 与  XADataSource 类一起工作。它可以与任何 XADataSource 类一起工作，这使得 EJB 服务器可以跨 JDBC 驱动程序移植。当部署 DataSource 和 XADataSource 对象时，生成的连接将能够参与分布式事务。在这种情况下，`com.applogic.TransactionalDS` 的实现使得生成的连接也是池连接，这通常是作为 EJB 服务器实现的一部分提供的数据源类的情况。
+
+必须首先部署 XADataSource 对象。下面的代码创建了 `com.dbaccess.XATransactionalDS` 的实例，并设置其属性：
+
+```java
+com.dbaccess.XATransactionalDS xads = new com.dbaccess.XATransactionalDS();
+xads.setServerName("creamer");
+xads.setDatabaseName("COFFEEBREAK");
+xads.setPortNumber(9040);
+xads.setDescription("Distributed transactions for COFFEEBREAK DBMS");
+```
+
+并注册在 JNDI 上
+
+```java
+Context ctx = new InitialContext();
+ctx.bind("jdbc/xa/distCoffeeDB", xads);
+```
+
+接下来，部署用于与 xads 和其他 XADataSource 对象交互的数据源对象。注意 DataSource 类是 `com.applogic.TransactionalDS`，可以与来自任何 JDBC 驱动程序供应商的 XADataSource 类一起工作。
+部署 DataSource 对象涉及创建  `com.applogic.TransactionalDS` 的实例，设置其属性。dataSourceName 属性设置为 `jdbc/xa/distCoffeeDB`，与 com.dbaccess.XATransactionalDS 关联的逻辑名。
+这是 XADataSource 类，它为 DataSource 类实现分布式事务功能。下面的代码部署了 DataSource 类的一个实例：
+
+```java
+com.applogic.TransactionalDS ds = new com.applogic.TransactionalDS();
+ds.setDescription("Produces distributed transaction " +
+                  "connections to COFFEEBREAK");
+ds.setDataSourceName("jdbc/xa/distCoffeeDB");
+Context ctx = new InitialContext();
+ctx.bind("jdbc/distCoffeeDB", ds);
+```
+
+现在 `com.applogic.TransactionalDS` 和  `com.dbaccess.XATransactionalDS` 实例部署好了，应用程序可以在 TransactionalDS 类的实例上调用 getConnection 方法，以获得一个到 COFFEEBREAK 数据库的连接，该数据库可以在分布式事务中使用。
 
 ##  为分布式事务使用连接
 
+要获得可用于分布式事务的连接，必须使用已正确实现和部署的 DataSource 对象，如部上面一节中所示。使用这样的数据源对象，在其上调用 getConnection 方法 。拥有连接后，像使用任何其他连接一样使用它。
+因为 `jdbc/distCoffeesDB` 已经在 JNDI 命名服务中与一个 XADataSource 对象相关联，下面的代码产生了一个可以在分布式事务中使用的连接对象：
+
+```java
+Context ctx = new InitialContext();
+DataSource ds = (DataSource)ctx.lookup("jdbc/distCoffeesDB");
+Connection con = ds.getConnection();
+```
+
+当此连接是分布式事务的一部分时，对于如何使用它 **有一些次要但重要的限制**。**事务管理器控制分布式事务何时开始、何时提交或回滚**；因此，应用程序代码 **不应该调用 Connection.commit 或 Connection.rollback 方法**。同样，应用 **程序也不应该调用 Connection.setAutoCommit(true)**，因为这启用了自动提交模式，因为这也会干扰事务管理器对事务边界的控制。这解释了为什么在分布式事务范围内创建的新连接在默认情况下禁用其自动提交模式。注意，这些限制仅在连接参与分布式事务时才适用；当连接不是分布式事务的一部分时，没有任何限制。
+
+对于下面的示例，假设已经发送了一个咖啡订单，这将触发对驻留在不同 DBMS 服务器上的两个表的更新。
+第一个表是新的库存表，第二个是咖啡表。因为这些表在不同的 DBMS 服务器上，涉及到它们的事务将是分布式事务。下面示例中的代码获得连接、更新 COFFEES 表并关闭连接，这是分布式事务的第二部分。
+
+请注意，**代码没有显式地提交或回滚更新**，因为 **分布式事务的范围是由中间层服务器的底层系统基础结构控制的。**另外，假设用于分布式事务的连接是池连接，应用程序使用 finally 块关闭连接。这保证了即使抛出异常也会关闭有效连接，从而确保将连接返回到要回收的连接池。
+
+下面的代码示例演示了一个企业 Bean，它是一个实现客户端计算机可以调用的方法的类。这个示例的目的是演示分布式事务的应用程序代码与其他代码没有什么不同，除了它没有调用连接方法 commit、rollback 、setAutoCommit(true)。因此，您不需要担心理解所使用的 EJB API。
+
+```java
+import java.sql.*;
+import javax.sql.*;
+import javax.ejb.*;
+import javax.naming.*;
+
+public class DistributedTransactionBean implements SessionBean {
+
+    // ...
+
+    public void ejbCreate() throws CreateException {
+
+        ctx = new InitialContext();
+        ds = (DataSource)ctx.lookup("jdbc/distCoffeesDB");
+    }
+
+    public void updateTotal(int incr, String cofName, String username,
+                            String password)
+        throws SQLException {
+
+        Connection con;
+        PreparedStatement pstmt;
+
+        try {
+            con = ds.getConnection(username, password);
+            pstmt = con.prepareStatement("UPDATE COFFEES " +
+                        "SET TOTAL = TOTAL + ? " +
+                        "WHERE COF_NAME = ?");
+            pstmt.setInt(1, incr);
+            pstmt.setString(2, cofName);
+            pstmt.executeUpdate();
+            stmt.close();
+        } finally {
+            if (con != null) con.close();
+        }
+    }
+
+    private DataSource ds = null;
+    private Context ctx = null;
+}
+```
+
+说实话，笔者没有看懂这里，分布式事务，不是需要两个不同的数据库吗？怎么只有一个数据库，就是分布式事务了？后续运行过测试程序之后，再来填坑。

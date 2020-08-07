@@ -21,7 +21,7 @@
 3. 从数据库供应商安装 JDBC 驱动程序
 4. 安装 Gradle 6.x 版本
 5. 下载示例代码
-6. 准备练习用的数据库和表数据
+6. 笔者本次使用到项目文件规划
 
 ## 1. 在计算机上安装最新版本的 Java SE SDK
 
@@ -140,118 +140,132 @@ JDBC 驱动程序有许多可能的实现。这些实现分类如下：
 
 创建一个目录来包含示例的所有文件。这些步骤将此目录称为 `<JDBC tutorial 目录>`。将 JDBCTutorial.zip 解压缩到 `<JDBC tutorial目录>` 中。
 
-##  准备练习用的数据库和表数据
+##  笔者本次使用到项目文件规划
 
-create-tables.sql 创建表结构的 sql 文件
+研究了一下这个示例代码  [JDBCTutorial.zip](https://docs.oracle.com/javase/tutorial/jdbc/basics/examples/zipfiles/JDBCTutorial.zip) 文件，其实不用作太多的改变，用到的文件如下图
 
-```sql
-create table SUPPLIERS
-  (SUP_ID integer NOT NULL,
-  SUP_NAME varchar(40) NOT NULL,
-  STREET varchar(40) NOT NULL,
-  CITY varchar(20) NOT NULL,
-  STATE char(2) NOT NULL,
-  ZIP char(5),
-  PRIMARY KEY (SUP_ID));
+![image-20200807164130684](./assets/image-20200807164130684.png)
+
+另外依赖包管理使用的 gradle，mysql 的依赖为 `compile('mysql:mysql-connector-java:5.1.46')`，数据库用的 Mysql 5.7
+
+本次使用 Idea 工具，只留下了如上图的文件，下面大概将讲解下每个类/文件的大概作用。
+
+- ```
+  src/main/java/com/oracle/tutorial/jdbc
+  ```
+
+  - `CachedRowSetSample.java`
+  - `CityFilter.java`
+  - `ClobSample.java`
+  - `CoffeesFrame.java`
+  - `CoffeesTable.java`：对该表的 CRUD 操作
+  - `CoffeesTableModel.java`
+  - `DatalinkSample.java`
+  - `ExampleRowSetListener.java`
+  - `FilteredRowSetSample.java`
+  - `JdbcRowSetSample.java`
+  - `JDBCTutorialUtilities.java`：该教程用到的一些公共的工具方法
+  - `JoinSample.java`
+  - `ProductInformationTable.java`
+  - `RSSFeedsTable.java`：对该表的 CRUD 操作
+  - `StateFilter.java`
+  - `StoredProcedureMySQLSample.java`
+  - `SuppliersTable.java`：对该表的 CRUD 操作
+  - `WebRowSetSample.java`
   
-create table COFFEES
-  (COF_NAME varchar(32) NOT NULL,
-  SUP_ID int NOT NULL,
-  PRICE numeric(10,2) NOT NULL,
-  SALES integer NOT NULL,
-  TOTAL integer NOT NULL,
-  PRIMARY KEY (COF_NAME),
-  FOREIGN KEY (SUP_ID) REFERENCES SUPPLIERS (SUP_ID));
+- ```
+  properties
+  ```
+
+  - `mysql-sample-properties.xml`：存放 mysql 数据源的一些信息，如用户名、密码、ip 等信息
+
+- ```
+  xml
+  ```
+
+  - `rss-coffee-industry-news.xml`
+  - `rss-the-coffee-break-blog.xml`
+
+- ```
+  sql
+  ```
   
-create table COFFEE_DESCRIPTIONS
-  (COF_NAME varchar(32) NOT NULL,
-  COF_DESC blob NOT NULL,
-  PRIMARY KEY (COF_NAME),
-  FOREIGN KEY (COF_NAME) REFERENCES COFFEES (COF_NAME));
-
-create table RSS_FEEDS
-  (RSS_NAME varchar(32) NOT NULL,
-  RSS_FEED_XML longtext NOT NULL,
-  PRIMARY KEY (RSS_NAME));
+  - ```
+    mysql	sql 脚本
+    ```
   
-create table COF_INVENTORY
-  (WAREHOUSE_ID integer NOT NULL,
-  COF_NAME varchar(32) NOT NULL,
-  SUP_ID int NOT NULL,
-  QUAN int NOT NULL,
-  DATE_VAL timestamp,
-  FOREIGN KEY (COF_NAME) REFERENCES COFFEES (COF_NAME),
-  FOREIGN KEY (SUP_ID) REFERENCES SUPPLIERS (SUP_ID));
+    - `create-procedures.sql`	：创建存储过程的脚本
+    - `create-tables.sql` ：创建所有用到的表的脚本
+    - `drop-tables.sql` ：删除所有用到的表的脚本
+    - `populate-tables.sql`：插入测试数据的脚本
   
-create table MERCH_INVENTORY
-  (ITEM_ID integer NOT NULL,
-  ITEM_NAME varchar(20),
-  SUP_ID int,
-  QUAN int,
-  DATE_VAL timestamp,
-  PRIMARY KEY (ITEM_ID),
-  FOREIGN KEY (SUP_ID) REFERENCES SUPPLIERS (SUP_ID));
-  
-create table COFFEE_HOUSES
-  (STORE_ID integer NOT NULL,
-  CITY varchar(32),
-  COFFEE int NOT NULL,
-  MERCH int NOT NULL,
-  TOTAL int NOT NULL,
-  PRIMARY KEY (STORE_ID));
-  
-create table DATA_REPOSITORY
-  (DOCUMENT_NAME varchar(50),
-  URL varchar(200));
-```
+  脚本可能只是为了方便看全貌和 sql 语句，因为每个类里面基本上都写部分语句
 
-populate-tables.sql 插入测试数据的 SQL 文件
+以上文件，为了以防万一，这里在本章对应的 Github 仓库中 `docs/jdbc/basics/project` 目录下也封存了一份（已经修改为后面说的比较方便运行的方式），如有需要，请自行前往该仓库中获取这些文件。也可以直接下载官方的压缩包，自己根据修改，因为并不复杂
 
-```sql
-insert into SUPPLIERS values(49,  'Superior Coffee', '1 Party Place', 'Mendocino', 'CA', '95460');
-insert into SUPPLIERS values(101, 'Acme, Inc.', '99 Market Street', 'Groundsville', 'CA', '95199');
-insert into SUPPLIERS values(150, 'The High Ground', '100 Coffee Lane', 'Meadows', 'CA', '93966');
-insert into SUPPLIERS values(456, 'Restaurant Supplies, Inc.', '200 Magnolia Street', 'Meadows', 'CA', '93966');
-insert into SUPPLIERS values(927, 'Professional Kitchen', '300 Daisy Avenue', 'Groundsville', 'CA', '95199');
+关于如何运行测试说明：
 
-insert into COFFEES values('Colombian',          101, 7.99, 0, 0);
-insert into COFFEES values('French_Roast',       49,  8.99, 0, 0);
-insert into COFFEES values('Espresso',           150, 9.99, 0, 0);
-insert into COFFEES values('Colombian_Decaf',    101, 8.99, 0, 0);
-insert into COFFEES values('French_Roast_Decaf', 049, 9.99, 0, 0);
+1. 首先我们要将 `mysql-sample-properties.xml` 中的信息改成我们自己准备好的 mysql 数据库信息
 
-insert into COF_INVENTORY values(1234, 'Colombian',       101, 0, '2006-04-01');
-insert into COF_INVENTORY values(1234, 'French_Roast',    49,  0, '2006-04-01');
-insert into COF_INVENTORY values(1234, 'Espresso',        150, 0, '2006-04-01');
-insert into COF_INVENTORY values(1234, 'Colombian_Decaf', 101, 0, '2006-04-01');
+2. 比如后面章节有说某一段代码来自  `SuppliersTable.createTable` 方法
 
-insert into MERCH_INVENTORY values(00001234, 'Cup_Large', 456, 28, '2006-04-01');
-insert into MERCH_INVENTORY values(00001235, 'Cup_Small', 456, 36, '2006-04-01');
-insert into MERCH_INVENTORY values(00001236, 'Saucer', 456, 64, '2006-04-01');
-insert into MERCH_INVENTORY values(00001287, 'Carafe', 456, 12, '2006-04-01');
-insert into MERCH_INVENTORY values(00006931, 'Carafe', 927, 3, '2006-04-01');
-insert into MERCH_INVENTORY values(00006935, 'PotHolder', 927, 88, '2006-04-01');
-insert into MERCH_INVENTORY values(00006977, 'Napkin', 927, 108, '2006-04-01');
-insert into MERCH_INVENTORY values(00006979, 'Towel', 927, 24, '2006-04-01');
-insert into MERCH_INVENTORY values(00004488, 'CofMaker', 456, 5, '2006-04-01');
-insert into MERCH_INVENTORY values(00004490, 'CofGrinder', 456, 9, '2006-04-01');
-insert into MERCH_INVENTORY values(00004495, 'EspMaker', 456, 4, '2006-04-01');
-insert into MERCH_INVENTORY values(00006914, 'Cookbook', 927, 12, '2006-04-01');
+   那么你首先要找到 `SuppliersTable` 这个类，里面有一个 main 方法，如下面这个
 
-insert into COFFEE_HOUSES values(10023, 'Mendocino', 3450, 2005, 5455);
-insert into COFFEE_HOUSES values(33002, 'Seattle', 4699, 3109, 7808);
-insert into COFFEE_HOUSES values(10040, 'SF', 5386, 2841, 8227);
-insert into COFFEE_HOUSES values(32001, 'Portland', 3147, 3579, 6726);
-insert into COFFEE_HOUSES values(10042, 'SF', 2863, 1874, 4710);
-insert into COFFEE_HOUSES values(10024, 'Sacramento', 1987, 2341, 4328);
-insert into COFFEE_HOUSES values(10039, 'Carmel', 2691, 1121, 3812);
-insert into COFFEE_HOUSES values(10041, 'LA', 1533, 1007, 2540);
-insert into COFFEE_HOUSES values(33005, 'Olympia', 2733, 1550, 4283);
-insert into COFFEE_HOUSES values(33010, 'Seattle', 3210, 2177, 5387);
-insert into COFFEE_HOUSES values(10035, 'SF', 1922, 1056, 2978);
-insert into COFFEE_HOUSES values(10037, 'LA', 2143, 1876, 4019);
-insert into COFFEE_HOUSES values(10034, 'San_Jose', 1234, 1032, 2266);
-insert into COFFEE_HOUSES values(32004, 'Eugene', 1356, 1112, 2468);
+   ```java
+       public static void main(String[] args) {
+           // 我们改成固定的路径，因为只针对 mysql 测试
+           final URL resource = JDBCTutorialUtilities.class.getResource("/properties/mysql-sample-properties.xml");
+           String propertiesFileName = resource.getPath();
+   
+           JDBCTutorialUtilities myJDBCTutorialUtilities;
+           Connection myConnection = null;
+           if (propertiesFileName == null) {
+               System.err.println("Properties file not specified at command line");
+               return;
+           } else {
+               try {
+                   // 这里去解析配置文件
+                   myJDBCTutorialUtilities = new JDBCTutorialUtilities(propertiesFileName);
+               } catch (Exception e) {
+                   System.err.println("Problem reading properties file " + propertiesFileName);
+                   e.printStackTrace();
+                   return;
+               }
+           }
+           try {
+               // 通过 DriverManager.getConnection 获取一个连接，里面用到的信息就是上面解析的 xml 中的文件
+               // 由于是 JDBC 4.0 后的 数据源，所以 DriverManager 会自动扫描在类路径下的 java.sql.Driver 实现类
+               // 这里就会自动加载 mysql 驱动包中的 com.mysql.jdbc.Driver 类
+               myConnection = myJDBCTutorialUtilities.getConnection();
+   
+               // Java DB does not have an SQL create database command; it does require createDatabase
+   //      JDBCTutorialUtilities.createDatabase(myConnection,
+   //                                           myJDBCTutorialUtilities.dbName,
+   //                                           myJDBCTutorialUtilities.dbms);
+   //
+   //      JDBCTutorialUtilities.initializeTables(myConnection,
+   //                                             myJDBCTutorialUtilities.dbName,
+   //                                             myJDBCTutorialUtilities.dbms);
+   
+               // 为了测试创建表的 SQL ，我们这里按照该方法调用方式，新创建了该类，然后调用它
+               final SuppliersTable suppliersTable = new SuppliersTable(myConnection, myJDBCTutorialUtilities.dbName, myJDBCTutorialUtilities.dbms);
+               // 创建表
+               suppliersTable.createTable();
+               // 填充测试数据
+               suppliersTable.populateTable();
+               // 这里创建表，和测试数据这些，在 com.oracle.tutorial.jdbc.JDBCTutorialUtilities.initializeTables 中都有一个统一的初始化操作
+               // 所以，只是为了自己尝试的时候在这里临时写上
+   
+               System.out.println("\nContents of SUPPLIERS table:");
+               SuppliersTable.viewTable(myConnection);
+   
+   
+           } catch (SQLException e) {
+               JDBCTutorialUtilities.printSQLException(e);
+           } finally {
+               JDBCTutorialUtilities.closeConnection(myConnection);
+           }
+       }
+   ```
 
-```
-
+   每个 man 方法里面都有一些初始化的代码，我们找到对应的地方，然后调用我们的测试方法即可，并把其他不需要测试的先注释掉，运行就可以测试了。
