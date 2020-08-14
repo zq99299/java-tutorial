@@ -16,7 +16,7 @@ public interface Iterator<E> {
 
 除了尖括号中的内容外，这段代码都应该很熟悉。这些是 List 和 Iterator 接口 的形式类型参数的声明。
 
-类型参数可以在整个泛型声明中使用，几乎可以在使用普通类型的地方使用（尽管有一些重要限制：请参见[“精细打印](https://docs.oracle.com/javase/tutorial/extra/generics/fineprint.html) ”部分 ）
+类型参数可以在整个泛型声明中使用，几乎可以在使用普通类型的地方使用（尽管有一些重要限制：请参见 [细节](./fineprint.md) 部分 ）
 
 你可能会这样想：这里的 `List<Integer>` 对于 `List<E>` 来说，E 被统一替换成了 Integer。
 
