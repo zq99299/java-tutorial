@@ -285,6 +285,143 @@ public void batchUpdate() throws SQLException {
 }
 ```
 
-下面一行禁用连接对象con的自动提交模式，以便在调用executeBatch方法时不会自动提交或回滚事务。
+下面一行禁用连接对象 con 的自动提交模式，以便在调用 executeBatch 方法时不会自动提交或回滚事务。
+
+```java
+this.con.setAutoCommit(false);
+```
+
+为了允许正确的错误处理，您应该在开始批量更新之前始终禁用自动提交模式。
+
+Statement.addBatch 方法将命令添加到与 Statement 对象 stmt 相关联的命令列表中。在此示例中，这些命令都是INSERT INTO 语句，每个命令添加一行包含五个列值的行。 COF_NAME 列和 PRICE 列的值分别是咖啡的名称和价格。每行中的第二个值是 49，因为这是供应商 Superior Coffee 的标识号。最后两个值，即 SALES 和 TOTAL 列的条目，开始都是零，因为还没有销售。 （SALES 是该行在本周售出的磅数；TOTAL  是该咖啡的所有累计销售总额。）
+
+下面的行将添加到其命令列表中的四个 SQL 命令发送到数据库中，以作为批处理执行：
+
+```java
+int [] updateCounts = stmt.executeBatch();
+```
+
+请注意，stmt 使用 executeBatch 方法发送批量插入，而不是 executeUpdate 方法，后者仅发送一个命令并返回单个更新计数。 DBMS 按照添加到命令列表中的顺序执行命令，因此它将首先添加 Amaretto 的行，然后添加Hazelnut 的行，然后添加 Amaretto decaf 的行，最后添加 Hazelnut decaf 的行。如果所有四个命令都成功执行，则DBMS 将按执行顺序返回每个命令的更新计数。指示每个命令影响多少行的更新计数存储在数组 updateCounts 中。
+
+如果批处理中的所有四个命令都成功执行，updateCounts 将包含四个值，所有值都为 1，因为插入会影响一行。
+与 stmt 关联的命令列表现在是空的，因为前面添加的四个命令是在 stmt 调用 executeBatch 方法时发送到数据库的。您可以在任何时候使用 clearBatch 方法显式地清空这个命令列表。
+
+Connection.commit 方法使对 COFFEES 表的更新批处理成为永久更新。由于以前已禁用此连接的自动提交模式，因此需要显式调用此方法。
+
+下一行为当前 Connection 对象启用自动提交模式。
+
+```java
+this.con.setAutoCommit(true);
+```
+
+现在，示例中的每个语句在执行后将自动提交，不再需要调用方法commit。
+
+### 执行参数化的批量更新
+
+也可以进行参数化的批处理更新，如以下代码片段所示，其中 con 是 Connection 对象：
+
+```java
+con.setAutoCommit(false);
+PreparedStatement pstmt = con.prepareStatement(
+                              "INSERT INTO COFFEES VALUES( " +
+                              "?, ?, ?, ?, ?)");
+pstmt.setString(1, "Amaretto");
+pstmt.setInt(2, 49);
+pstmt.setFloat(3, 9.99);
+pstmt.setInt(4, 0);
+pstmt.setInt(5, 0);
+pstmt.addBatch();
+
+pstmt.setString(1, "Hazelnut");
+pstmt.setInt(2, 49);
+pstmt.setFloat(3, 9.99);
+pstmt.setInt(4, 0);
+pstmt.setInt(5, 0);
+pstmt.addBatch();
+
+// ... 以此类推
+// type of coffee
+
+int [] updateCounts = pstmt.executeBatch();
+con.commit();
+con.setAutoCommit(true);
+```
+
+### 处理批量更新异常
+
+如果：
+
+1. 添加到批处理中的一条 SQL 语句产生了一个结果集（通常是一个查询），
+2. 或者批处理中的一条 SQL 语句由于其他原因没有成功执行，那么在调用 executeBatch 方法时，您将获得一个BatchUpdateException 异常
+
+您不应该在一批 SQL 命令中添加查询（SELECT 语句），因为方法 executeBatch 会返回更新计数的数组，并且期望成功执行的每个 SQL 语句都有更新计数。这意味着只有返回更新计数的命令（如 INSERT INTO，UPDATE，DELETE 之类的命令）或返回 0 的命令（如 CREATE TABLE，DROP TABLE，ALTER TABLE）才能使用 executeBatch 方法成功地成批执行。
+
+BatchUpdateException 包含一个更新计数数组，该数组与方法 executeBatch 返回的数组相似。在这两种情况下，更新计数与产生它们的命令的顺序相同。这将告诉您批处理中成功执行了多少个命令以及它们是哪个。例如，如果成功执行了五个命令，则数组将包含五个数字：第一个数字是第一个命令的更新计数，第二个是第二个命令的更新计数，依此类推。
+
+BatchUpdateException 派生自 SQLException。这意味着您可以与 SQLException 对象一起使用所有可用的方法。以下方法 JDBCTutorialUtilities.printBatchUpdateException 打印所有 SQLException 信息以及 BatchUpdateException 对象中包含的更新计数。因为 BatchUpdateException.getUpdateCounts 返回一个 int 数组，所以代码使用 for 循环来打印每个更新计数：
+
+```java
+public static void printBatchUpdateException(BatchUpdateException b) {
+
+    System.err.println("----BatchUpdateException----");
+    System.err.println("SQLState:  " + b.getSQLState());
+    System.err.println("Message:  " + b.getMessage());
+    System.err.println("Vendor:  " + b.getErrorCode());
+    System.err.print("Update counts:  ");
+    int [] updateCounts = b.getUpdateCounts();
+
+    for (int i = 0; i < updateCounts.length; i++) {
+        System.err.print(updateCounts[i] + "   ");
+    }
+}
+```
+
+
 
 ## 在 ResultSet 对象中插入行
+
+注意：不是所有 JDBC 驱动程序都支持使用 ResultSet 接口插入新行。如果您试图插入一个新行，而您的 JDBC 驱动程序数据库不支持该特性，则会抛出一个 SQLFeatureNotSupportedException 异常。
+
+以下方法 CoffeesTable.insertRow 通过 ResultSet 对象将一行插入到 COFFEES 中：
+
+```java
+public void insertRow(String coffeeName, int supplierID,
+                      float price, int sales, int total)
+    throws SQLException {
+
+    Statement stmt = null;
+    try {
+        stmt = con.createStatement(
+            ResultSet.TYPE_SCROLL_SENSITIVE
+            ResultSet.CONCUR_UPDATABLE);
+
+        ResultSet uprs = stmt.executeQuery(
+            "SELECT * FROM " + dbName +
+            ".COFFEES");
+
+        uprs.moveToInsertRow();
+        uprs.updateString("COF_NAME", coffeeName);
+        uprs.updateInt("SUP_ID", supplierID);
+        uprs.updateFloat("PRICE", price);
+        uprs.updateInt("SALES", sales);
+        uprs.updateInt("TOTAL", total);
+
+        uprs.insertRow();
+        uprs.beforeFirst();
+    } catch (SQLException e ) {
+        JDBCTutorialUtilities.printSQLException(e);
+    } finally {
+        if (stmt != null) { stmt.close(); }
+    }
+}
+```
+
+本示例使用两个参数 ResultSet.TYPE_SCROLL_SENSITIVE 和 ResultSet.CONCUR_UPDATABLE 调用 Connection.createStatement 方法。第一个值使 ResultSet 对象的游标向前和向后移动。如果要在 ResultSet 对象中插入行，则需要第二个值 ResultSet.CONCUR_UPDATABLE。它指定它可以更新。
+
+在 getter 方法中使用字符串的相同规定也适用于 updater 方法。
+
+`ResultSet.moveToInsertRow` 方法 **将游标移动到插入行**。插入行是与可更新结果集关联的特殊行。它实际上是一个缓冲区，可以在将行插入结果集中之前通过调用 updater 方法来构造新行。例如，此方法调用 ResultSet.updateString  将插入行的 COF_NAME 列更新为 Kona。
+
+`ResultSet.insertRow` 方法将插入行的内容插入 ResultSet 对象和 **数据库** 中。
+
+注意：使用 ResultSet.insertRow 插入一行后，应将游标移动到插入行以外的其他行。例如，此示例使用方法ResultSet.beforeFirst 将其移动到结果集中的第一行之前。如果您的应用程序的另一部分使用相同的结果集，并且游标仍指向插入行，则可能会出现意外的结果。
