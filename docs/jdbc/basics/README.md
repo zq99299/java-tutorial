@@ -12,7 +12,7 @@
   - [使用预处理语句](./prepared.md)：描述了一种更灵活的创建数据库查询的方式。
   - [使用事务](./transactions.md)：显示了如何控制何时实际执行数据库查询。
 - 使用 [RowSet](./rowset.md) 对象：向您介绍  `RowSet` （行集）对象；这些对象以一种比结果集更灵活和更容易使用的方式保存表格数据。下面的页面描述了可用的不同类型的行集对象：
-  - 使用 JdbcRowSet  对象
+  - 使用 [JdbcRowSet](./jdbcrowset.md)  对象
   - 使用 CachedRowSet 对象
   - 使用 JoinRowSet  对象
   - 使用 FilteredRowSet 对象
