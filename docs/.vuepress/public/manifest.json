@@ -1,25 +1,25 @@
 {
-  "name": "NOTE-BOOK2",
-  "short_name": "MRCODE",
+  "name": "JAVA-TUTORIAL",
+  "short_name": "JAVA-TUTORIAL",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "零散短小的笔记项目，MRCODE 笔记本",
+  "description": "随笔，计划把 Java 官网教程文档看一遍，然后记录，由于是英文文档，全部依赖于机器翻译，然后依靠自身编程经验修正并记录笔记",
   "icons": [
     {
-      "src": "MLOGO100x100.png",
+      "src": "mlogo.svg",
       "sizes": "48x48",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "MLOGO100x100.png",
+      "src": "mlogo.svg",
       "sizes": "100x100",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "MLOGO200x200.png",
+      "src": "mlogo.svg",
       "sizes": "200x200",
-      "type": "image/png"
+      "type": "image/svg+xml"
     }
   ]
 }
