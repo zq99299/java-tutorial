@@ -23,6 +23,8 @@ footer: MIT Licensed | Copyright © 2018-2019 mrcode
 
 The Java Tutorials have been written for JDK 8. Examples and practices described in this page don't take advantage of improvements introduced in later releases.
 
+> 以下导航，请在线阅读，在 GitHub 仓库源码阅读模式会找不到页面
+
 - 官方教程 - 基础篇
   - [学习 JAVA](/java/) 描述 Java 编程语言基本概念和特性的课程
   - [基本类（必修）](/essential/) 有关异常，基本输入/输出，并发，正则表达式和平台环境的课程。
